@@ -1,3 +1,39 @@
 <resources>
-    <string name="app_name">DongnaeGoyang</string>
+    <string name="app_name">동네 고영희</string>
+
+    <!--CatAddActivity-->
+    <string name="cat_add_toolbar_title">고영희 추가</string>
+    <string name="cat_add_btn_step1">이렇게 생겼어요!</string>
+    <string name="cat_add_btn_step2">다음</string>
+    <string name="cat_add_btn_step3">등록</string>
+    <!--CatAddFragment1-->
+    <string name="cat_add_title1">어떻게 생겼나요?</string>
+    <string name="cat_add_explain1">실제 생김새를 좌우 선택을 통해 그림으로 나타내주세요.</string>
+    <string name="left">&lt;</string>
+    <string name="right">&gt;</string>
+    <string name="cat_add_size">몸집 선택</string>
+    <string name="cat_add_fur">코숏 선택</string>
+    <string name="cat_add_ear">귀 모양 선택</string>
+    <string name="cat_add_tail">꼬리 모양 선택</string>
+    <string name="cat_add_whiskers">수염 모양 선택</string>
+    <!--CatAddFragment2-->
+    <string name="cat_add_title2">고영희를 소개해주세요.</string>
+    <string name="cat_add_title_star">*</string>
+    <string name="cat_add_name">이름</string>
+    <string name="cat_add_name_hint">고양이 이름 입력</string>
+    <string name="cat_add_place">주 출몰지</string>
+    <string name="cat_add_place_hint">주로 출몰하는 장소 입력</string>
+    <string name="cat_add_gender">성별</string>
+    <string name="cat_add_age">추정 나이</string>
+    <string name="cat_add_special_note">특이사항을 입력해주세요.</string>
+    <string name="cat_add_special_note_max_length">최대 50자</string>
+    <string name="cat_add_special_note_hint">성격, 임신 경험 등 고양이에 대해 알고있는 정보를 함께 공유해주세요.</string>
+    <!--CatAddFragment3-->
+    <string name="cat_add_title3">추가 정보를 입력해주세요.</string>
+    <string name="cat_add_explain3">정확하게 알지 못하는 부분은 무시해도 좋아요.</string>
+    <string name="cat_add_tnr">TNR</string>
+    <string name="cat_add_food">선호 사료</string>
+    <string name="cat_add_picture">사진 등록</string>
+    <string name="addCat">고영희 추가</string>
+
 </resources>

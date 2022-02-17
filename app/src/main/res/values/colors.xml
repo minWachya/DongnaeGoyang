@@ -7,4 +7,13 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!--기본 색상 팔레트-->
+    <color name="yellow_F1BC35">#F1BC35</color>
+    <color name="brown_594826">#594826</color>
+    <color name="brown_473A22">#473A22</color>
+    <color name="beige_F4EEDD">#F4EEDD</color>
+    <color name="beige_E3DECF">#E3DECF</color>
+    <color name="beige_BBB5A4">#BBB5A4</color>
+    <color name="beige_F7F3E9">#F7F3E9</color>
 </resources>

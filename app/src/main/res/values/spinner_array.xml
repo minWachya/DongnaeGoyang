@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--fragment_cat_add1-->
+    <!--몸집 배멸-->
+    <string-array name="cat_add1_size_array">
+        <item>보통</item>
+        <item>마름</item>
+        <item>비만</item>
+    </string-array>
+    <!--코숏 배멸-->
+    <string-array name="cat_add1_fur_array">
+        <item>치즈</item>
+        <item>올블랙</item>
+        <item>고등어</item>
+        <item>삼색이</item>
+        <item>턱시도</item>
+        <item>카오스</item>
+        <item>얼룩이or젖소</item>
+    </string-array>
+    <!--귀모양 배멸-->
+    <string-array name="cat_add1_ear_array">
+        <item>오픈</item>
+        <item>폴드</item>
+    </string-array>
+    <!--꼬리 배멸-->
+    <string-array name="cat_add1_tail_array">
+        <item>정상</item>
+        <item>잘림</item>
+    </string-array>
+    <!--수염 배멸-->
+    <string-array name="cat_add1_whiskers_array">
+        <item>짧음</item>
+        <item>김</item>
+    </string-array>
+
+    <!--fragment_cat_add2-->
+    <!--성별 스피너 배멸-->
+    <string-array name="cat_add2_gender_array">
+        <item>여자</item>
+        <item>남자</item>
+        <item>모름</item>
+    </string-array>
+    <!--추정 나이 스피너 배열-->
+    <string-array name="cat_add2_age_array">
+        <item>1살</item>
+        <item>2살</item>
+        <item>3살</item>
+        <item>4살</item>
+    </string-array>
+
+    <!--fragment_cat_add3-->
+    <!--TNR 스피너 배멸-->
+    <string-array name="cat_add3_tnr_array">
+        <item>O</item>
+        <item>X</item>
+        <item>모름</item>
+        <item>수술 여부 선택</item>  <!--hint-->
+    </string-array>
+    <!--선호 사료 스피너 배열-->
+    <string-array name="cat_add3_food_array">
+        <item>A</item>
+        <item>B</item>
+        <item>C</item>
+        <item>가리지 않음</item>
+        <item>모름</item>
+        <item>선호 사료 선택</item>  <!--hint-->
+    </string-array>
+
+</resources>

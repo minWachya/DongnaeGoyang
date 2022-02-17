@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CatAddFragment1">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="@android:style/Widget.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:max="3"
+        android:progress="1"
+        android:progressBackgroundTint="@color/beige_F7F3E9"
+        android:progressTint="@color/brown_473A22"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/cat_add_title1"
+        android:textColor="@color/brown_473A22"
+        android:textSize="18sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/explain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="20dp"
+        android:text="@string/cat_add_explain1"
+        android:textColor="@color/beige_BBB5A4"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/explain"
+        android:orientation="horizontal" />
+
+    <!--몸집-->
+    <TextView
+        android:id="@+id/textCatSize"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/cat_add_size"
+        android:textColor="@color/brown_473A22"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout" />
+    <Button
+        android:id="@+id/btnSizeLeft"
+        android:layout_width="18dp"
+        android:layout_height="23dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/left"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textCatSize"
+        app:layout_constraintTop_toBottomOf="@+id/layout" />
+    <Button
+        android:id="@+id/btnSizeRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/right"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/textCatSize"
+        app:layout_constraintTop_toBottomOf="@+id/layout" />
+
+    <!--코숏-->
+    <TextView
+        android:id="@+id/textFur"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/cat_add_fur"
+        android:textColor="@color/brown_473A22"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
+    <Button
+        android:id="@+id/btnFurLeft"
+        android:layout_width="18dp"
+        android:layout_height="23dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/left"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textFur"
+        app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
+    <Button
+        android:id="@+id/btnFurRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/right"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/textFur"
+        app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
+
+    <!--귀모양-->
+    <TextView
+        android:id="@+id/textEar"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/cat_add_ear"
+        android:textColor="@color/brown_473A22"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textFur" />
+    <Button
+        android:id="@+id/btnEarLeft"
+        android:layout_width="18dp"
+        android:layout_height="23dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/left"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textEar"
+        app:layout_constraintTop_toBottomOf="@+id/textFur" />
+    <Button
+        android:id="@+id/btnEarRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/right"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/textEar"
+        app:layout_constraintTop_toBottomOf="@+id/textFur" />
+
+    <!--꼬리 모양-->
+    <TextView
+        android:id="@+id/textTail"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/cat_add_tail"
+        android:textColor="@color/brown_473A22"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textEar" />
+    <Button
+        android:id="@+id/btnTailLeft"
+        android:layout_width="18dp"
+        android:layout_height="23dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/left"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textTail"
+        app:layout_constraintTop_toBottomOf="@+id/textEar" />
+    <Button
+        android:id="@+id/btnTailRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/right"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/textTail"
+        app:layout_constraintTop_toBottomOf="@+id/textEar" />
+
+    <!--수염 모양-->
+    <TextView
+        android:id="@+id/textWhiskers"
+        android:layout_width="164dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="12dp"
+        android:text="@string/cat_add_whiskers"
+        android:textColor="@color/brown_473A22"
+        android:textSize="16sp"
+        android:textAlignment="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textTail" />
+    <Button
+        android:id="@+id/btnWhiskersLeft"
+        android:layout_width="18dp"
+        android:layout_height="23dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/left"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textWhiskers"
+        app:layout_constraintTop_toBottomOf="@+id/textTail" />
+    <Button
+        android:id="@+id/btnWhiskersRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:background="@drawable/btn_yellow_round"
+        android:layout_margin="12dp"
+        android:text="@string/right"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/textWhiskers"
+        app:layout_constraintTop_toBottomOf="@+id/textTail" />
+
+    <Button
+        android:id="@+id/btnOK1"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/btn_enable"
+        app:backgroundTint="@null"
+        android:text="@string/cat_add_btn_step1"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="16dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
