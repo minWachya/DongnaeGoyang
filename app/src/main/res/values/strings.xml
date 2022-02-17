@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">동네 고영희</string>
 
+    <!--MainActivity-->
+    <string name="main_title">우리 동네 고영희님들</string>
     <!--CatAddActivity-->
     <string name="cat_add_toolbar_title">고영희 추가</string>
     <string name="cat_add_btn_step1">이렇게 생겼어요!</string>
