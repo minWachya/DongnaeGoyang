@@ -58,33 +58,29 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:text="@string/cat_add_size"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout" />
-    <Button
-        android:id="@+id/btnSizeLeft"
-        android:layout_width="18dp"
-        android:layout_height="23dp"
-        android:background="@drawable/btn_yellow_round"
-        android:layout_margin="12dp"
-        android:text="@string/left"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/textCatSize"
-        app:layout_constraintTop_toBottomOf="@+id/layout" />
-    <Button
-        android:id="@+id/btnSizeRight"
+    <ImageView
+        android:id="@+id/imgViewSizeLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:background="@drawable/btn_yellow_round"
+        android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        android:text="@string/right"
-        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textCatSize"
+        app:layout_constraintTop_toBottomOf="@+id/layout"/>
+    <ImageView
+        android:id="@+id/imgViewSizeRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_margin="12dp"
         app:layout_constraintStart_toEndOf="@+id/textCatSize"
-        app:layout_constraintTop_toBottomOf="@+id/layout" />
+        app:layout_constraintTop_toBottomOf="@+id/layout"/>
+
 
     <!--코숏-->
     <TextView
@@ -92,33 +88,28 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:text="@string/cat_add_fur"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
-    <Button
-        android:id="@+id/btnFurLeft"
-        android:layout_width="18dp"
-        android:layout_height="23dp"
-        android:background="@drawable/btn_yellow_round"
-        android:layout_margin="12dp"
-        android:text="@string/left"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/textFur"
-        app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
-    <Button
-        android:id="@+id/btnFurRight"
+    <ImageView
+        android:id="@+id/imgViewFurLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:background="@drawable/btn_yellow_round"
+        android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        android:text="@string/right"
-        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textFur"
+        app:layout_constraintTop_toBottomOf="@+id/textCatSize"/>
+    <ImageView
+        android:id="@+id/imgViewFurRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_margin="12dp"
         app:layout_constraintStart_toEndOf="@+id/textFur"
-        app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
+        app:layout_constraintTop_toBottomOf="@+id/textCatSize"/>
 
     <!--귀모양-->
     <TextView
@@ -126,33 +117,28 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:text="@string/cat_add_ear"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFur" />
-    <Button
-        android:id="@+id/btnEarLeft"
-        android:layout_width="18dp"
-        android:layout_height="23dp"
-        android:background="@drawable/btn_yellow_round"
-        android:layout_margin="12dp"
-        android:text="@string/left"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/textEar"
-        app:layout_constraintTop_toBottomOf="@+id/textFur" />
-    <Button
-        android:id="@+id/btnEarRight"
+    <ImageView
+        android:id="@+id/imgViewEarLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:background="@drawable/btn_yellow_round"
+        android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        android:text="@string/right"
-        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textEar"
+        app:layout_constraintTop_toBottomOf="@+id/textFur"/>
+    <ImageView
+        android:id="@+id/imgViewEarRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_margin="12dp"
         app:layout_constraintStart_toEndOf="@+id/textEar"
-        app:layout_constraintTop_toBottomOf="@+id/textFur" />
+        app:layout_constraintTop_toBottomOf="@+id/textFur"/>
 
     <!--꼬리 모양-->
     <TextView
@@ -160,31 +146,26 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:text="@string/cat_add_tail"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEar" />
-    <Button
-        android:id="@+id/btnTailLeft"
-        android:layout_width="18dp"
-        android:layout_height="23dp"
-        android:background="@drawable/btn_yellow_round"
-        android:layout_margin="12dp"
-        android:text="@string/left"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/textTail"
-        app:layout_constraintTop_toBottomOf="@+id/textEar" />
-    <Button
-        android:id="@+id/btnTailRight"
+    <ImageView
+        android:id="@+id/imgViewTailLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:background="@drawable/btn_yellow_round"
+        android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        android:text="@string/right"
-        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textTail"
+        app:layout_constraintTop_toBottomOf="@+id/textEar" />
+    <ImageView
+        android:id="@+id/imgViewTailRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_margin="12dp"
         app:layout_constraintStart_toEndOf="@+id/textTail"
         app:layout_constraintTop_toBottomOf="@+id/textEar" />
 
@@ -194,31 +175,26 @@
         android:layout_width="164dp"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:text="@string/cat_add_whiskers"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTail" />
-    <Button
-        android:id="@+id/btnWhiskersLeft"
-        android:layout_width="18dp"
-        android:layout_height="23dp"
-        android:background="@drawable/btn_yellow_round"
-        android:layout_margin="12dp"
-        android:text="@string/left"
-        android:textColor="@color/white"
-        app:layout_constraintEnd_toStartOf="@+id/textWhiskers"
-        app:layout_constraintTop_toBottomOf="@+id/textTail" />
-    <Button
-        android:id="@+id/btnWhiskersRight"
+    <ImageView
+        android:id="@+id/imgViewWhiskersLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
-        android:background="@drawable/btn_yellow_round"
+        android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        android:text="@string/right"
-        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/textWhiskers"
+        app:layout_constraintTop_toBottomOf="@+id/textTail" />
+    <ImageView
+        android:id="@+id/imgViewWhiskersRight"
+        android:layout_width="22dp"
+        android:layout_height="22dp"
+        android:src="@drawable/ic_right_arrow"
+        android:layout_margin="12dp"
         app:layout_constraintStart_toEndOf="@+id/textWhiskers"
         app:layout_constraintTop_toBottomOf="@+id/textTail" />
 

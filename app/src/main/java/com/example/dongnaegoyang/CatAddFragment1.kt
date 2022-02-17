@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.TextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd1Binding
 
@@ -27,19 +28,24 @@ class CatAddFragment1 : Fragment() {
 
         // 몸집 선택
         val arrSize = resources.getStringArray(R.array.cat_add1_size_array)
-        setBtnListener(arrSize, binding.btnSizeLeft, binding.btnSizeRight, binding.textCatSize)
+        setBtnListener(arrSize, binding.imgViewSizeLeft, binding.imgViewSizeRight, binding.textCatSize)
+        binding.textCatSize.text = arrSize[0]   // 기본 선택
         // 코숏 선택
         val arrFur = resources.getStringArray(R.array.cat_add1_fur_array)
-        setBtnListener(arrFur, binding.btnFurLeft, binding.btnFurRight, binding.textFur)
+        setBtnListener(arrFur, binding.imgViewFurLeft, binding.imgViewFurRight, binding.textFur)
+        binding.textFur.text = arrFur[0]   // 기본 선택
         // 귀 모양 선택
         val arrEar = resources.getStringArray(R.array.cat_add1_ear_array)
-        setBtnListener(arrEar, binding.btnEarLeft, binding.btnEarRight, binding.textEar)
+        setBtnListener(arrEar, binding.imgViewEarLeft, binding.imgViewEarRight, binding.textEar)
+        binding.textEar.text = arrEar[0]   // 기본 선택
         // 꼬리 모양 선택
         val arrTail = resources.getStringArray(R.array.cat_add1_tail_array)
-        setBtnListener(arrTail, binding.btnTailLeft, binding.btnTailRight, binding.textTail)
+        setBtnListener(arrTail, binding.imgViewTailLeft, binding.imgViewTailRight, binding.textTail)
+        binding.textTail.text = arrTail[0]   // 기본 선택
         // 수염 선택
         val arrWhiskers = resources.getStringArray(R.array.cat_add1_whiskers_array)
-        setBtnListener(arrWhiskers, binding.btnWhiskersLeft, binding.btnWhiskersRight, binding.textWhiskers)
+        setBtnListener(arrWhiskers, binding.imgViewWhiskersLeft, binding.imgViewWhiskersRight, binding.textWhiskers)
+        binding.textWhiskers.text = arrWhiskers[0]   // 기본 선택
 
         // 2단계로 이동
         binding.btnOK1.setOnClickListener {
@@ -56,16 +62,16 @@ class CatAddFragment1 : Fragment() {
     }
 
     // 고양이 생김새 설정 버튼 리스너 달기
-    private fun setBtnListener(arr: Array<String>, btnLeft: Button, btnRight: Button, text: TextView) {
+    private fun setBtnListener(arr: Array<String>, imageViewLeft: ImageView, imageViewRight: ImageView, text: TextView) {
         val max = arr.size-1
         var num = 0
 
-        btnLeft.setOnClickListener {
+        imageViewLeft.setOnClickListener {
             num--
             if (num < 0) num = max
             text.text = arr[num]
         }
-        btnRight.setOnClickListener {
+        imageViewRight.setOnClickListener {
             num++
             if (num > max) num = 0
             text.text = arr[num]

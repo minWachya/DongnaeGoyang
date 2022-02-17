@@ -9,13 +9,6 @@
     <!--CatAddFragment1-->
     <string name="cat_add_title1">어떻게 생겼나요?</string>
     <string name="cat_add_explain1">실제 생김새를 좌우 선택을 통해 그림으로 나타내주세요.</string>
-    <string name="left">&lt;</string>
-    <string name="right">&gt;</string>
-    <string name="cat_add_size">몸집 선택</string>
-    <string name="cat_add_fur">코숏 선택</string>
-    <string name="cat_add_ear">귀 모양 선택</string>
-    <string name="cat_add_tail">꼬리 모양 선택</string>
-    <string name="cat_add_whiskers">수염 모양 선택</string>
     <!--CatAddFragment2-->
     <string name="cat_add_title2">고영희를 소개해주세요.</string>
     <string name="cat_add_title_star">*</string>

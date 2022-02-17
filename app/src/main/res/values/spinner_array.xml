@@ -3,34 +3,35 @@
     <!--fragment_cat_add1-->
     <!--몸집 배멸-->
     <string-array name="cat_add1_size_array">
-        <item>보통</item>
-        <item>마름</item>
-        <item>비만</item>
+        <item>보통 몸집</item>
+        <item>마른 몸집</item>
+        <item>뚱뚱한 몸집</item>
     </string-array>
     <!--코숏 배멸-->
     <string-array name="cat_add1_fur_array">
-        <item>치즈</item>
-        <item>올블랙</item>
-        <item>고등어</item>
-        <item>삼색이</item>
-        <item>턱시도</item>
-        <item>카오스</item>
-        <item>얼룩이or젖소</item>
+        <item>치즈 무늬</item>
+        <item>올블랙 무늬</item>
+        <item>고등어 무늬</item>
+        <item>삼색 무늬</item>
+        <item>턱시도 무늬</item>
+        <item>카오스 무늬</item>
+        <item>얼룩이or젖소 무늬</item>
     </string-array>
     <!--귀모양 배멸-->
     <string-array name="cat_add1_ear_array">
-        <item>오픈</item>
-        <item>폴드</item>
+        <item>정상 귀</item>
+        <item>접힌 귀</item>
+        <item>TNR 귀</item>
     </string-array>
     <!--꼬리 배멸-->
     <string-array name="cat_add1_tail_array">
-        <item>정상</item>
-        <item>잘림</item>
+        <item>정상 꼬리</item>
+        <item>잘린 꼬리</item>
     </string-array>
     <!--수염 배멸-->
     <string-array name="cat_add1_whiskers_array">
-        <item>짧음</item>
-        <item>김</item>
+        <item>짧은 수염</item>
+        <item>긴 수염</item>
     </string-array>
 
     <!--fragment_cat_add2-->
@@ -42,10 +43,12 @@
     </string-array>
     <!--추정 나이 스피너 배열-->
     <string-array name="cat_add2_age_array">
-        <item>1살</item>
+        <item>1살 미만</item>
         <item>2살</item>
         <item>3살</item>
         <item>4살</item>
+        <item>5살 이상</item>
+        <item>모름</item>
     </string-array>
 
     <!--fragment_cat_add3-->
@@ -58,10 +61,9 @@
     </string-array>
     <!--선호 사료 스피너 배열-->
     <string-array name="cat_add3_food_array">
-        <item>A</item>
-        <item>B</item>
-        <item>C</item>
-        <item>가리지 않음</item>
+        <item>습식</item>
+        <item>건식</item>
+        <item>편식 안 함</item>
         <item>모름</item>
         <item>선호 사료 선택</item>  <!--hint-->
     </string-array>
