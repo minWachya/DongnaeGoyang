@@ -167,18 +167,32 @@
         tools:ignore="RtlHardcoded" />
 
     <Button
+        android:id="@+id/btnBack"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_margin="16dp"
+        android:background="@drawable/btn_round_brown"
+        android:text="@string/cat_add_btn_step2"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
         android:id="@+id/btnOK2"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:background="@drawable/btn_enable"
-        app:backgroundTint="@null"
         android:enabled="false"
         android:text="@string/cat_add_btn_step2"
         android:textColor="@color/white"
         android:textSize="16sp"
+        app:backgroundTint="@null"
         app:layout_constraintBottom_toBottomOf="parent"
-        tools:layout_editor_absoluteX="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btnBack" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -35,8 +35,14 @@ class CatAddFragment3 : Fragment() {
         val foodArray = resources.getStringArray(R.array.cat_add3_food_array)
         setSpinner(foodSpinner, foodArray)
 
-        // 고양이 정보 저장
-        binding.btnOK2.setOnClickListener {
+        // <이전> 버튼 클릭: 2단계로 이동
+        binding.btnBack.setOnClickListener {
+            val ft = requireActivity().supportFragmentManager.beginTransaction()
+            ft.replace(R.id.catAddFrameLayout, CatAddFragment2()).commit()
+        }
+
+        // <등록> 버튼 클릭: 고양이 정보 저장
+        binding.btnOK3.setOnClickListener {
             Toast.makeText(context, "고양이 등록 성공!(미완)", Toast.LENGTH_SHORT).show()
         }
 

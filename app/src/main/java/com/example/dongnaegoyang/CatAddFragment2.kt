@@ -69,7 +69,13 @@ class CatAddFragment2 : Fragment() {
             ageSpinner.adapter = adapter
         }
 
-        // 3단계로 이동
+        // <이전> 버튼 클릭: 1단계로 이동
+        binding.btnBack.setOnClickListener {
+            val ft = requireActivity().supportFragmentManager.beginTransaction()
+            ft.replace(R.id.catAddFrameLayout, CatAddFragment1()).commit()
+        }
+
+        // <다음> 버튼 클릭: 3단계로 이동
         binding.btnOK2.setOnClickListener {
             val ft = requireActivity().supportFragmentManager.beginTransaction()
             ft.replace(R.id.catAddFrameLayout, CatAddFragment3()).commit()

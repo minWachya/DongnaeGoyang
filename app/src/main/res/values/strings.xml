@@ -19,7 +19,7 @@
     <string name="cat_add_gender">성별</string>
     <string name="cat_add_age">추정 나이</string>
     <string name="cat_add_special_note">특이사항을 입력해주세요.</string>
-    <string name="cat_add_special_note_max_length">최대 50자</string>
+    <string name="cat_add_special_note_max_length">최대 100자</string>
     <string name="cat_add_special_note_hint">성격, 임신 경험 등 고양이에 대해 알고있는 정보를 함께 공유해주세요.</string>
     <!--CatAddFragment3-->
     <string name="cat_add_title3">추가 정보를 입력해주세요.</string>

@@ -19,8 +19,8 @@
     </string-array>
     <!--귀모양 배멸-->
     <string-array name="cat_add1_ear_array">
-        <item>정상 귀</item>
-        <item>접힌 귀</item>
+        <item>오픈 귀</item>
+        <item>폴트 귀</item>
         <item>TNR 귀</item>
     </string-array>
     <!--꼬리 배멸-->
