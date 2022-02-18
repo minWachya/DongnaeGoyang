@@ -11,6 +11,13 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+    </style>
+
+    <!-- Customize your theme here. -->
+    <!--Custom Dialog: round-->
+    <style name="CustomAlertDialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:windowBackground">@drawable/dialog_round</item>
+        <item name="colorAccent">@color/yellow_F1BC35</item>    <!--버튼 text 색-->
+        <item name="android:textAllCaps">false</item>           <!--버튼 text 소문자-->
     </style>
 </resources>

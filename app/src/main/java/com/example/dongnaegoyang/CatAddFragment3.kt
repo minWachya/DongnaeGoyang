@@ -1,13 +1,20 @@
 package com.example.dongnaegoyang
 
+import android.app.AlertDialog
+import android.graphics.Color
+import android.graphics.Typeface
 import android.os.Bundle
+import android.text.Html
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Spinner
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.text.HtmlCompat
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 
 private const val TAG = "mmmCatAddFragment3"
@@ -43,7 +50,12 @@ class CatAddFragment3 : Fragment() {
 
         // <등록> 버튼 클릭: 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            Toast.makeText(context, "고양이 등록 성공!(미완)", Toast.LENGTH_SHORT).show()
+            AlertDialog.Builder(context, R.style.CustomAlertDialog)
+                .setTitle("등록 확인")
+                .setMessage("00구 00동에 새로운 고영희를 등록하시겠습니까?")
+                .setPositiveButton("Ok", /* listener = */ null)
+                .setNegativeButton("Cancel", /* listener = */ null)
+                .show()
         }
 
         return view

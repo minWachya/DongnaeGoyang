@@ -28,6 +28,8 @@
     <string name="cat_add_tnr">TNR</string>
     <string name="cat_add_food">선호 사료</string>
     <string name="cat_add_picture">사진 등록</string>
+    <string name="cat_add_dialog_title"><b>등록 확인</b></string>
+
     <string name="addCat">고영희 추가</string>
 
 </resources>
