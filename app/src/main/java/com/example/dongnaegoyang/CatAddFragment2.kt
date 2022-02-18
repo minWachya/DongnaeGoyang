@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import android.widget.ArrayAdapter
+import android.widget.Spinner
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 
 private const val TAG = "mmmCatAddFragment2"
@@ -46,34 +47,14 @@ class CatAddFragment2 : Fragment() {
         }
 
         // 성별 선택 스피너 설정
-        // 배열 추가
         val genderSpinner = binding.genderSipnner
-        ArrayAdapter.createFromResource(
-            requireActivity().applicationContext,
-            R.array.cat_add2_gender_array,
-            android.R.layout.simple_dropdown_item_1line
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            genderSpinner.adapter = adapter
-        }
+        val genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
+        setSpinner(genderSpinner, genderArray)
 
         // 추정 나이 선택 스피너 설정
-        // 배열 추가
         val ageSpinner = binding.ageSpinner
-        ArrayAdapter.createFromResource(
-            requireActivity().applicationContext,
-            R.array.cat_add2_age_array,
-            android.R.layout.simple_dropdown_item_1line
-        ).also { adapter ->
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-            ageSpinner.adapter = adapter
-        }
-
-        // <이전> 버튼 클릭: 1단계로 이동
-        binding.btnBack.setOnClickListener {
-            val ft = requireActivity().supportFragmentManager.beginTransaction()
-            ft.replace(R.id.catAddFrameLayout, CatAddFragment1()).commit()
-        }
+        val ageArray = resources.getStringArray(R.array.cat_add2_age_array)
+        setSpinner(ageSpinner, ageArray)
 
         // <다음> 버튼 클릭: 3단계로 이동
         binding.btnOK2.setOnClickListener {
@@ -92,6 +73,17 @@ class CatAddFragment2 : Fragment() {
     // 모두 입력 시 버튼 활성화
     private fun btnEnableCheck() {
         binding.btnOK2.isEnabled = checkName && checkPlace && checkNote
+    }
+
+    // 스피너 설정
+    private fun setSpinner(spinner: Spinner, array: Array<String>) {
+        val adapter = object : ArrayAdapter<String>(
+            requireContext(),
+            android.R.layout.simple_dropdown_item_1line
+        ) { override fun getCount(): Int =  super.getCount() - 1 }  // array에서 hint 안 보이게 하기
+        adapter.addAll(array.toMutableList())   // 배열 추가
+        spinner.adapter = adapter               // 어댑터 달기
+        spinner.setSelection(adapter.count)     // 스피너 초기값=hint
     }
 
 }

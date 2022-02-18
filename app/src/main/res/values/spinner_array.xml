@@ -20,7 +20,7 @@
     <!--귀모양 배멸-->
     <string-array name="cat_add1_ear_array">
         <item>오픈 귀</item>
-        <item>폴트 귀</item>
+        <item>폴드 귀</item>
         <item>TNR 귀</item>
     </string-array>
     <!--꼬리 배멸-->
@@ -40,6 +40,7 @@
         <item>여자</item>
         <item>남자</item>
         <item>모름</item>
+        <item>성별 선택</item>  <!--hint-->
     </string-array>
     <!--추정 나이 스피너 배열-->
     <string-array name="cat_add2_age_array">
@@ -49,6 +50,7 @@
         <item>4살</item>
         <item>5살 이상</item>
         <item>모름</item>
+        <item>고양이 나이 선택</item>  <!--hint-->
     </string-array>
 
     <!--fragment_cat_add3-->
