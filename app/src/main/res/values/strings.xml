@@ -18,7 +18,9 @@
     <string name="cat_add_place">주 출몰지</string>
     <string name="cat_add_place_hint">주로 출몰하는 장소 입력</string>
     <string name="cat_add_gender">성별</string>
+    <string name="cat_add_gender_hint">성별 선택</string>
     <string name="cat_add_age">추정 나이</string>
+    <string name="cat_add_age_hint">고양이 나이 선택</string>
     <string name="cat_add_special_note">특이사항을 입력해주세요.</string>
     <string name="cat_add_special_note_max_length">최대 100자</string>
     <string name="cat_add_special_note_hint">성격, 임신 경험 등 고양이에 대해 알고있는 정보를 함께 공유해주세요.</string>
@@ -26,9 +28,10 @@
     <string name="cat_add_title3">추가 정보를 입력해주세요.</string>
     <string name="cat_add_explain3">정확하게 알지 못하는 부분은 무시해도 좋아요.</string>
     <string name="cat_add_tnr">TNR</string>
+    <string name="cat_add_tnr_hint">수술 여부 선택</string>
     <string name="cat_add_food">선호 사료</string>
+    <string name="cat_add_food_hint">사료 선택</string>
     <string name="cat_add_picture">사진 등록</string>
-    <string name="cat_add_dialog_title"><b>등록 확인</b></string>
 
     <string name="addCat">고영희 추가</string>
 

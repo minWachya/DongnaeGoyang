@@ -9,12 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-<!--        <activity-->
-<!--            android:name=".CatAddActivity"-->
-<!--            android:exported="false"-->
-<!--            android:label="고양이 추가 페이지"/>-->
         <activity
             android:name=".CatAddActivity"
+            android:exported="false"
+            android:label="고양이 추가 페이지"/>
+        <activity
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,5 +1,6 @@
 package com.example.dongnaegoyang
 
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,8 +9,11 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import android.widget.Spinner
+import android.widget.TextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 private const val TAG = "mmmCatAddFragment2"
 
@@ -22,6 +26,9 @@ class CatAddFragment2 : Fragment() {
     var checkName = false
     var checkPlace = false
     var checkNote = false
+
+    // BottomDialog 위한 spinner_custom_layout.xml 아이디
+    val arrTextViewId = arrayListOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,14 +54,24 @@ class CatAddFragment2 : Fragment() {
         }
 
         // 성별 선택 스피너 설정
-        val genderSpinner = binding.genderSipnner
+        val genderBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
+        val genderBottomSheetDialog = BottomSheetDialog(requireContext())
         val genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
-        setSpinner(genderSpinner, genderArray)
+        genderBottomSheetDialog.setContentView(genderBottomSheetView)
+        setBottomSheetView(genderBottomSheetView, genderArray, genderBottomSheetDialog, binding.genderSpinner)
+        binding.genderSpinner.setOnClickListener {
+            genderBottomSheetDialog.show()
+        }
 
         // 추정 나이 선택 스피너 설정
-        val ageSpinner = binding.ageSpinner
+        val ageBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
+        val ageBottomSheetDialog = BottomSheetDialog(requireContext())
         val ageArray = resources.getStringArray(R.array.cat_add2_age_array)
-        setSpinner(ageSpinner, ageArray)
+        ageBottomSheetDialog.setContentView(ageBottomSheetView)
+        setBottomSheetView(ageBottomSheetView, ageArray, ageBottomSheetDialog, binding.ageSpinner)
+        binding.ageSpinner.setOnClickListener {
+            ageBottomSheetDialog.show()
+        }
 
         // <이전> 버튼 클릭: 1단계로 이동
         binding.btnBack.setOnClickListener {
@@ -84,17 +101,26 @@ class CatAddFragment2 : Fragment() {
     // 모두 입력 시 버튼 활성화
     private fun btnEnableCheck() {
         binding.btnOK2.isEnabled = checkName && checkPlace && checkNote
+                && binding.genderSpinner.text.isNotEmpty() && binding.ageSpinner.text.isNotEmpty()
     }
 
-    // 스피너 설정
-    private fun setSpinner(spinner: Spinner, array: Array<String>) {
-        val adapter = object : ArrayAdapter<String>(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line
-        ) { override fun getCount(): Int =  super.getCount() - 1 }  // array에서 hint 안 보이게 하기
-        adapter.addAll(array.toMutableList())   // 배열 추가
-        spinner.adapter = adapter               // 어댑터 달기
-        spinner.setSelection(adapter.count)     // 스피너 초기값=hint
+    // 스피너 선택 설정
+    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: TextView) {
+        for (i in arr.indices) {
+            val textView = bottomSheetView.findViewById<TextView>(arrTextViewId[i])
+            textView.text = arr[i]
+            textView.visibility = View.VISIBLE
+            textView.setOnClickListener {
+                spinner.text = arr[i]
+                dialog.dismiss()
+                btnEnableCheck()
+            }
+        }
+        // X버튼 누르면 닫힘
+        val closeButton = bottomSheetView.findViewById<ImageView>(R.id.imgClose)
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
 }

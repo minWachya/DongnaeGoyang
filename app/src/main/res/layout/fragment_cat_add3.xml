@@ -59,16 +59,16 @@
             android:text="@string/cat_add_tnr"
             android:textSize="12sp"
             android:textColor="@color/brown_473A22"/>
-        <Spinner
+        <TextView
             android:id="@+id/tnrSpinner"
+            android:hint="@string/cat_add_tnr_hint"
             android:textSize="16sp"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:backgroundTint="@color/beige_E3DECF"
             android:layout_column="1"
             android:layout_row="0"
             android:layout_gravity="fill_horizontal"
-            android:layout_height="55dp"
-            android:spinnerMode="dropdown"/>
+            android:layout_height="55dp"/>
 
         <TextView
             android:layout_column="0"
@@ -77,16 +77,16 @@
             android:text="@string/cat_add_food"
             android:textSize="12sp"
             android:textColor="@color/brown_473A22"/>
-        <Spinner
+        <TextView
             android:id="@+id/foodSpinner"
+            android:hint="@string/cat_add_food_hint"
             android:textSize="16sp"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:backgroundTint="@color/beige_E3DECF"
             android:layout_column="1"
             android:layout_row="1"
             android:layout_gravity="fill_horizontal"
-            android:layout_height="55dp"
-            android:spinnerMode="dropdown"/>
+            android:layout_height="55dp"/>
     </GridLayout>
 
     <TextView

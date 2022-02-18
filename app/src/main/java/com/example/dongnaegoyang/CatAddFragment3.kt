@@ -10,12 +10,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Spinner
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.core.text.HtmlCompat
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 private const val TAG = "mmmCatAddFragment3"
 
@@ -24,6 +22,8 @@ private val binding get() = _binding!!
 
 // 고양이 추가: 3단계 프레그먼드
 class CatAddFragment3 : Fragment() {
+    // BottomDialog 위한 spinner_custom_layout.xml 아이디
+    val arrTextViewId = arrayListOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,14 +33,24 @@ class CatAddFragment3 : Fragment() {
         val view = binding.root
 
         // TNR 선택 스피너 설정
-        val tnrSpinner = binding.tnrSpinner
+        val tnrBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
+        val tnrBottomSheetDialog = BottomSheetDialog(requireContext())
         val tnrArray = resources.getStringArray(R.array.cat_add3_tnr_array)
-        setSpinner(tnrSpinner, tnrArray)
+        tnrBottomSheetDialog.setContentView(tnrBottomSheetView)
+        setBottomSheetView(tnrBottomSheetView, tnrArray, tnrBottomSheetDialog, binding.tnrSpinner)
+        binding.tnrSpinner.setOnClickListener {
+            tnrBottomSheetDialog.show()
+        }
 
         // 선호 사료 선택 스피너 설정
-        val foodSpinner = binding.foodSpinner
+        val foodBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
+        val foodBottomSheetDialog = BottomSheetDialog(requireContext())
         val foodArray = resources.getStringArray(R.array.cat_add3_food_array)
-        setSpinner(foodSpinner, foodArray)
+        foodBottomSheetDialog.setContentView(foodBottomSheetView)
+        setBottomSheetView(foodBottomSheetView, foodArray, foodBottomSheetDialog, binding.foodSpinner)
+        binding.foodSpinner.setOnClickListener {
+            foodBottomSheetDialog.show()
+        }
 
         // <이전> 버튼 클릭: 2단계로 이동
         binding.btnBack.setOnClickListener {
@@ -66,15 +76,22 @@ class CatAddFragment3 : Fragment() {
         _binding = null
     }
 
-    // 스피너 설정
-    private fun setSpinner(spinner: Spinner, array: Array<String>) {
-        val adapter = object : ArrayAdapter<String>(
-            requireContext(),
-            android.R.layout.simple_dropdown_item_1line
-        ) { override fun getCount(): Int =  super.getCount() - 1 }  // array에서 hint 안 보이게 하기
-        adapter.addAll(array.toMutableList())   // 배열 추가
-        spinner.adapter = adapter               // 어댑터 달기
-        spinner.setSelection(adapter.count)     // 스피너 초기값=hint
+    // 스피너 선택 설정
+    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: TextView) {
+        for (i in arr.indices) {
+            val textView = bottomSheetView.findViewById<TextView>(arrTextViewId[i])
+            textView.text = arr[i]
+            textView.visibility = View.VISIBLE
+            textView.setOnClickListener {
+                spinner.text = arr[i]
+                dialog.dismiss()
+            }
+        }
+        // X버튼 누르면 닫힘
+        val closeButton = bottomSheetView.findViewById<ImageView>(R.id.imgClose)
+        closeButton.setOnClickListener {
+            dialog.dismiss()
+        }
     }
 
 }

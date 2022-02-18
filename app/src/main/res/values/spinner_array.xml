@@ -37,37 +37,37 @@
     <!--fragment_cat_add2-->
     <!--성별 스피너 배멸-->
     <string-array name="cat_add2_gender_array">
+        <item>성별</item>  <!--title-->
         <item>여자</item>
         <item>남자</item>
         <item>모름</item>
-        <item>성별 선택</item>  <!--hint-->
     </string-array>
     <!--추정 나이 스피너 배열-->
     <string-array name="cat_add2_age_array">
+        <item>추정 나이</item>  <!--title-->
         <item>1살 미만</item>
         <item>2살</item>
         <item>3살</item>
         <item>4살</item>
         <item>5살 이상</item>
         <item>모름</item>
-        <item>고양이 나이 선택</item>  <!--hint-->
     </string-array>
 
     <!--fragment_cat_add3-->
     <!--TNR 스피너 배멸-->
     <string-array name="cat_add3_tnr_array">
+        <item>TNR</item>  <!--title-->
         <item>O</item>
         <item>X</item>
         <item>모름</item>
-        <item>수술 여부 선택</item>  <!--hint-->
     </string-array>
     <!--선호 사료 스피너 배열-->
     <string-array name="cat_add3_food_array">
+        <item>선호 사료</item>  <!--title-->
         <item>습식</item>
         <item>건식</item>
         <item>편식 안 함</item>
         <item>모름</item>
-        <item>선호 사료 선택</item>  <!--hint-->
     </string-array>
 
 </resources>

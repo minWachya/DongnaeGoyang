@@ -93,9 +93,9 @@
             android:text="@string/cat_add_gender"
             android:textSize="12sp"
             android:textColor="@color/brown_473A22"/>
-        <Spinner
-            android:id="@+id/genderSipnner"
-            android:spinnerMode="dropdown"
+        <TextView
+            android:id="@+id/genderSpinner"
+            android:hint="@string/cat_add_gender_hint"
             android:textSize="16sp"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:backgroundTint="@color/beige_E3DECF"
@@ -111,8 +111,9 @@
             android:text="@string/cat_add_age"
             android:textSize="12sp"
             android:textColor="@color/brown_473A22"/>
-        <Spinner
+        <TextView
             android:id="@+id/ageSpinner"
+            android:hint="@string/cat_add_age_hint"
             android:textSize="16sp"
             style="@style/Widget.AppCompat.Spinner.Underlined"
             android:backgroundTint="@color/beige_E3DECF"
