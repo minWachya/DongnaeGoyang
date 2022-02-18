@@ -6,6 +6,7 @@
     <string name="cat_add_btn_step1">이렇게 생겼어요!</string>
     <string name="cat_add_btn_step2">다음</string>
     <string name="cat_add_btn_step3">등록</string>
+    <string name="cat_add_btn_back">이전</string>
     <!--CatAddFragment1-->
     <string name="cat_add_title1">어떻게 생겼나요?</string>
     <string name="cat_add_explain1">실제 생김새를 좌우 선택을 통해 그림으로 나타내주세요.</string>

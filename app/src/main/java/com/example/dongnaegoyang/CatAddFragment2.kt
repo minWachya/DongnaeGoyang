@@ -56,6 +56,17 @@ class CatAddFragment2 : Fragment() {
         val ageArray = resources.getStringArray(R.array.cat_add2_age_array)
         setSpinner(ageSpinner, ageArray)
 
+        // <이전> 버튼 클릭: 1단계로 이동
+        binding.btnBack.setOnClickListener {
+            // 1단계에서 작성했던 정보 전달
+            val bundle1 = arguments // 1단계에서 넘겨받은 정보
+            // 이전 프레그먼트에 전달
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            val catAddFragment1 = CatAddFragment1()
+            catAddFragment1.arguments = bundle1
+            transaction.replace(R.id.catAddFrameLayout, catAddFragment1).commit()
+        }
+
         // <다음> 버튼 클릭: 3단계로 이동
         binding.btnOK2.setOnClickListener {
             val ft = requireActivity().supportFragmentManager.beginTransaction()

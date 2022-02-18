@@ -108,7 +108,7 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:background="@drawable/btn_round_brown"
-        android:text="@string/cat_add_btn_step2"
+        android:text="@string/cat_add_btn_back"
         android:textColor="@color/white"
         android:textSize="16sp"
         app:backgroundTint="@null"
