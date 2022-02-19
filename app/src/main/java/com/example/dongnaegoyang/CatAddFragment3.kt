@@ -55,12 +55,14 @@ class CatAddFragment3 : Fragment() {
 
         // <등록> 버튼 클릭: 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            AlertDialog.Builder(context, R.style.CustomAlertDialog)
+            val dialog = AlertDialog.Builder(context, R.style.CustomAlertDialog)
                 .setTitle("등록 확인")
                 .setMessage("00구 00동에 새로운 고영희를 등록하시겠습니까?")
                 .setPositiveButton("Ok", /* listener = */ null)
                 .setNegativeButton("Cancel", /* listener = */ null)
-                .show()
+            dialog
+
+            dialog.show()
         }
 
         return view
