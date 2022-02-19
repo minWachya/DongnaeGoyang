@@ -20,12 +20,16 @@ private val binding get() = _binding!!
 // 고양이 추가: 2단계 프레그먼드
 class CatAddFragment2 : Fragment() {
     // 이름, 주 출몰지, 특이사항 입력 여부
-    var checkName = false
-    var checkPlace = false
-    var checkNote = false
+    private var checkName = false
+    private var checkPlace = false
+    private var checkNote = false
+
+    // 성별, 나이 배열
+    private lateinit var genderArray: Array<String>
+    private lateinit var ageArray: Array<String>
 
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
-    val arrTextViewId = arrayListOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
+    private val arrTextViewId = arrayListOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -53,7 +57,7 @@ class CatAddFragment2 : Fragment() {
         // 성별 선택 스피너 설정
         val genderBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
         val genderBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
-        val genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
+        genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
         genderBottomSheetDialog.setContentView(genderBottomSheetView)
         setBottomSheetView(genderBottomSheetView, genderArray, genderBottomSheetDialog, binding.genderSpinner)
         binding.genderSpinner.setOnClickListener {
@@ -63,28 +67,36 @@ class CatAddFragment2 : Fragment() {
         // 추정 나이 선택 스피너 설정
         val ageBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
         val ageBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
-        val ageArray = resources.getStringArray(R.array.cat_add2_age_array)
+        ageArray = resources.getStringArray(R.array.cat_add2_age_array)
         ageBottomSheetDialog.setContentView(ageBottomSheetView)
         setBottomSheetView(ageBottomSheetView, ageArray, ageBottomSheetDialog, binding.ageSpinner)
         binding.ageSpinner.setOnClickListener {
             ageBottomSheetDialog.show()
         }
 
-        // <이전> 버튼 클릭: 1단계로 이동
+        val bundle1 = arguments
+        // 이전 선택 정보 보여주기
+        if (bundle1?.getString("name") != null) {
+            val name = bundle1.getString("name")    // 이름
+            val place = bundle1.getString("place")  // 주 출몰지
+            val gender = bundle1.getInt("gender", -1)   // 설별
+            val age = bundle1.getInt("age", -1)         // 추정 나이
+            val note = bundle1.getString("note", )    // 특이사항
+            binding.editName.setText(name)
+            binding.editPlace.setText(place)
+            if(gender != -1) binding.genderSpinner.text = genderArray[gender]
+            if(age != -1) binding.ageSpinner.text = ageArray[age]
+            binding.editSpecialNote.setText(note)
+        }
+
+        // <이전> 버튼 클릭: 1단계로 이동(2단계 정보도 함께 전달)
         binding.btnBack.setOnClickListener {
-            // 1단계에서 작성했던 정보 전달
-            val bundle1 = arguments // 1단계에서 넘겨받은 정보
-            // 이전 프레그먼트에 전달
-            val transaction = requireActivity().supportFragmentManager.beginTransaction()
-            val catAddFragment1 = CatAddFragment1()
-            catAddFragment1.arguments = bundle1
-            transaction.replace(R.id.catAddFrameLayout, catAddFragment1).commit()
+            setFrag(CatAddFragment1(), bundle1)
         }
 
         // <다음> 버튼 클릭: 3단계로 이동
         binding.btnOK2.setOnClickListener {
-            val ft = requireActivity().supportFragmentManager.beginTransaction()
-            ft.replace(R.id.catAddFrameLayout, CatAddFragment3()).commit()
+            setFrag(CatAddFragment3(), bundle1)
         }
 
         return view
@@ -118,6 +130,27 @@ class CatAddFragment2 : Fragment() {
         closeButton.setOnClickListener {
             dialog.dismiss()
         }
+    }
+
+    // 프레그먼트 이동
+    private fun setFrag(catAddFragment: Fragment, bundle: Bundle?) {
+        // 2단계 정보 함께 보내기
+        if (bundle != null) {
+            val name = binding.editName.text.toString()                 // 이름
+            val place = binding.editPlace.text.toString()               // 주 출몰지
+            val gender = genderArray.indexOf(binding.genderSpinner.text)// 성별
+            val age = ageArray.indexOf(binding.ageSpinner.text)         // 추정 나이
+            val note = binding.editSpecialNote.text.toString()          // 특이사항
+            bundle.putString("name", name)
+            bundle.putString("place", place)
+            bundle.putInt("gender", gender)
+            bundle.putInt("age", age)
+            bundle.putString("note", note)
+            catAddFragment.arguments = bundle
+        }
+        // 프레그먼트에 정보 전달 + 이동
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.catAddFrameLayout, catAddFragment).commit()
     }
 
 }
