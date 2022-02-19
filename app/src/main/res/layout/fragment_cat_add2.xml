@@ -168,7 +168,7 @@
         android:textSize="14sp"
         android:textColorHint="@color/beige_BBB5A4"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
-        android:maxLength="50"
+        android:maxLength="100"
         android:hint="@string/cat_add_special_note_hint"
         android:gravity="top|left"
         android:scrollHorizontally="false"

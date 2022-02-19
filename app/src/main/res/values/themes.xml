@@ -27,4 +27,13 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
+    <!--Toolbar title font-->
+    <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+    </style>
+    <!--Toolbar title text size-->
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>

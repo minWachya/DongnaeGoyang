@@ -9,6 +9,8 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
         app:title="@string/cat_add_toolbar_title"
+        android:theme="@style/ToolbarTheme"
+        app:titleTextAppearance="@style/Toolbar.TitleText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
