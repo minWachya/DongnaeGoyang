@@ -1,6 +1,5 @@
 package com.example.dongnaegoyang
 
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -8,9 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
-import android.widget.ArrayAdapter
 import android.widget.ImageView
-import android.widget.Spinner
 import android.widget.TextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -55,7 +52,7 @@ class CatAddFragment2 : Fragment() {
 
         // 성별 선택 스피너 설정
         val genderBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
-        val genderBottomSheetDialog = BottomSheetDialog(requireContext())
+        val genderBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         val genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
         genderBottomSheetDialog.setContentView(genderBottomSheetView)
         setBottomSheetView(genderBottomSheetView, genderArray, genderBottomSheetDialog, binding.genderSpinner)
@@ -65,7 +62,7 @@ class CatAddFragment2 : Fragment() {
 
         // 추정 나이 선택 스피너 설정
         val ageBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
-        val ageBottomSheetDialog = BottomSheetDialog(requireContext())
+        val ageBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         val ageArray = resources.getStringArray(R.array.cat_add2_age_array)
         ageBottomSheetDialog.setContentView(ageBottomSheetView)
         setBottomSheetView(ageBottomSheetView, ageArray, ageBottomSheetDialog, binding.ageSpinner)

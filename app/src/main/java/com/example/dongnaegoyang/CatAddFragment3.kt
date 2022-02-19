@@ -1,17 +1,12 @@
 package com.example.dongnaegoyang
 
 import android.app.AlertDialog
-import android.graphics.Color
-import android.graphics.Typeface
 import android.os.Bundle
-import android.text.Html
-import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.core.text.HtmlCompat
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -34,7 +29,7 @@ class CatAddFragment3 : Fragment() {
 
         // TNR 선택 스피너 설정
         val tnrBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
-        val tnrBottomSheetDialog = BottomSheetDialog(requireContext())
+        val tnrBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         val tnrArray = resources.getStringArray(R.array.cat_add3_tnr_array)
         tnrBottomSheetDialog.setContentView(tnrBottomSheetView)
         setBottomSheetView(tnrBottomSheetView, tnrArray, tnrBottomSheetDialog, binding.tnrSpinner)
@@ -44,7 +39,7 @@ class CatAddFragment3 : Fragment() {
 
         // 선호 사료 선택 스피너 설정
         val foodBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
-        val foodBottomSheetDialog = BottomSheetDialog(requireContext())
+        val foodBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         val foodArray = resources.getStringArray(R.array.cat_add3_food_array)
         foodBottomSheetDialog.setContentView(foodBottomSheetView)
         setBottomSheetView(foodBottomSheetView, foodArray, foodBottomSheetDialog, binding.foodSpinner)

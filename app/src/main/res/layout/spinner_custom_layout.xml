@@ -7,8 +7,8 @@
     android:layout_height="match_parent"
     app:behavior_hideable="true"
     app:behavior_draggable="true"
-    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
-    style="@style/AppModalStyle">
+    android:background="@drawable/spinner_bottom"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
     <TextView
         android:id="@+id/title"
@@ -39,11 +39,13 @@
         android:layout_height="wrap_content"
         android:textColor="@color/brown_473A22"
         android:textSize="14sp"
-        android:layout_marginStart="5dp"
         android:layout_marginTop="31dp"
-        android:padding="15dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title" />
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/text2"
@@ -53,10 +55,12 @@
         android:layout_height="wrap_content"
         android:textColor="@color/brown_473A22"
         android:textSize="14sp"
-        android:layout_marginStart="5dp"
-        android:padding="15dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text1" />
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/text3"
@@ -66,10 +70,12 @@
         android:layout_height="wrap_content"
         android:textColor="@color/brown_473A22"
         android:textSize="14sp"
-        android:layout_marginStart="5dp"
-        android:padding="15dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text2" />
+        app:layout_constraintTop_toBottomOf="@+id/text2"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/text4"
@@ -79,10 +85,12 @@
         android:layout_height="wrap_content"
         android:textColor="@color/brown_473A22"
         android:textSize="14sp"
-        android:layout_marginStart="5dp"
-        android:padding="15dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text3" />
+        app:layout_constraintTop_toBottomOf="@+id/text3"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/text5"
@@ -92,10 +100,12 @@
         android:layout_height="wrap_content"
         android:textColor="@color/brown_473A22"
         android:textSize="14sp"
-        android:layout_marginStart="5dp"
-        android:padding="15dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text4" />
+        app:layout_constraintTop_toBottomOf="@+id/text4"
+        tools:ignore="RtlSymmetry" />
 
     <TextView
         android:id="@+id/text6"
@@ -105,9 +115,17 @@
         android:layout_height="wrap_content"
         android:textColor="@color/brown_473A22"
         android:textSize="14sp"
-        android:layout_marginStart="5dp"
-        android:padding="15dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text5" />
+        app:layout_constraintTop_toBottomOf="@+id/text5"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text6"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
