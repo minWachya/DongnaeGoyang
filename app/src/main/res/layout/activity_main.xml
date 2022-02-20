@@ -107,7 +107,11 @@
             android:id="@+id/tabs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:tabMode="scrollable">
+            app:tabMode="scrollable"
+            app:tabIndicatorColor="@color/yellow_F1BC35"
+            app:tabTextColor="@color/beige_BBB5A4"
+            app:tabSelectedTextColor="@color/yellow_F1BC35"
+            app:tabTextAppearance="@style/TabText">
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

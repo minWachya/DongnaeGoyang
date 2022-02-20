@@ -35,11 +35,10 @@
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">16sp</item>
     </style>
-        <!-- 홈 화면 탭 디자인
-        <item name="textAppearanceButton">@style/TextAppearance.App.Button</item>
-
-    <style name="TextAppearance.App.Button" parent="TextAppearance.MaterialComponents.Button">
+    <!-- 홈 화면 탭 디자인 -->
+    <style name="TabText" parent="TextAppearance.MaterialComponents.Button">
         <item name="fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
-    </style> -->
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>
