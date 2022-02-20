@@ -1,11 +1,9 @@
 package com.example.dongnaegoyang.home
 
-import androidx.annotation.DrawableRes
-
 data class CatList  (
-    @DrawableRes
     var catPic : Int,
-    var catName: String
+    var catName: String,
+    val type: String
 ) {
 
     fun toMap() : HashMap<String, Any>{
