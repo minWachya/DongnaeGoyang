@@ -29,6 +29,7 @@
         android:text="@string/cat_add_title1"
         android:textColor="@color/brown_473A22"
         android:textSize="18sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -41,6 +42,7 @@
         android:text="@string/cat_add_explain1"
         android:textColor="@color/beige_BBB5A4"
         android:textSize="12sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
@@ -48,9 +50,9 @@
         android:id="@+id/layout"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/explain"
-        android:orientation="horizontal" />
+        app:layout_constraintTop_toBottomOf="@+id/explain" />
 
     <!--몸집-->
     <TextView
@@ -61,6 +63,7 @@
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/layout" />
@@ -91,6 +94,7 @@
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
@@ -120,6 +124,7 @@
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textFur" />
@@ -149,6 +154,7 @@
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textEar" />
@@ -178,6 +184,7 @@
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textTail" />
@@ -208,6 +215,7 @@
         android:text="@string/cat_add_btn_step1"
         android:textColor="@color/white"
         android:textSize="16sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintBottom_toBottomOf="parent"
         tools:layout_editor_absoluteX="16dp" />
 

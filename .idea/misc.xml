@@ -3,17 +3,25 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.10729166666666666" />
-        <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/drawable/frame_area.xml" value="0.1535" />
-        <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.12335359675785208" />
-        <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_detail.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.264" />
-        <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/cat_list.xml" value="0.25364583333333335" />
-        <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add1.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_enable.xml" value="0.26979166666666665" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_round_brown.xml" value="0.26979166666666665" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_yellow_round.xml" value="0.26979166666666665" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/custom_btn_yellow_round.xml" value="0.26979166666666665" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/dialog_round.xml" value="0.1361111111111111" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/edit_line_round.xml" value="0.26979166666666665" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/spinner_bottom.xml" value="0.1" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/font-v26/font.xml" value="0.2388888888888889" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/font/font.xml" value="0.10185185185185185" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.264" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.17300724637681159" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add1.xml" value="0.3322884012539185" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add2.xml" value="0.264" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add3.xml" value="0.264" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/spinner_custom_layout.xml" value="0.264" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_13" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

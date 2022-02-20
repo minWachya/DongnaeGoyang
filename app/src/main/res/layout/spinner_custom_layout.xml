@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomSheetDashBoardLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:behavior_hideable="true"
+    app:behavior_draggable="true"
+    android:background="@drawable/spinner_bottom"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/brown_473A22"
+        android:textSize="16sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgClose"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+        android:src="@drawable/ic_close"
+        android:layout_marginTop="29dp"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text1"
+        android:visibility="gone"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:layout_marginTop="31dp"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/text2"
+        android:visibility="gone"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text1"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/text3"
+        android:visibility="gone"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/text4"
+        android:visibility="gone"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text3"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/text5"
+        android:visibility="gone"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text4"
+        tools:ignore="RtlSymmetry" />
+
+    <TextView
+        android:id="@+id/text6"
+        android:visibility="gone"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:paddingStart="20dp"
+        android:paddingBottom="15dp"
+        android:paddingTop="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text5"
+        tools:ignore="RtlSymmetry" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text6"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

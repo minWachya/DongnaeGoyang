@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd1Binding
@@ -18,6 +17,12 @@ private val binding get() = _binding!!
 
 // 고양이 추가: 1단계 프레그먼드
 class CatAddFragment1 : Fragment() {
+    // 몸집, 코숏, 귀 모영, 꼬리, 수염 배열
+    private lateinit var arrSize: Array<String>
+    private lateinit var arrFur: Array<String>
+    private lateinit var arrEar: Array<String>
+    private lateinit var arrTail: Array<String>
+    private lateinit var arrWhiskers: Array<String>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,30 +32,48 @@ class CatAddFragment1 : Fragment() {
         val view = binding.root
 
         // 몸집 선택
-        val arrSize = resources.getStringArray(R.array.cat_add1_size_array)
+        arrSize = resources.getStringArray(R.array.cat_add1_size_array)
         setBtnListener(arrSize, binding.imgViewSizeLeft, binding.imgViewSizeRight, binding.textCatSize)
-        binding.textCatSize.text = arrSize[0]   // 기본 선택
         // 코숏 선택
-        val arrFur = resources.getStringArray(R.array.cat_add1_fur_array)
+        arrFur = resources.getStringArray(R.array.cat_add1_fur_array)
         setBtnListener(arrFur, binding.imgViewFurLeft, binding.imgViewFurRight, binding.textFur)
-        binding.textFur.text = arrFur[0]   // 기본 선택
         // 귀 모양 선택
-        val arrEar = resources.getStringArray(R.array.cat_add1_ear_array)
+        arrEar = resources.getStringArray(R.array.cat_add1_ear_array)
         setBtnListener(arrEar, binding.imgViewEarLeft, binding.imgViewEarRight, binding.textEar)
-        binding.textEar.text = arrEar[0]   // 기본 선택
         // 꼬리 모양 선택
-        val arrTail = resources.getStringArray(R.array.cat_add1_tail_array)
+        arrTail = resources.getStringArray(R.array.cat_add1_tail_array)
         setBtnListener(arrTail, binding.imgViewTailLeft, binding.imgViewTailRight, binding.textTail)
-        binding.textTail.text = arrTail[0]   // 기본 선택
         // 수염 선택
-        val arrWhiskers = resources.getStringArray(R.array.cat_add1_whiskers_array)
+        arrWhiskers = resources.getStringArray(R.array.cat_add1_whiskers_array)
         setBtnListener(arrWhiskers, binding.imgViewWhiskersLeft, binding.imgViewWhiskersRight, binding.textWhiskers)
-        binding.textWhiskers.text = arrWhiskers[0]   // 기본 선택
+
+        // 고양이 선택 Text 초기화
+        val bundle1 = arguments?: Bundle()
+        // 이전 선택 정보 보여주기
+        if (bundle1.getInt("size") != null) {
+            val numSize = bundle1.getInt("size") // 몸집
+            val numFur = bundle1.getInt("fur")   // 코숏
+            val numEar = bundle1.getInt("ear")   // 귀 모양
+            val numTail = bundle1.getInt("tail") // 꼬리 모양
+            val numWhiskers = bundle1.getInt("whiskers")  // 수염
+            binding.textCatSize.text = arrSize[numSize]
+            binding.textFur.text = arrFur[numFur]
+            binding.textEar.text = arrEar[numEar]
+            binding.textTail.text = arrTail[numTail]
+            binding.textWhiskers.text = arrWhiskers[numWhiskers]
+        }
+        // 아니면 그냥 기본 선택 정보 보여주기
+        else {
+            binding.textCatSize.text = arrSize[0]
+            binding.textFur.text = arrFur[0]
+            binding.textEar.text = arrEar[0]
+            binding.textTail.text = arrTail[0]
+            binding.textWhiskers.text = arrWhiskers[0]
+        }
 
         // 2단계로 이동
         binding.btnOK1.setOnClickListener {
-            val ft = requireActivity().supportFragmentManager.beginTransaction()
-            ft.replace(R.id.catAddFrameLayout, CatAddFragment2()).commit()
+            setFrag(CatAddFragment2(), bundle1)
         }
 
         return view
@@ -76,6 +99,27 @@ class CatAddFragment1 : Fragment() {
             if (num > max) num = 0
             text.text = arr[num]
         }
+    }
+
+    // 프레그먼트 이동
+    private fun setFrag(catAddFragment: Fragment, bundle: Bundle?) {
+        // 1단계 정보 함께 보내기
+        if (bundle != null) {
+            val numSize = arrSize.indexOf(binding.textCatSize.text) // 몸집
+            val numFur = arrFur.indexOf(binding.textFur.text)       // 코숏
+            val numEar = arrEar.indexOf(binding.textEar.text)       // 귀 모양
+            val numTail = arrTail.indexOf(binding.textTail.text)    // 꼬리 모양
+            val numWhiskers = arrWhiskers.indexOf(binding.textWhiskers.text) // 수염
+            bundle.putInt("size", numSize)  // 몸집
+            bundle.putInt("fur", numFur)    // 코숏
+            bundle.putInt("ear", numEar)    // 귀 모양
+            bundle.putInt("tail", numTail)  // 꼬리 모양
+            bundle.putInt("whiskers", numWhiskers)    // 수염
+            catAddFragment.arguments = bundle
+        }
+        // 프레그먼트에 정보 전달 + 이동
+        val transaction = requireActivity().supportFragmentManager.beginTransaction()
+        transaction.replace(R.id.catAddFrameLayout, catAddFragment).commit()
     }
 
 }
