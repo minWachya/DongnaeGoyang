@@ -30,8 +30,7 @@ class CatAddActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             android.R.id.home -> {  // 뒤로가기 이모지(<-) 클릭
-                Toast.makeText(applicationContext, "뒤로가기 클릭", Toast.LENGTH_SHORT).show()
-                return true
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)
