@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.dongnaegoyang.R
 
-// 고양이 상세 페에지: 사진 어댑터
+// 고양이 상세 페에지: '정보' 탭 사진 어댑터
 class CatDetailPhotoAdapter : RecyclerView.Adapter<CatDetailPhotoAdapter.ViewHolder>() {
     var urls = ArrayList<String>()  // Url 배열
 

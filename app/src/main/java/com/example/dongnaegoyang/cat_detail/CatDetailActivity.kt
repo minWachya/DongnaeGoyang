@@ -35,7 +35,7 @@ class CatDetailActivity : AppCompatActivity() {
         val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
         // 프레그먼트, 탭 타이틀 넣기(프레그먼트 하나로 통일~)
         tabAdapter.addFragment(CatDetailInfoFragment())        // 정보
-        tabAdapter.addFragment(CatDetailNoteFragment())        // 오늘 기록
+        tabAdapter.addFragment(CatDetailPostFragment())        // 오늘 기록
         binding.tabViewPager.adapter = tabAdapter
         // 탭레이아웃에 뷰 페이저 달기
         TabLayoutMediator(binding.tabTabLayout, binding.tabViewPager) { tab, position ->

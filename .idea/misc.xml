@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.10729166666666666" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_post.xml" value="0.22" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_round_brown.xml" value="0.243" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/dialog_round.xml" value="0.2305" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_border_round.xml" value="0.2305" />
@@ -20,8 +21,10 @@
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add3.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_info.xml" value="0.264" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_info_fragment.xml" value="0.25364583333333335" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_note.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_note.xml" value="0.4" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_post.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/list_item_cat_detail_photo.xml" value="0.6" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/list_item_cat_detail_post.xml" value="0.264" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/spinner_custom_layout.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/drawable/frame_area.xml" value="0.1535" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.12335359675785208" />
