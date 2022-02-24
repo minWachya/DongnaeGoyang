@@ -11,7 +11,8 @@
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
             android:name=".cat_detail.CatDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:label="고양이 상세 페이지"/>
         <activity
             android:name=".cat_add.CatAddActivity"
             android:exported="false"

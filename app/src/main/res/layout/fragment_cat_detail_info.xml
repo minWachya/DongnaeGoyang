@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cat_detail.CatDetailInfoFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--사진-->
+        <TextView
+            android:id="@+id/tvPicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/cat_detail_info_picture"
+            android:textColor="@color/brown_473A22"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tvPictureCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="4"
+            android:textColor="@color/yellow_F1BC35"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/tvPicture"
+            app:layout_constraintTop_toTopOf="parent" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvPicture" />
+
+        <!--건강 정보-->
+        <TextView
+            android:id="@+id/tvHealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/cat_detail_info_health"
+            android:textColor="@color/brown_473A22"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewPicture" />
+        <TextView
+            android:id="@+id/tvHealthCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="2"
+            android:textColor="@color/yellow_F1BC35"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/tvHealth"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewPicture" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewHealth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="12dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvHealth" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/gray_F6F3E9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewHealth" />
+
+        <!--최근 업데이트일-->
+        <TextView
+            android:id="@+id/tvUpdateDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="@string/cat_detail_info_update_date"
+            android:textColor="@color/beige_BBB5A4"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+        <TextView
+            android:id="@+id/tvUpdateDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="2021-02-24"
+            android:textColor="@color/brown_473A22"
+            android:textSize="12sp"
+            android:layout_marginTop="28dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/tvUpdateDateText"
+            app:layout_constraintTop_toBottomOf="@+id/view1" />
+
+        <!--등록-->
+        <TextView
+            android:id="@+id/tvRegistrationDateText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="11dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="@string/cat_detail_info_registration_date"
+            android:textColor="@color/beige_BBB5A4"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvUpdateDateText" />
+        <TextView
+            android:id="@+id/tvRegistrationDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="2021-02-24"
+            android:textColor="@color/brown_473A22"
+            android:textSize="12sp"
+            android:layout_marginTop="11dp"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/tvRegistrationDateText"
+            app:layout_constraintTop_toBottomOf="@+id/tvUpdateDate" />
+
+        <View
+            android:id="@+id/view2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="28dp"
+            android:background="@color/gray_F6F3E9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvRegistrationDate" />
+
+        <!--나도 관심 좀-->
+        <TextView
+            android:id="@+id/tvAnotherCatText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:layout_marginStart="20dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_bold"
+            android:text="@string/cat_detail_info_another_cat"
+            android:textColor="@color/brown_473A22"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view2" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewAnotherCat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="13dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvAnotherCatText" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewAnotherCat" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
