@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.cat_add
 
 import android.app.AlertDialog
 import android.os.Bundle
@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 

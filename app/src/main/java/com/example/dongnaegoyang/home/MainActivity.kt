@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.home
 
 import android.content.Intent
 import android.graphics.Color
@@ -8,10 +8,10 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.cat_add.CatAddActivity
+import com.example.dongnaegoyang.cat_detail.DetailActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
-import com.example.dongnaegoyang.home.CatList
-import com.example.dongnaegoyang.home.HorizontalItemDecorator
-import com.example.dongnaegoyang.home.VerticalItemDecorator
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {

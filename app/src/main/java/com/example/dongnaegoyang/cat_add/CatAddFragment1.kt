@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.cat_add
 
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.FragmentCatAdd1Binding
 
 private const val TAG = "mmmCatAddFragment1"

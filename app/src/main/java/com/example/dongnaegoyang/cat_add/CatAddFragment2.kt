@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.cat_add
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 

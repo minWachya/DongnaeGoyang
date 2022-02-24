@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CatAddFragment3">
+    tools:context=".cat_add.CatAddFragment3">
 
     <ProgressBar
         android:id="@+id/progressBar"

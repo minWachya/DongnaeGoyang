@@ -1,9 +1,10 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.cat_add
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivityCatAddBinding
 
 private const val TAG = "mmmCatAddActivity"
