@@ -17,18 +17,6 @@
             android:layout_height="wrap_content"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
-            <!-- pin : 스크롤 시 고정,
-            parallax : 스크롤 시 접힘,
-            none : 아무 효과 x(그냥 스크롤) -->
-            <!--툴바-->
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:id="@+id/toolbar"-->
-<!--                android:layout_width="match_parent"-->
-<!--                android:layout_height="?attr/actionBarSize"-->
-<!--                app:layout_collapseMode="pin">-->
-<!--                -->
-<!--            </androidx.appcompat.widget.Toolbar>-->
-
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -47,7 +35,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                    android:text="나비"
+                    android:text="@string/cat_detail_name"
                     android:textColor="@color/brown_473A22"
                     android:textSize="24sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +48,8 @@
                     android:src="@drawable/ic_edit"
                     app:layout_constraintBottom_toBottomOf="@+id/tvName"
                     app:layout_constraintStart_toEndOf="@+id/tvName"
-                    app:layout_constraintTop_toTopOf="@+id/tvName" />
+                    app:layout_constraintTop_toTopOf="@+id/tvName"
+                    android:contentDescription="@string/cat_detail_edit" />
 
                 <TextView
                     android:id="@+id/tvGender"
@@ -69,7 +58,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="8dp"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="암컷"
+                    android:text="@string/cat_detail_gender"
                     android:textColor="@color/brown_473A22"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -83,13 +72,14 @@
                     android:src="@drawable/ic_rect"
                     app:layout_constraintBottom_toBottomOf="@+id/tvGender"
                     app:layout_constraintStart_toEndOf="@+id/tvGender"
-                    app:layout_constraintTop_toTopOf="@+id/tvGender" />
+                    app:layout_constraintTop_toTopOf="@+id/tvGender"
+                    android:contentDescription="@string/cat_detail_rect" />
                 <TextView
                     android:id="@+id/tvAge"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="2실 추정"
+                    android:text="@string/cat_detail_age"
                     android:textColor="@color/brown_473A22"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imgRect1"
@@ -104,13 +94,14 @@
                     android:src="@drawable/ic_rect"
                     app:layout_constraintBottom_toBottomOf="@+id/tvAge"
                     app:layout_constraintStart_toEndOf="@+id/tvAge"
-                    app:layout_constraintTop_toTopOf="@+id/tvAge" />
+                    app:layout_constraintTop_toTopOf="@+id/tvAge"
+                    android:contentDescription="@string/cat_detail_rect" />
                 <TextView
                     android:id="@+id/tvPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="XX구 XX동"
+                    android:text="@string/cat_detail_place"
                     android:textColor="@color/brown_473A22"
                     android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/imgRect2"
@@ -124,10 +115,11 @@
                     android:src="@drawable/cheese"
                     android:layout_marginEnd="28dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                    android:contentDescription="@string/cat_detail_cat_img" />
 
                 <TextView
-                    android:id="@+id/textView2"
+                    android:id="@+id/tvHotPlace"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -138,13 +130,14 @@
                     android:paddingTop="2dp"
                     android:paddingEnd="4dp"
                     android:paddingBottom="2dp"
-                    android:text="경의선숲길 부산집 앞에서 주로 출몰"
+                    android:text="@string/cat_detail_hot_place"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tvGender" />
 
                 <TextView
+                    android:id="@+id/tvNote"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
@@ -152,12 +145,11 @@
                     android:layout_marginTop="30dp"
                     android:paddingBottom="20dp"
                     android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="부산집 사장님이 가끔 먹이를 챙겨주셔서 그런지 사람을 경계하지 않아요.
-카메라 들이대면 포즈 취해주는 개냥이"
+                    android:text="@string/cat_detail_note"
                     android:textColor="@color/brown_473A22"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvHotPlace" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

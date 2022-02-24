@@ -28,6 +28,9 @@ class CatDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)   // 뒤로가기
         supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 없애기
 
+        // 고양이 정보 가져오기
+        getCatInfo()
+
         // 사진: 어댑터 생성
         val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
         // 프레그먼트, 탭 타이틀 넣기(프레그먼트 하나로 통일~)
@@ -42,7 +45,7 @@ class CatDetailActivity : AppCompatActivity() {
     }
 
     // 텝 어댑터
-    class CatDetailTabAdapter(activity: AppCompatActivity) :  FragmentStateAdapter(activity)  {
+    inner class CatDetailTabAdapter(activity: AppCompatActivity) :  FragmentStateAdapter(activity)  {
         // 프레그먼트 배열
         private val fragmentList = ArrayList<Fragment>()
         // 프레그먼트, 탭 타이틀 추가
@@ -51,6 +54,17 @@ class CatDetailActivity : AppCompatActivity() {
         override fun getItemCount(): Int = fragmentList.size
         // position 번째 프레그먼트 반환
         override fun createFragment(position: Int): Fragment = fragmentList[position]
+    }
+
+    // 고양이 정보 가져오기
+    private fun getCatInfo() {
+        binding.tvName.text = "나비"      // 이름
+        binding.tvGender.text = "암컷"    // 성별
+        binding.tvAge.text = "2살 추정"   // 추정 나이
+        binding.tvPlace.text = "XX구 XX동"// 동네
+        binding.tvHotPlace.text = "경의선숲길 부산집 앞에서 주로 출몰" // 주 출몰 장소
+        // 상세 정보
+        binding.tvNote.text = "부산집 사장님이 가끔 먹이를 챙겨주셔서 그런지 사람을 경계하지 않아요.\n카메라 들이대면 포즈 취해주는 개냥이"
     }
 
     // 툴바에서 뒤로가기 버튼 클릭 시

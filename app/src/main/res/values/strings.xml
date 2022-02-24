@@ -45,6 +45,15 @@
     <!--CatDetailActivity-->
     <string name="cat_detail_tab1_info">정보</string>
     <string name="cat_detail_tab2_note">오늘 기록</string>
+    <string name="cat_detail_name">고양이 이름</string>
+    <string name="cat_detail_gender">성별</string>
+    <string name="cat_detail_age">추정 나이</string>
+    <string name="cat_detail_place">XX구 XX동</string>
+    <string name="cat_detail_hot_place">주 출몰 장소</string>
+    <string name="cat_detail_note">상세 정보</string>
+    <string name="cat_detail_edit">수정 버튼</string>
+    <string name="cat_detail_rect">구분자</string>
+    <string name="cat_detail_cat_img">고양이 이미지</string>
     <!--CatDetailInfoFragment-->
     <string name="cat_detail_info_photo">사진</string>
     <string name="cat_detail_info_photo_count">0</string>
