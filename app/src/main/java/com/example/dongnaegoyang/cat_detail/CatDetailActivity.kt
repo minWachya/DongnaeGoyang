@@ -25,9 +25,10 @@ class CatDetailActivity : AppCompatActivity() {
 
         // 툴바 달기
         setSupportActionBar(binding.toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)   // 뒤로가기
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 없애기
 
-        // 어댑터 생성
+        // 사진: 어댑터 생성
         val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
         // 프레그먼트, 탭 타이틀 넣기(프레그먼트 하나로 통일~)
         tabAdapter.addFragment(CatDetailInfoFragment())        // 정보

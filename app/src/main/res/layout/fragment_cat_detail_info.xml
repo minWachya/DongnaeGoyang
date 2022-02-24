@@ -12,31 +12,31 @@
 
         <!--사진-->
         <TextView
-            android:id="@+id/tvPicture"
+            android:id="@+id/tvPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="@string/cat_detail_info_picture"
+            android:text="@string/cat_detail_info_photo"
             android:textColor="@color/brown_473A22"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
         <TextView
-            android:id="@+id/tvPictureCount"
+            android:id="@+id/tvPhotoCount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="4"
+            android:text="@string/cat_detail_info_photo_count"
             android:textColor="@color/yellow_F1BC35"
             android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/tvPicture"
+            app:layout_constraintStart_toEndOf="@+id/tvPhoto"
             app:layout_constraintTop_toTopOf="parent" />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewPicture"
+            android:id="@+id/rcPhoto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -44,7 +44,7 @@
             android:layout_marginTop="12dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvPicture" />
+            app:layout_constraintTop_toBottomOf="@+id/tvPhoto" />
 
         <!--건강 정보-->
         <TextView
@@ -58,7 +58,7 @@
             android:textColor="@color/brown_473A22"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewPicture" />
+            app:layout_constraintTop_toBottomOf="@+id/rcPhoto" />
         <TextView
             android:id="@+id/tvHealthCount"
             android:layout_width="wrap_content"
@@ -66,21 +66,80 @@
             android:layout_marginStart="4dp"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="2"
+            android:text="@string/cat_detail_info_health_count"
             android:textColor="@color/yellow_F1BC35"
             android:textSize="14sp"
             app:layout_constraintStart_toEndOf="@+id/tvHealth"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewPicture" />
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewHealth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@+id/rcPhoto" />
+        <LinearLayout
+            android:id="@+id/layoutTNR"
+            android:layout_width="79dp"
+            android:layout_height="94dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@drawable/layout_border_round"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvHealth" />
+            app:layout_constraintTop_toBottomOf="@+id/tvHealth">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_tnr"
+                android:contentDescription="@string/cat_detail_info_health" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:text="@string/cat_detail_info_health_tnr"
+                android:textColor="@color/beige_BBB5A4"
+                android:textSize="12sp"/>
+            <TextView
+                android:id="@+id/tvHealthTNR"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                android:text="@string/cat_detail_info_health_tnr_ex"
+                android:textColor="@color/brown_473A22"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layoutFood"
+            android:layout_width="79dp"
+            android:layout_height="94dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/layout_border_round"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="@+id/layoutTNR"
+            app:layout_constraintStart_toEndOf="@+id/layoutTNR"
+            app:layout_constraintTop_toTopOf="@+id/layoutTNR">
+            <ImageView
+                android:layout_width="22dp"
+                android:layout_height="20dp"
+                android:src="@drawable/ic_tnr"
+                android:contentDescription="@string/cat_detail_info_health" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:text="@string/cat_detail_info_health_food"
+                android:textColor="@color/beige_BBB5A4"
+                android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tbHealthFood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                android:text="@string/cat_detail_info_health_food_ex"
+                android:textColor="@color/brown_473A22"
+                android:textSize="14sp" />
+        </LinearLayout>
 
         <View
             android:id="@+id/view1"
@@ -89,7 +148,7 @@
             android:layout_marginTop="28dp"
             android:background="@color/gray_F6F3E9"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewHealth" />
+            app:layout_constraintTop_toBottomOf="@+id/layoutTNR" />
 
         <!--최근 업데이트일-->
         <TextView
@@ -109,7 +168,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
-            android:text="2021-02-24"
+            android:text="@string/cat_detail_info_update_date_ex"
             android:textColor="@color/brown_473A22"
             android:textSize="12sp"
             android:layout_marginTop="28dp"
@@ -119,28 +178,28 @@
 
         <!--등록-->
         <TextView
-            android:id="@+id/tvRegistrationDateText"
+            android:id="@+id/tvRegistrationUserText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="11dp"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:text="@string/cat_detail_info_registration_date"
+            android:text="@string/cat_detail_info_registration_user"
             android:textColor="@color/beige_BBB5A4"
             android:textSize="12sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvUpdateDateText" />
         <TextView
-            android:id="@+id/tvRegistrationDate"
+            android:id="@+id/tvRegistrationUser"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/spoqa_han_sans_neo_bold"
-            android:text="2021-02-24"
+            android:text="@string/cat_detail_info_registration_user_ex"
             android:textColor="@color/brown_473A22"
             android:textSize="12sp"
             android:layout_marginTop="11dp"
             android:layout_marginStart="4dp"
-            app:layout_constraintStart_toEndOf="@+id/tvRegistrationDateText"
+            app:layout_constraintStart_toEndOf="@+id/tvRegistrationUserText"
             app:layout_constraintTop_toBottomOf="@+id/tvUpdateDate" />
 
         <View
@@ -150,7 +209,7 @@
             android:layout_marginTop="28dp"
             android:background="@color/gray_F6F3E9"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRegistrationDate" />
+            app:layout_constraintTop_toBottomOf="@+id/tvRegistrationUser" />
 
         <!--나도 관심 좀-->
         <TextView
@@ -166,7 +225,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerViewAnotherCat"
+            android:id="@+id/rcAnotherCat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
@@ -180,7 +239,7 @@
             android:layout_width="match_parent"
             android:layout_height="40dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recyclerViewAnotherCat" />
+            app:layout_constraintTop_toBottomOf="@+id/rcAnotherCat" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -46,10 +46,18 @@
     <string name="cat_detail_tab1_info">정보</string>
     <string name="cat_detail_tab2_note">오늘 기록</string>
     <!--CatDetailInfoFragment-->
-    <string name="cat_detail_info_picture">사진</string>
+    <string name="cat_detail_info_photo">사진</string>
+    <string name="cat_detail_info_photo_count">0</string>
     <string name="cat_detail_info_health">건강 정보</string>
+    <string name="cat_detail_info_health_count">0</string>
+    <string name="cat_detail_info_health_tnr">TNR</string>
+    <string name="cat_detail_info_health_tnr_ex">접종 여부</string>
+    <string name="cat_detail_info_health_food">비선호 사료</string>
+    <string name="cat_detail_info_health_food_ex">없음</string>
     <string name="cat_detail_info_update_date">최신 업데이트일</string>
-    <string name="cat_detail_info_registration_date">등록</string>
+    <string name="cat_detail_info_update_date_ex">0000&#45;00&#45;00</string>
+    <string name="cat_detail_info_registration_user">등록</string>
+    <string name="cat_detail_info_registration_user_ex">닉네임</string>
     <string name="cat_detail_info_another_cat">나도 관심 좀</string>
 
 </resources>

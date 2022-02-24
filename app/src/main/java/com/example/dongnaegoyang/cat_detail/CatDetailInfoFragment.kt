@@ -23,6 +23,29 @@ class CatDetailInfoFragment : Fragment() {
         _binding = FragmentCatDetailInfoBinding.inflate(inflater, container, false)
         val view = binding.root
 
+        // 사진
+        // 사진 가져오기
+        val photoAdapter = CatDetailPhotoAdapter()
+        binding.rcPhoto.adapter = photoAdapter
+        photoAdapter.urls.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmA-UkwF0vIsZpvg5XYX3U7XsdOhDPz4uveQ&usqp=CAU")
+        photoAdapter.urls.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmA-UkwF0vIsZpvg5XYX3U7XsdOhDPz4uveQ&usqp=CAU")
+        photoAdapter.urls.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmA-UkwF0vIsZpvg5XYX3U7XsdOhDPz4uveQ&usqp=CAU")
+        photoAdapter.urls.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmA-UkwF0vIsZpvg5XYX3U7XsdOhDPz4uveQ&usqp=CAU")
+        photoAdapter.urls.add("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmA-UkwF0vIsZpvg5XYX3U7XsdOhDPz4uveQ&usqp=CAU")
+        photoAdapter.notifyDataSetChanged()
+        // 사진 갯수
+        binding.tvPhotoCount.text = photoAdapter.itemCount.toString()
+
+        // 건강 정보
+        binding.tvHealthCount.text = "2"
+        binding.tvHealthTNR.text = "접종 완료"
+        binding.tbHealthFood.text = "없음"
+
+        // 최신 업데이트일
+        binding.tvUpdateDate.text = "2021-02-24"
+
+        // 등록자
+        binding.tvRegistrationUser.text = "간택받은 집사"
 
         return view
     }

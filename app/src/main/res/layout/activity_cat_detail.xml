@@ -1,52 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--CollapsingToolbarLayout을 사용하기 위해 CoordinatorLayout 사용-->
-<!--CollapsingToolbarLayout : FrameLayout 속성 가짐-->
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cat_detail.CatDetailActivity">
+    tools:context=".cat_detail.CatDetailActivity"
+    android:orientation="vertical">
 
-    <!--AppBarLayout 안에는 CollapsingToolbarLayout-->
-    <!--AppBarLayout : LinearLayout(VERTICAL) 속성 가짐-->
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appBarLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:fitsSystemWindows="true">
+        android:layout_height="wrap_content">
 
         <!--스크롤시 접히거나 나타날 부분을 넣는 layout-->
-        <!--CollapsingToolbarLayout : FrameLayout 속성 가짐-->
         <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/collapsingToolbarLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@id/toolbar">
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <!-- pin : 스크롤 시 고정,
             parallax : 스크롤 시 접힘,
             none : 아무 효과 x(그냥 스크롤) -->
-<!--            &lt;!&ndash;툴바&ndash;&gt;-->
+            <!--툴바-->
 <!--            <androidx.appcompat.widget.Toolbar-->
 <!--                android:id="@+id/toolbar"-->
 <!--                android:layout_width="match_parent"-->
 <!--                android:layout_height="?attr/actionBarSize"-->
-<!--                app:layout_collapseMode="pin"/>-->
+<!--                app:layout_collapseMode="pin">-->
+<!--                -->
+<!--            </androidx.appcompat.widget.Toolbar>-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
+                android:layout_height="wrap_content"
+                app:layout_collapseMode="none">
                 <!--툴바-->
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
-                    app:layout_collapseMode="pin"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -167,7 +158,6 @@
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
-
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -180,16 +170,17 @@
             app:tabIndicatorColor="@color/brown_473A22">
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:text="@string/cat_detail_tab1_info"/>
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content"
+                android:text="@string/cat_detail_tab2_note"/>
         </com.google.android.material.tabs.TabLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <!--스크롤할 뷰 (NestedScrollView, RecyclerView 등)-->
-    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" 추가!!-->
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/tabViewPager"
         android:layout_width="match_parent"
