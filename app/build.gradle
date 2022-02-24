@@ -46,4 +46,5 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation "androidx.fragment:fragment-ktx:1.4.1"   // fragment간 data 전달
+    implementation "androidx.viewpager2:viewpager2:1.0.0"   // viewpager2
 }

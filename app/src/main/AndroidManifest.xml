@@ -10,14 +10,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
-            android:name=".DetailActivity"
+            android:name=".cat_detail.CatDetailActivity"
             android:exported="false" />
         <activity
-            android:name=".CatAddActivity"
+            android:name=".cat_add.CatAddActivity"
             android:exported="false"
             android:label="고양이 추가 페이지"/>
         <activity
-            android:name=".MainActivity"
+            android:name=".home.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

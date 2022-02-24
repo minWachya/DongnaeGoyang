@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.10729166666666666" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_round_brown.xml" value="0.243" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/text_view_yellow_round.xml" value="0.243" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_cat_detail.xml" value="0.4" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_detail.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/cat_list.xml" value="0.25364583333333335" />

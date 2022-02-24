@@ -42,6 +42,10 @@
     <string name="cat_add_picture">사진 등록</string>
     <string name="cat_add_picture_max">최대 6장</string>
 
+    <!--CatDetailActivity-->
+    <string name="cat_detail_tab1_info">정보</string>
+    <string name="cat_detail_tab2_note">오늘 기록</string>
+
     <string name="addCat">고영희 추가</string>
 
 </resources>

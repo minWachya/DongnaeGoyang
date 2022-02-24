@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--CollapsingToolbarLayout을 사용하기 위해 CoordinatorLayout 사용-->
+<!--CollapsingToolbarLayout : FrameLayout 속성 가짐-->
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cat_detail.CatDetailActivity">
+
+    <!--AppBarLayout 안에는 CollapsingToolbarLayout-->
+    <!--AppBarLayout : LinearLayout(VERTICAL) 속성 가짐-->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true">
+
+        <!--스크롤시 접히거나 나타날 부분을 넣는 layout-->
+        <!--CollapsingToolbarLayout : FrameLayout 속성 가짐-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsingToolbarLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:toolbarId="@id/toolbar">
+
+            <!-- pin : 스크롤 시 고정,
+            parallax : 스크롤 시 접힘,
+            none : 아무 효과 x(그냥 스크롤) -->
+<!--            &lt;!&ndash;툴바&ndash;&gt;-->
+<!--            <androidx.appcompat.widget.Toolbar-->
+<!--                android:id="@+id/toolbar"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="?attr/actionBarSize"-->
+<!--                app:layout_collapseMode="pin"/>-->
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <!--툴바-->
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_collapseMode="pin"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                    android:text="나비"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="7dp"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvName"
+                    app:layout_constraintStart_toEndOf="@+id/tvName"
+                    app:layout_constraintTop_toTopOf="@+id/tvName" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="암컷"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvName" />
+                <ImageView
+                    android:id="@+id/imgRect1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="358dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_rect"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvGender"
+                    app:layout_constraintStart_toEndOf="@+id/tvGender"
+                    app:layout_constraintTop_toTopOf="@+id/tvGender" />
+                <TextView
+                    android:id="@+id/tvAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="2실 추정"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgRect1"
+                    app:layout_constraintStart_toEndOf="@+id/imgRect1"
+                    app:layout_constraintTop_toTopOf="@+id/imgRect1" />
+                <ImageView
+                    android:id="@+id/imgRect2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="358dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_rect"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvAge"
+                    app:layout_constraintStart_toEndOf="@+id/tvAge"
+                    app:layout_constraintTop_toTopOf="@+id/tvAge" />
+                <TextView
+                    android:id="@+id/tvPlace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="XX구 XX동"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgRect2"
+                    app:layout_constraintStart_toEndOf="@+id/imgRect2"
+                    app:layout_constraintTop_toTopOf="@+id/imgRect2" />
+
+                <ImageView
+                    android:id="@+id/imgCat"
+                    android:layout_width="86dp"
+                    android:layout_height="89dp"
+                    android:src="@drawable/cheese"
+                    android:layout_marginEnd="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+                <TextView
+                    android:id="@+id/textView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/text_view_yellow_round"
+                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                    android:paddingStart="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="2dp"
+                    android:text="경의선숲길 부산집 앞에서 주로 출몰"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="30dp"
+                    android:paddingBottom="20dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="부산집 사장님이 가끔 먹이를 챙겨주셔서 그런지 사람을 경계하지 않아요.
+카메라 들이대면 포즈 취해주는 개냥이"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <!--탭 레이아웃-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/feedTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:tabIndicatorFullWidth="false"
+            app:tabIndicatorColor="@color/brown_473A22">
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cat_detail_tab1_info" />
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cat_detail_tab2_note" />
+        </com.google.android.material.tabs.TabLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--스크롤할 뷰 (NestedScrollView, RecyclerView 등)-->
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior" 추가!!-->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/feedViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
