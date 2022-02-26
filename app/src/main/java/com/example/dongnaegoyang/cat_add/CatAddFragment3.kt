@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -56,14 +57,7 @@ class CatAddFragment3 : Fragment() {
 
         val bundle1 = arguments
         // 이전 입력 정보 보여주기
-        if (bundle1?.getInt("tnr") != null) {
-            val tnr = bundle1.getInt("tnr", -1)    // TNR
-            val food = bundle1.getInt("food", -1)  // 선호 사료
-            if(tnr != -1) binding.tnrSpinner.text = tnrArray[tnr]
-            if(food != -1) binding.foodSpinner.text = foodArray[food]
-            Log.d(TAG, "$tnr, $food")
-        }
-        else {Log.d(TAG, "ㅇ없다")}
+        setPrevInfo(bundle1)
 
         // <이전> 버튼 클릭: 2단계로 이동
         binding.btnBack.setOnClickListener {
@@ -72,12 +66,8 @@ class CatAddFragment3 : Fragment() {
 
         // <등록> 버튼 클릭: 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            AlertDialog.Builder(context, R.style.CustomAlertDialog)
-                .setTitle("등록 확인")
-                .setMessage("00구 00동에 새로운 고영희를 등록하시겠습니까?")
-                .setPositiveButton("Ok", null)
-                .setNegativeButton("Cancel", null)
-                .show()
+            CustomDialog("등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?")
+                .show(parentFragmentManager, "CustomDialog")
         }
 
         return view
@@ -103,6 +93,17 @@ class CatAddFragment3 : Fragment() {
         val closeButton = bottomSheetView.findViewById<ImageView>(R.id.imgClose)
         closeButton.setOnClickListener {
             dialog.dismiss()
+        }
+    }
+
+    // 이전 정보 보여주기
+    private fun setPrevInfo(bundle: Bundle?) {
+        if (bundle?.getInt("tnr") != null) {
+            val tnr = bundle.getInt("tnr", -1)    // TNR
+            val food = bundle.getInt("food", -1)  // 선호 사료
+            if(tnr != -1) binding.tnrSpinner.text = tnrArray[tnr]
+            if(food != -1) binding.foodSpinner.text = foodArray[food]
+            Log.d(TAG, "$tnr, $food")
         }
     }
 

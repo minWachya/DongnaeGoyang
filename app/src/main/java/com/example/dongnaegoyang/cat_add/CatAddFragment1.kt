@@ -51,26 +51,7 @@ class CatAddFragment1 : Fragment() {
         // 고양이 선택 Text 초기화
         val bundle1 = arguments?: Bundle()
         // 이전 선택 정보 보여주기
-        if (bundle1.getInt("size") != null) {
-            val numSize = bundle1.getInt("size") // 몸집
-            val numFur = bundle1.getInt("fur")   // 코숏
-            val numEar = bundle1.getInt("ear")   // 귀 모양
-            val numTail = bundle1.getInt("tail") // 꼬리 모양
-            val numWhiskers = bundle1.getInt("whiskers")  // 수염
-            binding.textCatSize.text = arrSize[numSize]
-            binding.textFur.text = arrFur[numFur]
-            binding.textEar.text = arrEar[numEar]
-            binding.textTail.text = arrTail[numTail]
-            binding.textWhiskers.text = arrWhiskers[numWhiskers]
-        }
-        // 아니면 그냥 기본 선택 정보 보여주기
-        else {
-            binding.textCatSize.text = arrSize[0]
-            binding.textFur.text = arrFur[0]
-            binding.textEar.text = arrEar[0]
-            binding.textTail.text = arrTail[0]
-            binding.textWhiskers.text = arrWhiskers[0]
-        }
+        setPrevInfo(bundle1)
 
         // 2단계로 이동
         binding.btnOK1.setOnClickListener {
@@ -99,6 +80,30 @@ class CatAddFragment1 : Fragment() {
             num++
             if (num > max) num = 0
             text.text = arr[num]
+        }
+    }
+
+    // 이전 정보 보여주기
+    private fun setPrevInfo(bundle: Bundle?) {
+        if (bundle?.getInt("size") != null) {
+            val numSize = bundle.getInt("size") // 몸집
+            val numFur = bundle.getInt("fur")   // 코숏
+            val numEar = bundle.getInt("ear")   // 귀 모양
+            val numTail = bundle.getInt("tail") // 꼬리 모양
+            val numWhiskers = bundle.getInt("whiskers")  // 수염
+            binding.textCatSize.text = arrSize[numSize]
+            binding.textFur.text = arrFur[numFur]
+            binding.textEar.text = arrEar[numEar]
+            binding.textTail.text = arrTail[numTail]
+            binding.textWhiskers.text = arrWhiskers[numWhiskers]
+        }
+        // 아니면 그냥 기본 선택 정보 보여주기
+        else {
+            binding.textCatSize.text = arrSize[0]
+            binding.textFur.text = arrFur[0]
+            binding.textEar.text = arrEar[0]
+            binding.textTail.text = arrTail[0]
+            binding.textWhiskers.text = arrWhiskers[0]
         }
     }
 
