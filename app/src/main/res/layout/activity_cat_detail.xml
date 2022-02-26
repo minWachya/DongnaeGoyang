@@ -20,6 +20,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/white"
                 app:layout_collapseMode="none">
                 <!--툴바-->
                 <androidx.appcompat.widget.Toolbar
@@ -159,6 +160,9 @@
             android:id="@+id/tabTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabSelectedTextColor="@color/brown_473A22"
+            app:tabTextColor="@color/beige_E3DECF"
             app:tabIndicatorColor="@color/brown_473A22">
             <com.google.android.material.tabs.TabItem
                 android:layout_width="wrap_content"
@@ -177,6 +181,7 @@
         android:id="@+id/tabViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

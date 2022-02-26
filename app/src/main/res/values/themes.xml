@@ -41,4 +41,10 @@
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_regular</item>
         <item name="android:textSize">16sp</item>
     </style>
+    <!--탭 폰트 설정-->
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
 </resources>
