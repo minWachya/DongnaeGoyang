@@ -161,6 +161,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
+            app:tabIndicatorHeight="3dp"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabBackground="@drawable/custom_indicator"
             app:tabSelectedTextColor="@color/brown_473A22"
             app:tabTextColor="@color/beige_E3DECF"
             app:tabIndicatorColor="@color/brown_473A22">
