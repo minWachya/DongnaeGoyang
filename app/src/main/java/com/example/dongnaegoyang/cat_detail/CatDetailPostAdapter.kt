@@ -3,7 +3,9 @@ package com.example.dongnaegoyang.cat_detail
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
 
@@ -32,9 +34,14 @@ class CatDetailPostAdapter : RecyclerView.Adapter<CatDetailPostAdapter.ViewHolde
     // 게시글 로드
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun setItem(post: CatPost) {
+            // 게시글 정보
             itemView.findViewById<TextView>(R.id.itemTvNickname).text = post.nickname
             itemView.findViewById<TextView>(R.id.itemTvTime).text = post.time
             itemView.findViewById<TextView>(R.id.itemTvContent).text = post.content
+            // 서브 메뉴
+            itemView.findViewById<ImageView>(R.id.itemImgSubMenu).setOnClickListener {
+                Toast.makeText(itemView.context, "서브 메뉴", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

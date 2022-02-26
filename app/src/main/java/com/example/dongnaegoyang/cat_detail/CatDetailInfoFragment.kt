@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.FragmentCatDetailInfoBinding
 
-
 private const val TAG = "mmmCatDetailInfoFragment"
 private var _binding: FragmentCatDetailInfoBinding? = null
 private val binding get() = _binding!!
@@ -46,6 +45,8 @@ class CatDetailInfoFragment : Fragment() {
 
         // 등록자
         binding.tvRegistrationUser.text = "간택받은 집사"
+
+        // 나도 관심 좀...: 다른 고양이들 출력
 
         return view
     }
