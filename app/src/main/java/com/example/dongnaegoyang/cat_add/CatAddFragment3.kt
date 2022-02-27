@@ -1,18 +1,26 @@
 package com.example.dongnaegoyang.cat_add
 
-import android.app.AlertDialog
+import android.app.Activity
+import android.graphics.Color
+import android.net.Uri
 import android.os.Bundle
+import android.os.Parcelable
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.sangcomz.fishbun.FishBun
+import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
+import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
+
 
 private const val TAG = "mmmCatAddFragment3"
 
@@ -22,7 +30,7 @@ private val binding get() = _binding!!
 // 고양이 추가: 3단계 프레그먼드
 class CatAddFragment3 : Fragment() {
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
-    private val arrTextViewId = arrayListOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
+    private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     // TNR, 선호 사료 배열
     private lateinit var tnrArray: Array<String>
@@ -59,6 +67,9 @@ class CatAddFragment3 : Fragment() {
         // 이전 입력 정보 보여주기
         setPrevInfo(bundle1)
 
+        // 사진 선택 설정
+        setSelectPhoto()
+
         // <이전> 버튼 클릭: 2단계로 이동
         binding.btnBack.setOnClickListener {
             setFrag(CatAddFragment2(), bundle1)
@@ -76,6 +87,39 @@ class CatAddFragment3 : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    // 사진 선택 설정
+    private fun setSelectPhoto() {
+        // 사진 어댑터 설정
+        val photoAdapter = CatAddPhotoAdapter(binding)
+        binding.rcPhoto.adapter = photoAdapter
+        // 사진 설정 부분
+        val photoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val data = result.data
+                if (data != null) {
+                    // 이전 데이터 삭제
+                    photoAdapter.removeAllData()
+                    // 새 데이터 저장
+                    val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+                    for (uri in photoUriArr) photoAdapter.imgUris.add(uri)
+                    photoAdapter.notifyDataSetChanged()
+                }
+                // 사진 갯수
+                binding.tvSelectCount.text = photoAdapter.itemCount.toString()
+            }
+        }
+        binding.layoutSelectPhoto.setOnClickListener {
+            FishBun.with(this@CatAddFragment3)
+                .setImageAdapter(GlideAdapter())
+                .setIsUseDetailView(true)                   // 상세 사진 보기 true
+                .setMaxCount(6)                             // 최대 사진 개수
+                .setSelectedImages(photoAdapter.imgUris)    // 이전에 선택했던 사진 uri 배열
+                .setActionBarColor(Color.parseColor("#473A22"), Color.parseColor("#5D4037"), false)
+                .setActionBarTitleColor(Color.parseColor("#ffffff"))
+                .startAlbumWithActivityResultCallback(photoResultLauncher)
+        }
     }
 
     // 스피너 선택 설정
@@ -103,7 +147,6 @@ class CatAddFragment3 : Fragment() {
             val food = bundle.getInt("food", -1)  // 선호 사료
             if(tnr != -1) binding.tnrSpinner.text = tnrArray[tnr]
             if(food != -1) binding.foodSpinner.text = foodArray[food]
-            Log.d(TAG, "$tnr, $food")
         }
     }
 
@@ -121,5 +164,4 @@ class CatAddFragment3 : Fragment() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.catAddFrameLayout, catAddFragment).commit()
     }
-
 }

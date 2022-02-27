@@ -30,7 +30,7 @@ class CatAddFragment2 : Fragment() {
     private lateinit var ageArray: Array<String>
 
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
-    private val arrTextViewId = arrayListOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
+    private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -129,7 +129,7 @@ class CatAddFragment2 : Fragment() {
             val place = bundle.getString("place")  // 주 출몰지
             val gender = bundle.getInt("gender", -1)   // 설별
             val age = bundle.getInt("age", -1)         // 추정 나이
-            val note = bundle.getString("note", )    // 특이사항
+            val note = bundle.getString("note")    // 특이사항
             binding.editName.setText(name)
             binding.editPlace.setText(place)
             if(gender != -1) binding.genderSpinner.text = genderArray[gender]

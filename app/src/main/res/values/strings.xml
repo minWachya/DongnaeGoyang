@@ -41,6 +41,9 @@
     <string name="cat_add_food_hint">사료 선택</string>
     <string name="cat_add_picture">사진 등록</string>
     <string name="cat_add_picture_max">최대 6장</string>
+    <string name="cat_add_picture_select_count">0</string>
+    <string name="cat_add_picture_slash">/</string>
+    <string name="cat_add_picture_max_count">6</string>
 
     <!--CatDetailActivity-->
     <string name="cat_detail_tab1_info">정보</string>

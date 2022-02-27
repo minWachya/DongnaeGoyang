@@ -3,6 +3,9 @@
     package="com.example.dongnaegoyang">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 외부에서 사진 가져오기 -->
+    <!--사용자 갤러리에서 사진 가져오기-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -30,5 +33,12 @@
             </intent-filter>
         </activity>
     </application>
+
+    <!--사용자 갤러리에서 사진 가져오기-->
+    <queries>
+        <intent>
+            <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+    </queries>
 
 </manifest>
