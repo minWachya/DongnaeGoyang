@@ -36,6 +36,8 @@ class CatAddFragment3 : Fragment() {
     private lateinit var tnrArray: Array<String>
     private lateinit var foodArray: Array<String>
 
+    private lateinit var photoAdapter: CatAddPhotoAdapter
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -49,9 +51,7 @@ class CatAddFragment3 : Fragment() {
         tnrArray = resources.getStringArray(R.array.cat_add3_tnr_array)
         tnrBottomSheetDialog.setContentView(tnrBottomSheetView)
         setBottomSheetView(tnrBottomSheetView, tnrArray, tnrBottomSheetDialog, binding.tnrSpinner)
-        binding.tnrSpinner.setOnClickListener {
-            tnrBottomSheetDialog.show()
-        }
+        binding.tnrSpinner.setOnClickListener { tnrBottomSheetDialog.show() }
 
         // 선호 사료 선택 스피너 설정
         val foodBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
@@ -59,16 +59,16 @@ class CatAddFragment3 : Fragment() {
         foodArray = resources.getStringArray(R.array.cat_add3_food_array)
         foodBottomSheetDialog.setContentView(foodBottomSheetView)
         setBottomSheetView(foodBottomSheetView, foodArray, foodBottomSheetDialog, binding.foodSpinner)
-        binding.foodSpinner.setOnClickListener {
-            foodBottomSheetDialog.show()
-        }
+        binding.foodSpinner.setOnClickListener { foodBottomSheetDialog.show() }
+
+        // 사진 어댑터 설정
+        photoAdapter = CatAddPhotoAdapter(binding)
+        binding.rcPhoto.adapter = photoAdapter
+        setSelectPhoto()    // 사진 선택 설정
 
         val bundle1 = arguments
         // 이전 입력 정보 보여주기
         setPrevInfo(bundle1)
-
-        // 사진 선택 설정
-        setSelectPhoto()
 
         // <이전> 버튼 클릭: 2단계로 이동
         binding.btnBack.setOnClickListener {
@@ -91,16 +91,13 @@ class CatAddFragment3 : Fragment() {
 
     // 사진 선택 설정
     private fun setSelectPhoto() {
-        // 사진 어댑터 설정
-        val photoAdapter = CatAddPhotoAdapter(binding)
-        binding.rcPhoto.adapter = photoAdapter
         // 사진 설정 부분
         val photoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 val data = result.data
                 if (data != null) {
                     // 이전 데이터 삭제
-                    photoAdapter.removeAllData()
+                    photoAdapter.imgUris.clear()
                     // 새 데이터 저장
                     val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
                     for (uri in photoUriArr) photoAdapter.imgUris.add(uri)
@@ -147,6 +144,13 @@ class CatAddFragment3 : Fragment() {
             val food = bundle.getInt("food", -1)  // 선호 사료
             if(tnr != -1) binding.tnrSpinner.text = tnrArray[tnr]
             if(food != -1) binding.foodSpinner.text = foodArray[food]
+            // 사진
+            val photoUriArr = bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+            if (photoUriArr != null) {
+                for (uri in photoUriArr) photoAdapter.imgUris.add(uri as Uri)
+                photoAdapter.notifyDataSetChanged()
+                binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
+            }
         }
     }
 
@@ -158,6 +162,7 @@ class CatAddFragment3 : Fragment() {
             val food = foodArray.indexOf(binding.foodSpinner.text)  // 선호 사료
             bundle.putInt("tnr", tnr)
             bundle.putInt("food", food)
+            bundle.putParcelableArrayList("uriArr", photoAdapter.imgUris)
             catAddFragment.arguments = bundle
         }
         // 프레그먼트에 정보 전달 + 이동

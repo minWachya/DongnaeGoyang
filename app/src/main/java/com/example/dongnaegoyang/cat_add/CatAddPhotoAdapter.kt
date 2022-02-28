@@ -40,12 +40,6 @@ class CatAddPhotoAdapter(val binding: FragmentCatAdd3Binding) : RecyclerView.Ada
         // 현재 선택된 사진 개수 변경
         binding.tvSelectCount.text = itemCount.toString()
     }
-    // 모든 아이템 삭제
-    fun removeAllData() {
-        // 아이템 삭제
-        imgUris.clear()
-        notifyDataSetChanged()
-    }
 
     // 사진 로드하기
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
