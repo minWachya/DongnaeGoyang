@@ -46,164 +46,228 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />
 
-    <LinearLayout
-        android:id="@+id/layout"
-        android:layout_width="match_parent"
+    <!--코숏: 무늬-->
+    <ImageView
+        android:id="@+id/imgCatFur"
+        android:layout_width="200dp"
         android:layout_height="200dp"
-        android:orientation="horizontal"
+        android:layout_marginTop="35.42dp"
+        android:src="@drawable/ic_fur_cheese"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/explain" />
+    <!--몸집-->
+    <ImageView
+        android:id="@+id/imgCatSize"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="35.42dp"
+        android:src="@drawable/ic_size_normal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/explain" />
+    <!--귀-->
+    <ImageView
+        android:id="@+id/imgCatEar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="35.42dp"
+        android:src="@drawable/ic_ear_open_cheese"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/explain" />
+    <!--꼬리-->
+    <ImageView
+        android:id="@+id/imgCatTail"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="35.42dp"
+        android:src="@drawable/ic_tail_long_cheese"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/explain" />
+    <!--수염-->
+    <ImageView
+        android:id="@+id/imgCatWhisker"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="35.42dp"
+        android:src="@drawable/ic_whisker_long"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explain" />
 
     <!--몸집-->
-    <TextView
-        android:id="@+id/textCatSize"
+    <Spinner
+        android:id="@+id/spinnerCatSize"
         android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="47.15dp"
+        android:entries="@array/cat_add1_size_array"
+        android:background="@null"
+        android:spinnerMode="@null"
+        android:clickable="false"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/layout" />
+        app:layout_constraintTop_toBottomOf="@+id/imgCatSize" />
     <ImageView
         android:id="@+id/imgViewSizeLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_left_arrow"
-        android:layout_margin="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/textCatSize"
-        app:layout_constraintTop_toBottomOf="@+id/layout"/>
+        android:layout_marginTop="47.15dp"
+        android:layout_marginEnd="12dp"
+        app:layout_constraintEnd_toStartOf="@+id/spinnerCatSize"
+        app:layout_constraintTop_toBottomOf="@+id/imgCatSize"/>
     <ImageView
         android:id="@+id/imgViewSizeRight"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_right_arrow"
-        android:layout_margin="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textCatSize"
-        app:layout_constraintTop_toBottomOf="@+id/layout"/>
-
+        android:layout_marginTop="47.15dp"
+        android:layout_marginStart="12dp"
+        app:layout_constraintStart_toEndOf="@+id/spinnerCatSize"
+        app:layout_constraintTop_toBottomOf="@+id/imgCatSize"/>
 
     <!--코숏-->
-    <TextView
-        android:id="@+id/textFur"
+    <Spinner
+        android:id="@+id/spinnerCatFur"
         android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:entries="@array/cat_add1_fur_array"
+        android:background="@null"
+        android:spinnerMode="@null"
+        android:clickable="false"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textCatSize" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatSize" />
     <ImageView
         android:id="@+id/imgViewFurLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/textFur"
-        app:layout_constraintTop_toBottomOf="@+id/textCatSize"/>
+        app:layout_constraintEnd_toStartOf="@+id/spinnerCatFur"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatSize"/>
     <ImageView
         android:id="@+id/imgViewFurRight"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_right_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textFur"
-        app:layout_constraintTop_toBottomOf="@+id/textCatSize"/>
+        app:layout_constraintStart_toEndOf="@+id/spinnerCatFur"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatSize"/>
 
     <!--귀모양-->
-    <TextView
-        android:id="@+id/textEar"
+    <Spinner
+        android:id="@+id/spinnerCatEar"
         android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:entries="@array/cat_add1_ear_array"
+        android:background="@null"
+        android:spinnerMode="@null"
+        android:clickable="false"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFur" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatFur" />
     <ImageView
         android:id="@+id/imgViewEarLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/textEar"
-        app:layout_constraintTop_toBottomOf="@+id/textFur"/>
+        app:layout_constraintEnd_toStartOf="@+id/spinnerCatEar"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatFur"/>
     <ImageView
         android:id="@+id/imgViewEarRight"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_right_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textEar"
-        app:layout_constraintTop_toBottomOf="@+id/textFur"/>
+        app:layout_constraintStart_toEndOf="@+id/spinnerCatEar"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatFur"/>
 
     <!--꼬리 모양-->
-    <TextView
-        android:id="@+id/textTail"
+    <Spinner
+        android:id="@+id/spinnerCatTail"
         android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:entries="@array/cat_add1_tail_array"
+        android:background="@null"
+        android:spinnerMode="@null"
+        android:clickable="false"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textEar" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatEar" />
     <ImageView
         android:id="@+id/imgViewTailLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/textTail"
-        app:layout_constraintTop_toBottomOf="@+id/textEar" />
+        app:layout_constraintEnd_toStartOf="@+id/spinnerCatTail"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatEar" />
     <ImageView
         android:id="@+id/imgViewTailRight"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_right_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textTail"
-        app:layout_constraintTop_toBottomOf="@+id/textEar" />
+        app:layout_constraintStart_toEndOf="@+id/spinnerCatTail"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatEar" />
 
     <!--수염 모양-->
-    <TextView
-        android:id="@+id/textWhiskers"
+    <Spinner
+        android:id="@+id/spinnerCatWhiskers"
         android:layout_width="164dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="12dp"
+        android:layout_height="22dp"
+        android:layout_marginTop="12dp"
+        android:entries="@array/cat_add1_whiskers_array"
+        android:background="@null"
+        android:spinnerMode="@null"
+        android:clickable="false"
         android:textColor="@color/brown_473A22"
         android:textSize="16sp"
         android:textAlignment="center"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textTail" />
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatTail" />
     <ImageView
         android:id="@+id/imgViewWhiskersLeft"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_left_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintEnd_toStartOf="@+id/textWhiskers"
-        app:layout_constraintTop_toBottomOf="@+id/textTail" />
+        app:layout_constraintEnd_toStartOf="@+id/spinnerCatWhiskers"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatTail" />
     <ImageView
         android:id="@+id/imgViewWhiskersRight"
         android:layout_width="22dp"
         android:layout_height="22dp"
         android:src="@drawable/ic_right_arrow"
         android:layout_margin="12dp"
-        app:layout_constraintStart_toEndOf="@+id/textWhiskers"
-        app:layout_constraintTop_toBottomOf="@+id/textTail" />
+        app:layout_constraintStart_toEndOf="@+id/spinnerCatWhiskers"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCatTail" />
 
     <Button
         android:id="@+id/btnOK1"

@@ -6,8 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.FragmentCatAdd1Binding
 
@@ -18,12 +17,59 @@ private val binding get() = _binding!!
 
 // 고양이 추가: 1단계 프레그먼드
 class CatAddFragment1 : Fragment() {
-    // 몸집, 코숏, 귀 모영, 꼬리, 수염 배열
-    private lateinit var arrSize: Array<String>
-    private lateinit var arrFur: Array<String>
-    private lateinit var arrEar: Array<String>
-    private lateinit var arrTail: Array<String>
-    private lateinit var arrWhiskers: Array<String>
+    // 몸집 이미지 배열: 마름, 보통, 뚱뚱
+    private val arrImgSize = listOf(R.drawable.ic_size_normal, R.drawable.ic_size_normal, R.drawable.ic_size_normal)
+    // 코숏 이미지 배열
+    private val arrImgFur = listOf(
+        // 마름 SKINNY: 코숏들...
+        listOf(R.drawable.ic_fur_cheese, R.drawable.ic_fur_black, R.drawable.ic_fur_mackerel,
+            R.drawable.ic_fur_three_colors, R.drawable.ic_fur_tuxedo, R.drawable.ic_fur_chaos, R.drawable.ic_fur_spot),
+        // 보통 NORMAL: 코숏들...
+        listOf(R.drawable.ic_fur_cheese, R.drawable.ic_fur_black, R.drawable.ic_fur_mackerel,
+            R.drawable.ic_fur_three_colors, R.drawable.ic_fur_tuxedo, R.drawable.ic_fur_chaos, R.drawable.ic_fur_spot),
+        // 뚱뚱 FAT: 코숏들...
+        listOf(R.drawable.ic_fur_cheese, R.drawable.ic_fur_black, R.drawable.ic_fur_mackerel,
+            R.drawable.ic_fur_three_colors, R.drawable.ic_fur_tuxedo, R.drawable.ic_fur_chaos, R.drawable.ic_fur_spot)
+    )
+    // 귀 이미지 배열
+    private val arrImgEar = listOf(
+        // 치즈 CHEESE: open, fold, tnr
+        listOf(R.drawable.ic_ear_open_cheese, R.drawable.ic_ear_fold_cheese, R.drawable.ic_ear_tnr_cheese),
+        // 올블랙 BLACK: open, fold, tnr
+        listOf(R.drawable.ic_ear_open_black, R.drawable.ic_ear_fold_black, R.drawable.ic_ear_tnr_black),
+        // 고등어 MACKEREL: open, fold, tnr
+        listOf(R.drawable.ic_ear_open_mackerel, R.drawable.ic_ear_fold_mackerel, R.drawable.ic_ear_tnr_mackerel),
+        // 삼색 THREE_COLORS: open, fold, tnr
+        listOf(R.drawable.ic_ear_open_three_colors, R.drawable.ic_ear_fold_three_colors, R.drawable.ic_ear_tnr_three_colors),
+        // 턱시도 TUXEDO: open, fold, tnr
+        listOf(R.drawable.ic_ear_open_tuxedo, R.drawable.ic_ear_fold_tuxedo, R.drawable.ic_ear_tnr_tuxedo),
+        // 카오스 CHAOS: open, fold, tnr
+        listOf(R.drawable.ic_ear_open_chaos, R.drawable.ic_ear_fold_chaos, R.drawable.ic_ear_tnr_chaos),
+        // 얼룩 SPOT: open, fold, tnr
+        listOf(R.drawable.ic_ear_open_spot, R.drawable.ic_ear_fold_spot, R.drawable.ic_ear_tnr_spot)
+    )
+    // 꼬리 이미지 배열
+    private val arrImgTail = listOf(
+        // 치즈 CHEESE: long, short
+        listOf(R.drawable.ic_tail_long_cheese, R.drawable.ic_tail_short_cheese),
+        // 올블랙 BLACK: long, short
+        listOf(R.drawable.ic_tail_long_black, R.drawable.ic_tail_short_black),
+        // 고등어 MACKEREL: long, short
+        listOf(R.drawable.ic_tail_long_mackerel, R.drawable.ic_tail_short_mackerel),
+        // 삼색 THREE_COLORS: long, short
+        listOf(R.drawable.ic_tail_long_three_colors, R.drawable.ic_tail_short_three_colors),
+        // 턱시도 TUXEDO: long, short
+        listOf(R.drawable.ic_tail_long_tuxedo, R.drawable.ic_tail_short_tuxedo),
+        // 카오스 CHAOS: long, short
+        listOf(R.drawable.ic_tail_long_chaos, R.drawable.ic_tail_short_chaos),
+        // 얼룩 SPOT: long, short
+        listOf(R.drawable.ic_tail_long_spot, R.drawable.ic_tail_short_spot)
+    )
+    // 수염 이미지 배열
+    private val arrImgWhisker = listOf(
+        listOf(R.drawable.ic_whisker_short, R.drawable.ic_whisker_long),    // 검은 수염
+        listOf(R.drawable.ic_whisker_short_w, R.drawable.ic_whisker_long_w) // 흰 수염
+    )
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,24 +77,57 @@ class CatAddFragment1 : Fragment() {
     ): View {
         _binding = FragmentCatAdd1Binding.inflate(inflater, container, false)
         val view = binding.root
+        val spinnerCatSize = binding.spinnerCatSize
+        val spinnerCatFur = binding.spinnerCatFur
+        val spinnerCatEar = binding.spinnerCatEar
+        val spinnerCatTail = binding.spinnerCatTail
+        val spinnerCatWhisker = binding.spinnerCatWhiskers
 
-        // 몸집 선택
-        arrSize = resources.getStringArray(R.array.cat_add1_size_array)
-        setBtnListener(arrSize, binding.imgViewSizeLeft, binding.imgViewSizeRight, binding.textCatSize)
-        // 코숏 선택
-        arrFur = resources.getStringArray(R.array.cat_add1_fur_array)
-        setBtnListener(arrFur, binding.imgViewFurLeft, binding.imgViewFurRight, binding.textFur)
-        // 귀 모양 선택
-        arrEar = resources.getStringArray(R.array.cat_add1_ear_array)
-        setBtnListener(arrEar, binding.imgViewEarLeft, binding.imgViewEarRight, binding.textEar)
-        // 꼬리 모양 선택
-        arrTail = resources.getStringArray(R.array.cat_add1_tail_array)
-        setBtnListener(arrTail, binding.imgViewTailLeft, binding.imgViewTailRight, binding.textTail)
+        // 몸집 선택: 털 색 번경
+        spinnerCatSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) =
+                binding.imgCatSize.setImageResource(arrImgSize[position])
+        }
+        setBtnListener(spinnerCatSize.adapter.count-1, binding.imgViewSizeLeft, binding.imgViewSizeRight, spinnerCatSize)
+        // 코숏 선택: 귀, 꼬리, 수염 색 변경
+        spinnerCatFur.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                binding.imgCatFur.setImageResource(arrImgFur[spinnerCatSize.selectedItemPosition][position])    // 코숏
+                binding.imgCatEar.setImageResource(arrImgEar[position][spinnerCatEar.selectedItemPosition])     // 귀
+                binding.imgCatTail.setImageResource(arrImgTail[position][spinnerCatTail.selectedItemPosition])  // 꼬리
+                if (position == 1 || position == 5)
+                    binding.imgCatWhisker.setImageResource(arrImgWhisker[1][spinnerCatWhisker.selectedItemPosition])  // 흰 수염
+                else binding.imgCatWhisker.setImageResource(arrImgWhisker[0][spinnerCatWhisker.selectedItemPosition]) // 검은 수염
+            }
+        }
+        setBtnListener(spinnerCatFur.adapter.count-1, binding.imgViewFurLeft, binding.imgViewFurRight, spinnerCatFur)
+        // 귀 모양 선택: 털 색에 맞게 귀 모양 변경
+        spinnerCatEar.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) =
+                binding.imgCatEar.setImageResource(arrImgEar[spinnerCatFur.selectedItemPosition][position])
+        }
+        setBtnListener(spinnerCatEar.adapter.count-1, binding.imgViewEarLeft, binding.imgViewEarRight, spinnerCatEar)
+        // 꼬리 모양 선택: 털 색에 맞게 꼬리 모양 변경
+        spinnerCatTail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) =
+                binding.imgCatTail.setImageResource(arrImgTail[spinnerCatFur.selectedItemPosition][position])
+        }
+        setBtnListener(spinnerCatTail.adapter.count-1, binding.imgViewTailLeft, binding.imgViewTailRight, spinnerCatTail)
         // 수염 선택
-        arrWhiskers = resources.getStringArray(R.array.cat_add1_whiskers_array)
-        setBtnListener(arrWhiskers, binding.imgViewWhiskersLeft, binding.imgViewWhiskersRight, binding.textWhiskers)
+        spinnerCatWhisker.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (spinnerCatFur.selectedItemPosition == 1 || spinnerCatFur.selectedItemPosition == 5)
+                    binding.imgCatWhisker.setImageResource(arrImgWhisker[1][position])  // 흰 수염
+                else binding.imgCatWhisker.setImageResource(arrImgWhisker[0][position]) // 검은 수염
+            }
+        }
+        setBtnListener(spinnerCatWhisker.adapter.count-1, binding.imgViewWhiskersLeft, binding.imgViewWhiskersRight, spinnerCatWhisker)
 
-        // 고양이 선택 Text 초기화
         val bundle1 = arguments?: Bundle()
         // 이전 선택 정보 보여주기
         setPrevInfo(bundle1)
@@ -67,19 +146,17 @@ class CatAddFragment1 : Fragment() {
     }
 
     // 고양이 생김새 설정 버튼 리스너 달기
-    private fun setBtnListener(arr: Array<String>, imageViewLeft: ImageView, imageViewRight: ImageView, text: TextView) {
-        val max = arr.size-1
+    private fun setBtnListener(max: Int, imageViewLeft: ImageView, imageViewRight: ImageView, spinner: Spinner) {
         var num = 0
-
         imageViewLeft.setOnClickListener {
             num--
             if (num < 0) num = max
-            text.text = arr[num]
+            spinner.setSelection(num)
         }
         imageViewRight.setOnClickListener {
             num++
             if (num > max) num = 0
-            text.text = arr[num]
+            spinner.setSelection(num)
         }
     }
 
@@ -91,19 +168,11 @@ class CatAddFragment1 : Fragment() {
             val numEar = bundle.getInt("ear")   // 귀 모양
             val numTail = bundle.getInt("tail") // 꼬리 모양
             val numWhiskers = bundle.getInt("whiskers")  // 수염
-            binding.textCatSize.text = arrSize[numSize]
-            binding.textFur.text = arrFur[numFur]
-            binding.textEar.text = arrEar[numEar]
-            binding.textTail.text = arrTail[numTail]
-            binding.textWhiskers.text = arrWhiskers[numWhiskers]
-        }
-        // 아니면 그냥 기본 선택 정보 보여주기
-        else {
-            binding.textCatSize.text = arrSize[0]
-            binding.textFur.text = arrFur[0]
-            binding.textEar.text = arrEar[0]
-            binding.textTail.text = arrTail[0]
-            binding.textWhiskers.text = arrWhiskers[0]
+            binding.spinnerCatSize.setSelection(numSize)
+            binding.spinnerCatFur.setSelection(numFur)
+            binding.spinnerCatEar.setSelection(numEar)
+            binding.spinnerCatTail.setSelection(numTail)
+            binding.spinnerCatWhiskers.setSelection(numWhiskers)
         }
     }
 
@@ -111,11 +180,11 @@ class CatAddFragment1 : Fragment() {
     private fun setFrag(catAddFragment: Fragment, bundle: Bundle?) {
         // 1단계 정보 함께 보내기
         if (bundle != null) {
-            val numSize = arrSize.indexOf(binding.textCatSize.text) // 몸집
-            val numFur = arrFur.indexOf(binding.textFur.text)       // 코숏
-            val numEar = arrEar.indexOf(binding.textEar.text)       // 귀 모양
-            val numTail = arrTail.indexOf(binding.textTail.text)    // 꼬리 모양
-            val numWhiskers = arrWhiskers.indexOf(binding.textWhiskers.text) // 수염
+            val numSize = binding.spinnerCatSize.selectedItemPosition       // 몸집
+            val numFur = binding.spinnerCatFur.selectedItemPosition         // 코숏
+            val numEar = binding.spinnerCatEar.selectedItemPosition         // 귀 모양
+            val numTail = binding.spinnerCatTail.selectedItemPosition       // 꼬리 모양
+            val numWhiskers = binding.spinnerCatWhiskers.selectedItemPosition   // 수염
             bundle.putInt("size", numSize)  // 몸집
             bundle.putInt("fur", numFur)    // 코숏
             bundle.putInt("ear", numEar)    // 귀 모양
