@@ -40,8 +40,10 @@ class CatAddFragment1 : Fragment() {
         // 몸집 선택: 털 색 번경
         spinnerCatSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) =
-                binding.imgCatSize.setImageResource(arrImgSize[position])
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                binding.imgCatSize.setImageResource(arrImgSize[position])   // 몸집
+                binding.imgCatFur.setImageResource(arrImgFur[position][spinnerCatFur.selectedItemPosition])    // 코숏
+            }
         }
         setBtnListener(spinnerCatSize.adapter.count-1, binding.imgViewSizeLeft, binding.imgViewSizeRight, spinnerCatSize)
         // 코숏 선택: 털 색에 맞게 귀, 꼬리, 수염 색 변경

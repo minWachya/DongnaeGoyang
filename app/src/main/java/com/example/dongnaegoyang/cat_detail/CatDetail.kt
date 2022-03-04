@@ -7,18 +7,18 @@ data class CatDetail(val fur: Int, val size: Int, val ear: Int, val tail: Int, v
 
 object CatDetailArr {
     // 몸집 이미지 배열: 마름, 보통, 뚱뚱
-    val arrImgSize = listOf(R.drawable.ic_size_normal, R.drawable.ic_size_normal, R.drawable.ic_size_normal)
+    val arrImgSize = listOf(R.drawable.ic_size_small, R.drawable.ic_size_normal, R.drawable.ic_size_large)
     // 코숏 이미지 배열
     val arrImgFur = listOf(
         // 마름 SKINNY: 치즈, 올블랙, 고등어, 삼색, 턱시도, 카오스, 점박이
-        listOf(R.drawable.ic_fur_cheese, R.drawable.ic_fur_black, R.drawable.ic_fur_mackerel,
-            R.drawable.ic_fur_three_colors, R.drawable.ic_fur_tuxedo, R.drawable.ic_fur_chaos, R.drawable.ic_fur_spot),
+        listOf(R.drawable.ic_fur_cheese_s, R.drawable.ic_fur_black_s, R.drawable.ic_fur_mackerel_s,
+            R.drawable.ic_fur_three_colors_s, R.drawable.ic_fur_tuxedo_s, R.drawable.ic_fur_chaos_s, R.drawable.ic_fur_spot_s),
         // 보통 NORMAL: 치즈, 올블랙, 고등어, 삼색, 턱시도, 카오스, 점박이
         listOf(R.drawable.ic_fur_cheese, R.drawable.ic_fur_black, R.drawable.ic_fur_mackerel,
             R.drawable.ic_fur_three_colors, R.drawable.ic_fur_tuxedo, R.drawable.ic_fur_chaos, R.drawable.ic_fur_spot),
         // 뚱뚱 FAT: 치즈, 올블랙, 고등어, 삼색, 턱시도, 카오스, 점박이
-        listOf(R.drawable.ic_fur_cheese, R.drawable.ic_fur_black, R.drawable.ic_fur_mackerel,
-            R.drawable.ic_fur_three_colors, R.drawable.ic_fur_tuxedo, R.drawable.ic_fur_chaos, R.drawable.ic_fur_spot)
+        listOf(R.drawable.ic_fur_cheese_l, R.drawable.ic_fur_black_l, R.drawable.ic_fur_mackerel_l,
+            R.drawable.ic_fur_three_colors_l, R.drawable.ic_fur_tuxedo_l, R.drawable.ic_fur_chaos_l, R.drawable.ic_fur_spot_l)
     )
     // 귀 이미지 배열
     val arrImgEar = listOf(
