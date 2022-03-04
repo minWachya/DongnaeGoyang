@@ -47,6 +47,7 @@ class CatDetailActivity : AppCompatActivity() {
         TabLayoutMediator(binding.tabTabLayout, binding.tabViewPager) { tab, position ->
             tab.text = tabElement[position]
         }.attach()
+        binding.tabViewPager.isUserInputEnabled = false // auto paging off
 
     }
 
