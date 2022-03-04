@@ -47,6 +47,14 @@ class CatDetailInfoFragment : Fragment() {
         binding.tvRegistrationUser.text = "간택받은 집사"
 
         // 나도 관심 좀...: 다른 고양이들 출력
+        val anotherCatAdapter = CatDetailInfoAnotherCatAdapter()
+        binding.rcAnotherCat.adapter = anotherCatAdapter
+        anotherCatAdapter.cats.add(CatDetail(1, 1, 1, 0, 0))
+        anotherCatAdapter.cats.add(CatDetail(2, 1, 1, 0, 0))
+        anotherCatAdapter.cats.add(CatDetail(0, 1, 0, 0, 1))
+        anotherCatAdapter.cats.add(CatDetail(3, 1, 0, 1, 1))
+        anotherCatAdapter.cats.add(CatDetail(4, 1, 1, 1, 0))
+        anotherCatAdapter.notifyDataSetChanged()
 
         return view
     }
