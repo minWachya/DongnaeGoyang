@@ -4,19 +4,8 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.10729166666666666" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_close_round.xml" value="0.197" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_post.xml" value="0.22" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/btn_round_brown.xml" value="0.243" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/custom_indicator.xml" value="0.1" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/dialog_round.xml" value="0.2305" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_border_round.xml" value="0.2305" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_round_12.xml" value="0.243" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_round_4.xml" value="0.243" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/text_view_yellow_round.xml" value="0.243" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.25364583333333335" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_cat_detail.xml" value="0.2" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_detail.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.25364583333333335" />
+<<<<<<< HEAD
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/cat_list.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/custom_dialog.xml" value="0.4" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/custom_indicator.xml" value="0.1" />
@@ -32,6 +21,9 @@
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/list_item_cat_detail_photo.xml" value="0.6" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/list_item_cat_detail_post.xml" value="0.4" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/spinner_custom_layout.xml" value="0.25364583333333335" />
+=======
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add1.xml" value="0.18055555555555555" />
+>>>>>>> a6bed7fb117246526dab40fc56992c2b1cf4f486
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/drawable/frame_area.xml" value="0.1535" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.12335359675785208" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_detail.xml" value="0.25364583333333335" />
@@ -42,7 +34,7 @@
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

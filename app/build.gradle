@@ -30,7 +30,7 @@ android {
         jvmTarget = '1.8'
     }
     buildFeatures { // 뷰바인딩 (안드로이드 4.0이상부터 이걸로 변경)
-        viewBinding = true
+        viewBinding true
     }
 }
 
