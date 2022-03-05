@@ -176,12 +176,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cat_detail_tab2_note"/>
         </com.google.android.material.tabs.TabLayout>
-        <View
-            android:id="@+id/view1"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="-1dp"
-            android:background="@color/gray_F6F3E9"/>
+<!--        <View-->
+<!--            android:id="@+id/view1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="-2dp"-->
+<!--            android:background="@color/gray_F6F3E9"/>-->
 
     </com.google.android.material.appbar.AppBarLayout>
 

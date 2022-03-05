@@ -29,6 +29,8 @@ class CatDetailActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)   // 뒤로가기
         supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 없애기
 
+        binding.tabTabLayout.bringToFront() // tabTabLayout을 앞으로 보내서 view1 뒤로 보내기
+
         // 고양이 정보 가져오기
         getCatInfo()
 
