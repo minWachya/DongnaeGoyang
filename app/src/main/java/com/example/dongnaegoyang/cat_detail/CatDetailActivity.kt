@@ -6,7 +6,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -74,6 +73,15 @@ class CatDetailActivity : AppCompatActivity() {
         binding.tvHotPlace.text = "경의선숲길 부산집 앞에서 주로 출몰" // 주 출몰 장소
         // 상세 정보
         binding.tvNote.text = "부산집 사장님이 가끔 먹이를 챙겨주셔서 그런지 사람을 경계하지 않아요.\n카메라 들이대면 포즈 취해주는 개냥이"
+
+        // 고양이 이미지
+        // 코숏, 몸집, 귀, 꼬리, 수염
+        val cat = CatDetail(0, 0, 0, 0, 0)
+        binding.imgCatFur.setImageResource(CatDetailArr.arrImgFur[cat.size][cat.fur])
+        binding.imgCatSize.setImageResource(CatDetailArr.arrImgSize[cat.size])
+        binding.imgCatEar.setImageResource(CatDetailArr.arrImgEar[cat.fur][cat.ear])
+        binding.imgCatTail.setImageResource(CatDetailArr.arrImgTail[cat.fur][cat.tail])
+        binding.imgCatWhisker.setImageResource(CatDetailArr.arrImgWhisker[cat.fur][cat.tail])
     }
 
     // 툴바에서 뒤로가기 버튼 클릭 시

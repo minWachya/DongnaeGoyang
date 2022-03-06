@@ -41,7 +41,7 @@ class CatDetailInfoAnotherCatAdapter  : RecyclerView.Adapter<CatDetailInfoAnothe
             itemView.findViewById<ImageView>(R.id.item_imgCatSize).setImageResource(arrImgSize[cat.size])
             itemView.findViewById<ImageView>(R.id.item_imgCatEar).setImageResource(arrImgEar[cat.fur][cat.ear])
             itemView.findViewById<ImageView>(R.id.item_imgCatTail).setImageResource(arrImgTail[cat.fur][cat.tail])
-            itemView.findViewById<ImageView>(R.id.item_imgCatWhisker).setImageResource(arrImgTail[cat.fur][cat.tail])
+            itemView.findViewById<ImageView>(R.id.item_imgCatWhisker).setImageResource(arrImgWhisker[cat.fur][cat.tail])
         }
     }
 }

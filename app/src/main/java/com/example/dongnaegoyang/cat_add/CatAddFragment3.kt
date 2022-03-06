@@ -18,6 +18,7 @@ import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
+import com.sangcomz.fishbun.MimeType
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 
 private const val TAG = "mmmCatAddFragment3"
@@ -69,9 +70,7 @@ class CatAddFragment3 : Fragment() {
         setPrevInfo(bundle1)
 
         // <이전> 버튼 클릭: 2단계로 이동
-        binding.btnBack.setOnClickListener {
-            setFrag(CatAddFragment2(), bundle1)
-        }
+        binding.btnBack.setOnClickListener { setFrag(CatAddFragment2(), bundle1) }
 
         // <등록> 버튼 클릭: 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
@@ -111,6 +110,7 @@ class CatAddFragment3 : Fragment() {
                 .setIsUseDetailView(true)                   // 상세 사진 보기 true
                 .setMaxCount(6)                             // 최대 사진 개수
                 .setSelectedImages(photoAdapter.imgUris)    // 이전에 선택했던 사진 uri 배열
+                .exceptMimeType(listOf(MimeType.GIF))       // GIT 제외
                 .setActionBarColor(Color.parseColor("#473A22"), Color.parseColor("#5D4037"), false)
                 .setActionBarTitleColor(Color.parseColor("#ffffff"))
                 .startAlbumWithActivityResultCallback(photoResultLauncher)
