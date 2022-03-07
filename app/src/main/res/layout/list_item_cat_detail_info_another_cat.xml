@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:backgroundTint="@color/gray_F6F3E9"
+    app:cardCornerRadius="12dp"
+    android:layout_marginEnd="4dp"
+    android:outlineProvider="none">
+
+    <!--코숏: 무늬-->
+    <ImageView
+        android:id="@+id/item_imgCatFur"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_fur_cheese"/>
+    <!--몸집-->
+    <ImageView
+        android:id="@+id/item_imgCatSize"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_size_normal"/>
+    <!--귀-->
+    <ImageView
+        android:id="@+id/item_imgCatEar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_ear_open_cheese"/>
+    <!--꼬리-->
+    <ImageView
+        android:id="@+id/item_imgCatTail"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_tail_long_cheese"/>
+    <!--수염-->
+    <ImageView
+        android:id="@+id/item_imgCatWhisker"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_whisker_long"/>
+
+</androidx.cardview.widget.CardView>

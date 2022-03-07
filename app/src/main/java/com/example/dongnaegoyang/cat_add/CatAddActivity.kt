@@ -1,9 +1,10 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.cat_add
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivityCatAddBinding
 
 private const val TAG = "mmmCatAddActivity"
@@ -30,8 +31,7 @@ class CatAddActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             android.R.id.home -> {  // 뒤로가기 이모지(<-) 클릭
-                Toast.makeText(applicationContext, "뒤로가기 클릭", Toast.LENGTH_SHORT).show()
-                return true
+                finish()
             }
         }
         return super.onOptionsItemSelected(item)

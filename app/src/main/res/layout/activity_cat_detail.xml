@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".cat_detail.CatDetailActivity"
+    android:orientation="vertical">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!--스크롤시 접히거나 나타날 부분을 넣는 layout-->
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:layout_collapseMode="none">
+                <!--툴바-->
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                    android:text="@string/cat_detail_name"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="24sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <ImageView
+                    android:id="@+id/imgEdit"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginStart="7dp"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvName"
+                    app:layout_constraintStart_toEndOf="@+id/tvName"
+                    app:layout_constraintTop_toTopOf="@+id/tvName"
+                    android:contentDescription="@string/cat_detail_edit" />
+
+                <TextView
+                    android:id="@+id/tvGender"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/cat_detail_gender"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvName" />
+                <ImageView
+                    android:id="@+id/imgRect1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="358dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_rect"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvGender"
+                    app:layout_constraintStart_toEndOf="@+id/tvGender"
+                    app:layout_constraintTop_toTopOf="@+id/tvGender"
+                    android:contentDescription="@string/cat_detail_rect" />
+                <TextView
+                    android:id="@+id/tvAge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/cat_detail_age"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgRect1"
+                    app:layout_constraintStart_toEndOf="@+id/imgRect1"
+                    app:layout_constraintTop_toTopOf="@+id/imgRect1" />
+                <ImageView
+                    android:id="@+id/imgRect2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="358dp"
+                    android:padding="4dp"
+                    android:src="@drawable/ic_rect"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvAge"
+                    app:layout_constraintStart_toEndOf="@+id/tvAge"
+                    app:layout_constraintTop_toTopOf="@+id/tvAge"
+                    android:contentDescription="@string/cat_detail_rect" />
+                <TextView
+                    android:id="@+id/tvPlace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/cat_detail_place"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/imgRect2"
+                    app:layout_constraintStart_toEndOf="@+id/imgRect2"
+                    app:layout_constraintTop_toTopOf="@+id/imgRect2" />
+
+                <!--코숏: 무늬-->
+                <ImageView
+                    android:id="@+id/imgCatFur"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_fur_cheese"
+                    android:layout_marginEnd="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <!--몸집-->
+                <ImageView
+                    android:id="@+id/imgCatSize"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_size_normal"
+                    android:layout_marginEnd="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <!--귀-->
+                <ImageView
+                    android:id="@+id/imgCatEar"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_ear_open_cheese"
+                    android:layout_marginEnd="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <!--꼬리-->
+                <ImageView
+                    android:id="@+id/imgCatTail"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_tail_long_cheese"
+                    android:layout_marginEnd="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                <!--수염-->
+                <ImageView
+                    android:id="@+id/imgCatWhisker"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/ic_whisker_long"
+                    android:layout_marginEnd="28dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+                <TextView
+                    android:id="@+id/tvHotPlace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/text_view_yellow_round"
+                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                    android:paddingStart="4dp"
+                    android:paddingTop="2dp"
+                    android:paddingEnd="4dp"
+                    android:paddingBottom="2dp"
+                    android:text="@string/cat_detail_hot_place"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGender" />
+
+                <TextView
+                    android:id="@+id/tvNote"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:layout_marginTop="30dp"
+                    android:paddingBottom="20dp"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:text="@string/cat_detail_note"
+                    android:textColor="@color/brown_473A22"
+                    android:textSize="14sp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvHotPlace" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        <!--탭 레이아웃-->
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:tabIndicatorGravity="bottom"
+            app:tabIndicatorHeight="3dp"
+            app:tabTextAppearance="@style/tab_text"
+            app:tabSelectedTextColor="@color/brown_473A22"
+            app:tabTextColor="@color/beige_E3DECF"
+            app:tabIndicatorColor="@color/brown_473A22">
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cat_detail_tab1_info"/>
+            <com.google.android.material.tabs.TabItem
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/cat_detail_tab2_note"/>
+        </com.google.android.material.tabs.TabLayout>
+<!--        <View-->
+<!--            android:id="@+id/view1"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="1dp"-->
+<!--            android:layout_marginTop="-2dp"-->
+<!--            android:background="@color/gray_F6F3E9"/>-->
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!--스크롤할 뷰 (NestedScrollView, RecyclerView 등)-->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/tabViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

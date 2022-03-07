@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.cat_add
 
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.core.widget.addTextChangedListener
 import android.widget.ImageView
 import android.widget.TextView
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -29,7 +30,7 @@ class CatAddFragment2 : Fragment() {
     private lateinit var ageArray: Array<String>
 
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
-    private val arrTextViewId = arrayListOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
+    private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -76,18 +77,7 @@ class CatAddFragment2 : Fragment() {
 
         val bundle1 = arguments
         // 이전 선택 정보 보여주기
-        if (bundle1?.getString("name") != null) {
-            val name = bundle1.getString("name")    // 이름
-            val place = bundle1.getString("place")  // 주 출몰지
-            val gender = bundle1.getInt("gender", -1)   // 설별
-            val age = bundle1.getInt("age", -1)         // 추정 나이
-            val note = bundle1.getString("note", )    // 특이사항
-            binding.editName.setText(name)
-            binding.editPlace.setText(place)
-            if(gender != -1) binding.genderSpinner.text = genderArray[gender]
-            if(age != -1) binding.ageSpinner.text = ageArray[age]
-            binding.editSpecialNote.setText(note)
-        }
+        setPrevInfo(bundle1)
 
         // <이전> 버튼 클릭: 1단계로 이동(2단계 정보도 함께 전달)
         binding.btnBack.setOnClickListener {
@@ -129,6 +119,22 @@ class CatAddFragment2 : Fragment() {
         val closeButton = bottomSheetView.findViewById<ImageView>(R.id.imgClose)
         closeButton.setOnClickListener {
             dialog.dismiss()
+        }
+    }
+
+    // 이전 정보 보여주기
+    private fun setPrevInfo(bundle: Bundle?) {
+        if (bundle?.getString("name") != null) {
+            val name = bundle.getString("name")    // 이름
+            val place = bundle.getString("place")  // 주 출몰지
+            val gender = bundle.getInt("gender", -1)   // 설별
+            val age = bundle.getInt("age", -1)         // 추정 나이
+            val note = bundle.getString("note")    // 특이사항
+            binding.editName.setText(name)
+            binding.editPlace.setText(place)
+            if(gender != -1) binding.genderSpinner.text = genderArray[gender]
+            if(age != -1) binding.ageSpinner.text = ageArray[age]
+            binding.editSpecialNote.setText(note)
         }
     }
 

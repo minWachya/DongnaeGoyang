@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CatAddFragment3">
+    tools:context=".cat_add.CatAddFragment3">
 
     <ProgressBar
         android:id="@+id/progressBar"
@@ -32,6 +32,7 @@
         android:fontFamily="@font/spoqa_han_sans_neo_bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/explain"
@@ -119,6 +120,67 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/gridLayout" />
 
+    <!--사진 선택 레이아웃-->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutSelectPhoto"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/layout_border_round"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPic">
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="15dp"
+            android:src="@drawable/ic_launcher_foreground"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/tvSlash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="@string/cat_add_picture_slash"
+            android:textColor="@color/beige_E3DECF"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <TextView
+            android:id="@+id/tvSelectCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="@string/cat_add_picture_select_count"
+            android:textColor="@color/yellow_F1BC35"
+            android:textSize="10sp"
+            app:layout_constraintEnd_toStartOf="@+id/tvSlash"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="@string/cat_add_picture_max_count"
+            android:textColor="@color/beige_E3DECF"
+            android:textSize="10sp"
+            app:layout_constraintStart_toEndOf="@+id/tvSlash"
+            app:layout_constraintTop_toBottomOf="@+id/imageView" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rcPhoto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="100dp"
+        android:orientation="horizontal"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="@+id/layoutSelectPhoto"
+        app:layout_constraintStart_toEndOf="@+id/layoutSelectPhoto"
+        app:layout_constraintTop_toTopOf="@+id/layoutSelectPhoto" />
 
     <Button
         android:id="@+id/btnBack"
