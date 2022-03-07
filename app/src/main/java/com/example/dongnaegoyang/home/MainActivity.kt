@@ -88,6 +88,11 @@ class MainActivity : AppCompatActivity() {
         binding.btnSideBar.setOnClickListener{
 
         }
+        // 검색
+        binding.btnSearch.setOnClickListener{
+            var intent = Intent(this@MainActivity, SearchCatActivity::class.java)
+            startActivity(intent)
+        }
 
         // expandable 사료 배급 전 확인
         binding.linearLayout1.setOnClickListener {

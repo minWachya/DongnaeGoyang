@@ -41,7 +41,7 @@
     <string name="cat_add_food_hint">사료 선택</string>
     <string name="cat_add_picture">사진 등록</string>
     <string name="cat_add_picture_max">최대 6장</string>
-
-    <string name="addCat">고영희 추가</string>
+    <!--SearchCatActivity-->
+    <string name="cat_search_toolbar_title">고영희 검색</string>
 
 </resources>

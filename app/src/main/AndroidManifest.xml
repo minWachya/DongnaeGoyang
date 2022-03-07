@@ -10,16 +10,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
-            android:name=".DetailActivity"
+            android:name=".SearchCatActivity"
             android:exported="false" />
-        <!-- <activity -->
+        <activity
+            android:name=".DetailActivity"
+            android:exported="false" /> <!-- <activity -->
         <!-- android:name=".CatAddActivity" -->
         <!-- android:exported="false" -->
         <!-- android:label="고양이 추가 페이지"/> -->
         <activity
             android:name=".CatAddActivity"
             android:exported="false"
-            android:label="고양이 추가 페이지"/>
+            android:label="고양이 추가 페이지" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
