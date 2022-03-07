@@ -6,6 +6,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import com.example.dongnaegoyang.databinding.ActivitySearchCatBinding
+import com.example.dongnaegoyang.home.CatListAdapter
 
 class SearchCatActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchCatBinding

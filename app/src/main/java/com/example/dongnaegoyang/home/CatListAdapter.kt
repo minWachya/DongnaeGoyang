@@ -7,7 +7,6 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.databinding.CatListBinding
-import com.example.dongnaegoyang.home.CatList
 
 class CatListAdapter(private var onClick:(CatList) -> Unit) :
     RecyclerView.Adapter<CatListAdapter.ViewHolder>(), Filterable {

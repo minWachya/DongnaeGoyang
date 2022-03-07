@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.SearchCatActivity
 import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
