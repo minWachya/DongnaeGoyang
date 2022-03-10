@@ -16,5 +16,6 @@
     <color name="beige_E3DECF">#E3DECF</color>
     <color name="beige_BBB5A4">#BBB5A4</color>
     <color name="beige_F7F3E9">#F7F3E9</color>
+    <color name="beige_FFFCF3">#FFFCF3</color> <!-- 지혜 추가 -->
     <color name="gray_F6F3E9">#F6F3E9</color>
 </resources>
