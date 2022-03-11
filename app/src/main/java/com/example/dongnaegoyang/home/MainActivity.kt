@@ -113,7 +113,6 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("name", catList.catName)
         intent.putExtra("img", catList.catPic)
         startActivity(intent)
-        finish()
         // dataSet.add(listOf("$i th main", "$i th sub"))
     }
 }

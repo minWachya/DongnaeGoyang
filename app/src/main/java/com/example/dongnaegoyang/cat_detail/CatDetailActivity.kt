@@ -1,11 +1,14 @@
 package com.example.dongnaegoyang.cat_detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
+import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -34,8 +37,12 @@ class CatDetailActivity : AppCompatActivity() {
         getCatInfo()
 
         // 수정 버튼 클릭
+        if (true) binding.imgEdit.visibility = View.VISIBLE
         binding.imgEdit.setOnClickListener {
-            Toast.makeText(applicationContext, "수정하기", Toast.LENGTH_SHORT).show()
+            // 고양이 수정하기 페이지로 이동
+            val intent = Intent(application, CatAddActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
         // 탭 어댑터 생성

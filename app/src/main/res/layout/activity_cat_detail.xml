@@ -47,6 +47,7 @@
                     android:layout_height="18dp"
                     android:layout_marginStart="7dp"
                     android:src="@drawable/ic_edit"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/tvName"
                     app:layout_constraintStart_toEndOf="@+id/tvName"
                     app:layout_constraintTop_toTopOf="@+id/tvName"
