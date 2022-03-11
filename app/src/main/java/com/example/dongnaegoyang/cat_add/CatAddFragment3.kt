@@ -1,6 +1,7 @@
 package com.example.dongnaegoyang.cat_add
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -10,9 +11,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -74,7 +77,15 @@ class CatAddFragment3 : Fragment() {
 
         // <등록> 버튼 클릭: 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            CustomDialog("등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?")
+            // OK 버튼 클릭 시 해당 고양이 상세 페이지로 이동
+            val okListener: View.OnClickListener = View.OnClickListener {
+                val intent = Intent(context, CatDetailActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+            // dialog 보이기
+            CustomDialog("등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?",
+                        null, okListener)
                 .show(parentFragmentManager, "CustomDialog")
         }
 
