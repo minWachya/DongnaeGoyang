@@ -30,9 +30,9 @@ class CustomDialog(val title: String, val content: String,
         binding.customTvContent.text = content
 
         // 취소 버튼
-        binding.customTvBtn1.setOnClickListener(cancelListener)
+        binding.customTvBtn1.setOnClickListener(cancelListener?: View.OnClickListener {dismiss()})
         // 확인 버튼
-        binding.customTvBtn2.setOnClickListener(okListener)
+        binding.customTvBtn2.setOnClickListener(okListener?: View.OnClickListener {dismiss()})
 
         return view
     }
