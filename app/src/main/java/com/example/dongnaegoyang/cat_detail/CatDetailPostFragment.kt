@@ -1,13 +1,16 @@
 package com.example.dongnaegoyang.cat_detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.FragmentCatDetailPostBinding
+
 
 private const val TAG = "mmmCatDetailPostFragment"
 private var _binding: FragmentCatDetailPostBinding? = null
@@ -34,6 +37,17 @@ class CatDetailPostFragment : Fragment() {
         postAdapter.posts.add(CatPost("테스트3", "11분 전", "테스트입니다."))
         postAdapter.posts.add(CatPost("테스트4", "10분 전", "테스트입니다."))
         postAdapter.notifyDataSetChanged()
+
+        // EditText 입력 시 스크롤 하면 EditText 내용 스크롤되게
+        binding.editPost.setOnTouchListener(OnTouchListener { v, event ->
+            if (v.id == binding.editPost.id) {
+                v.parent.requestDisallowInterceptTouchEvent(true)
+                when (event.action and MotionEvent.ACTION_MASK) {
+                    MotionEvent.ACTION_UP -> v.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            false
+        })
 
         // '게시' 버튼 클릭: 서버에 게시글 데이터 전달
         binding.btnPost.setOnClickListener {
