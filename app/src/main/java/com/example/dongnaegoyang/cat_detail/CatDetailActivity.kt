@@ -42,7 +42,6 @@ class CatDetailActivity : AppCompatActivity() {
             // 고양이 수정하기 페이지로 이동
             val intent = Intent(application, CatAddActivity::class.java)
             startActivity(intent)
-            finish()
         }
 
         // 탭 어댑터 생성

@@ -27,15 +27,21 @@
         android:id="@+id/btnCancel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/spoqa_han_sans_neo_bold"
-        android:text="@string/btn_dialog_cat_detail_post_more_cancel"
-        android:textColor="@color/brown_473A22"
-        android:textSize="14sp"
-        android:paddingVertical="15dp"
         android:layout_marginHorizontal="16dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/btn_dialog_cat_detail_post_more"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+        android:paddingVertical="15dp"
+        android:text="@string/btn_dialog_cat_detail_post_more_cancel"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@+id/btnDelete"
         tools:layout_editor_absoluteX="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCancel"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

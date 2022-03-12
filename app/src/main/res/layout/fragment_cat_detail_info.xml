@@ -120,7 +120,7 @@
             <ImageView
                 android:layout_width="22dp"
                 android:layout_height="20dp"
-                android:src="@drawable/ic_tnr"
+                android:src="@drawable/ic_ban"
                 android:contentDescription="@string/cat_detail_info_health" />
             <TextView
                 android:layout_width="wrap_content"
