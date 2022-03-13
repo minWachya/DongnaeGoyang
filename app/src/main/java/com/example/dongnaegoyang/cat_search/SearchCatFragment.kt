@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang
+package com.example.dongnaegoyang.cat_search
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,6 +9,7 @@ import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.databinding.FragmentSearchCatBinding
 import com.example.dongnaegoyang.home.CatList
@@ -50,28 +51,23 @@ class SearchCatFragment : Fragment() {
         adapter.items.add(CatList(R.drawable.threecolor, "삼색이2", "카오스"))
         adapter.items.add(CatList(R.drawable.blackcat, "까망2", "올블랙"))
 
+        // 검색: 한 글자씩 누를 때마다 해당 아이템 출력
+        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                adapter?.getFilter()?.filter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                adapter?.getFilter()?.filter(newText);
+                return true
+            }
+
+        })
+
         return inflater.inflate(R.layout.fragment_search_cat, container, false)
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        binding.searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            // 검색 버튼 누를 때 호출
-            override fun onQueryTextSubmit(query: String?): Boolean {
-
-
-                return true
-            }
-
-            // 검색창에서 글자가 변경이 일어날 때마다 호출
-            override fun onQueryTextChange(newText: String?): Boolean {
-
-
-                return true
-            }
-        })
-    }
     /*override fun onBackPressed() {
         if (!binding.searchView.isIconified) {
             binding.searchView.isIconified = true

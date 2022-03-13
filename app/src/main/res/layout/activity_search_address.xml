@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cat_search.SearchCatActivity">
+    tools:context=".address_search.SearchAddressActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBar"
-        app:title="@string/cat_search_toolbar_title"
+        app:title="@string/address_search_toolbar_title"
         android:theme="@style/ToolbarTheme"
         app:titleTextAppearance="@style/Toolbar.TitleText"
         android:layout_width="match_parent"
@@ -18,12 +18,13 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <FrameLayout
-        android:id="@+id/searchCatFrame"
+        android:id="@+id/searchAddressFrame"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolBar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

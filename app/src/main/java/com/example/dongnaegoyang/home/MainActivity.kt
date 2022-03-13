@@ -1,5 +1,6 @@
 package com.example.dongnaegoyang.home
 
+import SearchCatActivity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
@@ -9,7 +10,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.SearchCatActivity
+import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
@@ -92,6 +93,12 @@ class MainActivity : AppCompatActivity() {
         // 검색
         binding.btnSearch.setOnClickListener{
             var intent = Intent(this@MainActivity, SearchCatActivity::class.java)
+            startActivity(intent)
+        }
+
+        // 지역 출력되는 칸 누르면 search address 페이지로 이동
+        binding.layoutAddress.setOnClickListener {
+            var intent = Intent(this@MainActivity, SearchAddressActivity::class.java)
             startActivity(intent)
         }
 

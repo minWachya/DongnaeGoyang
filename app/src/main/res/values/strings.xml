@@ -86,7 +86,12 @@
     <string name="custom_dialog_content">내용</string>
     <string name="custom_dialog_btn_cancel">Cancel</string>
     <string name="custom_dialog_btn_ok">OK</string>
+
     <!--SearchCatActivity-->
     <string name="cat_search_toolbar_title">고영희 검색</string>
+    <!--SearchAddressActivity-->
+    <string name="address_search_toolbar_title">동네 설정</string>
+    <!-- searchable -->
+    <string name="search_hint">사는 동 또는 인근 지하철역</string>
 
 </resources>

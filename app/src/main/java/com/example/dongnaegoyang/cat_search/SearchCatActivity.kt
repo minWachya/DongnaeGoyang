@@ -1,16 +1,19 @@
-package com.example.dongnaegoyang
-
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.SearchView
+import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.cat_search.SearchCatFragment
 import com.example.dongnaegoyang.databinding.ActivitySearchCatBinding
-import com.example.dongnaegoyang.home.CatListAdapter
+import com.example.dongnaegoyang.databinding.FragmentSearchCatBinding
+
+private const val TAG = "mmmCatSearchFragment"
+
+private var _binding: FragmentSearchCatBinding? = null
+private val binding get() = _binding!!
 
 class SearchCatActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchCatBinding
-    private lateinit var adapter: CatListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,20 +25,11 @@ class SearchCatActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        // 검색: 한 글자씩 누를 때마다 해당 아이템 출력
-        binding.searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                adapter?.getFilter()?.filter(query)
-                return true
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                adapter?.getFilter()?.filter(newText);
-                return true
-            }
-
-        })
+        // FrameLayout 설정
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.searchCatFrame, SearchCatFragment()).commit()
     }
+
 
     // 툴바에서 뒤로가기 버튼 클릭 시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

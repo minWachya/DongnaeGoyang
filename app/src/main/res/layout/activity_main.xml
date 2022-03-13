@@ -45,7 +45,7 @@
         app:layout_constraintTop_toTopOf="@+id/btn_sideBar" />
 
     <LinearLayout
-        android:id="@+id/btn_warning"
+        android:id="@+id/layout_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -76,7 +76,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_warning">
+        app:layout_constraintTop_toBottomOf="@+id/layout_address">
 
         <LinearLayout
             android:id="@+id/layout_expand"
