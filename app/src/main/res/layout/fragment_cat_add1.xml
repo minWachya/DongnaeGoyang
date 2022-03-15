@@ -52,7 +52,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="35.42dp"
-        android:src="@drawable/ic_fur_cheese"
+        android:src="@drawable/ic_cat_fur_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explain" />
@@ -72,7 +72,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="35.42dp"
-        android:src="@drawable/ic_ear_open_cheese"
+        android:src="@drawable/ic_cat_ear_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explain" />
@@ -82,7 +82,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="35.42dp"
-        android:src="@drawable/ic_tail_long_cheese"
+        android:src="@drawable/ic_cat_tail_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explain" />
@@ -92,10 +92,11 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="35.42dp"
-        android:src="@drawable/ic_whisker_long"
+        android:src="@drawable/ic_cat_whisker_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/explain" />
+
     <!--몸집-->
     <Spinner
         android:id="@+id/spinnerCatSize"
@@ -274,6 +275,7 @@
         android:layout_height="60dp"
         android:layout_margin="16dp"
         android:background="@drawable/btn_enable"
+        android:enabled="false"
         app:backgroundTint="@null"
         android:text="@string/cat_add_btn_step1"
         android:textColor="@color/white"

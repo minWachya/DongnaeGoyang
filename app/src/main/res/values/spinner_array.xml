@@ -3,9 +3,10 @@
     <!--fragment_cat_add1-->
     <!--몸집 배멸-->
     <string-array name="cat_add1_size_array">
-        <item>보통 몸집</item>
         <item>마른 몸집</item>
+        <item>보통 몸집</item>
         <item>뚱뚱한 몸집</item>
+        <item>몸집 선택</item>  <!--hint-->
     </string-array>
     <!--코숏 배멸-->
     <string-array name="cat_add1_fur_array">
@@ -16,22 +17,26 @@
         <item>턱시도 무늬</item>
         <item>카오스 무늬</item>
         <item>얼룩이or젖소 무늬</item>
+        <item>무늬 선택</item>  <!--hint-->
     </string-array>
     <!--귀모양 배멸-->
     <string-array name="cat_add1_ear_array">
         <item>오픈 귀</item>
         <item>폴드 귀</item>
         <item>TNR 귀</item>
+        <item>귀 선택</item>  <!--hint-->
     </string-array>
     <!--꼬리 배멸-->
     <string-array name="cat_add1_tail_array">
         <item>정상 꼬리</item>
         <item>잘린 꼬리</item>
+        <item>꼬리 선택</item>  <!--hint-->
     </string-array>
     <!--수염 배멸-->
     <string-array name="cat_add1_whiskers_array">
         <item>짧은 수염</item>
         <item>긴 수염</item>
+        <item>수염 선택</item>  <!--hint-->
     </string-array>
 
     <!--fragment_cat_add2-->
