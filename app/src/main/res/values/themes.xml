@@ -46,5 +46,11 @@
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
         <item name="android:textSize">16sp</item>
     </style>
+    
+    <!--Sidebar디자인 -->
+    <style name="SidebarTheme">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
 
 </resources>

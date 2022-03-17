@@ -1,24 +1,31 @@
 package com.example.dongnaegoyang.home
 
-import SearchCatActivity
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
+import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
+import com.example.dongnaegoyang.databinding.DrawerMainSidebarBinding
+import com.example.dongnaegoyang.databinding.DrawerMainSidebarLoggedInBinding
+import com.example.dongnaegoyang.databinding.DrawerMainSidebarLoggedOutBinding
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: CatListAdapter
+    private lateinit var _binding: DrawerMainSidebarBinding
+    private lateinit var binding_: DrawerMainSidebarLoggedInBinding
+    private lateinit var binding__: DrawerMainSidebarLoggedOutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +55,10 @@ class MainActivity : AppCompatActivity() {
         adapter.items.add(CatList(R.drawable.milkcow, "얼룩이2", "젖소"))
         adapter.items.add(CatList(R.drawable.threecolor, "삼색이2", "카오스"))
         adapter.items.add(CatList(R.drawable.blackcat, "까망2", "올블랙"))
+
+        if(intent.hasExtra("gu")){
+            binding.tvGu.text=intent.getStringExtra("gu")
+        }
 
         // tab으로 구분
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -86,11 +97,25 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // 사이드바
+        // 사이드바 (화면 기준 왼쪽)
         binding.btnSideBar.setOnClickListener{
+            _binding.mainDrawerLayout.openDrawer(GravityCompat.START)
+        }
+        /*binding_.btnNickname.setOnClickListener {
+            logOut()
+        }
+        binding__.btnLogin.setOnClickListener {
+            logIn()
+        }*/
+        // 고영희 돌봄 가이드
+        _binding.linearlayoutCare.setOnClickListener {
 
         }
-        // 검색
+        // 공지사항
+        _binding.btnNotice.setOnClickListener {
+
+        }
+        // 검색 (화면 기준 오른쪽 아이콘)
         binding.btnSearch.setOnClickListener{
             var intent = Intent(this@MainActivity, SearchCatActivity::class.java)
             startActivity(intent)
@@ -126,7 +151,27 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra("name", catList.catName)
         intent.putExtra("img", catList.catPic)
         startActivity(intent)
-        finish()
         // dataSet.add(listOf("$i th main", "$i th sub"))
+    }
+    private fun logOut(){
+        /*main_header_include_logged_in.visibility = View.INVISIBLE
+        main_header_include_logged_out.visibility = View.VISIBLE
+        main_navigation_btn1.isEnabled = false
+        main_navigation_btn1.setTextColor(Color.parseColor("#777777"))
+        main_navigation_btn2.isEnabled = false
+        main_navigation_btn2.setTextColor(Color.parseColor("#777777"))
+        main_navigation_btn3.isEnabled = false
+        main_navigation_btn3.setTextColor(Color.parseColor("#777777"))*/
+    }
+
+    private fun logIn(){
+        /*main_header_include_logged_in.visibility = View.VISIBLE
+        main_header_include_logged_out.visibility = View.INVISIBLE
+        main_navigation_btn1.isEnabled = true
+        main_navigation_btn1.setTextColor(Color.parseColor("#ffffff"))
+        main_navigation_btn2.isEnabled = true
+        main_navigation_btn2.setTextColor(Color.parseColor("#ffffff"))
+        main_navigation_btn3.isEnabled = true
+        main_navigation_btn3.setTextColor(Color.parseColor("#ffffff"))*/
     }
 }

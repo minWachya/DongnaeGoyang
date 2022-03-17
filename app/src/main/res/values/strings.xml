@@ -9,6 +9,12 @@
     <string name="category_tuxedo">턱시도</string>
     <string name="category_chaos">카오스</string>
     <string name="category_milkcow">얼룩이or젖소</string>
+    <string name="cat_home_notification">사료 배급 전 확인하세요!</string>
+    <string name="cat_home_notification_text1_1">인적이 드문 길목이나 공원 구석에서 사료를 배급하세요.</string>
+    <string name="cat_home_notification_text1_2">고양이 울음 소리로부터 이웃 주민들의 생활권을 지켜주기 위해 사료 배급의 위치를 각별히 주의해주세요.</string>
+    <string name="cat_home_notification_text2_1">고양이 털만짐을 자제하세요.</string>
+    <string name="cat_home_notification_text2_2">야외에서 생활하는 고양이는 각종 피부병, 벌레 등에 노출되며 전염될 가능성이 있으니 주의해주세요.</string>
+    <string name="cat_home_notification_text3">더 자세한 내용은 고영희 돌봄 가이드를 참고해주세요.</string>
     <!--CatAddActivity-->
     <string name="cat_add_toolbar_title">고영희 추가</string>
     <string name="cat_add_btn_step1">이렇게 생겼어요!</string>
@@ -80,6 +86,12 @@
     <string name="cat_detail_list_item_post_nickname">닉네임</string>
     <string name="cat_detail_list_item_recent_post_time">00분 전</string>
     <string name="cat_detail_list_item_content">내용</string>
+    <!--btn_dialog_cat_detail_post_more.xml-->
+    <string name="btn_dialog_cat_detail_post_more_delete">기록 삭제</string>
+    <string name="btn_dialog_cat_detail_post_more_cancel">취소</string>
+
+    <!-- Login Activity -->
+    <string name="login_sign_up">회원가입</string>
 
     <!--custom_dialog.xml-->
     <string name="custom_dialog_title">제목</string>
@@ -93,5 +105,13 @@
     <string name="address_search_toolbar_title">동네 설정</string>
     <!-- searchable -->
     <string name="search_hint">사는 동 또는 인근 지하철역</string>
-
+    <string name="search">검색</string>
+    <!-- Sidebar drawer main sidebar-->
+    <string name="sidebar_care_guide">건강한 봉사를 위한 고영희 돌봄 가이드</string>
+    <string name="sidebar_hwagin">확인하기</string>
+    <string name="sidebar_notice">공지사항</string>
+    <string name="sidebar_customer_service">고객지원</string>
+    <string name="sidebar_setting">설정</string>
+    <!-- Sidebar drawer main sidebar logged in-->
+    <string name="sidebar_login">로그인/회원가입</string>
 </resources>

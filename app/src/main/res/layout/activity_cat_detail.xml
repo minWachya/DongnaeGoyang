@@ -47,6 +47,7 @@
                     android:layout_height="18dp"
                     android:layout_marginStart="7dp"
                     android:src="@drawable/ic_edit"
+                    android:visibility="invisible"
                     app:layout_constraintBottom_toBottomOf="@+id/tvName"
                     app:layout_constraintStart_toEndOf="@+id/tvName"
                     app:layout_constraintTop_toTopOf="@+id/tvName"
@@ -112,48 +113,53 @@
                 <!--코숏: 무늬-->
                 <ImageView
                     android:id="@+id/imgCatFur"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:src="@drawable/ic_fur_cheese"
+                    android:layout_marginTop="22dp"
                     android:layout_marginEnd="28dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!--몸집-->
                 <ImageView
                     android:id="@+id/imgCatSize"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:src="@drawable/ic_size_normal"
                     android:layout_marginEnd="28dp"
+                    android:layout_marginTop="22dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!--귀-->
                 <ImageView
                     android:id="@+id/imgCatEar"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:src="@drawable/ic_ear_open_cheese"
                     android:layout_marginEnd="28dp"
+                    android:layout_marginTop="22dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!--꼬리-->
                 <ImageView
                     android:id="@+id/imgCatTail"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:src="@drawable/ic_tail_long_cheese"
                     android:layout_marginEnd="28dp"
+                    android:layout_marginTop="22dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                    app:layout_constraintTop_toTopOf="parent" />
                 <!--수염-->
                 <ImageView
                     android:id="@+id/imgCatWhisker"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:src="@drawable/ic_whisker_long"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
                     android:layout_marginEnd="28dp"
+                    android:layout_marginTop="22dp"
+                    android:src="@drawable/ic_whisker_long"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvHotPlace"

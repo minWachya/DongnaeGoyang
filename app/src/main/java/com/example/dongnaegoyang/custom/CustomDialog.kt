@@ -6,11 +6,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.DialogFragment
 import com.example.dongnaegoyang.databinding.CustomDialogBinding
 
 // 커스텀 다이얼로그(CatAddFragment3에서 사용됨)
-class CustomDialog(val title: String, val content: String) : DialogFragment() {
+class CustomDialog(val title: String, val content: String,
+                   private val cancelListener: View.OnClickListener?,
+                   private val okListener: View.OnClickListener?)
+    : DialogFragment() {
+
     private var _binding: CustomDialogBinding? = null
     private val binding get() = _binding!!
 
@@ -25,13 +30,9 @@ class CustomDialog(val title: String, val content: String) : DialogFragment() {
         binding.customTvContent.text = content
 
         // 취소 버튼
-        binding.customTvBtn1.setOnClickListener {
-            dismiss()
-        }
+        binding.customTvBtn1.setOnClickListener(cancelListener?: View.OnClickListener {dismiss()})
         // 확인 버튼
-        binding.customTvBtn2.setOnClickListener {
-            dismiss()
-        }
+        binding.customTvBtn2.setOnClickListener(okListener?: View.OnClickListener {dismiss()})
 
         return view
     }
@@ -40,4 +41,5 @@ class CustomDialog(val title: String, val content: String) : DialogFragment() {
         super.onDestroyView()
         _binding = null
     }
+
 }

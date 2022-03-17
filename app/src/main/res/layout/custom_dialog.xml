@@ -5,12 +5,18 @@
     android:layout_height="wrap_content"
     android:background="@drawable/layout_round_12">
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/customTvTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
         android:layout_marginTop="24dp"
-        android:layout_marginStart="20dp"
         android:fontFamily="@font/spoqa_han_sans_neo_bold"
         android:text="@string/custom_dialog_title"
         android:textColor="@color/brown_473A22"
@@ -23,8 +29,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginHorizontal="20dp"
         android:fontFamily="@font/spoqa_han_sans_neo_regular"
         android:text="@string/custom_dialog_content"
         android:textColor="@color/brown_473A22"

@@ -1,13 +1,17 @@
 package com.example.dongnaegoyang.cat_detail
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
+import android.view.View.OnTouchListener
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.custom.CustomToast.showCustomToast
 import com.example.dongnaegoyang.databinding.FragmentCatDetailPostBinding
+
 
 private const val TAG = "mmmCatDetailPostFragment"
 private var _binding: FragmentCatDetailPostBinding? = null
@@ -25,7 +29,7 @@ class CatDetailPostFragment : Fragment() {
         val view = binding.root
 
         // 게시글 가져오기
-        postAdapter = CatDetailPostAdapter()
+        postAdapter = CatDetailPostAdapter(parentFragmentManager)
         binding.rcPost.adapter = postAdapter
         postAdapter.posts.add(CatPost("서울우유좋아", "15분 전", "아침 일찍 일어나 우유 주고 왔습니다. 아 물론 고양이 우유입니다."))
         postAdapter.posts.add(CatPost("고양이재채기", "14분 전", "츄르 주려고 러닝 나갔는데 다른 분이 주시더군요(아쉽)"))
@@ -35,11 +39,14 @@ class CatDetailPostFragment : Fragment() {
         postAdapter.posts.add(CatPost("테스트4", "10분 전", "테스트입니다."))
         postAdapter.notifyDataSetChanged()
 
+        // EditText 입력 시 스크롤 하면 EditText 내용 스크롤되게
+        setEditTextScroll()
+
         // '게시' 버튼 클릭: 서버에 게시글 데이터 전달
         binding.btnPost.setOnClickListener {
             // 내용 없을 시 반환
             if (binding.editPost.text.isEmpty()) {
-                Toast.makeText(context, "내용을 입력해주새요.", Toast.LENGTH_SHORT).show()
+                Toast(context).showCustomToast ("내용을 입력해주새요.", requireContext())
                 return@setOnClickListener
             }
             // 게시글 생성
@@ -62,6 +69,19 @@ class CatDetailPostFragment : Fragment() {
         postAdapter.notifyDataSetChanged()
 
         Toast.makeText(context, "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show()
+    }
+
+    // EditText Scroll 설정
+    private fun setEditTextScroll() {
+        binding.editPost.setOnTouchListener(OnTouchListener { v, event ->
+            if (v.id == binding.editPost.id) {
+                v.parent.requestDisallowInterceptTouchEvent(true)
+                when (event.action and MotionEvent.ACTION_MASK) {
+                    MotionEvent.ACTION_UP -> v.parent.requestDisallowInterceptTouchEvent(false)
+                }
+            }
+            false
+        })
     }
 
     override fun onDestroyView() {
