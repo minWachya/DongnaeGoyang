@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activitySignUpDialogConstraint"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.SignUpDialogActivity"
+    app:behavior_hideable="true"
+    android:background="@drawable/spinner_bottom"
+    app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="28dp"
+        android:text="간편하게 가입하기"
+        android:textColor="@color/brown_473A22"
+        android:textSize="18sp"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/btnKakaoLogin"
+        android:layout_width="300dp"
+        android:layout_height="44.95dp"
+        android:layout_marginTop="45dp"
+        android:src="@drawable/btn_kakao_login"
+        android:layout_marginBottom="92.05dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
