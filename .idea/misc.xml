@@ -17,21 +17,27 @@
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/custom_dialog.xml" value="0.2205" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/custom_scrollbar.xml" value="0.2205" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/dialog_round.xml" value="0.2205" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/edittext_cursor_color.xml" value="0.2305" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/frame_area.xml" value="0.2205" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_2_round.xml" value="0.2205" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_2_round_yellow.xml" value="0.2205" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_border_round.xml" value="0.2205" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/drawable/layout_round_12.xml" value="0.2205" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_cat_detail.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_login.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/custom_dialog.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/custom_dialog_cat_detail_post_more.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/custom_toast.xml" value="0.4" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add1.xml" value="0.4" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add1.xml" value="0.264" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add2.xml" value="0.25364583333333335" />
-        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_info.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_add3.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_info.xml" value="0.4" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/fragment_cat_detail_post.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/list_item_cat_add_photo.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/list_item_cat_detail_info_another_cat.xml" value="0.25364583333333335" />
+        <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/list_item_cat_detail_post.xml" value="0.25364583333333335" />
         <entry key="..\:/Study/Android/DongnaeGoyang/app/src/main/res/layout/spinner_custom_layout.xml" value="0.25364583333333335" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/drawable/frame_area.xml" value="0.1535" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.12335359675785208" />

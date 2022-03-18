@@ -73,10 +73,11 @@
             app:layout_constraintTop_toBottomOf="@+id/rcPhoto" />
         <LinearLayout
             android:id="@+id/layoutTNR"
-            android:layout_width="79dp"
-            android:layout_height="94dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
+            android:padding="12dp"
             android:orientation="vertical"
             android:gravity="center"
             android:background="@drawable/layout_border_round"
@@ -108,9 +109,10 @@
 
         <LinearLayout
             android:id="@+id/layoutFood"
-            android:layout_width="79dp"
-            android:layout_height="94dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
+            android:padding="12dp"
             android:background="@drawable/layout_border_round"
             android:gravity="center"
             android:orientation="vertical"

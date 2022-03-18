@@ -52,6 +52,7 @@
             android:background="@drawable/edit_line_round"
             android:fontFamily="@font/spoqa_han_sans_neo_regular"
             android:hint="@string/cat_detail_post_hint"
+            android:textCursorDrawable="@drawable/edittext_cursor_color"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/btnPost"
             app:layout_constraintStart_toStartOf="parent"

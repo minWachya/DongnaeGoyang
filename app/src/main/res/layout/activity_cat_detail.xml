@@ -120,16 +120,6 @@
                     android:layout_marginEnd="28dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <!--몸집-->
-                <ImageView
-                    android:id="@+id/imgCatSize"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_size_normal"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginTop="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
                 <!--귀-->
                 <ImageView
                     android:id="@+id/imgCatEar"
@@ -146,6 +136,16 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/ic_tail_long_cheese"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="22dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--몸집-->
+                <ImageView
+                    android:id="@+id/imgCatSize"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_size_normal"
                     android:layout_marginEnd="28dp"
                     android:layout_marginTop="22dp"
                     app:layout_constraintEnd_toEndOf="parent"

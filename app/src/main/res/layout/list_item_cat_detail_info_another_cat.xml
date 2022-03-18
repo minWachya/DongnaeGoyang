@@ -14,12 +14,6 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/ic_fur_cheese"/>
-    <!--몸집-->
-    <ImageView
-        android:id="@+id/item_imgCatSize"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:src="@drawable/ic_size_normal"/>
     <!--귀-->
     <ImageView
         android:id="@+id/item_imgCatEar"
@@ -32,6 +26,12 @@
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:src="@drawable/ic_tail_long_cheese"/>
+    <!--몸집-->
+    <ImageView
+        android:id="@+id/item_imgCatSize"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_size_normal"/>
     <!--수염-->
     <ImageView
         android:id="@+id/item_imgCatWhisker"
