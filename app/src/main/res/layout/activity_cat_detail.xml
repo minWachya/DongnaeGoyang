@@ -202,9 +202,9 @@
             android:id="@+id/tabTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="3dp"
+            app:tabBackground="@drawable/tab_underline"
             app:tabTextAppearance="@style/tab_text"
             app:tabSelectedTextColor="@color/brown_473A22"
             app:tabTextColor="@color/beige_E3DECF"
@@ -218,12 +218,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cat_detail_tab2_note"/>
         </com.google.android.material.tabs.TabLayout>
-<!--        <View-->
-<!--            android:id="@+id/view1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:layout_marginTop="-2dp"-->
-<!--            android:background="@color/gray_F6F3E9"/>-->
 
     </com.google.android.material.appbar.AppBarLayout>
 

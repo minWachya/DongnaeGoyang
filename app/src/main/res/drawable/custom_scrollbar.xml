@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:fromDegrees="90"
-    android:toDegrees="90">
-    <shape
-        android:shape="line">
-        <stroke
-            android:width="3dp"
-            android:color="@color/beige_BBB5A4" />
-        <corners android:radius="66dp" />
-    </shape>
-</rotate>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="@color/beige_BBB5A4"/>
+    <corners android:radius="66dp" />
+    <size android:width="3dp"/>
+</shape>

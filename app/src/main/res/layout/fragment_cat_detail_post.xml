@@ -46,6 +46,7 @@
             android:paddingTop="9dp"
             android:paddingEnd="8dp"
             android:scrollbars="vertical"
+            android:scrollbarThumbVertical="@drawable/custom_scrollbar"
             android:maxLines="3"
             android:paddingStart="9dp"
             android:paddingBottom="7dp"
