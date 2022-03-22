@@ -4,9 +4,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
@@ -15,23 +20,27 @@ import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
-import com.example.dongnaegoyang.databinding.DrawerMainSidebarBinding
-import com.example.dongnaegoyang.databinding.DrawerMainSidebarLoggedInBinding
-import com.example.dongnaegoyang.databinding.DrawerMainSidebarLoggedOutBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: CatListAdapter
-    private lateinit var _binding: DrawerMainSidebarBinding
-    private lateinit var binding_: DrawerMainSidebarLoggedInBinding
-    private lateinit var binding__: DrawerMainSidebarLoggedOutBinding
+
+    private lateinit var toolbar: Toolbar
+    private lateinit var mainNavigationView: NavigationView
+    private lateinit var mainDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        toolbar = findViewById<Toolbar>(R.id.main_layout_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 제목 숨기기
+        setSupportActionBar(toolbar) //커스텀한 toolbar를 액션바로 사용
 
         val layoutManager = GridLayoutManager(this, 2)
         //layoutManager.setReverseLayout(true)
@@ -97,28 +106,17 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // 사이드바 (화면 기준 왼쪽)
-        binding.btnSideBar.setOnClickListener{
-            _binding.mainDrawerLayout.openDrawer(GravityCompat.START)
-        }
-        /*binding_.btnNickname.setOnClickListener {
-            logOut()
-        }
-        binding__.btnLogin.setOnClickListener {
-            logIn()
-        }*/
-        // 고영희 돌봄 가이드
-        _binding.linearlayoutCare.setOnClickListener {
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
+        mainNavigationView = findViewById<NavigationView>(R.id.main_navigationView)
+        mainDrawerLayout = findViewById<DrawerLayout>(R.id.main_drawer_layout)
 
-        }
-        // 공지사항
-        _binding.btnNotice.setOnClickListener {
-
-        }
-        // 검색 (화면 기준 오른쪽 아이콘)
-        binding.btnSearch.setOnClickListener{
-            var intent = Intent(this@MainActivity, SearchCatActivity::class.java)
-            startActivity(intent)
+        mainNavigationView.setNavigationItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.btn_notice-> Toast.makeText(this,"공지사항 클릭", Toast.LENGTH_SHORT).show()
+                R.id.btn_customer_service-> Toast.makeText(this,"고객지원 클릭", Toast.LENGTH_SHORT).show()
+                R.id.btn_setting-> Toast.makeText(this,"설정 클릭", Toast.LENGTH_SHORT).show()
+            }
+            true
         }
 
         // 지역 출력되는 칸 누르면 search address 페이지로 이동
@@ -146,32 +144,31 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //액션버튼 메뉴 액션바에 집어 넣기
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+
+    // 네비바 드로어 & 검색 툴바
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.btn_sideBar->{ // 메뉴 버튼
+                mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
+            }
+            R.id.btn_search -> { //검색 버튼 눌렀을 때
+                var intent = Intent(this@MainActivity, SearchCatActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     fun adapterOnClick(catList: CatList){
         var intent = Intent(this@MainActivity, CatDetailActivity::class.java)
         intent.putExtra("name", catList.catName)
         intent.putExtra("img", catList.catPic)
         startActivity(intent)
         // dataSet.add(listOf("$i th main", "$i th sub"))
-    }
-    private fun logOut(){
-        /*main_header_include_logged_in.visibility = View.INVISIBLE
-        main_header_include_logged_out.visibility = View.VISIBLE
-        main_navigation_btn1.isEnabled = false
-        main_navigation_btn1.setTextColor(Color.parseColor("#777777"))
-        main_navigation_btn2.isEnabled = false
-        main_navigation_btn2.setTextColor(Color.parseColor("#777777"))
-        main_navigation_btn3.isEnabled = false
-        main_navigation_btn3.setTextColor(Color.parseColor("#777777"))*/
-    }
-
-    private fun logIn(){
-        /*main_header_include_logged_in.visibility = View.VISIBLE
-        main_header_include_logged_out.visibility = View.INVISIBLE
-        main_navigation_btn1.isEnabled = true
-        main_navigation_btn1.setTextColor(Color.parseColor("#ffffff"))
-        main_navigation_btn2.isEnabled = true
-        main_navigation_btn2.setTextColor(Color.parseColor("#ffffff"))
-        main_navigation_btn3.isEnabled = true
-        main_navigation_btn3.setTextColor(Color.parseColor("#ffffff"))*/
     }
 }

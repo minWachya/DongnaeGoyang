@@ -36,4 +36,36 @@
         android:textColor="@color/gray_BBB5A4"
         android:layout_marginBottom="4dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_nickname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/linearlayout_care"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_sidebar_care"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp">
+            <TextView
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:text="@string/sidebar_care_guide"
+                android:textColor="@color/white"
+                android:layout_margin="15dp"
+                android:textSize="13sp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sidebar_hwagin"
+                android:background="@drawable/bg_sidebar_btn_hwagin"
+                android:textColor="@color/brown_9D917B"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="46dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

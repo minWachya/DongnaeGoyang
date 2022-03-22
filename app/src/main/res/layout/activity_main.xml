@@ -6,31 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".home.MainActivity">
 
-    <!--Sidebar-->
-    <Button
-        android:id="@+id/btn_sideBar"
-        android:layout_width="19.89dp"
-        android:layout_height="18dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="15dp"
-        android:background="@drawable/ic_sidebar"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@+id/iv_logo"
-        app:layout_constraintStart_toStartOf="parent" />
-    <!--Search-->
-    <Button
-        android:id="@+id/btn_search"
-        android:layout_width="20.31dp"
-        android:layout_height="20.31dp"
-        android:layout_gravity="top|center"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="13dp"
-        android:layout_marginRight="21.69dp"
-        android:layout_marginBottom="121dp"
-        android:background="@drawable/ic_search"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+    <!-- 툴바 -->
+    <include layout="@layout/toolbar_main"/>
 
     <ImageView
         android:id="@+id/iv_logo"
@@ -41,8 +18,8 @@
         android:layout_marginLeft="20dp"
         android:layout_marginTop="39dp"
         android:src="@drawable/logo_title"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_sideBar" />
+        app:layout_constraintTop_toBottomOf="@+id/main_layout_toolbar"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <LinearLayout
         android:id="@+id/layout_address"
@@ -172,5 +149,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
+    <include
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        layout="@layout/activity_navi"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

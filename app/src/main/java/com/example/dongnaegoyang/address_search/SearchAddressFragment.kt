@@ -58,6 +58,7 @@ class SearchAddressFragment : Fragment() {
         // 검색 버튼
         binding.btnSearch.setOnClickListener {
             keyword = binding.etAddress.text.toString()
+            Log.d("Test", keyword)
             if(keyword.isEmpty()){
                 Toast.makeText(context, "주소를 입력해 주세요.", Toast.LENGTH_SHORT).show()
             }else {

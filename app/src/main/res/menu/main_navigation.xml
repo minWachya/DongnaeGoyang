@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id = "@+id/btn_notice"
+        android:title = "@string/sidebar_notice"
+        />
+    <item android:id = "@+id/btn_customer_service"
+        android:title = "@string/sidebar_customer_service"
+        />
+    <item android:id = "@+id/btn_setting"
+        android:title = "@string/sidebar_setting"
+        />
+</menu>
