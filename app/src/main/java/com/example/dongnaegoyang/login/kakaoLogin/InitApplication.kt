@@ -1,10 +1,7 @@
-package com.example.dongnaegoyang.login.kakaoInit
+package com.example.dongnaegoyang.login.kakaoLogin
 
 import android.app.Application
-import android.content.ContentValues.TAG
-import android.util.Log
 import com.kakao.sdk.common.KakaoSdk
-import com.kakao.sdk.common.util.Utility
 
 class InitApplication : Application() {
     override fun onCreate() {

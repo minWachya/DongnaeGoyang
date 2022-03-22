@@ -76,7 +76,7 @@
     <string name="cat_detail_info_update_date_ex">0000&#45;00&#45;00</string>
     <string name="cat_detail_info_registration_user">등록</string>
     <string name="cat_detail_info_registration_user_ex">닉네임</string>
-    <string name="cat_detail_info_another_cat">나도 관심 좀&#183;&#183;&#183;</string>
+    <string name="cat_detail_info_another_cat">나도 관심 좀</string>
     <!--CatDetailPostFragment-->
     <string name="cat_detail_recent_post">최근 글</string>
     <string name="cat_detail_recent_post_time">00분 전</string>

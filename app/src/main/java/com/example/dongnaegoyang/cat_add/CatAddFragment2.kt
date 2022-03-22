@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -60,9 +61,7 @@ class CatAddFragment2 : Fragment() {
         genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
         genderBottomSheetDialog.setContentView(genderBottomSheetView)
         setBottomSheetView(genderBottomSheetView, genderArray, genderBottomSheetDialog, binding.genderSpinner)
-        binding.genderSpinner.setOnClickListener {
-            genderBottomSheetDialog.show()
-        }
+        binding.genderSpinner.textView.setOnClickListener { genderBottomSheetDialog.show() }
 
         // 추정 나이 선택 스피너 설정
         val ageBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
@@ -70,9 +69,7 @@ class CatAddFragment2 : Fragment() {
         ageArray = resources.getStringArray(R.array.cat_add2_age_array)
         ageBottomSheetDialog.setContentView(ageBottomSheetView)
         setBottomSheetView(ageBottomSheetView, ageArray, ageBottomSheetDialog, binding.ageSpinner)
-        binding.ageSpinner.setOnClickListener {
-            ageBottomSheetDialog.show()
-        }
+        binding.ageSpinner.textView.setOnClickListener { ageBottomSheetDialog.show() }
 
         val bundle1 = arguments
         // 이전 선택 정보 보여주기
@@ -99,17 +96,17 @@ class CatAddFragment2 : Fragment() {
     // 모두 입력 시 버튼 활성화
     private fun btnEnableCheck() {
         binding.btnOK2.isEnabled = checkName && checkPlace && checkNote
-                && binding.genderSpinner.text.isNotEmpty() && binding.ageSpinner.text.isNotEmpty()
+                && binding.genderSpinner.textView.text.isNotEmpty() && binding.ageSpinner.textView.text.isNotEmpty()
     }
 
     // 스피너 선택 설정
-    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: TextView) {
+    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: CustomSpinnerTextView) {
         for (i in arr.indices) {
             val textView = bottomSheetView.findViewById<TextView>(arrTextViewId[i])
             textView.text = arr[i]
             textView.visibility = View.VISIBLE
             textView.setOnClickListener {
-                spinner.text = arr[i]
+                spinner.textView.text = arr[i]
                 dialog.dismiss()
                 btnEnableCheck()
             }
@@ -131,8 +128,8 @@ class CatAddFragment2 : Fragment() {
             val note = bundle.getString("note")    // 특이사항
             binding.editName.setText(name)
             binding.editPlace.setText(place)
-            if(gender != -1) binding.genderSpinner.text = genderArray[gender]
-            if(age != -1) binding.ageSpinner.text = ageArray[age]
+            if(gender != -1) binding.genderSpinner.textView.text = genderArray[gender]
+            if(age != -1) binding.ageSpinner.textView.text = ageArray[age]
             binding.editSpecialNote.setText(note)
         }
     }
@@ -143,8 +140,8 @@ class CatAddFragment2 : Fragment() {
         if (bundle != null) {
             val name = binding.editName.text.toString()                 // 이름
             val place = binding.editPlace.text.toString()               // 주 출몰지
-            val gender = genderArray.indexOf(binding.genderSpinner.text)// 성별
-            val age = ageArray.indexOf(binding.ageSpinner.text)         // 추정 나이
+            val gender = genderArray.indexOf(binding.genderSpinner.textView.text)// 성별
+            val age = ageArray.indexOf(binding.ageSpinner.textView.text)         // 추정 나이
             val note = binding.editSpecialNote.text.toString()          // 특이사항
             bundle.putString("name", name)
             bundle.putString("place", place)

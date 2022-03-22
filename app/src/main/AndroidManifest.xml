@@ -19,7 +19,7 @@
     </queries>
 
     <application
-        android:name=".login.kakaoInit.InitApplication"
+        android:name=".login.kakaoLogin.InitApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_app_logo"
         android:label="@string/app_name"
@@ -28,7 +28,11 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+<<<<<<< HEAD
             android:name=".home.NaviActivity"
+=======
+            android:name=".login.SignUpDialogActivity"
+>>>>>>> 8e4ab09dba5d0d9ce8c29a3de67872368b9492bd
             android:exported="false" />
         <!-- 카카오 로그인 SDK -->
         <activity
@@ -48,7 +52,17 @@
         </activity>
         <activity
             android:name=".login.LoginActivity"
+<<<<<<< HEAD
             android:exported="true"></activity>
+=======
+            android:exported="true">
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+        </activity>
+>>>>>>> 8e4ab09dba5d0d9ce8c29a3de67872368b9492bd
         <activity
             android:name=".cat_detail.CatDetailActivity"
             android:exported="false"

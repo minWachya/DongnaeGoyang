@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivityLoginBinding
 import com.example.dongnaegoyang.home.MainActivity
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.kakao.sdk.auth.AuthApiClient
 import com.kakao.sdk.common.model.KakaoSdkError
 import com.kakao.sdk.user.UserApiClient
@@ -29,6 +31,13 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnKakaoLogin.setOnClickListener {
             checkKakaoToken()
+        }
+
+        val signUpView = layoutInflater.inflate(R.layout.activity_sign_up_dialog, null)
+        val signUpDialog = BottomSheetDialog(this, R.style.DialogCustomTheme)
+        signUpDialog.setContentView(signUpView)
+        binding.tvLoginSignUp.setOnClickListener {
+            signUpDialog.show()
         }
 
 

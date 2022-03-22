@@ -27,9 +27,10 @@
         <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
-    <!--Toolbar title font-->
+    <!--Toolbar title font + back button color-->
     <style name="ToolbarTheme" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_bold</item>
+        <item name="colorControlNormal">@color/brown_473A22</item>
     </style>
     <!--Toolbar title text size-->
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
