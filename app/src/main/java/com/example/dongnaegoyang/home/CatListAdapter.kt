@@ -7,9 +7,8 @@ import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.databinding.CatListBinding
-import com.example.dongnaegoyang.home.CatList
 
-class CatListAdapter(private val onClick:(CatList) -> Unit) :
+class CatListAdapter(private var onClick:(CatList) -> Unit) :
     RecyclerView.Adapter<CatListAdapter.ViewHolder>(), Filterable {
 
     var items = ArrayList<CatList>()
@@ -17,6 +16,7 @@ class CatListAdapter(private val onClick:(CatList) -> Unit) :
     private var context: Context? = null
     private var unFilteredList = items // 필터 전 리스트
     private var filteredList = items // 필터 중 리스트
+
 
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(
@@ -85,7 +85,6 @@ class CatListAdapter(private val onClick:(CatList) -> Unit) :
                 notifyDataSetChanged()
             }
         }
-
     }
 
 }

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/btn_nickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="91dp"
+        android:layout_marginLeft="24dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:background="@color/transparency"
+        android:textSize="24sp"
+        android:textColor="@color/black_473A22"/>
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/transparency"
+        android:src="@drawable/ic_arrow"
+        app:layout_constraintStart_toEndOf="@+id/btn_nickname"
+        app:layout_constraintTop_toTopOf="@+id/btn_nickname"
+        android:layout_marginLeft="6dp"
+        android:layout_marginTop="18dp"/>
+
+    <Button
+        android:id="@+id/btn_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/btn_nickname"
+        app:layout_constraintStart_toStartOf="@+id/btn_nickname"
+        android:background="@color/transparency"
+        android:textColor="@color/gray_BBB5A4"
+        android:layout_marginBottom="4dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn_nickname"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/linearlayout_care"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_sidebar_care"
+            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp">
+            <TextView
+                android:layout_width="102dp"
+                android:layout_height="wrap_content"
+                android:text="@string/sidebar_care_guide"
+                android:textColor="@color/white"
+                android:layout_margin="15dp"
+                android:textSize="13sp"/>
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sidebar_hwagin"
+                android:background="@drawable/bg_sidebar_btn_hwagin"
+                android:textColor="@color/brown_9D917B"
+                android:layout_marginTop="23dp"
+                android:layout_marginLeft="46dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

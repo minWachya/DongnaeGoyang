@@ -1,19 +1,18 @@
-package com.example.dongnaegoyang.cat_add
+package com.example.dongnaegoyang.address_search
 
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.databinding.ActivityCatAddBinding
+import com.example.dongnaegoyang.databinding.ActivitySearchAddressBinding
 
-private const val TAG = "mmmCatAddActivity"
-private lateinit var binding: ActivityCatAddBinding
+class SearchAddressActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySearchAddressBinding
 
-// 고양이 추가 액티비티
-class CatAddActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCatAddBinding.inflate(layoutInflater)
+        binding = ActivitySearchAddressBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -22,18 +21,17 @@ class CatAddActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // FrameLayout 설정
-        val ft = supportFragmentManager.beginTransaction() // 프래그먼트 관리하는 매니저
-        ft.replace(R.id.catAddFrameLayout, CatAddFragment1()).commit()
+        val ft = supportFragmentManager.beginTransaction()
+        ft.replace(R.id.searchAddressFrame, SearchAddressFragment()).commit()
     }
-
     // 툴바에서 뒤로가기 버튼 클릭 시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             android.R.id.home -> {  // 뒤로가기 이모지(<-) 클릭
-                finish()
+                Toast.makeText(applicationContext, "뒤로가기 클릭", Toast.LENGTH_SHORT).show()
+                return true
             }
         }
         return super.onOptionsItemSelected(item)
     }
-
 }

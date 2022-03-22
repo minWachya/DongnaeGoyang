@@ -8,6 +8,7 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="white50">#ddFFFFFF</color>
+    <color name="transparency">#00ff0000</color>
 
     <!--기본 색상 팔레트-->
     <color name="yellow_F1BC35">#F1BC35</color>
@@ -19,5 +20,9 @@
     <color name="beige_F7F3E9">#F7F3E9</color>
     <color name="beige_FFFCF3">#FFFCF3</color> <!-- 지혜 추가 -->
     <color name="gray_F6F3E9">#F6F3E9</color>
+    <color name="gray_BBB5A4">#BBB5A4</color>
+    <color name="black_473A22">#473A22</color>
     <color name="gray_E5E5E5">#E5E5E5</color>
+    <color name="brown_766B58">#766B58</color>
+    <color name="brown_9D917B">#9D917B</color>
 </resources>

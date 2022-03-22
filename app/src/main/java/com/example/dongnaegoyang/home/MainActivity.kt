@@ -4,25 +4,43 @@ import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
+import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
+import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: CatListAdapter
 
+    private lateinit var toolbar: Toolbar
+    private lateinit var mainNavigationView: NavigationView
+    private lateinit var mainDrawerLayout: DrawerLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
+
+        toolbar = findViewById<Toolbar>(R.id.main_layout_toolbar)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
+        supportActionBar?.setDisplayShowTitleEnabled(false) // 제목 숨기기
+        setSupportActionBar(toolbar) //커스텀한 toolbar를 액션바로 사용
 
         val layoutManager = GridLayoutManager(this, 2)
         //layoutManager.setReverseLayout(true)
@@ -46,6 +64,10 @@ class MainActivity : AppCompatActivity() {
         adapter.items.add(CatList(R.drawable.milkcow, "얼룩이2", "젖소"))
         adapter.items.add(CatList(R.drawable.threecolor, "삼색이2", "카오스"))
         adapter.items.add(CatList(R.drawable.blackcat, "까망2", "올블랙"))
+
+        if(intent.hasExtra("gu")){
+            binding.tvGu.text=intent.getStringExtra("gu")
+        }
 
         // tab으로 구분
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -84,9 +106,23 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        // 사이드바
-        binding.btnSideBar.setOnClickListener{
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
+        mainNavigationView = findViewById<NavigationView>(R.id.main_navigationView)
+        mainDrawerLayout = findViewById<DrawerLayout>(R.id.main_drawer_layout)
 
+        mainNavigationView.setNavigationItemSelectedListener { item ->
+            when(item.itemId){
+                R.id.btn_notice-> Toast.makeText(this,"공지사항 클릭", Toast.LENGTH_SHORT).show()
+                R.id.btn_customer_service-> Toast.makeText(this,"고객지원 클릭", Toast.LENGTH_SHORT).show()
+                R.id.btn_setting-> Toast.makeText(this,"설정 클릭", Toast.LENGTH_SHORT).show()
+            }
+            true
+        }
+
+        // 지역 출력되는 칸 누르면 search address 페이지로 이동
+        binding.layoutAddress.setOnClickListener {
+            var intent = Intent(this@MainActivity, SearchAddressActivity::class.java)
+            startActivity(intent)
         }
 
         // expandable 사료 배급 전 확인
@@ -106,6 +142,26 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this@MainActivity, CatAddActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    //액션버튼 메뉴 액션바에 집어 넣기
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return true
+    }
+
+    // 네비바 드로어 & 검색 툴바
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.btn_sideBar->{ // 메뉴 버튼
+                mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
+            }
+            R.id.btn_search -> { //검색 버튼 눌렀을 때
+                var intent = Intent(this@MainActivity, SearchCatActivity::class.java)
+                startActivity(intent)
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
     fun adapterOnClick(catList: CatList){
