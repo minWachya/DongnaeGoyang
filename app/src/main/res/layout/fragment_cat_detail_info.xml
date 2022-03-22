@@ -224,6 +224,14 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cat_detail_info_dots"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAnotherCatText"
+            app:layout_constraintStart_toEndOf="@+id/tvAnotherCatText"
+            app:layout_constraintTop_toTopOf="@+id/tvAnotherCatText" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcAnotherCat"
             android:layout_width="match_parent"
