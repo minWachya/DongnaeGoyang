@@ -1,7 +1,10 @@
 package com.example.dongnaegoyang.login.kakaoLogin
 
 import android.app.Application
+import android.util.Log
+import com.example.dongnaegoyang.cat_search.SearchCatFragment.Companion.TAG
 import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.util.Utility
 
 class InitApplication : Application() {
     override fun onCreate() {

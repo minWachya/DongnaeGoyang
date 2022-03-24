@@ -9,9 +9,7 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
-import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
@@ -20,16 +18,11 @@ import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: CatListAdapter
-
-    private lateinit var toolbar: Toolbar
-    private lateinit var mainNavigationView: NavigationView
-    private lateinit var mainDrawerLayout: DrawerLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,10 +30,12 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        toolbar = findViewById<Toolbar>(R.id.main_layout_toolbar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
+        setSupportActionBar(binding.mainToolbar) //커스텀한 toolbar를 액션바로 사용
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 버튼 활성화
+        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_sidebar)
         supportActionBar?.setDisplayShowTitleEnabled(false) // 제목 숨기기
-        setSupportActionBar(toolbar) //커스텀한 toolbar를 액션바로 사용
+        binding.mainToolbar.setTitle("")
 
         val layoutManager = GridLayoutManager(this, 2)
         //layoutManager.setReverseLayout(true)
@@ -106,11 +101,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        supportActionBar?.setDisplayHomeAsUpEnabled(true) // 드로어를 꺼낼 홈 버튼 활성화
-        mainNavigationView = findViewById<NavigationView>(R.id.main_navigationView)
-        mainDrawerLayout = findViewById<DrawerLayout>(R.id.main_drawer_layout)
-
-        mainNavigationView.setNavigationItemSelectedListener { item ->
+        binding.mainNavigationView.setNavigationItemSelectedListener { item ->
             when(item.itemId){
                 R.id.btn_notice-> Toast.makeText(this,"공지사항 클릭", Toast.LENGTH_SHORT).show()
                 R.id.btn_customer_service-> Toast.makeText(this,"고객지원 클릭", Toast.LENGTH_SHORT).show()
@@ -153,8 +144,8 @@ class MainActivity : AppCompatActivity() {
     // 네비바 드로어 & 검색 툴바
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId){
-            R.id.btn_sideBar->{ // 메뉴 버튼
-                mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
+            android.R.id.home->{ // 메뉴 버튼
+                binding.mainDrawerLayout.openDrawer(GravityCompat.START)    // 네비게이션 드로어 열기
             }
             R.id.btn_search -> { //검색 버튼 눌렀을 때
                 var intent = Intent(this@MainActivity, SearchCatActivity::class.java)
