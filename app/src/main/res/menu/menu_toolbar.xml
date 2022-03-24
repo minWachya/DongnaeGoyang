@@ -2,12 +2,6 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/btn_sideBar"
-        android:title="네비바"
-        android:icon="@drawable/ic_sidebar"
-        app:showAsAction="ifRoom" />
-
-    <item
         android:id="@+id/btn_search"
         android:title="검색"
         android:icon="@drawable/ic_search"
