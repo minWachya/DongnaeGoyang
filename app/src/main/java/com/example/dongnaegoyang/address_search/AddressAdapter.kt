@@ -13,24 +13,7 @@ import com.example.dongnaegoyang.home.MainActivity
 class AddressAdapter(val itemList: ArrayList<AddressList>): RecyclerView.Adapter<AddressAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_address, parent, false)
-        return ViewHolder(view)/*.apply {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                val gu = itemList[position].gu
-                val dong = itemList[position].dong
-
-                // setResult하는 코드
-                *//*val resultIntent = Intent(mContext, MainActivity::class.java)
-                resultIntent.putExtra("gu", gu)
-                resultIntent.putExtra("dong", dong)
-
-                val activity: MainActivity = mContext as MainActivity
-                activity.setResult(Activity.RESULT_OK, resultIntent)
-
-                // 액티비티 종료하는 코드
-                activity.finish()*//*
-            }
-        }*/
+        return ViewHolder(view)
     }
 
     override fun getItemCount(): Int {

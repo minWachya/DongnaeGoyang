@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
 
         if(intent.hasExtra("gu")){
             binding.tvGu.text=intent.getStringExtra("gu")
+            binding.tvDong.text=intent.getStringExtra("dong")
         }
 
         // tab으로 구분
