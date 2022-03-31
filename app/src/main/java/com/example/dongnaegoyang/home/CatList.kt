@@ -1,15 +1,7 @@
 package com.example.dongnaegoyang.home
 
 data class CatList  (
-    var catPic : Int,
+    val fur: Int, val size: Int, val ear: Int, val tail: Int, val whisker: Int,
     var catName: String,
     val type: String
-) {
-
-    fun toMap() : HashMap<String, Any>{
-        val result: HashMap<String, Any> = HashMap()
-        result["catPic"] = catPic
-        result["catName"] = catName
-        return result
-    }
-}
+)

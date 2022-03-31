@@ -5,7 +5,6 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.cat_search.SearchCatFragment
 import com.example.dongnaegoyang.databinding.ActivitySearchCatBinding
 import com.example.dongnaegoyang.databinding.FragmentSearchCatBinding
 
@@ -32,8 +31,7 @@ class SearchCatActivity : AppCompatActivity() {
         ft.replace(R.id.searchCatFrame, SearchCatFragment()).commit()
     }
 
-
-    // 툴바에서 뒤로가기 버튼 클릭 시
+    // 툴바에서 버튼 클릭 시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
             android.R.id.home -> {  // 뒤로가기 이모지(<-) 클릭
