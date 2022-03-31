@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
@@ -18,6 +19,7 @@ import com.example.dongnaegoyang.cat_add.CatAddActivity
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
+import com.example.dongnaegoyang.login.LoginActivity
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
@@ -134,6 +136,21 @@ class MainActivity : AppCompatActivity() {
             var intent = Intent(this@MainActivity, CatAddActivity::class.java)
             startActivity(intent)
         }
+
+        //사이드바 닉네임 부분
+        val navi = binding.mainNavigationView.getHeaderView(0)
+        val btnLogin = navi.findViewById<TextView>(R.id.btn_login)
+        val btnNickname = navi.findViewById<TextView>(R.id.btn_nickname)
+        //TODO : 이 두개 중에 뭘로 설정할 지는 어디서 결정하는 걸까. 둘 중 하나는 null인 듯한데
+        btnLogin?.setOnClickListener {
+            val loginIntent = Intent(this, LoginActivity::class.java)
+            startActivity(loginIntent)
+        }
+
+        btnNickname?.setOnClickListener {
+            Toast.makeText(this, "main sidebar nickname clicked", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
     //액션버튼 메뉴 액션바에 집어 넣기

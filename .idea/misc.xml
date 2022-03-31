@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.10729166666666666" />
+        <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/activity_main.xml" value="0.16" />
+        <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/activity_sign_up_dialog.xml" value="0.15896739130434784" />
+        <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/drawer_main_sidebar_logged_in.xml" value="0.21510416666666668" />
+        <entry key="..\:/JHPro/DongnaeGoyang/app/src/main/res/layout/drawer_main_sidebar_logged_out.xml" value="0.21510416666666668" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/drawable/frame_area.xml" value="0.1535" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/font/font.xml" value="0.24722222222222223" />
         <entry key="..\:/Users/kjimi/AndroidStudioProjects/DongnaeGoyang/app/src/main/res/layout/activity_cat_add.xml" value="0.176" />

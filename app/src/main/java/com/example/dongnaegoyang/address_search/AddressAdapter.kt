@@ -1,6 +1,9 @@
 package com.example.dongnaegoyang.address_search
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,8 +12,9 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.home.MainActivity
+import com.example.dongnaegoyang.login.LoginActivity
 
-class AddressAdapter(val itemList: ArrayList<AddressList>): RecyclerView.Adapter<AddressAdapter.ViewHolder>() {
+class AddressAdapter(val itemList: ArrayList<AddressList>, val mContext: Context): RecyclerView.Adapter<AddressAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddressAdapter.ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_address, parent, false)
         return ViewHolder(view)
@@ -31,6 +35,18 @@ class AddressAdapter(val itemList: ArrayList<AddressList>): RecyclerView.Adapter
             intent.putExtra("gu", itemList[position].gu)
             intent.putExtra("dong", itemList[position].dong)
             ContextCompat.startActivity(holder.itemView.context, intent, null)
+
+            //작동 안함..
+            /*val intent = Intent(holder.itemView?.context, LoginActivity::class.java)
+            //val intent = Intent()
+            val activity = mContext as SearchAddressActivity
+            intent.putExtra("si", itemList[position].si)
+            intent.putExtra("gu", itemList[position].gu)
+            intent.putExtra("dong", itemList[position].dong)
+            ////intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+
+            activity.setResult(Activity.RESULT_OK, intent)
+            Log.d("adapter", "${itemList[position].dong} 데이터 담음")*/
         }
     }
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
