@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.cat_add.CatAddActivity
+import com.example.dongnaegoyang.cat_detail.CatDetail
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
@@ -51,14 +52,14 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.addItemDecoration(HorizontalItemDecorator(10))
 
         // 더미값
-        adapter.items.add(CatList(R.drawable.cheese, "치즈", "치즈"))
-        adapter.items.add(CatList(R.drawable.milkcow, "얼룩이", "젖소"))
-        adapter.items.add(CatList(R.drawable.threecolor, "삼색이", "카오스"))
-        adapter.items.add(CatList(R.drawable.blackcat, "까망", "올블랙"))
-        adapter.items.add(CatList(R.drawable.cheese, "치즈2", "치즈"))
-        adapter.items.add(CatList(R.drawable.milkcow, "얼룩이2", "젖소"))
-        adapter.items.add(CatList(R.drawable.threecolor, "삼색이2", "카오스"))
-        adapter.items.add(CatList(R.drawable.blackcat, "까망2", "올블랙"))
+        adapter.items.add(CatList(CatDetail(1, 1, 1, 0, 0), "치즈", "치즈"))
+        adapter.items.add(CatList(CatDetail(2, 1, 1, 0, 0), "얼룩이", "젖소"))
+        adapter.items.add(CatList(CatDetail(0, 1, 0, 0, 1), "삼색이", "카오스"))
+        adapter.items.add(CatList(CatDetail(3, 1, 0, 1, 1), "까망", "올블랙"))
+        adapter.items.add(CatList(CatDetail(1, 1, 1, 0, 0), "치즈2", "치즈"))
+        adapter.items.add(CatList(CatDetail(2, 1, 1, 0, 0), "얼룩이2", "젖소"))
+        adapter.items.add(CatList(CatDetail(0, 1, 0, 0, 1), "삼색이2", "카오스"))
+        adapter.items.add(CatList(CatDetail(3, 1, 0, 1, 1), "까망2", "올블랙"))
 
         if(intent.hasExtra("gu")){
             binding.tvGu.text=intent.getStringExtra("gu")
@@ -159,7 +160,7 @@ class MainActivity : AppCompatActivity() {
     fun adapterOnClick(catList: CatList){
         var intent = Intent(this@MainActivity, CatDetailActivity::class.java)
         intent.putExtra("name", catList.catName)
-        intent.putExtra("img", catList.catPic)
+        //intent.putExtra("img", catList.catPic)
         startActivity(intent)
         // dataSet.add(listOf("$i th main", "$i th sub"))
     }

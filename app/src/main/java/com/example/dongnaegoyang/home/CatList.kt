@@ -1,7 +1,9 @@
 package com.example.dongnaegoyang.home
 
+import com.example.dongnaegoyang.cat_detail.CatDetail
+
 data class CatList  (
-    var catPic : Int,
+    var catPic : CatDetail,
     var catName: String,
     val type: String
 ) {
