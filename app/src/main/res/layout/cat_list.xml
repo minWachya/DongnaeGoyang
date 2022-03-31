@@ -2,20 +2,53 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="156dp"
     android:layout_height="162dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
-    android:background="#F6F3E9"
+    android:background="@color/gray_F6F3E9"
     android:id="@+id/view_container"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
-    android:gravity="center">
+    android:gravity="center"
+    app:cardCornerRadius="12dp">
 
-    <ImageView
-        android:id="@+id/iv_profile"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="20dp" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/gray_F6F3E9">
+        <!--코숏: 무늬-->
+        <ImageView
+            android:id="@+id/item_imgCatFur"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_fur_cheese"/>
+        <!--귀-->
+        <ImageView
+            android:id="@+id/item_imgCatEar"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_ear_open_cheese"/>
+        <!--꼬리-->
+        <ImageView
+            android:id="@+id/item_imgCatTail"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_tail_long_cheese"/>
+        <!--몸집-->
+        <ImageView
+            android:id="@+id/item_imgCatSize"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_size_normal"/>
+        <!--수염-->
+        <ImageView
+            android:id="@+id/item_imgCatWhisker"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            android:src="@drawable/ic_whisker_long"/>
+    </androidx.cardview.widget.CardView>
+
     <TextView
         android:id="@+id/tv_name"
         android:layout_width="156dp"

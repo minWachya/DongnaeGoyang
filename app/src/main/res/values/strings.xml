@@ -105,6 +105,7 @@
     <string name="address_search_toolbar_title">동네 설정</string>
     <!-- searchable -->
     <string name="search_hint">사는 동 또는 인근 지하철역</string>
+    <string name="search_cat_hint">찾고 있는 고양이 이름 입력</string>
     <string name="search">검색</string>
     <!-- Sidebar drawer main sidebar-->
     <string name="sidebar_care_guide">건강한 봉사를 위한 고영희 돌봄 가이드</string>

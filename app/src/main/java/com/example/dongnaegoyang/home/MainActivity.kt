@@ -51,14 +51,14 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.addItemDecoration(HorizontalItemDecorator(10))
 
         // 더미값
-        adapter.items.add(CatList(R.drawable.cheese, "치즈", "치즈"))
-        adapter.items.add(CatList(R.drawable.milkcow, "얼룩이", "젖소"))
-        adapter.items.add(CatList(R.drawable.threecolor, "삼색이", "카오스"))
-        adapter.items.add(CatList(R.drawable.blackcat, "까망", "올블랙"))
-        adapter.items.add(CatList(R.drawable.cheese, "치즈2", "치즈"))
-        adapter.items.add(CatList(R.drawable.milkcow, "얼룩이2", "젖소"))
-        adapter.items.add(CatList(R.drawable.threecolor, "삼색이2", "카오스"))
-        adapter.items.add(CatList(R.drawable.blackcat, "까망2", "올블랙"))
+        adapter.items.add(CatList(1, 1, 1, 0, 0, "까망", "올블랙"))
+        adapter.items.add(CatList(2, 1, 1, 0, 0, "얼룩이", "젖소"))
+        adapter.items.add(CatList(0, 1, 0, 0, 1, "치즈", "치즈"))
+        adapter.items.add(CatList(3, 1, 0, 1, 1, "삼색이", "카오스"))
+        adapter.items.add(CatList(1, 1, 1, 0, 0, "까망2", "올블랙"))
+        adapter.items.add(CatList(2, 1, 1, 0, 0, "얼룩이2", "젖소"))
+        adapter.items.add(CatList(0, 1, 0, 0, 1, "치즈2", "치즈"))
+        adapter.items.add(CatList(3, 1, 0, 1, 1, "삼색이2", "카오스"))
 
         if(intent.hasExtra("gu")){
             binding.tvGu.text=intent.getStringExtra("gu")
@@ -159,7 +159,7 @@ class MainActivity : AppCompatActivity() {
     fun adapterOnClick(catList: CatList){
         var intent = Intent(this@MainActivity, CatDetailActivity::class.java)
         intent.putExtra("name", catList.catName)
-        intent.putExtra("img", catList.catPic)
+        //intent.putExtra("img", catList.catPic)
         startActivity(intent)
         // dataSet.add(listOf("$i th main", "$i th sub"))
     }
