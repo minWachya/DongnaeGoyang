@@ -10,7 +10,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dongnaegoyang.cat_detail.CatDetail
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.databinding.FragmentSearchCatBinding
 import com.example.dongnaegoyang.home.CatList
@@ -43,14 +42,14 @@ class SearchCatFragment : Fragment() {
         binding.recyclerView.addItemDecoration(HorizontalItemDecorator(10))
 
         // 더미값
-        adapter.items.add(CatList(CatDetail(1, 1, 1, 0, 0), "치즈", "치즈"))
-        adapter.items.add(CatList(CatDetail(2, 1, 1, 0, 0), "얼룩이", "젖소"))
-        adapter.items.add(CatList(CatDetail(0, 1, 0, 0, 1), "삼색이", "카오스"))
-        adapter.items.add(CatList(CatDetail(3, 1, 0, 1, 1), "까망", "올블랙"))
-        adapter.items.add(CatList(CatDetail(1, 1, 1, 0, 0), "치즈2", "치즈"))
-        adapter.items.add(CatList(CatDetail(2, 1, 1, 0, 0), "얼룩이2", "젖소"))
-        adapter.items.add(CatList(CatDetail(0, 1, 0, 0, 1), "삼색이2", "카오스"))
-        adapter.items.add(CatList(CatDetail(3, 1, 0, 1, 1), "까망2", "올블랙"))
+        adapter.items.add(CatList(1, 1, 1, 0, 0, "치즈", "치즈"))
+        adapter.items.add(CatList(2, 1, 1, 0, 0, "얼룩이", "젖소"))
+        adapter.items.add(CatList(0, 1, 0, 0, 1, "삼색이", "카오스"))
+        adapter.items.add(CatList(3, 1, 0, 1, 1, "까망", "올블랙"))
+        adapter.items.add(CatList(1, 1, 1, 0, 0, "치즈2", "치즈"))
+        adapter.items.add(CatList(2, 1, 1, 0, 0, "얼룩이2", "젖소"))
+        adapter.items.add(CatList(0, 1, 0, 0, 1, "삼색이2", "카오스"))
+        adapter.items.add(CatList(3, 1, 0, 1, 1, "까망2", "올블랙"))
 
 
         // 검색: 한 글자씩 누를 때마다 해당 아이템 출력

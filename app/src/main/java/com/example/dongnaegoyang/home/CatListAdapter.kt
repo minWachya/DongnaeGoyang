@@ -5,7 +5,6 @@ import android.view.ViewGroup
 import android.widget.Filter
 import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dongnaegoyang.cat_detail.CatDetail
 import com.example.dongnaegoyang.cat_detail.CatDetailArr
 import com.example.dongnaegoyang.databinding.CatListBinding
 
@@ -16,8 +15,6 @@ class CatListAdapter(private var onClick:(CatList) -> Unit) :
 
     private var unFilteredList = items // 필터 전 리스트
     private var filteredList = items // 필터 중 리스트
-
-    var cat = ArrayList<CatDetail>()  // 고양이 배열
 
     // 고양이 생김새 배열: 몸집, 코숏, 귀, 꼬리, 수염
     val arrImgSize = CatDetailArr.arrImgSize
@@ -57,11 +54,11 @@ class CatListAdapter(private var onClick:(CatList) -> Unit) :
             currentCat = item
 
             binding.tvName.text = item.catName
-            //binding.itemImgCatFur.setImageResource(arrImgFur[cat.size][cat.fur])
-            binding.itemImgCatSize.setImageResource(arrImgSize[cat.size])
-            /*binding.itemImgCatEar.setImageResource(arrImgEar[cat.fur][cat.ear])
-            binding.itemImgCatTail.setImageResource(arrImgTail[cat.fur][cat.tail])
-            binding.itemImgCatWhisker.setImageResource(arrImgWhisker[cat.fur][cat.tail])*/
+            binding.itemImgCatFur.setImageResource(arrImgFur[item.size][item.fur])
+            binding.itemImgCatSize.setImageResource(arrImgSize[item.size])
+            binding.itemImgCatEar.setImageResource(arrImgEar[item.fur][item.ear])
+            binding.itemImgCatTail.setImageResource(arrImgTail[item.fur][item.tail])
+            binding.itemImgCatWhisker.setImageResource(arrImgWhisker[item.fur][item.tail])
         }
     }
 
