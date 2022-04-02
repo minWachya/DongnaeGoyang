@@ -1,7 +1,9 @@
 package com.example.dongnaegoyang.cat_add
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -43,6 +45,10 @@ class CatAddFragment1 : Fragment() {
         val maxEar = spinnerCatEar.adapter.count-1
         val maxTail = spinnerCatTail.adapter.count-1
         val maxWhisker = spinnerCatWhisker.adapter.count-1
+
+        // 툴바 달기
+        (activity as CatAddActivity).setSupportActionBar(binding.toolBar)
+        (activity as CatAddActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // 고양이 커스텀: 왼쪽, 오른쪽 화살표 버튼 리스너: 기본 position 위해 -1, 맨 마지막에 있는 hint 제외하기 위헤 -1 = -2
         setBtnListener(spinnerCatSize.adapter.count-2, binding.imgViewSizeLeft, binding.imgViewSizeRight, spinnerCatSize)

@@ -7,25 +7,35 @@
     android:layout_height="match_parent"
     tools:context=".cat_add.CatAddFragment1">
 
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="@android:style/Widget.ProgressBar.Horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:max="3"
-        android:progress="1"
-        android:progressBackgroundTint="@color/beige_F7F3E9"
-        android:progressTint="@color/brown_473A22"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolBar"
+                app:title="@string/cat_add_toolbar_title"
+                android:theme="@style/ToolbarTheme"
+                app:titleTextAppearance="@style/Toolbar.TitleText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:max="3"
+                android:progress="1"
+                android:progressBackgroundTint="@color/beige_F7F3E9"
+                android:progressTint="@color/brown_473A22"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/toolBar" />
 
             <TextView
                 android:id="@+id/title"
@@ -38,7 +48,7 @@
                 android:textColor="@color/brown_473A22"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
             <TextView
                 android:id="@+id/explain"
@@ -289,7 +299,7 @@
             <LinearLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="76dp"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerCatWhiskers"
                 android:orientation="horizontal" />
 
