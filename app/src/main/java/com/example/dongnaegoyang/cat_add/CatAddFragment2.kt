@@ -2,6 +2,7 @@ package com.example.dongnaegoyang.cat_add
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -38,6 +39,10 @@ class CatAddFragment2 : Fragment() {
     ): View {
         _binding = FragmentCatAdd2Binding.inflate(inflater, container, false)
         val view = binding.root
+
+        // 툴바 달기
+        (activity as CatAddActivity).setSupportActionBar(binding.toolBar)
+        (activity as CatAddActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // 이름 입력 확인
         binding.editName.addTextChangedListener {
