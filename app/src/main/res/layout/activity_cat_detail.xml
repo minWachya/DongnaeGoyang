@@ -9,7 +9,8 @@
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
 
         <!--스크롤시 접히거나 나타날 부분을 넣는 layout-->
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -27,6 +28,7 @@
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
+                    android:theme="@style/ToolbarTheme"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -120,16 +122,6 @@
                     android:layout_marginEnd="28dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-                <!--몸집-->
-                <ImageView
-                    android:id="@+id/imgCatSize"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_size_normal"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginTop="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
                 <!--귀-->
                 <ImageView
                     android:id="@+id/imgCatEar"
@@ -146,6 +138,16 @@
                     android:layout_width="120dp"
                     android:layout_height="120dp"
                     android:src="@drawable/ic_tail_long_cheese"
+                    android:layout_marginEnd="28dp"
+                    android:layout_marginTop="22dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!--몸집-->
+                <ImageView
+                    android:id="@+id/imgCatSize"
+                    android:layout_width="120dp"
+                    android:layout_height="120dp"
+                    android:src="@drawable/ic_size_normal"
                     android:layout_marginEnd="28dp"
                     android:layout_marginTop="22dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -202,9 +204,9 @@
             android:id="@+id/tabTabLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             app:tabIndicatorGravity="bottom"
             app:tabIndicatorHeight="3dp"
+            app:tabBackground="@drawable/tab_underline"
             app:tabTextAppearance="@style/tab_text"
             app:tabSelectedTextColor="@color/brown_473A22"
             app:tabTextColor="@color/beige_E3DECF"
@@ -218,12 +220,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/cat_detail_tab2_note"/>
         </com.google.android.material.tabs.TabLayout>
-<!--        <View-->
-<!--            android:id="@+id/view1"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="1dp"-->
-<!--            android:layout_marginTop="-2dp"-->
-<!--            android:background="@color/gray_F6F3E9"/>-->
 
     </com.google.android.material.appbar.AppBarLayout>
 

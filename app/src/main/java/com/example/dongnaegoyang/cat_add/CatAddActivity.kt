@@ -1,9 +1,9 @@
 package com.example.dongnaegoyang.cat_add
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivityCatAddBinding
 
@@ -18,10 +18,6 @@ class CatAddActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        // 툴바 달기
-        setSupportActionBar(binding.toolBar)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         // FrameLayout 설정
         val ft = supportFragmentManager.beginTransaction() // 프래그먼트 관리하는 매니저
         ft.replace(R.id.catAddFrameLayout, CatAddFragment1()).commit()
@@ -30,9 +26,8 @@ class CatAddActivity : AppCompatActivity() {
     // 툴바에서 뒤로가기 버튼 클릭 시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            android.R.id.home -> {  // 뒤로가기 이모지(<-) 클릭
-                finish()
-            }
+            // 뒤로가기 이모지(<-) 클릭
+            android.R.id.home -> finish()
         }
         return super.onOptionsItemSelected(item)
     }

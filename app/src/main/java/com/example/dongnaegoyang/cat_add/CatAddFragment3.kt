@@ -5,18 +5,18 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.custom.CustomDialog
+import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sangcomz.fishbun.FishBun
@@ -47,13 +47,17 @@ class CatAddFragment3 : Fragment() {
         _binding = FragmentCatAdd3Binding.inflate(inflater, container, false)
         val view = binding.root
 
+        // 툴바 달기
+        (activity as CatAddActivity).setSupportActionBar(binding.toolBar)
+        (activity as CatAddActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         // TNR 선택 스피너 설정
         val tnrBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
         val tnrBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         tnrArray = resources.getStringArray(R.array.cat_add3_tnr_array)
         tnrBottomSheetDialog.setContentView(tnrBottomSheetView)
         setBottomSheetView(tnrBottomSheetView, tnrArray, tnrBottomSheetDialog, binding.tnrSpinner)
-        binding.tnrSpinner.setOnClickListener { tnrBottomSheetDialog.show() }
+        binding.tnrSpinner.textView.setOnClickListener { tnrBottomSheetDialog.show() }
 
         // 선호 사료 선택 스피너 설정
         val foodBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
@@ -61,7 +65,7 @@ class CatAddFragment3 : Fragment() {
         foodArray = resources.getStringArray(R.array.cat_add3_food_array)
         foodBottomSheetDialog.setContentView(foodBottomSheetView)
         setBottomSheetView(foodBottomSheetView, foodArray, foodBottomSheetDialog, binding.foodSpinner)
-        binding.foodSpinner.setOnClickListener { foodBottomSheetDialog.show() }
+        binding.foodSpinner.textView.setOnClickListener { foodBottomSheetDialog.show() }
 
         // 사진 어댑터 설정
         photoAdapter = CatAddPhotoAdapter(binding)
@@ -129,13 +133,13 @@ class CatAddFragment3 : Fragment() {
     }
 
     // 스피너 선택 설정
-    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: TextView) {
+    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: CustomSpinnerTextView) {
         for (i in arr.indices) {
             val textView = bottomSheetView.findViewById<TextView>(arrTextViewId[i])
             textView.text = arr[i]
             textView.visibility = View.VISIBLE
             textView.setOnClickListener {
-                spinner.text = arr[i]
+                spinner.textView.text = arr[i]
                 dialog.dismiss()
             }
         }
@@ -151,8 +155,8 @@ class CatAddFragment3 : Fragment() {
         if (bundle?.getInt("tnr") != null) {
             val tnr = bundle.getInt("tnr", -1)    // TNR
             val food = bundle.getInt("food", -1)  // 선호 사료
-            if(tnr != -1) binding.tnrSpinner.text = tnrArray[tnr]
-            if(food != -1) binding.foodSpinner.text = foodArray[food]
+            if(tnr != -1) binding.tnrSpinner.textView.text = tnrArray[tnr]
+            if(food != -1) binding.foodSpinner.textView.text = foodArray[food]
             // 사진
             val photoUriArr = bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
             if (photoUriArr != null) {
@@ -167,8 +171,8 @@ class CatAddFragment3 : Fragment() {
     private fun setFrag(catAddFragment: Fragment, bundle: Bundle?) {
         // 3단계 정보 함께 보내기
         if (bundle != null) {
-            val tnr = tnrArray.indexOf(binding.tnrSpinner.text)     // TNR
-            val food = foodArray.indexOf(binding.foodSpinner.text)  // 선호 사료
+            val tnr = tnrArray.indexOf(binding.tnrSpinner.textView.text)     // TNR
+            val food = foodArray.indexOf(binding.foodSpinner.textView.text)  // 선호 사료
             bundle.putInt("tnr", tnr)
             bundle.putInt("food", food)
             bundle.putParcelableArrayList("uriArr", photoAdapter.imgUris)
@@ -178,4 +182,5 @@ class CatAddFragment3 : Fragment() {
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.catAddFrameLayout, catAddFragment).commit()
     }
+
 }

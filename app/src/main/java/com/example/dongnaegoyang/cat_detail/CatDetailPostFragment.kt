@@ -67,8 +67,6 @@ class CatDetailPostFragment : Fragment() {
         // 리사이클러뷰에 저장+새로고침
         postAdapter.posts.add(post)
         postAdapter.notifyDataSetChanged()
-
-        Toast.makeText(context, "게시글이 등록되었습니다.", Toast.LENGTH_SHORT).show()
     }
 
     // EditText Scroll 설정

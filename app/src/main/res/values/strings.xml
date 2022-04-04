@@ -76,7 +76,7 @@
     <string name="cat_detail_info_update_date_ex">0000&#45;00&#45;00</string>
     <string name="cat_detail_info_registration_user">등록</string>
     <string name="cat_detail_info_registration_user_ex">닉네임</string>
-    <string name="cat_detail_info_another_cat">나도 관심 좀&#183;&#183;&#183;</string>
+    <string name="cat_detail_info_another_cat">나도 관심 좀</string>
     <!--CatDetailPostFragment-->
     <string name="cat_detail_recent_post">최근 글</string>
     <string name="cat_detail_recent_post_time">00분 전</string>
@@ -99,4 +99,20 @@
     <string name="custom_dialog_btn_cancel">Cancel</string>
     <string name="custom_dialog_btn_ok">OK</string>
 
+    <!--SearchCatActivity-->
+    <string name="cat_search_toolbar_title">고영희 검색</string>
+    <!--SearchAddressActivity-->
+    <string name="address_search_toolbar_title">동네 설정</string>
+    <!-- searchable -->
+    <string name="search_hint">사는 동 또는 인근 지하철역</string>
+    <string name="search_cat_hint">찾고 있는 고양이 이름 입력</string>
+    <string name="search">검색</string>
+    <!-- Sidebar drawer main sidebar-->
+    <string name="sidebar_care_guide">건강한 봉사를 위한 고영희 돌봄 가이드</string>
+    <string name="sidebar_hwagin">확인하기</string>
+    <string name="sidebar_notice">공지사항</string>
+    <string name="sidebar_customer_service">고객지원</string>
+    <string name="sidebar_setting">설정</string>
+    <!-- Sidebar drawer main sidebar logged in-->
+    <string name="sidebar_login">로그인/회원가입</string>
 </resources>

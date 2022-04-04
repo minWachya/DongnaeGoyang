@@ -24,40 +24,40 @@ object CatDetailArr {
     // 귀 이미지 배열
     val arrImgEar = listOf(
         // 치즈 CHEESE: open, fold, tnr, 기본
-        listOf(R.drawable.ic_ear_open_cheese, R.drawable.ic_ear_fold_cheese, R.drawable.ic_ear_tnr_cheese, R.drawable.ic_cat_ear_base),
+        listOf(R.drawable.ic_ear_open_cheese, R.drawable.ic_ear_fold_cheese, R.drawable.ic_ear_tnr_cheese),
         // 올블랙 BLACK: open, fold, tnr, 기본
-        listOf(R.drawable.ic_ear_open_black, R.drawable.ic_ear_fold_black, R.drawable.ic_ear_tnr_black, R.drawable.ic_cat_ear_base),
+        listOf(R.drawable.ic_ear_open_black, R.drawable.ic_ear_fold_black, R.drawable.ic_ear_tnr_black),
         // 고등어 MACKEREL: open, fold, tnr, 기본
-        listOf(R.drawable.ic_ear_open_mackerel, R.drawable.ic_ear_fold_mackerel, R.drawable.ic_ear_tnr_mackerel, R.drawable.ic_cat_ear_base),
+        listOf(R.drawable.ic_ear_open_mackerel, R.drawable.ic_ear_fold_mackerel, R.drawable.ic_ear_tnr_mackerel),
         // 삼색 THREE_COLORS: open, fold, tnr, 기본
-        listOf(R.drawable.ic_ear_open_three_colors, R.drawable.ic_ear_fold_three_colors, R.drawable.ic_ear_tnr_three_colors, R.drawable.ic_cat_ear_base),
+        listOf(R.drawable.ic_ear_open_three_colors, R.drawable.ic_ear_fold_three_colors, R.drawable.ic_ear_tnr_three_colors),
         // 턱시도 TUXEDO: open, fold, tnr, 기본
-        listOf(R.drawable.ic_ear_open_tuxedo, R.drawable.ic_ear_fold_tuxedo, R.drawable.ic_ear_tnr_tuxedo, R.drawable.ic_cat_ear_base),
+        listOf(R.drawable.ic_ear_open_tuxedo, R.drawable.ic_ear_fold_tuxedo, R.drawable.ic_ear_tnr_tuxedo),
         // 카오스 CHAOS: open, fold, tnr, 기본
-        listOf(R.drawable.ic_ear_open_chaos, R.drawable.ic_ear_fold_chaos, R.drawable.ic_ear_tnr_chaos, R.drawable.ic_cat_ear_base),
+        listOf(R.drawable.ic_ear_open_chaos, R.drawable.ic_ear_fold_chaos, R.drawable.ic_ear_tnr_chaos),
         // 얼룩 SPOT: open, fold, tnr, 기본
-        listOf(R.drawable.ic_ear_open_spot, R.drawable.ic_ear_fold_spot, R.drawable.ic_ear_tnr_spot, R.drawable.ic_cat_ear_base),
+        listOf(R.drawable.ic_ear_open_spot, R.drawable.ic_ear_fold_spot, R.drawable.ic_ear_tnr_spot),
         // 기본
-        listOf(R.drawable.ic_ear_open_spot, R.drawable.ic_ear_fold_spot, R.drawable.ic_ear_tnr_spot, R.drawable.ic_cat_ear_base)
+        listOf(R.drawable.ic_ear_open_spot, R.drawable.ic_ear_fold_spot, R.drawable.ic_ear_tnr_spot)
     )
     // 꼬리 이미지 배열
     val arrImgTail = listOf(
         // 치즈 CHEESE: long, short, 기본
-        listOf(R.drawable.ic_tail_long_cheese, R.drawable.ic_tail_short_cheese, R.drawable.ic_cat_tail_base),
+        listOf(R.drawable.ic_tail_long_cheese, R.drawable.ic_tail_short_cheese),
         // 올블랙 BLACK: long, short, 기본
-        listOf(R.drawable.ic_tail_long_black, R.drawable.ic_tail_short_black, R.drawable.ic_cat_tail_base),
+        listOf(R.drawable.ic_tail_long_black, R.drawable.ic_tail_short_black),
         // 고등어 MACKEREL: long, short, 기본
-        listOf(R.drawable.ic_tail_long_mackerel, R.drawable.ic_tail_short_mackerel, R.drawable.ic_cat_tail_base),
+        listOf(R.drawable.ic_tail_long_mackerel, R.drawable.ic_tail_short_mackerel),
         // 삼색 THREE_COLORS: long, short, 기본
-        listOf(R.drawable.ic_tail_long_three_colors, R.drawable.ic_tail_short_three_colors, R.drawable.ic_cat_tail_base),
+        listOf(R.drawable.ic_tail_long_three_colors, R.drawable.ic_tail_short_three_colors),
         // 턱시도 TUXEDO: long, short, 기본
-        listOf(R.drawable.ic_tail_long_tuxedo, R.drawable.ic_tail_short_tuxedo, R.drawable.ic_cat_tail_base),
+        listOf(R.drawable.ic_tail_long_tuxedo, R.drawable.ic_tail_short_tuxedo),
         // 카오스 CHAOS: long, short, 기본
-        listOf(R.drawable.ic_tail_long_chaos, R.drawable.ic_tail_short_chaos, R.drawable.ic_cat_tail_base),
+        listOf(R.drawable.ic_tail_long_chaos, R.drawable.ic_tail_short_chaos),
         // 얼룩 SPOT: long, short, 기본
-        listOf(R.drawable.ic_tail_long_spot, R.drawable.ic_tail_short_spot, R.drawable.ic_cat_tail_base),
+        listOf(R.drawable.ic_tail_long_spot, R.drawable.ic_tail_short_spot),
         // 기본
-        listOf(R.drawable.ic_tail_long_cheese, R.drawable.ic_tail_short_cheese, R.drawable.ic_cat_tail_base)
+        listOf(R.drawable.ic_tail_long_cheese, R.drawable.ic_tail_short_cheese)
     )
     // 수염 이미지 배열
     private val blackWhisker = listOf(R.drawable.ic_whisker_short, R.drawable.ic_whisker_long, R.drawable.ic_cat_whisker_base)

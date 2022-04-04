@@ -74,7 +74,7 @@
         <LinearLayout
             android:id="@+id/layoutTNR"
             android:layout_width="79dp"
-            android:layout_height="94dp"
+            android:layout_height="93dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="12dp"
             android:orientation="vertical"
@@ -109,7 +109,7 @@
         <LinearLayout
             android:id="@+id/layoutFood"
             android:layout_width="79dp"
-            android:layout_height="94dp"
+            android:layout_height="93dp"
             android:layout_marginStart="8dp"
             android:background="@drawable/layout_border_round"
             android:gravity="center"
@@ -224,6 +224,14 @@
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view2" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_cat_detail_info_dots"
+            android:layout_marginStart="4dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tvAnotherCatText"
+            app:layout_constraintStart_toEndOf="@+id/tvAnotherCatText"
+            app:layout_constraintTop_toTopOf="@+id/tvAnotherCatText" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rcAnotherCat"
             android:layout_width="match_parent"
