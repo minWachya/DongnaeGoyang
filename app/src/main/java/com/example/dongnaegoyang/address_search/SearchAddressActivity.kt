@@ -1,5 +1,6 @@
 package com.example.dongnaegoyang.address_search
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dongnaegoyang.databinding.ActivitySearchAddressBinding
 import com.example.dongnaegoyang.home.MainActivity
+import com.example.dongnaegoyang.login.LoginActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -21,7 +23,7 @@ private const val TAG = "mmAddressSearchActivity"
 class SearchAddressActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchAddressBinding
     private val listItems = arrayListOf<AddressList>()   // 리사이클러 뷰 아이템
-    private val adapter = AddressAdapter(listItems)    // 리사이클러 뷰 어댑터
+    private val adapter = AddressAdapter(listItems, this@SearchAddressActivity)    // 리사이클러 뷰 어댑터
     private var keyword = "" // 검색 키워드
 
     companion object {
@@ -46,8 +48,17 @@ class SearchAddressActivity : AppCompatActivity() {
         // 리스트 아이템 클릭 시 해당 주소 메인 액티비티에 전달
         adapter.setItemClickListener(object: AddressAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                var intent = Intent(this@SearchAddressActivity, MainActivity::class.java)
-                startActivity(intent)
+                //없어도 작동되는 코드
+                /*var intent = Intent(this@SearchAddressActivity, MainActivity::class.java)
+                startActivity(intent)*/
+                //finish()
+
+                //작동 안함..
+                /*val intent = Intent()
+                intent.putExtra("si", "사랑시")
+                intent.putExtra("gu", "고백구")
+                intent.putExtra("dong", "행복동~~")
+                setResult(Activity.RESULT_OK, intent)*/
                 finish()
             }
         })
