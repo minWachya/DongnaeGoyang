@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,7 +24,7 @@ private const val TAG = "mmAddressSearchActivity"
 class SearchAddressActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchAddressBinding
     private val listItems = arrayListOf<AddressList>()   // 리사이클러 뷰 아이템
-    private val adapter = AddressAdapter(listItems, this@SearchAddressActivity)    // 리사이클러 뷰 어댑터
+    private lateinit var adapter: AddressAdapter    // 리사이클러 뷰 어댑터
     private var keyword = "" // 검색 키워드
 
     companion object {
@@ -37,11 +38,15 @@ class SearchAddressActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
+        //넘어온 데이터 받기
+        val from = intent.getStringExtra("from")
+
         // 툴바 달기
         setSupportActionBar(binding.toolBar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         // 리사이클러 뷰
+        adapter = AddressAdapter(listItems, this@SearchAddressActivity, from)    // 리사이클러 뷰 어댑터
         binding.recyclerLocation.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         binding.recyclerLocation.adapter = adapter
 
@@ -59,7 +64,12 @@ class SearchAddressActivity : AppCompatActivity() {
                 intent.putExtra("gu", "고백구")
                 intent.putExtra("dong", "행복동~~")
                 setResult(Activity.RESULT_OK, intent)*/
-                finish()
+                //finish()
+
+                //항목 선택 시 키보드 내리기
+                val imm = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+                val etAddress = binding.etAddress
+                imm.hideSoftInputFromWindow(etAddress.getWindowToken(), 0);
             }
         })
 
