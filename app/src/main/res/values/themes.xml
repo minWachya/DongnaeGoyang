@@ -53,5 +53,11 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+    <style name="navbar_text" parent="android:Widget.TextView">
+        <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+    <style name="MenuTheme">
 
+    </style>
 </resources>

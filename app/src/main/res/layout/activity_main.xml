@@ -241,7 +241,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_main_sidebar_logged_out"
-        app:menu="@menu/main_navigation">
+        app:menu="@menu/main_navigation"
+        app:itemTextAppearance="@style/navbar_text"
+        android:theme="@style/MenuTheme">
 
     </com.google.android.material.navigation.NavigationView>
 

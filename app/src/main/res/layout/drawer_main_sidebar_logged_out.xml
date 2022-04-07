@@ -36,26 +36,32 @@
         <LinearLayout
             android:id="@+id/linearlayout_care"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="66dp"
             android:background="@drawable/bg_sidebar_care"
             android:orientation="horizontal"
             android:layout_marginTop="16dp"
-            android:layout_marginLeft="24dp">
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:padding="15dp">
             <TextView
                 android:layout_width="102dp"
                 android:layout_height="wrap_content"
                 android:text="@string/sidebar_care_guide"
                 android:textColor="@color/white"
-                android:layout_margin="15dp"
-                android:textSize="13sp"/>
+                android:textSize="13sp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"/>
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="59dp"
+                android:layout_height="21dp"
                 android:text="@string/sidebar_hwagin"
                 android:background="@drawable/bg_sidebar_btn_hwagin"
                 android:textColor="@color/brown_9D917B"
-                android:layout_marginTop="23dp"
-                android:layout_marginLeft="46dp"/>
+                android:textSize="10sp"
+                android:layout_gravity="right|center"/>
         </LinearLayout>
     </LinearLayout>
 
