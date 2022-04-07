@@ -35,7 +35,7 @@
             android:src="@drawable/logo_title"
             app:layout_constraintTop_toBottomOf="@+id/main_toolbar"
             app:layout_constraintStart_toStartOf="parent"/>
-
+        <!--주소 출력 칸-->
         <LinearLayout
             android:id="@+id/layout_address"
             android:layout_width="match_parent"
@@ -52,11 +52,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_location" />
-            <TextView
+            <!--<TextView
                 android:id="@+id/tv_gu"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"/>
+                android:layout_marginLeft="13dp"/>-->
             <TextView
                 android:id="@+id/tv_dong"
                 android:layout_width="wrap_content"
@@ -83,10 +83,9 @@
                 android:visibility="gone"
                 android:background="@color/white">
 
-                <ImageView
+                <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/text_warning" />
+                    android:layout_height="wrap_content"/>
             </LinearLayout>
 
         </LinearLayout>

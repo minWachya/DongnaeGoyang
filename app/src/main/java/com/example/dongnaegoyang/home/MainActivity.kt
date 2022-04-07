@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         adapter.items.add(CatList(3, 1, 0, 1, 1, "삼색이2", "카오스"))
 
         if(intent.hasExtra("gu")){
-            binding.tvGu.text=intent.getStringExtra("gu")
+            //binding.tvGu.text=intent.getStringExtra("gu")
             binding.tvDong.text=intent.getStringExtra("dong")
         }
 
