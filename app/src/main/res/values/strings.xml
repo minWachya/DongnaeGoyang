@@ -11,9 +11,9 @@
     <string name="category_milkcow">얼룩이or젖소</string>
     <string name="cat_home_notification">사료 배급 전 확인하세요!</string>
     <string name="cat_home_notification_text1_1">인적이 드문 길목이나 공원 구석에서 사료를 배급하세요.</string>
-    <string name="cat_home_notification_text1_2">고양이 울음 소리로부터 이웃 주민들의 생활권을 지켜주기 위해 사료 배급의 위치를 각별히 주의해주세요.</string>
+    <string name="cat_home_notification_text1_2">• 고양이 울음 소리로부터 이웃 주민들의 생활권을 지켜주기 위해 사료 배급의 위치를 각별히 주의해주세요.</string>
     <string name="cat_home_notification_text2_1">고양이 털만짐을 자제하세요.</string>
-    <string name="cat_home_notification_text2_2">야외에서 생활하는 고양이는 각종 피부병, 벌레 등에 노출되며 전염될 가능성이 있으니 주의해주세요.</string>
+    <string name="cat_home_notification_text2_2">• 야외에서 생활하는 고양이는 각종 피부병, 벌레 등에 노출되며 전염될 가능성이 있으니 주의해주세요.</string>
     <string name="cat_home_notification_text3">더 자세한 내용은 고영희 돌봄 가이드를 참고해주세요.</string>
     <!--CatAddActivity-->
     <string name="cat_add_toolbar_title">고영희 추가</string>

@@ -5,18 +5,20 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_alignParentLeft="true"
     android:layout_alignParentTop="true"
-    android:background="@color/gray_F6F3E9"
+    android:background="@drawable/bg_cat_list_round"
     android:id="@+id/view_container"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
     android:gravity="center"
-    app:cardCornerRadius="12dp">
+    app:cardCornerRadius="12dp"
+    app:layout_constraintCircleRadius="12dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/gray_F6F3E9">
+        android:backgroundTint="@color/gray_F6F3E9"
+        app:cardElevation="0dp">
         <!--코숏: 무늬-->
         <ImageView
             android:id="@+id/item_imgCatFur"
@@ -55,6 +57,8 @@
         android:layout_height="18dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:textSize="16sp"
         android:lineSpacingExtra="5sp"
         android:gravity="center_horizontal|center_vertical" />
 
