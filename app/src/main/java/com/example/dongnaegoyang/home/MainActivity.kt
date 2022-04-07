@@ -49,8 +49,8 @@ class MainActivity : AppCompatActivity() {
         binding.recyclerView.adapter = adapter // RecyclerViewAdapter(dataSet)
 
         // 리사이클러뷰 간격
-        binding.recyclerView.addItemDecoration(VerticalItemDecorator(20))
-        binding.recyclerView.addItemDecoration(HorizontalItemDecorator(10))
+        binding.recyclerView.addItemDecoration(VerticalItemDecorator(10))
+        binding.recyclerView.addItemDecoration(HorizontalItemDecorator(8))
 
         // 더미값
         adapter.items.add(CatList(1, 1, 1, 0, 0, "까망", "올블랙"))
@@ -123,11 +123,10 @@ class MainActivity : AppCompatActivity() {
         binding.linearLayout1.setOnClickListener {
             if (binding.layoutExpand.visibility == View.VISIBLE) {
                 binding.layoutExpand.visibility = View.GONE
-                //linearLayout1.animate().setDuration(200).rotation(180f)
+                //binding.linearLayout1.animate().setDuration(200)
             } else {
                 binding.layoutExpand.visibility = View.VISIBLE
-                binding.linearLayout1.visibility = View.VISIBLE
-                //linearLayout1.animate().setDuration(200).rotation(0f)
+                //binding.linearLayout1.animate().setDuration(200)
             }
         }
 
@@ -173,11 +172,12 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-    fun adapterOnClick(catList: CatList){
+    fun adapterOnClick(catList: CatList) {
         var intent = Intent(this@MainActivity, CatDetailActivity::class.java)
         intent.putExtra("name", catList.catName)
         //intent.putExtra("img", catList.catPic)
         startActivity(intent)
         // dataSet.add(listOf("$i th main", "$i th sub"))
     }
+
 }

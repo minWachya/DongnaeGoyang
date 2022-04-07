@@ -7,11 +7,10 @@
     android:layout_height="match_parent"
     android:id="@+id/main_drawer_layout"
     tools:openDrawer="start"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".home.MainActivity">
@@ -61,34 +60,103 @@
                 android:id="@+id/tv_dong"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="13dp"/>
+                android:layout_marginLeft="13dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:textSize="14sp"/>
         </LinearLayout>
         <!--주의 사항 expandable -->
         <LinearLayout
             android:id="@+id/linearLayout1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:animateLayoutChanges="true"
-            android:background="@drawable/frame_warning"
+            android:background="@color/yellow_F1BC35"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/layout_address">
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_msg"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="21dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="21dp"
+                    android:layout_marginBottom="22dp"
+                    android:layout_marginLeft="12dp"
+                    android:text="@string/cat_home_notification"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:textSize="14sp"/>
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_arrow_under"
+                    android:layout_marginTop="26dp"
+                    android:layout_marginRight="20dp"
+                    android:gravity="right"/>
+            </LinearLayout>
+            <!--사료 배급 전 클릭하면 나오는 아코디언뷰-->
             <LinearLayout
                 android:id="@+id/layout_expand"
                 android:layout_width="match_parent"
                 android:layout_height="207dp"
                 android:orientation="vertical"
                 android:visibility="gone"
-                android:background="@color/white">
-
+                android:background="@color/white"
+                android:padding="20dp">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"/>
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_home_notification_text1_1"
+                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_home_notification_text1_2"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:lineSpacingExtra="5dp"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="10dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_home_notification_text2_1"
+                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
+                    android:textSize="12sp"
+                    android:layout_marginBottom="5dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_home_notification_text2_2"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:lineSpacingExtra="5dp"
+                    android:textSize="12sp"/>
+                <Button
+                    android:id="@+id/btn_dolbom_guide"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_home_notification_text3"
+                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                    android:textSize="12sp"
+                    android:textColor="@color/yellow_F1BC35"
+                    android:layout_marginTop="16dp"
+                    android:background="@color/transparency"/>
             </LinearLayout>
 
         </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/linearlayout_category"
@@ -112,7 +180,7 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/category_all"/>
+                    android:text="@string/category_all" />
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -147,6 +215,7 @@
             android:background="#473A22"
             android:clickable="true"
             android:focusable="true"
+            android:padding="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
