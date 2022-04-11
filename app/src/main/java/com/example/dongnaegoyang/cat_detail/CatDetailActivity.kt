@@ -84,7 +84,7 @@ class CatDetailActivity : AppCompatActivity() {
         // 코숏, 몸집, 귀, 꼬리, 수염
         val cat = CatDetail(0, 0, 0, 0, 0)
         binding.imgCatFur.setImageResource(CatDetailArr.arrImgFur[cat.size][cat.fur])
-        binding.imgCatSize.setImageResource(CatDetailArr.arrImgSize[cat.size])
+        binding.imgCatSize.setImageResource(CatDetailArr.arrImgSize[cat.ear][cat.size])
         binding.imgCatEar.setImageResource(CatDetailArr.arrImgEar[cat.fur][cat.ear])
         binding.imgCatTail.setImageResource(CatDetailArr.arrImgTail[cat.fur][cat.tail])
         binding.imgCatWhisker.setImageResource(CatDetailArr.arrImgWhisker[cat.fur][cat.tail])

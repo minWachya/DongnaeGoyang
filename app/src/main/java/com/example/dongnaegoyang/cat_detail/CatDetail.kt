@@ -6,8 +6,13 @@ import com.example.dongnaegoyang.R
 data class CatDetail(val fur: Int, val size: Int, val ear: Int, val tail: Int, val whisker: Int)
 
 object CatDetailArr {
-    // 몸집 이미지 배열: 마름, 보통, 뚱뚱, 기본
-    val arrImgSize = listOf(R.drawable.ic_size_small, R.drawable.ic_size_normal, R.drawable.ic_size_large, R.drawable.ic_size_normal)
+    // 몸집 이미지 배열
+    // 기본 몸집 이미지 배열: 마름, 보통, 뚱뚱, 기본
+    private val baseSize = listOf(R.drawable.ic_size_small, R.drawable.ic_size_normal, R.drawable.ic_size_large, R.drawable.ic_size_normal)
+    // 귀가 fold 일 때의 몸집 이미지
+    private val foldEarSize = listOf(R.drawable.ic_size_small_no_line, R.drawable.ic_size_normal_no_line, R.drawable.ic_size_large_no_line, R.drawable.ic_size_normal)
+    // 기본, 폴드, tnr
+    val arrImgSize = listOf(baseSize, foldEarSize, baseSize)
 
     // 코숏 이미지 배열
     // 마름 SKINNY: 치즈, 올블랙, 고등어, 삼색, 턱시도, 카오스, 점박이, 기본

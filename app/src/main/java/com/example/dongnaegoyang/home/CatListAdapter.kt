@@ -55,7 +55,7 @@ class CatListAdapter(private var onClick:(CatList) -> Unit) :
 
             binding.tvName.text = item.catName
             binding.itemImgCatFur.setImageResource(arrImgFur[item.size][item.fur])
-            binding.itemImgCatSize.setImageResource(arrImgSize[item.size])
+            binding.itemImgCatSize.setImageResource(arrImgSize[item.ear][item.size])
             binding.itemImgCatEar.setImageResource(arrImgEar[item.fur][item.ear])
             binding.itemImgCatTail.setImageResource(arrImgTail[item.fur][item.tail])
             binding.itemImgCatWhisker.setImageResource(arrImgWhisker[item.fur][item.tail])

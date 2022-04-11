@@ -38,7 +38,7 @@ class CatDetailInfoAnotherCatAdapter  : RecyclerView.Adapter<CatDetailInfoAnothe
         fun setItem(cat: CatDetail) {
             // 코숏, 몸집, 귀, 꼬리, 수염
             itemView.findViewById<ImageView>(R.id.item_imgCatFur).setImageResource(arrImgFur[cat.size][cat.fur])
-            itemView.findViewById<ImageView>(R.id.item_imgCatSize).setImageResource(arrImgSize[cat.size])
+            itemView.findViewById<ImageView>(R.id.item_imgCatSize).setImageResource(arrImgSize[cat.ear][cat.size])
             itemView.findViewById<ImageView>(R.id.item_imgCatEar).setImageResource(arrImgEar[cat.fur][cat.ear])
             itemView.findViewById<ImageView>(R.id.item_imgCatTail).setImageResource(arrImgTail[cat.fur][cat.tail])
             itemView.findViewById<ImageView>(R.id.item_imgCatWhisker).setImageResource(arrImgWhisker[cat.fur][cat.tail])

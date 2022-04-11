@@ -62,7 +62,10 @@ class CatAddFragment1 : Fragment() {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == maxSize) return      // hint 넘기기
-                binding.imgCatSize.setImageResource(arrImgSize[position])       // 몸집
+                // 귀 미선택 시 코숏 색에 맞춘 귀 이미지로 변경
+                val earIndex = if(spinnerCatEar.selectedItemPosition == maxEar) 0 else spinnerCatEar.selectedItemPosition
+                Log.d(TAG, "size: $earIndex, $position")
+                binding.imgCatSize.setImageResource(arrImgSize[earIndex][position])       // 몸집
                 binding.imgCatFur.setImageResource(arrImgFur[position][spinnerCatFur.selectedItemPosition]) // 코숏
                 btnEnableCheck()
             }
@@ -85,12 +88,15 @@ class CatAddFragment1 : Fragment() {
                 btnEnableCheck()
             }
         }
-        // 귀 모양 선택: 털 색에 맞게 귀 모양 변경
+        // 귀 모양 선택: 털 색에 맞게 귀 모양 변경 + 귀 모양에 맞게 몸집 모양 변경
         spinnerCatEar.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == maxEar) return      // hint 넘기기
-                binding.imgCatEar.setImageResource(arrImgEar[spinnerCatFur.selectedItemPosition][position])
+                binding.imgCatEar.setImageResource(arrImgEar[spinnerCatFur.selectedItemPosition][position]) // 귀
+                // 몸집 미선택 시 귀 모양에 맞춘 몸집 이미지로 변경
+                val sizeIndex = if(spinnerCatSize.selectedItemPosition == maxSize) 0 else spinnerCatSize.selectedItemPosition
+                binding.imgCatSize.setImageResource(arrImgSize[position][sizeIndex])       // 몸집
                 btnEnableCheck()
             }
         }
