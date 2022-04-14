@@ -3,7 +3,6 @@ package com.example.dongnaegoyang.cat_add
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
@@ -11,7 +10,12 @@ import android.widget.ImageView
 import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.cat_detail.CatDetailArr
+// 고양이 생김새 배열: 몸집, 코숏, 귀, 꼬리, 수염        // !! 기본 이미지는 배열의 맨 마지막 아이템임!!
+import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgEar
+import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgFur
+import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgSize
+import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgTail
+import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgWhisker
 import com.example.dongnaegoyang.databinding.FragmentCatAdd1Binding
 
 private const val TAG = "mmmCatAddFragment1"
@@ -33,12 +37,6 @@ class CatAddFragment1 : Fragment() {
         val spinnerCatEar = binding.spinnerCatEar
         val spinnerCatTail = binding.spinnerCatTail
         val spinnerCatWhisker = binding.spinnerCatWhiskers
-        // 고양이 생김새 배열: 몸집, 코숏, 귀, 꼬리, 수염        // !! 기본 이미지는 배열의 맨 마지막 아이템임!!
-        val arrImgSize = CatDetailArr.arrImgSize
-        val arrImgFur = CatDetailArr.arrImgFur
-        val arrImgEar = CatDetailArr.arrImgEar
-        val arrImgTail = CatDetailArr.arrImgTail
-        val arrImgWhisker = CatDetailArr.arrImgWhisker
         // 고양이 생김새 스피너 배열 최대 갤이                   // !! hint는 배열의 맨 마지막 아이템임!!
         val maxSize = spinnerCatSize.adapter.count-1
         val maxFur = spinnerCatFur.adapter.count-1
@@ -64,7 +62,6 @@ class CatAddFragment1 : Fragment() {
                 if (position == maxSize) return      // hint 넘기기
                 // 귀 미선택 시 코숏 색에 맞춘 귀 이미지로 변경
                 val earIndex = if(spinnerCatEar.selectedItemPosition == maxEar) 0 else spinnerCatEar.selectedItemPosition
-                Log.d(TAG, "size: $earIndex, $position")
                 binding.imgCatSize.setImageResource(arrImgSize[earIndex][position])       // 몸집
                 binding.imgCatFur.setImageResource(arrImgFur[position][spinnerCatFur.selectedItemPosition]) // 코숏
                 btnEnableCheck()
@@ -94,8 +91,8 @@ class CatAddFragment1 : Fragment() {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                 if (position == maxEar) return      // hint 넘기기
                 binding.imgCatEar.setImageResource(arrImgEar[spinnerCatFur.selectedItemPosition][position]) // 귀
-                // 몸집 미선택 시 귀 모양에 맞춘 몸집 이미지로 변경
-                val sizeIndex = if(spinnerCatSize.selectedItemPosition == maxSize) 0 else spinnerCatSize.selectedItemPosition
+                // 몸집 미선택 시 기본 몸집 이미지로 변경
+                val sizeIndex = if(spinnerCatSize.selectedItemPosition == maxSize) 1 else spinnerCatSize.selectedItemPosition
                 binding.imgCatSize.setImageResource(arrImgSize[position][sizeIndex])       // 몸집
                 btnEnableCheck()
             }
