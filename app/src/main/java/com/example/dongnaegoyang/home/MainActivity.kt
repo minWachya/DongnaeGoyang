@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         adapter.items.add(CatList(0, 1, 0, 0, 1, "치즈2", "치즈"))
         adapter.items.add(CatList(3, 1, 0, 1, 1, "삼색이2", "카오스"))
 
-        if(intent.hasExtra("gu")){
+        if(intent.hasExtra("dong")){
             //binding.tvGu.text=intent.getStringExtra("gu")
             binding.tvDong.text=intent.getStringExtra("dong")
         }
@@ -115,8 +115,12 @@ class MainActivity : AppCompatActivity() {
 
         // 지역 출력되는 칸 누르면 search address 페이지로 이동
         binding.layoutAddress.setOnClickListener {
-            var intent = Intent(this@MainActivity, SearchAddressActivity::class.java)
-            startActivity(intent)
+            val addressIntent = Intent(applicationContext, SearchAddressActivity::class.java)
+            addressIntent.putExtra("from", "home")
+            /*resultLauncher.launch(addressIntent)*/
+            startActivity(addressIntent)
+            /*var intent = Intent(this@MainActivity, SearchAddressActivity::class.java)
+            startActivity(intent)*/
         }
 
         // expandable 사료 배급 전 확인
