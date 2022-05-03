@@ -29,8 +29,7 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".login.SignUpDialogActivity"
-            android:exported="false" />
-        <!-- 카카오 로그인 SDK -->
+            android:exported="false" /> <!-- 카카오 로그인 SDK -->
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
             android:exported="true">
@@ -49,11 +48,14 @@
         <activity
             android:name=".login.LoginActivity"
             android:exported="true">
-            <!--<intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
         <activity
             android:name=".cat_detail.CatDetailActivity"
@@ -71,6 +73,10 @@
             android:name=".address_search.SearchAddressActivity"
             android:exported="false"
             android:label="주소 검색 페이지" />
+        <activity
+            android:name=".onboarding.OnBoardingActivity"
+            android:exported="false"
+            android:label="온보딩 화면"/>
         <activity
             android:name=".home.MainActivity"
             android:exported="true">

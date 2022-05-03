@@ -15,6 +15,10 @@
     <string name="cat_home_notification_text2_1">고양이 털만짐을 자제하세요.</string>
     <string name="cat_home_notification_text2_2">• 야외에서 생활하는 고양이는 각종 피부병, 벌레 등에 노출되며 전염될 가능성이 있으니 주의해주세요.</string>
     <string name="cat_home_notification_text3">더 자세한 내용은 고영희 돌봄 가이드를 참고해주세요.</string>
+    <!--OnBoardingActivity-->
+    <string name="on_boarding_btn">시작하기</string>
+    <string name="on_boarding_title">상단 타이틀</string>
+    <string name="on_boarding_content">설명설명설명설명설명설명설명설명설명설명</string>
     <!--CatAddActivity-->
     <string name="cat_add_toolbar_title">고영희 추가</string>
     <string name="cat_add_btn_step1">이렇게 생겼어요!</string>
@@ -115,4 +119,6 @@
     <string name="sidebar_setting">설정</string>
     <!-- Sidebar drawer main sidebar logged in-->
     <string name="sidebar_login">로그인/회원가입</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
