@@ -43,7 +43,7 @@ object CatDetailArr {
         // 얼룩 SPOT: open, fold, tnr
         listOf(R.drawable.ic_ear_open_spot, R.drawable.ic_ear_fold_spot, R.drawable.ic_ear_tnr_spot),
         // 기본
-        listOf(R.drawable.ic_cat_ear_base, R.drawable.ic_ear_fold_spot, R.drawable.ic_ear_tnr_spot)
+        listOf(R.drawable.ic_cat_ear_base, R.drawable.ic_ear_fold_spot, R.drawable.ic_cat_ear_base_tnr)
     )
     // 꼬리 이미지 배열
     val arrImgTail = listOf(
