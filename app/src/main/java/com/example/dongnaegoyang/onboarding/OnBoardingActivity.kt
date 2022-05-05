@@ -23,20 +23,20 @@ class OnBoardingActivity : AppCompatActivity() {
         setContentView(view)
 
         val pager = binding.pager
-        val indicator = binding.indicator
+        val indicator = binding.pageIndicatorView
 
         // 어댑터 연결
         pager.adapter = VpagerAdapter(this@OnBoardingActivity)
         pager.orientation = ViewPager2.ORIENTATION_HORIZONTAL
         pager.offscreenPageLimit = 4
         // indicator 설정
-        indicator.setViewPager(pager)                         // 페이저는 pager로 사용
-        indicator.createIndicators(3, 0)    // 전체 3, 현재 0
+        indicator.count = 3         // 전체 3
+        indicator.selection = 0     // 현재 0
         // indicator 현재 포지션으로 바뀌는 애니메이션 실핼
         pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
-                indicator.animatePageSelected(position)
+                indicator.selection = position
             }
         })
 

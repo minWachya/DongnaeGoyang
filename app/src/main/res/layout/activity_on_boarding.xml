@@ -39,22 +39,27 @@
         android:background="@color/beige_BBB5A4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="40dp">
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="340dp" />
     </FrameLayout>
 
-    <me.relex.circleindicator.CircleIndicator3
-        android:id="@+id/indicator"
-        android:layout_width="100dp"
-        android:layout_height="20dp"
-        app:ci_width="9dp"
-        app:ci_height="9dp"
-        app:ci_margin="11dp"
-        app:ci_drawable="@drawable/circle_indicator"
-        app:ci_drawable_unselected="@drawable/circle_indicator_unselected"
+    <com.rd.PageIndicatorView
+        android:id="@+id/pageIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:piv_animationType="color"
+        app:piv_dynamicCount="true"
+        app:piv_interactiveAnimation="true"
+        app:piv_selectedColor="@color/brown_473A22"
+        app:piv_unselectedColor="@color/beige_E3DECF"
+        app:piv_viewPager="@id/pager"
+        app:piv_padding="11dp"
+        app:piv_radius="5dp"
         android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
