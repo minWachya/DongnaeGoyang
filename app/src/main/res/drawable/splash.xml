@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!--배경-->
+    <item android:drawable="@color/beige_E3DECF" />
+
+    <!--서비스 로고-->
+<!--    <item>-->
+<!--        <bitmap-->
+<!--            android:src="@drawable/clude"-->
+<!--            android:gravity="center"/>-->
+<!--    </item>-->
+</layer-list>

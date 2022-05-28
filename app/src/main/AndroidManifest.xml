@@ -79,6 +79,11 @@
             android:label="온보딩 화면"/>
         <activity
             android:name=".home.MainActivity"
+            android:exported="false"
+            android:label="메인 화면"/>
+
+        <activity android:name=".splash.SplashActivity"
+            android:theme="@style/SplashTheme"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
