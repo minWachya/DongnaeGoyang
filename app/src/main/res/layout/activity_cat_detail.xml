@@ -1,234 +1,257 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".cat_detail.CatDetailActivity"
-    android:orientation="vertical">
+    tools:context=".ui.cat_detail.CatDetailActivity">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:elevation="0dp">
+    <data>
 
-        <!--스크롤시 접히거나 나타날 부분을 넣는 layout-->
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+        <variable
+            name="catDetail"
+            type="com.example.dongnaegoyang.model.CatDetail" />
+    </data>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                app:layout_collapseMode="none">
-                <!--툴바-->
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="?attr/actionBarSize"
-                    android:theme="@style/ToolbarTheme"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvName"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                    android:text="@string/cat_detail_name"
-                    android:textColor="@color/brown_473A22"
-                    android:textSize="24sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/toolbar" />
-                <ImageView
-                    android:id="@+id/imgEdit"
-                    android:layout_width="18dp"
-                    android:layout_height="18dp"
-                    android:layout_marginStart="7dp"
-                    android:src="@drawable/ic_edit"
-                    android:visibility="invisible"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvName"
-                    app:layout_constraintStart_toEndOf="@+id/tvName"
-                    app:layout_constraintTop_toTopOf="@+id/tvName"
-                    android:contentDescription="@string/cat_detail_edit" />
-
-                <TextView
-                    android:id="@+id/tvGender"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="8dp"
-                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="@string/cat_detail_gender"
-                    android:textColor="@color/brown_473A22"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvName" />
-                <ImageView
-                    android:id="@+id/imgRect1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="358dp"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_rect"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvGender"
-                    app:layout_constraintStart_toEndOf="@+id/tvGender"
-                    app:layout_constraintTop_toTopOf="@+id/tvGender"
-                    android:contentDescription="@string/cat_detail_rect" />
-                <TextView
-                    android:id="@+id/tvAge"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="@string/cat_detail_age"
-                    android:textColor="@color/brown_473A22"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgRect1"
-                    app:layout_constraintStart_toEndOf="@+id/imgRect1"
-                    app:layout_constraintTop_toTopOf="@+id/imgRect1" />
-                <ImageView
-                    android:id="@+id/imgRect2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="358dp"
-                    android:padding="4dp"
-                    android:src="@drawable/ic_rect"
-                    app:layout_constraintBottom_toBottomOf="@+id/tvAge"
-                    app:layout_constraintStart_toEndOf="@+id/tvAge"
-                    app:layout_constraintTop_toTopOf="@+id/tvAge"
-                    android:contentDescription="@string/cat_detail_rect" />
-                <TextView
-                    android:id="@+id/tvPlace"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="@string/cat_detail_place"
-                    android:textColor="@color/brown_473A22"
-                    android:textSize="12sp"
-                    app:layout_constraintBottom_toBottomOf="@+id/imgRect2"
-                    app:layout_constraintStart_toEndOf="@+id/imgRect2"
-                    app:layout_constraintTop_toTopOf="@+id/imgRect2" />
-
-                <!--코숏: 무늬-->
-                <ImageView
-                    android:id="@+id/imgCatFur"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_fur_cheese"
-                    android:layout_marginTop="22dp"
-                    android:layout_marginEnd="28dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!--귀-->
-                <ImageView
-                    android:id="@+id/imgCatEar"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_ear_open_cheese"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginTop="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!--꼬리-->
-                <ImageView
-                    android:id="@+id/imgCatTail"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_tail_long_cheese"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginTop="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!--몸집-->
-                <ImageView
-                    android:id="@+id/imgCatSize"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:src="@drawable/ic_size_normal"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginTop="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <!--수염-->
-                <ImageView
-                    android:id="@+id/imgCatWhisker"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginEnd="28dp"
-                    android:layout_marginTop="22dp"
-                    android:src="@drawable/ic_whisker_long"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/tvHotPlace"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="8dp"
-                    android:background="@drawable/text_view_yellow_round"
-                    android:fontFamily="@font/spoqa_han_sans_neo_bold"
-                    android:paddingStart="4dp"
-                    android:paddingTop="2dp"
-                    android:paddingEnd="4dp"
-                    android:paddingBottom="2dp"
-                    android:text="@string/cat_detail_hot_place"
-                    android:textColor="@color/white"
-                    android:textSize="12sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvGender" />
-
-                <TextView
-                    android:id="@+id/tvNote"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:layout_marginTop="30dp"
-                    android:paddingBottom="20dp"
-                    android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                    android:text="@string/cat_detail_note"
-                    android:textColor="@color/brown_473A22"
-                    android:textSize="14sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tvHotPlace" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-
-        <!--탭 레이아웃-->
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabTabLayout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:tabIndicatorGravity="bottom"
-            app:tabIndicatorHeight="3dp"
-            app:tabBackground="@drawable/tab_underline"
-            app:tabTextAppearance="@style/tab_text"
-            app:tabSelectedTextColor="@color/brown_473A22"
-            app:tabTextColor="@color/beige_E3DECF"
-            app:tabIndicatorColor="@color/brown_473A22">
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cat_detail_tab1_info"/>
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cat_detail_tab2_note"/>
-        </com.google.android.material.tabs.TabLayout>
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!--스크롤할 뷰 (NestedScrollView, RecyclerView 등)-->
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/tabViewPager"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+        android:orientation="vertical">
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:elevation="0dp">
+
+            <!--스크롤시 접히거나 나타날 부분을 넣는 layout-->
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    app:layout_collapseMode="none">
+                    <!--툴바-->
+                    <androidx.appcompat.widget.Toolbar
+                        android:id="@+id/toolbar"
+                        android:layout_width="match_parent"
+                        android:layout_height="?attr/actionBarSize"
+                        android:theme="@style/ToolbarTheme"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvName"
+                        style="@style/TextHeadLine"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:maxLength="8"
+                        android:text="@{catDetail.name}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+                        tools:text="나비" />
+
+                    <ImageButton
+                        android:id="@+id/imgEdit"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_marginStart="7dp"
+                        android:layout_marginEnd="30dp"
+                        android:background="@drawable/ic_edit"
+                        android:contentDescription="@string/cat_detail_edit"
+                        android:visibility="invisible"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvName"
+                        app:layout_constraintStart_toEndOf="@+id/tvName"
+                        app:layout_constraintTop_toTopOf="@+id/tvName" />
+
+                    <TextView
+                        android:id="@+id/tvGender"
+                        style="@style/TextSubTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="8dp"
+                        android:text="@{catDetail.sex}"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvName"
+                        tools:text="암컷" />
+
+                    <ImageView
+                        android:id="@+id/imgRect1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="358dp"
+                        android:contentDescription="@string/cat_detail_rect"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_rect"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvGender"
+                        app:layout_constraintStart_toEndOf="@+id/tvGender"
+                        app:layout_constraintTop_toTopOf="@+id/tvGender" />
+
+                    <TextView
+                        android:id="@+id/tvAge"
+                        style="@style/TextSubTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{catDetail.age}"
+                        app:layout_constraintBaseline_toBaselineOf="@+id/tvGender"
+                        app:layout_constraintStart_toEndOf="@+id/imgRect1"
+                        tools:text="2살 추정" />
+
+                    <ImageView
+                        android:id="@+id/imgRect2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="358dp"
+                        android:contentDescription="@string/cat_detail_rect"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_rect"
+                        app:layout_constraintBottom_toBottomOf="@+id/tvAge"
+                        app:layout_constraintStart_toEndOf="@+id/tvAge"
+                        app:layout_constraintTop_toTopOf="@+id/tvAge" />
+
+                    <TextView
+                        android:id="@+id/tvPlace"
+                        style="@style/TextSubTitle1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{catDetail.town}"
+                        app:layout_constraintBaseline_toBaselineOf="@id/tvAge"
+                        app:layout_constraintStart_toEndOf="@id/imgRect2"
+                        tools:text="XX구 XX동" />
+
+                    <!--코숏: 무늬-->
+                    <ImageView
+                        android:id="@+id/imgCatFur"
+                        CustomCatFur="@{catDetail.koshort}"
+                        CustomCatSize="@{catDetail.size}"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginEnd="28dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_fur_cheese" />
+                    <!--귀-->
+                    <ImageView
+                        android:id="@+id/imgCatEar"
+                        CustomCatEar="@{catDetail.ear}"
+                        CustomCatFur="@{catDetail.koshort}"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginEnd="28dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_ear_open_cheese" />
+                    <!--꼬리-->
+                    <ImageView
+                        android:id="@+id/imgCatTail"
+                        CustomCatFur="@{catDetail.koshort}"
+                        CustomCatTail="@{catDetail.tail}"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginEnd="28dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_tail_long_cheese" />
+                    <!--몸집-->
+                    <ImageView
+                        android:id="@+id/imgCatSize"
+                        CustomCatEar="@{catDetail.ear}"
+                        CustomCatSize="@{catDetail.size}"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginEnd="28dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_size_normal" />
+                    <!--수염-->
+                    <ImageView
+                        android:id="@+id/imgCatWhisker"
+                        CustomCatFur="@{catDetail.koshort}"
+                        CustomCatWhisker="@{catDetail.whisker}"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginEnd="28dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:src="@drawable/ic_whisker_long" />
+
+                    <TextView
+                        android:id="@+id/tvHotPlace"
+                        style="@style/TextSubTitle2.White"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/text_view_yellow_round"
+                        android:paddingHorizontal="4dp"
+                        android:paddingVertical="2dp"
+                        android:text="@{catDetail.appear}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvGender"
+                        tools:text="경의선숲길 부산집 앞에서 주로 출몰" />
+
+                    <TextView
+                        android:id="@+id/tvNote"
+                        style="@style/TextSubTitle1.14"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="20dp"
+                        android:layout_marginTop="28dp"
+                        android:paddingBottom="20dp"
+                        android:text="@{catDetail.note}"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvHotPlace"
+                        tools:text="부산집 사장님이 가끔 먹이를 챙겨주셔서 그런지 사람을 경계하지 않아요\n카메라 들이대면 포즈 취해주는 개냥이" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+            <!--탭 레이아웃-->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:tabBackground="@drawable/tab_underline"
+                app:tabIndicatorColor="@color/brown_473A22"
+                app:tabIndicatorGravity="bottom"
+                app:tabIndicatorHeight="3dp"
+                app:tabSelectedTextColor="@color/brown_473A22"
+                app:tabTextAppearance="@style/tab_text"
+                app:tabTextColor="@color/beige_E3DECF">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_detail_tab1_info" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cat_detail_tab2_note" />
+            </com.google.android.material.tabs.TabLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--스크롤할 뷰 (NestedScrollView, RecyclerView 등)-->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/tabViewPager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

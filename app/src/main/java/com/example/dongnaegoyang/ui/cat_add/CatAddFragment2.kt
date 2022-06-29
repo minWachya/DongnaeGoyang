@@ -1,7 +1,6 @@
-package com.example.dongnaegoyang.cat_add
+package com.example.dongnaegoyang.ui.cat_add
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

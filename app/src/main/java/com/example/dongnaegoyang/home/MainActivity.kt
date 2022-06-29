@@ -15,8 +15,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.address_search.SearchAddressActivity
-import com.example.dongnaegoyang.cat_add.CatAddActivity
-import com.example.dongnaegoyang.cat_detail.CatDetailActivity
+import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
+import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
 import com.example.dongnaegoyang.login.LoginActivity

@@ -1,11 +1,19 @@
-package com.example.dongnaegoyang.cat_detail
+package com.example.dongnaegoyang.common
 
 import com.example.dongnaegoyang.R
 
 // 코숏, 몸집, 귀, 꼬리, 수염
-data class CatDetail(val fur: Int, val size: Int, val ear: Int, val tail: Int, val whisker: Int)
+data class CustomCat(val fur: Int, val size: Int, val ear: Int, val tail: Int, val whisker: Int)
 
-object CatDetailArr {
+/*
+몸집 배열: arrImgSize[ear][size]
+코숏 배열: arrImgFur[size][fur]
+귀 배열: arrImgEar[fur][ear]
+꼬리 배열: arrImgTail[fur][tail]
+수염 배열: arrImgWhisker[fur][whisker]
+*/
+
+object CustomCatArr {
     // 몸집 이미지 배열
     // 기본 몸집 이미지 배열: 마름, 보통, 뚱뚱, 기본
     private val baseSize = listOf(R.drawable.ic_size_small, R.drawable.ic_size_normal, R.drawable.ic_size_large, R.drawable.ic_size_normal)

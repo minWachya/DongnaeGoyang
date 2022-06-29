@@ -1,11 +1,11 @@
-package com.example.dongnaegoyang.cat_detail
+package com.example.dongnaegoyang.ui.cat_detail
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.CustomCat
 import com.example.dongnaegoyang.databinding.FragmentCatDetailInfoBinding
 
 private const val TAG = "mmmCatDetailInfoFragment"
@@ -49,11 +49,11 @@ class CatDetailInfoFragment : Fragment() {
         // 나도 관심 좀...: 다른 고양이들 출력
         val anotherCatAdapter = CatDetailInfoAnotherCatAdapter()
         binding.rcAnotherCat.adapter = anotherCatAdapter
-        anotherCatAdapter.cats.add(CatDetail(1, 1, 1, 0, 0))
-        anotherCatAdapter.cats.add(CatDetail(2, 1, 1, 0, 0))
-        anotherCatAdapter.cats.add(CatDetail(0, 1, 0, 0, 1))
-        anotherCatAdapter.cats.add(CatDetail(3, 1, 0, 1, 1))
-        anotherCatAdapter.cats.add(CatDetail(4, 1, 1, 1, 0))
+        anotherCatAdapter.cats.add(CustomCat(1, 1, 1, 0, 0))
+        anotherCatAdapter.cats.add(CustomCat(2, 1, 1, 0, 0))
+        anotherCatAdapter.cats.add(CustomCat(0, 1, 0, 0, 1))
+        anotherCatAdapter.cats.add(CustomCat(3, 1, 0, 1, 1))
+        anotherCatAdapter.cats.add(CustomCat(4, 1, 1, 1, 0))
         anotherCatAdapter.notifyDataSetChanged()
 
         return view

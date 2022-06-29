@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.cat_detail
+package com.example.dongnaegoyang.ui.cat_detail
 
 import android.view.LayoutInflater
 import android.view.View

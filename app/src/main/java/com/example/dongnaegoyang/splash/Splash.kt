@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dongnaegoyang.home.MainActivity
-import com.example.dongnaegoyang.onboarding.OnBoardingActivity
+import com.example.dongnaegoyang.ui.onboarding.OnBoardingActivity
 
 // 스플래시 화면
 @SuppressLint("CustomSplashScreen")

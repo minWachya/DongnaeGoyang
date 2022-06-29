@@ -10,7 +10,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dongnaegoyang.cat_detail.CatDetailActivity
+import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.databinding.FragmentSearchCatBinding
 import com.example.dongnaegoyang.home.CatList
 import com.example.dongnaegoyang.home.HorizontalItemDecorator

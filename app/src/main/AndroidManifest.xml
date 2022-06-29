@@ -58,11 +58,11 @@
             -->
         </activity>
         <activity
-            android:name=".cat_detail.CatDetailActivity"
+            android:name="com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity"
             android:exported="false"
             android:label="고양이 상세 페이지" />
         <activity
-            android:name=".cat_add.CatAddActivity"
+            android:name="com.example.dongnaegoyang.ui.cat_add.CatAddActivity"
             android:exported="false"
             android:label="고양이 추가 페이지" />
         <activity
@@ -74,7 +74,7 @@
             android:exported="false"
             android:label="주소 검색 페이지" />
         <activity
-            android:name=".onboarding.OnBoardingActivity"
+            android:name="com.example.dongnaegoyang.ui.onboarding.OnBoardingActivity"
             android:exported="false"
             android:label="온보딩 화면"/>
         <activity

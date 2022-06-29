@@ -1,7 +1,6 @@
-package com.example.dongnaegoyang.cat_add
+package com.example.dongnaegoyang.ui.cat_add
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,11 +10,11 @@ import android.widget.Spinner
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
 // 고양이 생김새 배열: 몸집, 코숏, 귀, 꼬리, 수염        // !! 기본 이미지는 배열의 맨 마지막 아이템임!!
-import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgEar
-import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgFur
-import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgSize
-import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgTail
-import com.example.dongnaegoyang.cat_detail.CatDetailArr.arrImgWhisker
+import com.example.dongnaegoyang.common.CustomCatArr.arrImgEar
+import com.example.dongnaegoyang.common.CustomCatArr.arrImgFur
+import com.example.dongnaegoyang.common.CustomCatArr.arrImgSize
+import com.example.dongnaegoyang.common.CustomCatArr.arrImgTail
+import com.example.dongnaegoyang.common.CustomCatArr.arrImgWhisker
 import com.example.dongnaegoyang.databinding.FragmentCatAdd1Binding
 
 private const val TAG = "mmmCatAddFragment1"
@@ -55,7 +54,7 @@ class CatAddFragment1 : Fragment() {
         setBtnListener(spinnerCatTail.adapter.count-2, binding.imgViewTailLeft, binding.imgViewTailRight, spinnerCatTail)
         setBtnListener(spinnerCatWhisker.adapter.count-2, binding.imgViewWhiskersLeft, binding.imgViewWhiskersRight, spinnerCatWhisker)
 
-        // 몸집 선택: 몸집에 맞게 털 색 번경
+        // 몸집 선택: arrImgSize[ear][size]: 몸집에 맞게 털 색 번경
         spinnerCatSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -67,7 +66,7 @@ class CatAddFragment1 : Fragment() {
                 btnEnableCheck()
             }
         }
-        // 코숏 선택: 털 색에 맞게 귀, 꼬리, 수염 색 변경
+        // 코숏 선택: arrImgFur[size][fur]: 털 색에 맞게 귀, 꼬리, 수염 색 변경
         spinnerCatFur.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -85,7 +84,7 @@ class CatAddFragment1 : Fragment() {
                 btnEnableCheck()
             }
         }
-        // 귀 모양 선택: 털 색에 맞게 귀 모양 변경 + 귀 모양에 맞게 몸집 모양 변경
+        // 귀 모양 선택: arrImgEar[fur][ear]: 털 색에 맞게 귀 모양 변경 + 귀 모양에 맞게 몸집 모양 변경
         spinnerCatEar.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -97,7 +96,7 @@ class CatAddFragment1 : Fragment() {
                 btnEnableCheck()
             }
         }
-        // 꼬리 모양 선택: 털 색에 맞게 꼬리 모양 변경
+        // 꼬리 모양 선택: arrImgTail[fur][tail]: 털 색에 맞게 꼬리 모양 변경
         spinnerCatTail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
@@ -106,7 +105,7 @@ class CatAddFragment1 : Fragment() {
                 btnEnableCheck()
             }
         }
-        // 수염 선택: 털 색에 맞게 수염 색 변경
+        // 수염 선택: arrImgWhisker[fur][whisker]: 털 색에 맞게 수염 색 변경
         spinnerCatWhisker.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {}
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
