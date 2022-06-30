@@ -28,7 +28,6 @@
     <!--CatAddFragment1-->
     <string name="cat_add_title1">어떻게 생겼나요?</string>
     <string name="cat_add_explain1">실제 생김새를 좌우 선택을 통해 그림으로 나타내주세요.</string>
-    <string name="description_custom_cat">고양이 커스텀 이미지</string>
     <!--CatAddFragment2-->
     <string name="cat_add_title2">고영희를 소개해주세요.</string>
     <string name="cat_add_title_star">*</string>
@@ -65,17 +64,11 @@
     <string name="cat_detail_cat_img">고양이 이미지</string>
     <!--CatDetailInfoFragment-->
     <string name="cat_detail_info_photo">사진</string>
-    <string name="cat_detail_info_photo_count">0</string>
     <string name="cat_detail_info_health">건강 정보</string>
-    <string name="cat_detail_info_health_count">0</string>
     <string name="cat_detail_info_health_tnr">TNR</string>
-    <string name="cat_detail_info_health_tnr_ex">접종 여부</string>
     <string name="cat_detail_info_health_food">비선호 사료</string>
-    <string name="cat_detail_info_health_food_ex">없음</string>
     <string name="cat_detail_info_update_date">최신 업데이트일</string>
-    <string name="cat_detail_info_update_date_ex">0000&#45;00&#45;00</string>
     <string name="cat_detail_info_registration_user">등록</string>
-    <string name="cat_detail_info_registration_user_ex">닉네임</string>
     <string name="cat_detail_info_another_cat">나도 관심 좀</string>
     <!--CatDetailPostFragment-->
     <string name="cat_detail_recent_post">최근 글</string>
@@ -115,6 +108,11 @@
     <string name="sidebar_setting">설정</string>
     <!-- Sidebar drawer main sidebar logged in-->
     <string name="sidebar_login">로그인/회원가입</string>
+
+    <!--description-->
+    <string name="description_custom_cat">고양이 커스텀 이미지</string>
+    <string name="description_ellipsis">말줄임표</string>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
