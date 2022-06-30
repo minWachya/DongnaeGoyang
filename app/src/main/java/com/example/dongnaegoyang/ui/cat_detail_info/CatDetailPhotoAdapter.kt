@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.ui.cat_detail
+package com.example.dongnaegoyang.ui.cat_detail_info
 
 import android.view.LayoutInflater
 import android.view.View
@@ -13,7 +13,7 @@ class CatDetailPhotoAdapter : RecyclerView.Adapter<CatDetailPhotoAdapter.ViewHol
     var urls = ArrayList<String>()  // Url 배열
 
     // 뷰홀더 생성
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatDetailPhotoAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_cat_detail_photo, parent, false)
 
         return ViewHolder(itemView).apply {
@@ -24,7 +24,7 @@ class CatDetailPhotoAdapter : RecyclerView.Adapter<CatDetailPhotoAdapter.ViewHol
     }
 
     // position 번째 아이템 설정하기
-    override fun onBindViewHolder(holder: CatDetailPhotoAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val url = urls[position]
         holder.setItem(url)
     }

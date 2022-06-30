@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.ui.cat_detail
+package com.example.dongnaegoyang.ui.cat_detail_info
 
 import android.view.LayoutInflater
 import android.view.View
@@ -21,13 +21,13 @@ class CatDetailInfoAnotherCatAdapter  : RecyclerView.Adapter<CatDetailInfoAnothe
     val arrImgWhisker = CustomCatArr.arrImgWhisker
 
     // 뷰홀더 생성
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatDetailInfoAnotherCatAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_cat_detail_info_another_cat, parent, false)
         return ViewHolder(itemView)
     }
 
     // position 번째 아이템 설정하기
-    override fun onBindViewHolder(holder: CatDetailInfoAnotherCatAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cat = cats[position]
         holder.setItem(cat)
     }

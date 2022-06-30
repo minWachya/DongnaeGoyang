@@ -10,7 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
-import com.example.dongnaegoyang.model.CatDetail
+import com.example.dongnaegoyang.ui.cat_detail_info.CatDetailInfoFragment
 import com.example.dongnaegoyang.ui.common.ViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
 
