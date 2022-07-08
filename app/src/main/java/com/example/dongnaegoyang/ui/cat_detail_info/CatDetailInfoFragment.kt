@@ -22,6 +22,7 @@ class CatDetailInfoFragment : Fragment() {
         savedInstanceState: Bundle?)
     : View {
         binding = FragmentCatDetailInfoBinding.inflate(inflater, container, false)
+        binding.catDetailInfo = viewModel.catDetailInfo.value
         return binding.root
     }
 
@@ -29,7 +30,6 @@ class CatDetailInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.lifecycleOwner = viewLifecycleOwner
-        binding.catDetailInfo = viewModel.catDetailInfo.value
 
         // 사진 가져오기
         val photoAdapter = CatDetailPhotoAdapter()
