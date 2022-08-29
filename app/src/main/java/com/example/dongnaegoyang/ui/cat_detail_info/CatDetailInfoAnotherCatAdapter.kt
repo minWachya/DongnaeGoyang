@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.cat_detail
+package com.example.dongnaegoyang.ui.cat_detail_info
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,26 +6,28 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.CustomCat
+import com.example.dongnaegoyang.common.CustomCatArr
 
 // 고양이 상세: 정보 탭 - 나도 관심 좀... 어댑터
 class CatDetailInfoAnotherCatAdapter  : RecyclerView.Adapter<CatDetailInfoAnotherCatAdapter.ViewHolder>() {
-    var cats = ArrayList<CatDetail>()  // 고양이 배열
+    var cats = ArrayList<CustomCat>()  // 고양이 배열
 
     // 고양이 생김새 배열: 몸집, 코숏, 귀, 꼬리, 수염
-    val arrImgSize = CatDetailArr.arrImgSize
-    val arrImgFur = CatDetailArr.arrImgFur
-    val arrImgEar = CatDetailArr.arrImgEar
-    val arrImgTail = CatDetailArr.arrImgTail
-    val arrImgWhisker = CatDetailArr.arrImgWhisker
+    val arrImgSize = CustomCatArr.arrImgSize
+    val arrImgFur = CustomCatArr.arrImgFur
+    val arrImgEar = CustomCatArr.arrImgEar
+    val arrImgTail = CustomCatArr.arrImgTail
+    val arrImgWhisker = CustomCatArr.arrImgWhisker
 
     // 뷰홀더 생성
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatDetailInfoAnotherCatAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_cat_detail_info_another_cat, parent, false)
         return ViewHolder(itemView)
     }
 
     // position 번째 아이템 설정하기
-    override fun onBindViewHolder(holder: CatDetailInfoAnotherCatAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val cat = cats[position]
         holder.setItem(cat)
     }
@@ -35,7 +37,7 @@ class CatDetailInfoAnotherCatAdapter  : RecyclerView.Adapter<CatDetailInfoAnothe
 
     // 고양이 생김새 로드하기
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setItem(cat: CatDetail) {
+        fun setItem(cat: CustomCat) {
             // 코숏, 몸집, 귀, 꼬리, 수염
             itemView.findViewById<ImageView>(R.id.item_imgCatFur).setImageResource(arrImgFur[cat.size][cat.fur])
             itemView.findViewById<ImageView>(R.id.item_imgCatSize).setImageResource(arrImgSize[cat.ear][cat.size])

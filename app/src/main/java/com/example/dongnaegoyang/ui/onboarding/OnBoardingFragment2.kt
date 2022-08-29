@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.onboarding
+package com.example.dongnaegoyang.ui.onboarding
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

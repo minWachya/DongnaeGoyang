@@ -1,9 +1,8 @@
-package com.example.dongnaegoyang.onboarding
+package com.example.dongnaegoyang.ui.onboarding
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
@@ -43,7 +42,7 @@ class OnBoardingActivity : AppCompatActivity() {
         // <시작하기>버튼 누르면?
         binding.btnStart.setOnClickListener {
             // 다음에는 안 보이게 설정
-            val sharedPreference = getSharedPreferences("onboarding", MODE_PRIVATE)
+            val sharedPreference = getSharedPreferences("onBoarding", MODE_PRIVATE)
             val editor = sharedPreference.edit()
             editor.putBoolean("isShow", false)
             editor.apply()

@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.cat_add
+package com.example.dongnaegoyang.ui.cat_add
 
 import android.app.Activity
 import android.content.Intent
@@ -6,7 +6,6 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -14,7 +13,7 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.cat_detail.CatDetailActivity
+import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding

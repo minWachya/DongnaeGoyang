@@ -60,4 +60,9 @@
     <style name="MenuTheme">
 
     </style>
+
+    <!--스플래시-->
+    <style name="SplashTheme" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+    </style>
 </resources>
