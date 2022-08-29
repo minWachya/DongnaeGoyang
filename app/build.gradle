@@ -52,7 +52,7 @@ dependencies {
     implementation 'io.github.sangcomz:fishbun:1.0.0-beta01'   // limit photo count
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'   // pageindicatorview
 
-    implementation "com.kakao.sdk:v2-user:2.8.6" // 카카오 로그인
+    implementation "com.kakao.sdk:v2-user:2.11.0" // 카카오 로그인
 
     implementation 'com.squareup.retrofit2:retrofit:2.9.0' // 주소 검색을 위한 retrofit
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
