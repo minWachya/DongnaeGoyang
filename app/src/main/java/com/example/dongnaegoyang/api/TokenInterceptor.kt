@@ -8,13 +8,17 @@ import okhttp3.Response
 import java.io.IOException
 
 class TokenInterceptor : Interceptor {
+    companion object{
+        const val X_AUTH_TOKEN = "X-AUTH-TOKEN"
+    }
+
     @Throws(IOException::class)
     override fun intercept(chain: Interceptor.Chain) : Response = with(chain) {
-        Log.d("jh interceptor", "getUserToken "+ SharedPreferenceController.getAccessToken(InitApplication.getApplicationContext()))
+        Log.d("jh interceptor", "getUserToken "+ SharedPreferenceController.getToken(InitApplication.getApplicationContext()))
 
-        var token = SharedPreferenceController.getAccessToken(InitApplication.getApplicationContext())
+        val token = SharedPreferenceController.getToken(InitApplication.getApplicationContext())
         val newRequest = request().newBuilder()
-            .addHeader("Authorization", "${token}")
+            .addHeader(X_AUTH_TOKEN, token)
             .build()
         proceed(newRequest)
     }

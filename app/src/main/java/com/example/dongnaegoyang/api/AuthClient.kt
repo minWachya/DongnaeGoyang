@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
-object ApiClient {
+object AuthClient { //TokenInterceptor 없는 client
     private const val BASE_URL = "http://localhost:8080/api/" //TODO : ㄴㄴ~~
 
     //okhttp logging interceptor
@@ -22,7 +22,6 @@ object ApiClient {
         .readTimeout(5, TimeUnit.SECONDS)
         .writeTimeout(5, TimeUnit.SECONDS)
         .addInterceptor(loggingInterceptor)
-        .addInterceptor(TokenInterceptor())
         .build()
 
     //retrofit
@@ -34,7 +33,7 @@ object ApiClient {
     }
 
 
-    val apiService: AuthService by lazy {
+    val authService: AuthService by lazy {
         retrofit
             .build()
             .create(AuthService::class.java)
