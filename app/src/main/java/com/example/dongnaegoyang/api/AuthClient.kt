@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
 object AuthClient { //TokenInterceptor 없는 client
-    private const val BASE_URL = "http://localhost:8080/api/" //TODO : ㄴㄴ~~
+    private const val BASE_URL = "http://3.36.144.189/v1/"
 
     //okhttp logging interceptor
     private var loggingInterceptor = HttpLoggingInterceptor(object: HttpLoggingInterceptor.Logger {

@@ -61,12 +61,12 @@ object SharedPreferenceController {
     //mode
     fun setModeLogin(context: Context) {
         val preference: SharedPreferences = context.getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
-        preference.edit().putString(MODE, MODE_LOGIN)
+        preference.edit().putString(MODE, MODE_LOGIN).apply()
     }
 
     fun setModeLogOut(context: Context) {
         val preference: SharedPreferences = context.getSharedPreferences(USER_INFO, Context.MODE_PRIVATE)
-        preference.edit().putString(MODE, MODE_LOG_OUT)
+        preference.edit().putString(MODE, MODE_LOG_OUT).apply()
     }
 
     fun getMode(context: Context): String {

@@ -47,20 +47,6 @@ class LoginActivity : AppCompatActivity() {
 
         binding.btnKakaoLogin.setOnClickListener {
             doKakaoLogin("login")
-//            checkUserToken()
-/*            if(){ // 로그인 됨, 메인화면으로 이동
-                Log.d("jh btn.checkKakaoToken", "true 로그인 성공")
-                //TODO : 타이밍 안맞아서 데이터 안넘어감. how?
-                Log.d("login - doKakaoLogin", "닉네임 : ${userNickname}")
-                val mainIntent = Intent(this, MainActivity::class.java)  //TODO : 원래 화면에서
-                mainIntent.putExtra("nickname", userNickname)
-                startActivity(mainIntent)
-                finish()
-            }
-            else{ //로그인 실패. 회원아님.
-                Log.d("jh btn.checkKakaoToken", "false 로그인 실패. dialog")
-                notMemberDialog.show() //TODO : 원래 화면에서
-            }*/
         }
 
         //회원가입 눌렀을 때
@@ -129,23 +115,6 @@ class LoginActivity : AppCompatActivity() {
         resultLauncher.launch(addressIntent)
     }
 
-/*    private fun postSignUp(userid: Long, address: ArrayList<String>) {
-        //TODO : Server : 회원가입 요청 후 성공 시
-        Toast.makeText(applicationContext, "회원가입이 완료되었습니다.로그인해주세요.", Toast.LENGTH_SHORT).show()
-    }*/
-
-//    private fun checkUserToken() {
-//        val token = SharedPreferenceController.getAccessToken(this)
-//        if(token.isEmpty()){ //저장된 토큰 없음
-//            doKakaoLogin("login")
-//        }
-//        else{
-//            Log.d("jh", "저장된 accessToken : ${token}")
-//            //TODO : 이 토큰값 들고 서버에 로그인 요청(서버에 토큰 전달) -> 레트로핏 요청 함수 결과에 따라 로그인 성공 or 회원가입 화면 이동
-//            callPostLogin()
-//        }
-//    }
-
     //SP에 저장된 토큰이 없을 때 로그인 진행해 액세스 토큰 받아옴
     private fun doKakaoLogin(type: String) {
         Log.d("jh kakao login", "doKakaoLogin 시작")
@@ -160,13 +129,6 @@ class LoginActivity : AppCompatActivity() {
                     // 카카오 로그인(토큰 발급) 성공, 저장
                     Log.i("jh", "카카오 토큰 발급 성공 token: ${token.accessToken}")
 
-//                    val sharedPreference = getSharedPreferences("user info", Context.MODE_PRIVATE)
-//                    with (sharedPreference.edit()) {
-//                        putString("access token", token.accessToken)
-//                        putString("refresh token", token.refreshToken)
-//                        apply()
-//                    }
-                    //TODO : 이 토큰값 들고 서버에 로그인 요청(서버에 토큰 전달) -> 레트로핏 요청 함수 결과에 따라 로그인 성공 or 회원가입 화면 이동
                     if(type == "login"){
                         callPostLogin(token.accessToken)
                     }
@@ -192,43 +154,43 @@ class LoginActivity : AppCompatActivity() {
                     call: Call<ModelLoginResponse>,
                     response: Response<ModelLoginResponse>
                 ) {
-                    responseData.value = response.body()
+                    val status = response.code()
+                    Log.d("jh", "status : ${status}")
 
-                    val status = responseData.value?.status
+                    if(response.isSuccessful){
+                        responseData.value = response.body()
+                        val data = responseData.value?.data
+                        Log.d("jh", "${status}. data : ${data}")
 
-                    when (status){
-                        200 -> {
-                            val data = responseData.value?.data
-                            Log.d("jh", "${status}. data : ${data}")
-
-                            if(data == null){
-                                Log.d("jh", "${status} but data is null ")
-                            }else{
-                                Log.d("jh", "login data save start")
-                                SharedPreferenceController.saveToken(applicationContext, data.token)
-                                SharedPreferenceController.saveToken(applicationContext, data.sido)
-                                SharedPreferenceController.saveToken(applicationContext, data.gugun)
-                                SharedPreferenceController.saveNickname(applicationContext, data.nickname)
-                                SharedPreferenceController.setModeLogin(applicationContext)
-                                val nickname = SharedPreferenceController.getNickname(applicationContext)
-                                Log.d("jh", "SharedPreferenceController check" +
-                                        "token : ${SharedPreferenceController.getToken(applicationContext)}" +
-                                        "sido : ${SharedPreferenceController.getSido(applicationContext)}" +
-                                        "gugun : ${SharedPreferenceController.getGugun(applicationContext)}" +
-                                        "mode : ${SharedPreferenceController.getMode(applicationContext)}" +
-                                        "nickname : ${nickname}")
-                                Toast.makeText(applicationContext, "${nickname}님, 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
-                                finish() //로그인 화면 종료, 홈화면으로 돌아감
+                        if(data == null){
+                            Log.d("jh", "${status} but data is null ")
+                        }else{
+                            Log.d("jh", "login data save start")
+                            SharedPreferenceController.saveToken(applicationContext, data.token)
+                            SharedPreferenceController.saveSido(applicationContext, data.sido)
+                            SharedPreferenceController.saveGugun(applicationContext, data.gugun)
+                            SharedPreferenceController.saveNickname(applicationContext, data.nickname)
+                            SharedPreferenceController.setModeLogin(applicationContext)
+                            val nickname = SharedPreferenceController.getNickname(applicationContext)
+                            Log.d("jh", "SharedPreferenceController check" +
+                                    "token : ${SharedPreferenceController.getToken(applicationContext)}" +
+                                    "sido : ${SharedPreferenceController.getSido(applicationContext)}" +
+                                    "gugun : ${SharedPreferenceController.getGugun(applicationContext)}" +
+                                    "mode : ${SharedPreferenceController.getMode(applicationContext)}" +
+                                    "nickname : ${nickname}")
+                            Toast.makeText(applicationContext, "${nickname}님, 로그인 되었습니다.", Toast.LENGTH_SHORT).show()
+                            finish() //로그인 화면 종료, 홈화면으로 돌아감
+                        }
+                    }
+                    else{ //response.isSuccessful == false 즉 status가 200~300 이 아닌 응답코드일 때
+                        Log.d("jh", "response.errorBody : ${response.errorBody()?.string()}")
+                        when (status){
+                            401 -> { //회원가입 필요
+                                notMemberDialog.show()
                             }
-                        }
-                        401 -> { //회원가입 필요
-                            val message = responseData.value?.message
-                            Log.d("jh", "${status}. message : ${message}")
-                            notMemberDialog.show()
-                        }
-                        409 -> { //카카오 토큰 만료 -> 이럴 일 없음. 토큰 바로 발급해서 쓰니까
-                            val message = responseData.value?.message
-                            Log.d("jh", "${status}. message : ${message}")
+                            409 -> { //카카오 토큰 만료 -> 이럴 일 없음. 토큰 바로 발급해서 쓰니까
+                                Toast.makeText(applicationContext, "카카오 토큰이 만료되었습니다.", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
 
@@ -250,21 +212,24 @@ class LoginActivity : AppCompatActivity() {
                     call: Call<ModelSignUpResponse>,
                     response: Response<ModelSignUpResponse>
                 ) {
-                    responseData.value = response.body()
+                    val status = response.code()
+                    Log.d("jh", "status : ${status}")
 
-                    val status = responseData.value?.status
-
-                    when(status){
-                        200 -> {
-                            val data = responseData.value?.data
-                            Log.d("jh", "${status}. data : ${data}")
-                        }
-                        409 -> { //이미 회원임
-                            val message = responseData.value?.message
-                            Log.d("jh", "${status}. message : ${message}")
-                            Toast.makeText(applicationContext, "이미 가입된 회원입니다. 로그인해주세요.", Toast.LENGTH_SHORT).show()
+                    if(response.isSuccessful) {
+                        responseData.value = response.body()
+                        val data = responseData.value?.data
+                        Log.d("jh", "${status}. data : ${data}")
+                        Toast.makeText(applicationContext, "가입 성공! 로그인해주세요.", Toast.LENGTH_SHORT).show()
+                    }
+                    else{
+                        Log.d("jh", "response.errorBody : ${response.errorBody()?.string()}")
+                        when(status){
+                            409 -> { //이미 회원임
+                                Toast.makeText(applicationContext, "이미 가입된 회원입니다. 로그인해주세요.", Toast.LENGTH_SHORT).show()
+                            }
                         }
                     }
+
 
                 }
 
