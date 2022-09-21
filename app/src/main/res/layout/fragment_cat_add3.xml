@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cat_add.CatAddFragment3">
+    tools:context=".ui.cat_add.CatAddFragment3">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -194,7 +194,7 @@
             <LinearLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="76dp"
+                android:layout_height="92dp"
                 app:layout_constraintTop_toBottomOf="@+id/layoutSelectPhoto"
                 android:orientation="horizontal" />
 

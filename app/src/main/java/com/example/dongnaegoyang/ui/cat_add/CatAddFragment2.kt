@@ -1,8 +1,7 @@
-package com.example.dongnaegoyang.cat_add
+package com.example.dongnaegoyang.ui.cat_add
 
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -66,7 +65,9 @@ class CatAddFragment2 : Fragment() {
         genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
         genderBottomSheetDialog.setContentView(genderBottomSheetView)
         setBottomSheetView(genderBottomSheetView, genderArray, genderBottomSheetDialog, binding.genderSpinner)
-        binding.genderSpinner.textView.setOnClickListener { genderBottomSheetDialog.show() }
+        binding.genderSpinner.setOnCustomSTViewClickListener(object : CustomSpinnerTextView.OnCustomSTViewClickListener {
+            override fun onCustomSTViewClick(view: View?) { genderBottomSheetDialog.show() }
+        })
 
         // 추정 나이 선택 스피너 설정
         val ageBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)

@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".cat_add.CatAddFragment1">
+    tools:context=".ui.cat_add.CatAddFragment1">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -112,7 +112,8 @@
                 android:src="@drawable/ic_cat_whisker_base"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/explain" />
+                app:layout_constraintTop_toBottomOf="@+id/explain"
+                android:contentDescription="@string/description_custom_cat" />
 
             <!--몸집-->
             <Spinner
@@ -299,7 +300,7 @@
             <LinearLayout
                 android:id="@+id/layout"
                 android:layout_width="match_parent"
-                android:layout_height="76dp"
+                android:layout_height="92dp"
                 app:layout_constraintTop_toBottomOf="@+id/spinnerCatWhiskers"
                 android:orientation="horizontal" />
 

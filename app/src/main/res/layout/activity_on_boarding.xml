@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.onboarding.OnBoardingActivity">
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans_neo_bold"
+        android:text="@string/on_boarding_title"
+        android:textColor="@color/brown_473A22"
+        android:textSize="18sp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/tvContent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/tvContent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/spoqa_han_sans_neo_regular"
+        android:text="설명설명설명설명설명설명설명설명설명설명"
+        android:textColor="@color/brown_473A22"
+        android:textSize="14sp"
+        android:layout_marginBottom="36dp"
+        app:layout_constraintBottom_toTopOf="@+id/frameLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/frameLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/beige_BBB5A4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="40dp">
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/pager"
+            android:layout_width="match_parent"
+            android:layout_height="340dp" />
+    </FrameLayout>
+
+    <com.rd.PageIndicatorView
+        android:id="@+id/pageIndicatorView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        app:piv_animationType="color"
+        app:piv_dynamicCount="true"
+        app:piv_interactiveAnimation="true"
+        app:piv_selectedColor="@color/brown_473A22"
+        app:piv_unselectedColor="@color/beige_E3DECF"
+        app:piv_viewPager="@id/pager"
+        app:piv_padding="11dp"
+        app:piv_radius="5dp"
+        android:layout_marginTop="36dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout" />
+
+    <Button
+        android:id="@+id/btnStart"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/btn_round_12_yellow"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:text="@string/on_boarding_btn"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@null"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
