@@ -56,9 +56,10 @@
     <style name="navbar_text" parent="android:Widget.TextView">
         <item name="android:fontFamily">@font/spoqa_han_sans_neo_medium</item>
         <item name="android:textSize">14sp</item>
+        <item name="android:layout_marginLeft">24dp</item>
     </style>
     <style name="MenuTheme">
-
+        <item name="android:thumbTextPadding">24dp</item>
     </style>
 
     <!--스플래시-->

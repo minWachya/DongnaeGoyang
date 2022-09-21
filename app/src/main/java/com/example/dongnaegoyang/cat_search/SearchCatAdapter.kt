@@ -52,11 +52,11 @@ class SearchCatAdapter(private var onClick:(CatList) -> Unit) :
             currentCat = item
 
             binding.tvName.text = item.catName
-            //binding.itemImgCatFur.setImageResource(arrImgFur[cat.size][cat.fur])
+            binding.itemImgCatFur.setImageResource(arrImgFur[cat.size][item.fur])
             binding.itemImgCatSize.setImageResource(arrImgSize[item.ear][cat.size])
-            /*binding.itemImgCatEar.setImageResource(arrImgEar[cat.fur][cat.ear])
-            binding.itemImgCatTail.setImageResource(arrImgTail[cat.fur][cat.tail])
-            binding.itemImgCatWhisker.setImageResource(arrImgWhisker[cat.fur][cat.tail])*/
+            binding.itemImgCatEar.setImageResource(arrImgEar[item.fur][item.ear])
+            binding.itemImgCatTail.setImageResource(arrImgTail[item.fur][item.tail])
+            binding.itemImgCatWhisker.setImageResource(arrImgWhisker[item.fur][item.tail])
         }
     }
 
