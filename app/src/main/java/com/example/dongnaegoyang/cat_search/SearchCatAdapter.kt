@@ -26,12 +26,12 @@ class SearchCatAdapter(private var onClick:(CatList) -> Unit) :
     val arrImgTail = CatDetailArr.arrImgTail
     val arrImgWhisker = CatDetailArr.arrImgWhisker
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchCatAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = CatListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding, onClick)
     }
 
-    override fun onBindViewHolder(holder: SearchCatAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = filteredList[position]
         holder.setItem(item)
     }
@@ -52,9 +52,9 @@ class SearchCatAdapter(private var onClick:(CatList) -> Unit) :
             currentCat = item
 
             binding.tvName.text = item.catName
-            //binding.itemImgCatFur.setImageResource(arrImgFur[cat.size][cat.fur])
+            /*binding.itemImgCatFur.setImageResource(arrImgFur[cat.size][cat.fur])
             binding.itemImgCatSize.setImageResource(arrImgSize[cat.size])
-            /*binding.itemImgCatEar.setImageResource(arrImgEar[cat.fur][cat.ear])
+            binding.itemImgCatEar.setImageResource(arrImgEar[cat.fur][cat.ear])
             binding.itemImgCatTail.setImageResource(arrImgTail[cat.fur][cat.tail])
             binding.itemImgCatWhisker.setImageResource(arrImgWhisker[cat.fur][cat.tail])*/
         }

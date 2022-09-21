@@ -38,8 +38,8 @@ class SearchCatFragment : Fragment() {
         binding.recyclerView.adapter = adapter // RecyclerViewAdapter(dataSet)
 
         // 리사이클러뷰 간격
-        binding.recyclerView.addItemDecoration(VerticalItemDecorator(20))
-        binding.recyclerView.addItemDecoration(HorizontalItemDecorator(10))
+        binding.recyclerView.addItemDecoration(VerticalItemDecorator(10))
+        binding.recyclerView.addItemDecoration(HorizontalItemDecorator(8))
 
         // 더미값
         adapter.items.add(CatList(1, 1, 1, 0, 0, "치즈", "치즈"))

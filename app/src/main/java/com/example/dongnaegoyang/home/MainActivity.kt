@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -71,6 +72,7 @@ class MainActivity : AppCompatActivity() {
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 Log.e("TAG", "${tab!!.position}")
+                layoutManager.scrollToPositionWithOffset(0,20)
                 when(tab.position){
                     0 ->{
                         adapter.filter.filter("")
@@ -133,6 +135,12 @@ class MainActivity : AppCompatActivity() {
                 //binding.linearLayout1.animate().setDuration(200)
             }
         }
+
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                binding.recyclerView.animation = AnimationUtils.loadAnimation(binding.recyclerView.context, R.anim.slide_up)
+            }
+        })
 
         // floating button
         binding.btnAddCat.setOnClickListener { view ->

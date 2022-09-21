@@ -154,9 +154,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@color/transparency"/>
             </LinearLayout>
-
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/linearlayout_category"
@@ -241,10 +239,9 @@
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_main_sidebar_logged_out"
-        app:menu="@menu/main_navigation"
         app:itemTextAppearance="@style/navbar_text"
-        android:theme="@style/MenuTheme">
-
+        android:theme="@style/navbar_text"
+        app:menu="@menu/main_navigation">
     </com.google.android.material.navigation.NavigationView>
 
 </androidx.drawerlayout.widget.DrawerLayout>
