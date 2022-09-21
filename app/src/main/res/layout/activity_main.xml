@@ -240,7 +240,6 @@
         android:fitsSystemWindows="true"
         app:headerLayout="@layout/drawer_main_sidebar_logged_out"
         app:itemTextAppearance="@style/navbar_text"
-        android:theme="@style/navbar_text"
         app:menu="@menu/main_navigation">
     </com.google.android.material.navigation.NavigationView>
 
