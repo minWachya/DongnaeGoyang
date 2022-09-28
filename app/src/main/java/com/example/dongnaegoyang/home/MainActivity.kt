@@ -19,6 +19,7 @@ import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
 import com.example.dongnaegoyang.login.LoginActivity
+import com.example.dongnaegoyang.sidebar.NoticeActivity
 import com.example.dongnaegoyang.sidebar.SettingActivity
 import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
@@ -109,8 +110,10 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainNavigationView.setNavigationItemSelectedListener { item ->
             when(item.itemId){
-                R.id.btn_notice-> Toast.makeText(this,"공지사항 클릭", Toast.LENGTH_SHORT).show()
-                R.id.btn_customer_service-> Toast.makeText(this,"고객지원 클릭", Toast.LENGTH_SHORT).show()
+                R.id.btn_notice-> {
+                    var intent = Intent(this@MainActivity, NoticeActivity::class.java)
+                    startActivity(intent)
+                }
                 R.id.btn_setting-> {
                     var intent = Intent(this@MainActivity, SettingActivity::class.java)
                     startActivity(intent)

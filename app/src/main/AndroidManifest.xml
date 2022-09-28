@@ -28,6 +28,9 @@
         android:theme="@style/Theme.Design.Light.NoActionBar"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".sidebar.NoticeActivity"
+            android:exported="false" />
+        <activity
             android:name=".sidebar.SettingActivity"
             android:exported="false" />
         <activity

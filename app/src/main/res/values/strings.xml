@@ -116,6 +116,11 @@
     <string name="setting_secession">탈퇴하기</string>
     <string name="email">이메일</string>
 
+    <!--NoticeActivity-->
+    <string name="notice_title">[공지] 제목입니다.</string>
+    <string name="notice_date">2022.09.21</string>
+    <string name="notice_text">공지를 선택하면 아래 창이 활성화 됩니다.</string>
+
     <!--description-->
     <string name="description_custom_cat">고양이 커스텀 이미지</string>
     <string name="description_ellipsis">말줄임표</string>
