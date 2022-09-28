@@ -7,8 +7,6 @@ import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivitySettingBinding
 import com.example.dongnaegoyang.databinding.FragmentSettingBinding
 
-private const val TAG = "mmmSearchFragment"
-
 private var _binding: FragmentSettingBinding? = null
 private val binding get() = _binding!!
 
