@@ -1,89 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.cat_detail.CatDetailPostFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        tools:context=".ui.cat_detail.CatDetailPostFragment">
 
-        <TextView
-            android:id="@+id/tvRecentPost"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="@string/cat_detail_recent_post"
-            android:textColor="@color/brown_473A22"
-            android:textSize="16sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tvRecentPostTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:layout_marginStart="4dp"
-            android:fontFamily="@font/spoqa_han_sans_neo_medium"
-            android:text="@string/cat_detail_recent_post_time"
-            android:textColor="@color/yellow_F1BC35"
-            android:textSize="16sp"
-            app:layout_constraintStart_toEndOf="@+id/tvRecentPost"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <EditText
-            android:id="@+id/editPost"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="4dp"
-            android:paddingTop="9dp"
-            android:paddingEnd="8dp"
-            android:scrollbars="vertical"
-            android:scrollbarThumbVertical="@drawable/custom_scrollbar"
-            android:maxLines="3"
-            android:paddingStart="9dp"
-            android:paddingBottom="7dp"
-            android:background="@drawable/edit_line_round"
-            android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:hint="@string/cat_detail_post_hint"
-            android:textCursorDrawable="@drawable/edittext_cursor_color"
-            android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/btnPost"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tvRecentPost" />
-        <Button
-            android:id="@+id/btnPost"
-            android:layout_width="50dp"
-            android:layout_height="36dp"
-            android:layout_marginEnd="20dp"
-            android:background="@drawable/btn_post"
-            android:fontFamily="@font/spoqa_han_sans_neo_regular"
-            android:text="@string/cat_detail_post_btn"
-            android:textColor="@color/brown_473A22"
-            android:textSize="14sp"
-            app:backgroundTint="@null"
-            app:layout_constraintBottom_toBottomOf="@+id/editPost"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rcPost"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:orientation="vertical"
-            app:reverseLayout="true"
-            app:stackFromEnd="true"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editPost" />
+            android:layout_height="wrap_content">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvRecentPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/cat_detail_recent_post"
+                android:textColor="@color/brown_473A22"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-</androidx.core.widget.NestedScrollView>
+            <TextView
+                android:id="@+id/tvRecentPostTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:layout_marginStart="4dp"
+                android:fontFamily="@font/spoqa_han_sans_neo_medium"
+                android:text="@string/cat_detail_recent_post_time"
+                android:textColor="@color/yellow_F1BC35"
+                android:textSize="16sp"
+                app:layout_constraintStart_toEndOf="@+id/tvRecentPost"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/editPost"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="4dp"
+                android:paddingTop="9dp"
+                android:paddingEnd="8dp"
+                android:scrollbars="vertical"
+                android:scrollbarThumbVertical="@drawable/custom_scrollbar"
+                android:maxLines="3"
+                android:paddingStart="9dp"
+                android:paddingBottom="7dp"
+                android:background="@drawable/edit_line_round"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:hint="@string/cat_detail_post_hint"
+                android:textCursorDrawable="@drawable/edittext_cursor_color"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toStartOf="@+id/btnPost"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvRecentPost" />
+
+            <Button
+                android:id="@+id/btnPost"
+                android:layout_width="50dp"
+                android:layout_height="36dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/btn_post"
+                android:fontFamily="@font/spoqa_han_sans_neo_regular"
+                android:text="@string/cat_detail_post_btn"
+                android:textColor="@color/brown_473A22"
+                android:textSize="14sp"
+                app:backgroundTint="@null"
+                app:layout_constraintBottom_toBottomOf="@+id/editPost"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcPost"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                android:orientation="vertical"
+                app:reverseLayout="true"
+                app:stackFromEnd="true"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editPost" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

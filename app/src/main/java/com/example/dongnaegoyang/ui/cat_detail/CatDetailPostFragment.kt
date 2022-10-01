@@ -1,33 +1,34 @@
 package com.example.dongnaegoyang.ui.cat_detail
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
-import android.view.ViewGroup
 import android.widget.Toast
-import androidx.fragment.app.Fragment
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.custom.CustomToast.showCustomToast
 import com.example.dongnaegoyang.databinding.FragmentCatDetailPostBinding
-
+import com.example.dongnaegoyang.ui.base.BaseFragment
 
 private const val TAG = "mmmCatDetailPostFragment"
-private var _binding: FragmentCatDetailPostBinding? = null
-private val binding get() = _binding!!
 
 // 고양이 상세 페이지: '오늘 기록' 탭
-class CatDetailPostFragment : Fragment() {
+class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layout.fragment_cat_detail_post) {
     lateinit var postAdapter: CatDetailPostAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentCatDetailPostBinding.inflate(inflater, container, false)
-        val view = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
 
         // 게시글 가져오기
+        getPosts()
+        // EditText 입력 시 스크롤 하면 EditText 내용 스크롤되게
+        setEditTextScroll()
+        // '게시' 버튼 클릭: 서버에 게시글 데이터 전달
+        postPost()
+    }
+
+    private fun getPosts() {
         postAdapter = CatDetailPostAdapter(parentFragmentManager)
         binding.rcPost.adapter = postAdapter
         postAdapter.posts.add(CatPost("서울우유좋아", "15분 전", "아침 일찍 일어나 우유 주고 왔습니다. 아 물론 고양이 우유입니다."))
@@ -37,11 +38,9 @@ class CatDetailPostFragment : Fragment() {
         postAdapter.posts.add(CatPost("테스트3", "11분 전", "테스트입니다."))
         postAdapter.posts.add(CatPost("테스트4", "10분 전", "테스트입니다."))
         postAdapter.notifyDataSetChanged()
+    }
 
-        // EditText 입력 시 스크롤 하면 EditText 내용 스크롤되게
-        setEditTextScroll()
-
-        // '게시' 버튼 클릭: 서버에 게시글 데이터 전달
+    private fun postPost() {
         binding.btnPost.setOnClickListener {
             // 내용 없을 시 반환
             if (binding.editPost.text.isEmpty()) {
@@ -51,8 +50,6 @@ class CatDetailPostFragment : Fragment() {
             // 게시글 생성
             createPost()
         }
-
-        return view
     }
 
     // 게시글 생성
@@ -79,10 +76,5 @@ class CatDetailPostFragment : Fragment() {
             }
             false
         })
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }
