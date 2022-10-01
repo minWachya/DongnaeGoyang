@@ -1,9 +1,7 @@
 package com.example.dongnaegoyang.ui.cat_add
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.Spinner
@@ -16,128 +14,70 @@ import com.example.dongnaegoyang.common.CustomCatArr.arrImgSize
 import com.example.dongnaegoyang.common.CustomCatArr.arrImgTail
 import com.example.dongnaegoyang.common.CustomCatArr.arrImgWhisker
 import com.example.dongnaegoyang.databinding.FragmentCatAdd1Binding
+import com.example.dongnaegoyang.ui.base.BaseFragment
 
 private const val TAG = "mmmCatAddFragment1"
 
-private var _binding: FragmentCatAdd1Binding? = null
-private val binding get() = _binding!!
-
 // 고양이 추가: 1단계 프레그먼드
-class CatAddFragment1 : Fragment() {
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentCatAdd1Binding.inflate(inflater, container, false)
-        val view = binding.root
-        // 고양이 생김새 스피너: 몸집, 코숏, 귀, 꼬리, 수염
-        val spinnerCatSize = binding.spinnerCatSize
-        val spinnerCatFur = binding.spinnerCatFur
-        val spinnerCatEar = binding.spinnerCatEar
-        val spinnerCatTail = binding.spinnerCatTail
-        val spinnerCatWhisker = binding.spinnerCatWhiskers
-        // 고양이 생김새 스피너 배열 최대 갤이                   // !! hint는 배열의 맨 마지막 아이템임!!
-        val maxSize = spinnerCatSize.adapter.count-1
-        val maxFur = spinnerCatFur.adapter.count-1
-        val maxEar = spinnerCatEar.adapter.count-1
-        val maxTail = spinnerCatTail.adapter.count-1
-        val maxWhisker = spinnerCatWhisker.adapter.count-1
+class CatAddFragment1 : BaseFragment<FragmentCatAdd1Binding>(R.layout.fragment_cat_add1) {
+    // 고양이 생김새 스피너 배열 최대 길이, !! hint는 배열의 맨 마지막 아이템임!!
+    var maxSize: Int = 0
+    var maxFur: Int = 0
+    var maxEar: Int = 0
+    var maxTail: Int = 0
+    var maxWhisker: Int = 0
 
-        // 툴바 달기
-        (activity as CatAddActivity).setSupportActionBar(binding.toolBar)
-        (activity as CatAddActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
 
-        // 고양이 커스텀: 왼쪽, 오른쪽 화살표 버튼 리스너: 기본 position 위해 -1, 맨 마지막에 있는 hint 제외하기 위헤 -1 = -2
-        setBtnListener(spinnerCatSize.adapter.count-2, binding.imgViewSizeLeft, binding.imgViewSizeRight, spinnerCatSize)
-        setBtnListener(spinnerCatFur.adapter.count-2, binding.imgViewFurLeft, binding.imgViewFurRight, spinnerCatFur)
-        setBtnListener(spinnerCatEar.adapter.count-2, binding.imgViewEarLeft, binding.imgViewEarRight, spinnerCatEar)
-        setBtnListener(spinnerCatTail.adapter.count-2, binding.imgViewTailLeft, binding.imgViewTailRight, spinnerCatTail)
-        setBtnListener(spinnerCatWhisker.adapter.count-2, binding.imgViewWhiskersLeft, binding.imgViewWhiskersRight, spinnerCatWhisker)
+        setToolbar()
+        setSpinnerMaxSize()
+        setBtnListeners()   // ◀, ▶화살표 버튼 리스너 달기
 
-        // 몸집 선택: arrImgSize[ear][size]: 몸집에 맞게 털 색 번경
-        spinnerCatSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == maxSize) return      // hint 넘기기
-                // 귀 미선택 시 코숏 색에 맞춘 귀 이미지로 변경
-                val earIndex = if(spinnerCatEar.selectedItemPosition == maxEar) 0 else spinnerCatEar.selectedItemPosition
-                binding.imgCatSize.setImageResource(arrImgSize[earIndex][position])       // 몸집
-                binding.imgCatFur.setImageResource(arrImgFur[position][spinnerCatFur.selectedItemPosition]) // 코숏
-                btnEnableCheck()
-            }
-        }
-        // 코숏 선택: arrImgFur[size][fur]: 털 색에 맞게 귀, 꼬리, 수염 색 변경
-        spinnerCatFur.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == maxFur) return      // hint 넘기기
-                binding.imgCatFur.setImageResource(arrImgFur[spinnerCatSize.selectedItemPosition][position])    // 코숏
-                // 귀 미선택 시 코숏 색에 맞춘 귀 이미지로 변경
-                val earIndex = if(spinnerCatEar.selectedItemPosition == maxEar) 0 else spinnerCatEar.selectedItemPosition
-                binding.imgCatEar.setImageResource(arrImgEar[position][earIndex])     // 귀
-                // 꼬리 미선택 시 코숏 색에 맞춘 꼬리 이미지로 변경
-                val tailIndex = if(spinnerCatTail.selectedItemPosition == maxTail) 0 else spinnerCatTail.selectedItemPosition
-                binding.imgCatTail.setImageResource(arrImgTail[position][tailIndex])  // 꼬리
-                // 수염 미선택 시 코숏 색에 맞춘 수염 이미지로 변경
-                val whiskerIndex = if(spinnerCatWhisker.selectedItemPosition == maxWhisker) 0 else spinnerCatWhisker.selectedItemPosition
-                binding.imgCatWhisker.setImageResource(arrImgWhisker[position][whiskerIndex])//수염
-                btnEnableCheck()
-            }
-        }
-        // 귀 모양 선택: arrImgEar[fur][ear]: 털 색에 맞게 귀 모양 변경 + 귀 모양에 맞게 몸집 모양 변경
-        spinnerCatEar.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == maxEar) return      // hint 넘기기
-                binding.imgCatEar.setImageResource(arrImgEar[spinnerCatFur.selectedItemPosition][position]) // 귀
-                // 몸집 미선택 시 기본 몸집 이미지로 변경
-                val sizeIndex = if(spinnerCatSize.selectedItemPosition == maxSize) 1 else spinnerCatSize.selectedItemPosition
-                binding.imgCatSize.setImageResource(arrImgSize[position][sizeIndex])       // 몸집
-                btnEnableCheck()
-            }
-        }
-        // 꼬리 모양 선택: arrImgTail[fur][tail]: 털 색에 맞게 꼬리 모양 변경
-        spinnerCatTail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == maxTail) return      // hint 넘기기
-                binding.imgCatTail.setImageResource(arrImgTail[spinnerCatFur.selectedItemPosition][position])
-                btnEnableCheck()
-            }
-        }
-        // 수염 선택: arrImgWhisker[fur][whisker]: 털 색에 맞게 수염 색 변경
-        spinnerCatWhisker.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {}
-            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                if (position == maxWhisker) return      // hint 넘기기
-                binding.imgCatWhisker.setImageResource(arrImgWhisker[spinnerCatFur.selectedItemPosition][position])
-                btnEnableCheck()
-            }
-        }
+        // 스피너 선택 리스너 달기
+        setSpinnerCatListener()         // 몸집
+        setSpinnerCatFurListener()      // 코숏
+        setSpinnerCatEarListener()      // 귀
+        setSpinnerCatTailListener()     // 꼬리
+        setSpinnerCatWhiskerListener()  // 수염
 
-        // 번들 없으면 생성, 있으면 기존 거 그대로 사용
-        val bundle1 = if (arguments == null) {
-            // 기본 선택 보이기
-            setDefaultCatInfo()
-            Bundle()
-        } else {
-            // 이전 선택 정보 보이기
-            setPrevInfo(arguments as Bundle)
-            arguments
-        }
-
+        // 이전에 선택했던 정보 있으면 보이기
+        isArgumentsExist()
 
         // 2단계로 이동
         binding.btnOK1.setOnClickListener {
-            setFrag(CatAddFragment2(), bundle1)
+            setFrag(CatAddFragment2(), arguments ?: Bundle())
         }
-
-        return view
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    private fun setSpinnerMaxSize() {
+        maxSize = binding.spinnerCatSize.adapter.count-1
+        maxFur = binding.spinnerCatFur.adapter.count-1
+        maxEar = binding.spinnerCatEar.adapter.count-1
+        maxTail = binding.spinnerCatTail.adapter.count-1
+        maxWhisker = binding.spinnerCatWhiskers.adapter.count-1
+    }
+
+    // 툴바 달기
+    private fun setToolbar() {
+        (activity as CatAddActivity).setSupportActionBar(binding.toolBar)
+        (activity as CatAddActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    //  ◀, ▶화살표 버튼 리스너 달기
+    private fun setBtnListeners() {
+        // 고양이 커스텀: 왼쪽, 오른쪽 화살표 버튼 리스너: 기본 position 위해 -1, 맨 마지막에 있는 hint 제외하기 위헤 -1 = -2
+        setBtnListener(binding.spinnerCatSize.adapter.count-2,
+            binding.imgViewSizeLeft, binding.imgViewSizeRight, binding.spinnerCatSize)
+        setBtnListener(binding.spinnerCatFur.adapter.count-2,
+            binding.imgViewFurLeft, binding.imgViewFurRight, binding.spinnerCatFur)
+        setBtnListener(binding.spinnerCatEar.adapter.count-2,
+            binding.imgViewEarLeft, binding.imgViewEarRight, binding.spinnerCatEar)
+        setBtnListener(binding.spinnerCatTail.adapter.count-2,
+            binding.imgViewTailLeft, binding.imgViewTailRight, binding.spinnerCatTail)
+        setBtnListener(binding.spinnerCatWhiskers.adapter.count-2,
+            binding.imgViewWhiskersLeft, binding.imgViewWhiskersRight, binding.spinnerCatWhiskers)
     }
 
     // 고양이 생김새 설정 버튼 리스너 달기
@@ -152,6 +92,85 @@ class CatAddFragment1 : Fragment() {
             num++
             if (num > max) num = 0
             spinner.setSelection(num)
+        }
+    }
+
+    // 몸집 선택: arrImgSize[ear][size]: 몸집에 맞게 털 색 번경
+    private fun setSpinnerCatListener() {
+        binding.spinnerCatSize.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == maxSize) return      // hint 넘기기
+                // 귀 미선택 시 코숏 색에 맞춘 귀 이미지로 변경
+                val earIndex = if(binding.spinnerCatEar.selectedItemPosition == maxEar) 0 else binding.spinnerCatEar.selectedItemPosition
+                binding.imgCatSize.setImageResource(arrImgSize[earIndex][position])       // 몸집
+                binding.imgCatFur.setImageResource(arrImgFur[position][binding.spinnerCatFur.selectedItemPosition]) // 코숏
+                btnEnableCheck()
+            }
+        }
+    }
+
+    // 코숏 선택: arrImgFur[size][fur]: 털 색에 맞게 귀, 꼬리, 수염 색 변경
+    private fun setSpinnerCatFurListener() {
+        binding.spinnerCatFur.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == maxFur) return      // hint 넘기기
+                binding.imgCatFur.setImageResource(arrImgFur[binding.spinnerCatSize.selectedItemPosition][position])    // 코숏
+                // 귀 미선택 시 코숏 색에 맞춘 귀 이미지로 변경
+                val earIndex = if(binding.spinnerCatEar.selectedItemPosition == maxEar) 0
+                                else binding.spinnerCatEar.selectedItemPosition
+                binding.imgCatEar.setImageResource(arrImgEar[position][earIndex])     // 귀
+                // 꼬리 미선택 시 코숏 색에 맞춘 꼬리 이미지로 변경
+                val tailIndex = if(binding.spinnerCatTail.selectedItemPosition == maxTail) 0
+                                else binding.spinnerCatTail.selectedItemPosition
+                binding.imgCatTail.setImageResource(arrImgTail[position][tailIndex])  // 꼬리
+                // 수염 미선택 시 코숏 색에 맞춘 수염 이미지로 변경
+                val whiskerIndex = if(binding.spinnerCatWhiskers.selectedItemPosition == maxWhisker) 0
+                                    else binding.spinnerCatWhiskers.selectedItemPosition
+                binding.imgCatWhisker.setImageResource(arrImgWhisker[position][whiskerIndex])//수염
+                btnEnableCheck()
+            }
+        }
+    }
+
+    // 귀 모양 선택: arrImgEar[fur][ear]: 털 색에 맞게 귀 모양 변경 + 귀 모양에 맞게 몸집 모양 변경
+    private fun setSpinnerCatEarListener() {
+        binding.spinnerCatEar.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == maxEar) return      // hint 넘기기
+                binding.imgCatEar.setImageResource(arrImgEar[binding.spinnerCatFur.selectedItemPosition][position]) // 귀
+                // 몸집 미선택 시 기본 몸집 이미지로 변경
+                val sizeIndex = if(binding.spinnerCatSize.selectedItemPosition == maxSize) 1
+                                else binding.spinnerCatSize.selectedItemPosition
+                binding.imgCatSize.setImageResource(arrImgSize[position][sizeIndex])       // 몸집
+                btnEnableCheck()
+            }
+        }
+    }
+
+    // 꼬리 모양 선택: arrImgTail[fur][tail]: 털 색에 맞게 꼬리 모양 변경
+    private fun setSpinnerCatTailListener() {
+        binding.spinnerCatTail.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == maxTail) return      // hint 넘기기
+                binding.imgCatTail.setImageResource(arrImgTail[binding.spinnerCatFur.selectedItemPosition][position])
+                btnEnableCheck()
+            }
+        }
+    }
+
+    // 수염 선택: arrImgWhisker[fur][whisker]: 털 색에 맞게 수염 색 변경
+    private fun setSpinnerCatWhiskerListener() {
+        binding.spinnerCatWhiskers.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(p0: AdapterView<*>?) {}
+            override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (position == maxWhisker) return      // hint 넘기기
+                binding.imgCatWhisker.setImageResource(arrImgWhisker[binding.spinnerCatFur.selectedItemPosition][position])
+                btnEnableCheck()
+            }
         }
     }
 
@@ -174,6 +193,13 @@ class CatAddFragment1 : Fragment() {
                 currentCatEar != maxCatEar && currentCatTail != maxCatTail && currentCatWhisker != maxCatWhisker
     }
 
+    // 이전에 선택했던 정보 있으면 보이기
+    private fun isArgumentsExist() {
+        // 기본 선택 보이기
+        if (arguments == null) setDefaultCatInfo()
+        // 이전 선택 정보 보이기
+        else setPrevInfo(arguments as Bundle)
+    }
     // 이전 정보 보여주기
     private fun setPrevInfo(bundle: Bundle) {
         val numSize = bundle.getInt("size") // 몸집
