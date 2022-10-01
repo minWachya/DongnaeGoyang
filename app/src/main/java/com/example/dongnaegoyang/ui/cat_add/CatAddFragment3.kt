@@ -5,9 +5,7 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
@@ -17,6 +15,7 @@ import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
+import com.example.dongnaegoyang.ui.base.BaseFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
@@ -25,11 +24,8 @@ import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 
 private const val TAG = "mmmCatAddFragment3"
 
-private var _binding: FragmentCatAdd3Binding? = null
-private val binding get() = _binding!!
-
 // 고양이 추가: 3단계 프레그먼드
-class CatAddFragment3 : Fragment() {
+class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_cat_add3) {
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
     private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
@@ -39,65 +35,59 @@ class CatAddFragment3 : Fragment() {
 
     private lateinit var photoAdapter: CatAddPhotoAdapter
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        _binding = FragmentCatAdd3Binding.inflate(inflater, container, false)
-        val view = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.lifecycleOwner = viewLifecycleOwner
 
         // 툴바 달기
-        (activity as CatAddActivity).setSupportActionBar(binding.toolBar)
-        (activity as CatAddActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        setToolbar()
 
         // TNR 선택 스피너 설정
+        setTNRSpinnerListener()
+        // 선호 사료 선택 스피너 설정
+        setFoodSpinnerListener()
+
+        // 사진 어댑터 설정
+        setPhotoAdapter()
+
+        // 이전 입력 정보 보여주기
+        setPrevInfo(arguments)
+
+        // 버튼 클릭 리스너
+        setBtnClickListeners()
+    }
+
+    // 툴바 달기
+    private fun setToolbar() {
+        (activity as CatAddActivity).setSupportActionBar(binding.toolBar)
+        (activity as CatAddActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    // TNR 선택 스피너 설정
+    private fun setTNRSpinnerListener() {
         val tnrBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
         val tnrBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         tnrArray = resources.getStringArray(R.array.cat_add3_tnr_array)
         tnrBottomSheetDialog.setContentView(tnrBottomSheetView)
         setBottomSheetView(tnrBottomSheetView, tnrArray, tnrBottomSheetDialog, binding.tnrSpinner)
         binding.tnrSpinner.textView.setOnClickListener { tnrBottomSheetDialog.show() }
+    }
 
-        // 선호 사료 선택 스피너 설정
+    // 선호 사료 선택 스피너 설정
+    private fun setFoodSpinnerListener() {
         val foodBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
         val foodBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         foodArray = resources.getStringArray(R.array.cat_add3_food_array)
         foodBottomSheetDialog.setContentView(foodBottomSheetView)
         setBottomSheetView(foodBottomSheetView, foodArray, foodBottomSheetDialog, binding.foodSpinner)
         binding.foodSpinner.textView.setOnClickListener { foodBottomSheetDialog.show() }
+    }
 
-        // 사진 어댑터 설정
+    // 사진 어댑터 설정
+    private fun setPhotoAdapter() {
         photoAdapter = CatAddPhotoAdapter(binding)
         binding.rcPhoto.adapter = photoAdapter
         setSelectPhoto()    // 사진 선택 설정
-
-        val bundle1 = arguments
-        // 이전 입력 정보 보여주기
-        setPrevInfo(bundle1)
-
-        // <이전> 버튼 클릭: 2단계로 이동
-        binding.btnBack.setOnClickListener { setFrag(CatAddFragment2(), bundle1) }
-
-        // <등록> 버튼 클릭: 고양이 정보 저장
-        binding.btnOK3.setOnClickListener {
-            // OK 버튼 클릭 시 해당 고양이 상세 페이지로 이동
-            val okListener: View.OnClickListener = View.OnClickListener {
-                val intent = Intent(context, CatDetailActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
-            }
-            // dialog 보이기
-            CustomDialog("등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?",
-                        null, okListener)
-                .show(parentFragmentManager, "CustomDialog")
-        }
-
-        return view
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 
     // 사진 선택 설정
@@ -163,6 +153,25 @@ class CatAddFragment3 : Fragment() {
                 photoAdapter.notifyDataSetChanged()
                 binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
             }
+        }
+    }
+
+    private fun setBtnClickListeners() {
+        // <이전> 버튼 클릭: 2단계로 이동
+        binding.btnBack.setOnClickListener { setFrag(CatAddFragment2(), arguments) }
+
+        // <등록> 버튼 클릭: 고양이 정보 저장
+        binding.btnOK3.setOnClickListener {
+            // OK 버튼 클릭 시 해당 고양이 상세 페이지로 이동
+            val okListener: View.OnClickListener = View.OnClickListener {
+                val intent = Intent(context, CatDetailActivity::class.java)
+                startActivity(intent)
+                activity?.finish()
+            }
+            // dialog 보이기
+            CustomDialog("등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?",
+                null, okListener)
+                .show(parentFragmentManager, "CustomDialog")
         }
     }
 

@@ -2,21 +2,22 @@ package com.example.dongnaegoyang.ui.cat_add
 
 import android.os.Bundle
 import android.view.MenuItem
-import androidx.appcompat.app.AppCompatActivity
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivityCatAddBinding
+import com.example.dongnaegoyang.ui.base.BaseActivity
 
 private const val TAG = "mmmCatAddActivity"
-private lateinit var binding: ActivityCatAddBinding
 
 // 고양이 추가 액티비티
-class CatAddActivity : AppCompatActivity() {
+class CatAddActivity :  BaseActivity<ActivityCatAddBinding>(R.layout.activity_cat_add) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCatAddBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
 
+        // FrameLayout 설정
+        setFrameLayout()
+    }
+
+    private fun setFrameLayout() {
         // FrameLayout 설정
         val ft = supportFragmentManager.beginTransaction() // 프래그먼트 관리하는 매니저
         ft.replace(R.id.catAddFrameLayout, CatAddFragment1()).commit()
