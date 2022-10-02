@@ -8,8 +8,10 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
+import com.example.dongnaegoyang.ui.base.BaseActivity
 import com.example.dongnaegoyang.ui.cat_detail_info.CatDetailInfoFragment
 import com.example.dongnaegoyang.ui.common.ViewModelFactory
 import com.google.android.material.tabs.TabLayoutMediator
@@ -17,43 +19,25 @@ import com.google.android.material.tabs.TabLayoutMediator
 private const val TAG = "mmmCatDetailActivity"
 
 // 고양이 상세 페이지
-class CatDetailActivity : AppCompatActivity() {
+class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activity_cat_detail) {
     private val viewModel: CatDetailViewModel by viewModels { ViewModelFactory(applicationContext) }
-    private lateinit var binding: ActivityCatDetailBinding
 
     // 정보, 오늘 기록 탭 text
     private val tabElement = arrayListOf("정보", "오늘 기록")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityCatDetailBinding.inflate(layoutInflater)
-        val view = binding.root
-        setContentView(view)
 
         setToolbar()    // 툴바 달기
         setCatDetail()  // 고양이 상세 정보 가져오기
 
         binding.tabTabLayout.bringToFront() // tabTabLayout을 앞으로 보내서 view1 뒤로 보내기
 
-        // 수정 버튼 클릭
-        if (true) binding.imgEdit.visibility = View.VISIBLE
-        binding.imgEdit.setOnClickListener {
-            // 고양이 수정하기 페이지로 이동
-            val intent = Intent(application, CatAddActivity::class.java)
-            startActivity(intent)
-        }
+        // TODO: 사용자 본인이 작성한 글에만 수정보튼 보이게, 지금은 누구나 보이게
+        setEditBtnClickListener()
 
         // 탭 어댑터 생성
-        val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
-        // 프레그먼트, 탭 타이틀 넣기
-        tabAdapter.addFragment(CatDetailInfoFragment())        // 정보
-        tabAdapter.addFragment(CatDetailPostFragment())        // 오늘 기록
-        binding.tabViewPager.adapter = tabAdapter
-        // 탭레이아웃에 뷰 페이저 달기
-        TabLayoutMediator(binding.tabTabLayout, binding.tabViewPager) { tab, position ->
-            tab.text = tabElement[position]
-        }.attach()
-        binding.tabViewPager.isUserInputEnabled = false // auto paging off
+        setTapLayout()
 
     }
 
@@ -66,6 +50,28 @@ class CatDetailActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)   // 뒤로가기
         supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 없애기
+    }
+
+    private fun setEditBtnClickListener() {
+        if (true) binding.imgEdit.visibility = View.VISIBLE
+        binding.imgEdit.setOnClickListener {
+            // 고양이 수정하기 페이지로 이동
+            val intent = Intent(application, CatAddActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+    private fun setTapLayout() {
+        val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
+        // 프레그먼트, 탭 타이틀 넣기
+        tabAdapter.addFragment(CatDetailInfoFragment())        // 정보
+        tabAdapter.addFragment(CatDetailPostFragment())        // 오늘 기록
+        binding.tabViewPager.adapter = tabAdapter
+        // 탭레이아웃에 뷰 페이저 달기
+        TabLayoutMediator(binding.tabTabLayout, binding.tabViewPager) { tab, position ->
+            tab.text = tabElement[position]
+        }.attach()
+        binding.tabViewPager.isUserInputEnabled = false // auto paging off
     }
 
     // 텝 어댑터

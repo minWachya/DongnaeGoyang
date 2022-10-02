@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:padding="20dp">
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:menu="@menu/main_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.navigation.NavigationView>
+
+    <!--<TextView
+        android:id = "@+id/btn_notice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sidebar_notice"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:textSize="14sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="4dp" />
+    <TextView
+        android:id = "@+id/btn_setting"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sidebar_setting"
+        android:fontFamily="@font/spoqa_han_sans_neo_medium"
+        android:textSize="14sp"
+        app:layout_constraintTop_toBottomOf="@+id/btn_notice"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="20dp"/>-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>

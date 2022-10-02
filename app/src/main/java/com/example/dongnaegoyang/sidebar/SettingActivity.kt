@@ -1,23 +1,21 @@
-package com.example.dongnaegoyang.cat_search
+package com.example.dongnaegoyang.sidebar
 
 import android.os.Bundle
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.databinding.ActivitySearchCatBinding
-import com.example.dongnaegoyang.databinding.FragmentSearchCatBinding
+import com.example.dongnaegoyang.databinding.ActivitySettingBinding
+import com.example.dongnaegoyang.databinding.FragmentSettingBinding
 
-private const val TAG = "mmmCatSearchFragment"
-
-private var _binding: FragmentSearchCatBinding? = null
+private var _binding: FragmentSettingBinding? = null
 private val binding get() = _binding!!
 
-class SearchCatActivity : AppCompatActivity() {
-    private lateinit var binding: ActivitySearchCatBinding
+class SettingActivity : AppCompatActivity() {
+    private lateinit var binding: ActivitySettingBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySearchCatBinding.inflate(layoutInflater)
+        binding = ActivitySettingBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
 
@@ -27,7 +25,7 @@ class SearchCatActivity : AppCompatActivity() {
 
         // FrameLayout 설정
         val ft = supportFragmentManager.beginTransaction()
-        ft.replace(R.id.searchCatFrame, SearchCatFragment()).commit()
+        ft.replace(R.id.settingFrame, SettingFragment()).commit()
     }
 
     // 툴바에서 버튼 클릭 시

@@ -31,7 +31,7 @@ class AddressAdapter(val itemList: ArrayList<AddressList>, val mContext: Context
         holder.itemView.setOnClickListener {
             itemClickListener.onClick(it, position)
             //홈에서 온 경우
-            if(from == null){ //TODO : 홈에서 왔음을 의미하는 값 사용하세요~
+            if(from == "home"){ //TODO : 홈에서 왔음을 의미하는 값 사용하세요~
                 val intent = Intent(holder.itemView?.context, MainActivity::class.java)
                 intent.putExtra("gu", itemList[position].gu)
                 intent.putExtra("dong", itemList[position].dong)

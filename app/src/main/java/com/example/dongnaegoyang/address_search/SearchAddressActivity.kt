@@ -1,7 +1,5 @@
 package com.example.dongnaegoyang.address_search
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
@@ -11,8 +9,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dongnaegoyang.databinding.ActivitySearchAddressBinding
-import com.example.dongnaegoyang.home.MainActivity
-import com.example.dongnaegoyang.login.LoginActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -136,10 +132,7 @@ class SearchAddressActivity : AppCompatActivity() {
     // 툴바에서 뒤로가기 버튼 클릭 시
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when(item.itemId) {
-            android.R.id.home -> {  // 뒤로가기 이모지(<-) 클릭
-                Toast.makeText(applicationContext, "뒤로가기 클릭", Toast.LENGTH_SHORT).show()
-                return true
-            }
+            android.R.id.home -> finish()
         }
         return super.onOptionsItemSelected(item)
     }

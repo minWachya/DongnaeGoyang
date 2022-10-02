@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -15,11 +16,13 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.address_search.SearchAddressActivity
-import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
-import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
 import com.example.dongnaegoyang.login.LoginActivity
+import com.example.dongnaegoyang.sidebar.NoticeActivity
+import com.example.dongnaegoyang.sidebar.SettingActivity
+import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
+import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.google.android.material.tabs.TabLayout
 
 class MainActivity : AppCompatActivity() {
@@ -62,7 +65,7 @@ class MainActivity : AppCompatActivity() {
         adapter.items.add(CatList(0, 1, 0, 0, 1, "치즈2", "치즈"))
         adapter.items.add(CatList(3, 1, 0, 1, 1, "삼색이2", "카오스"))
 
-        if(intent.hasExtra("gu")){
+        if(intent.hasExtra("dong")){
             //binding.tvGu.text=intent.getStringExtra("gu")
             binding.tvDong.text=intent.getStringExtra("dong")
         }
@@ -71,6 +74,7 @@ class MainActivity : AppCompatActivity() {
         binding.tabs.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 Log.e("TAG", "${tab!!.position}")
+                layoutManager.scrollToPositionWithOffset(0,20)
                 when(tab.position){
                     0 ->{
                         adapter.filter.filter("")
@@ -106,17 +110,26 @@ class MainActivity : AppCompatActivity() {
 
         binding.mainNavigationView.setNavigationItemSelectedListener { item ->
             when(item.itemId){
-                R.id.btn_notice-> Toast.makeText(this,"공지사항 클릭", Toast.LENGTH_SHORT).show()
-                R.id.btn_customer_service-> Toast.makeText(this,"고객지원 클릭", Toast.LENGTH_SHORT).show()
-                R.id.btn_setting-> Toast.makeText(this,"설정 클릭", Toast.LENGTH_SHORT).show()
+                R.id.btn_notice-> {
+                    var intent = Intent(this@MainActivity, NoticeActivity::class.java)
+                    startActivity(intent)
+                }
+                R.id.btn_setting-> {
+                    var intent = Intent(this@MainActivity, SettingActivity::class.java)
+                    startActivity(intent)
+                }
             }
             true
         }
 
         // 지역 출력되는 칸 누르면 search address 페이지로 이동
         binding.layoutAddress.setOnClickListener {
-            var intent = Intent(this@MainActivity, SearchAddressActivity::class.java)
-            startActivity(intent)
+            val addressIntent = Intent(applicationContext, SearchAddressActivity::class.java)
+            addressIntent.putExtra("from", "home")
+            /*resultLauncher.launch(addressIntent)*/
+            startActivity(addressIntent)
+            /*var intent = Intent(this@MainActivity, SearchAddressActivity::class.java)
+            startActivity(intent)*/
         }
 
         // expandable 사료 배급 전 확인
@@ -129,6 +142,12 @@ class MainActivity : AppCompatActivity() {
                 //binding.linearLayout1.animate().setDuration(200)
             }
         }
+
+        binding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                binding.recyclerView.animation = AnimationUtils.loadAnimation(binding.recyclerView.context, R.anim.slide_up)
+            }
+        })
 
         // floating button
         binding.btnAddCat.setOnClickListener { view ->
