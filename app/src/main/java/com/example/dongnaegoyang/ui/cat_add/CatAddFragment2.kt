@@ -9,16 +9,23 @@ import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 import com.example.dongnaegoyang.ui.base.BaseFragment
+import com.example.dongnaegoyang.ui.search_address_add.SearchAddressActivity
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "mmmCatAddFragment2"
 
+// SearchAddressActivity 에서 값 받아오기 위한 인터페이스
+interface GetAddressInterface {
+    fun getAddress(si: String, gu: String, dong: String)
+}
+
 // 고양이 추가: 2단계 프레그먼드
-class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_cat_add2) {
+@AndroidEntryPoint
+class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_cat_add2), GetAddressInterface {
     // 동네, 이름, 주 출몰지, 특이사항 입력 여부
     private var checkTown = false
     private var checkName = false
@@ -68,11 +75,11 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
 
     // 동네 설정 리스너
     private fun setTownListener() {
-//        binding.tvTown.setOnClickListener {
-//            val addressIntent = Intent(requireActivity(), SearchAddressActivity::class.java)
-//            addressIntent.putExtra("from", "add")
-//            startActivity(addressIntent)
-//        }
+        binding.tvTown.setOnClickListener {
+            val addressIntent = Intent(requireActivity(), SearchAddressActivity::class.java)
+            addressIntent.putExtra("from", "add")
+            startActivity(addressIntent)
+        }
     }
 
     // 모든 정보 입력했는지 확인
@@ -185,6 +192,10 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         // 프레그먼트에 정보 전달 + 이동
         val transaction = requireActivity().supportFragmentManager.beginTransaction()
         transaction.replace(R.id.catAddFrameLayout, catAddFragment).commit()
+    }
+
+    override fun getAddress(si: String, gu: String, dong: String) {
+        Log.d(TAG, "$si, $gu, $dong")
     }
 
 }

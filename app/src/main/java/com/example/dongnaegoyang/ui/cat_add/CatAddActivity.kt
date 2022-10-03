@@ -5,10 +5,12 @@ import android.view.MenuItem
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.databinding.ActivityCatAddBinding
 import com.example.dongnaegoyang.ui.base.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "mmmCatAddActivity"
 
 // 고양이 추가 액티비티
+@AndroidEntryPoint
 class CatAddActivity :  BaseActivity<ActivityCatAddBinding>(R.layout.activity_cat_add) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

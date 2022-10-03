@@ -3,6 +3,7 @@
     package="com.example.dongnaegoyang">
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- 외부에서 사진 가져오기 -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <!-- 인터넷 사용 권한 설정 -->
     <!-- 사용자 갤러리에서 사진 가져오기 -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -19,7 +20,7 @@
     </queries>
 
     <application
-        android:name=".login.kakaoLogin.InitApplication"
+        android:name=".MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/ic_app_logo"
         android:label="@string/app_name"
@@ -87,6 +88,10 @@
             android:name=".home.MainActivity"
             android:exported="false"
             android:label="메인 화면" />
+        <activity
+            android:name=".ui.search_address_add.SearchAddressActivity"
+            android:exported="false"
+            android:label="고양이 추가: 동네 검색 화면" />
         <activity
             android:name=".splash.SplashActivity"
             android:exported="true"
