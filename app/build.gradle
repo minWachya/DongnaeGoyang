@@ -5,6 +5,11 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def accessKey = properties.getProperty('access.key')
+def secretAccessKey = properties.getProperty('secret.access.key')
+
 android {
     compileSdk 32
 
@@ -16,6 +21,9 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        resValue "string", "access_key", accessKey
+        resValue "string", "secret_access_key", secretAccessKey
     }
 
     buildTypes {
@@ -79,6 +87,13 @@ dependencies {
     implementation 'com.amazonaws:aws-android-sdk-mobile-client:2.13.5'
     implementation 'com.amazonaws:aws-android-sdk-cognito:2.13.5'
     implementation 'com.amazonaws:aws-android-sdk-s3:2.13.5'
+
+    //RxAndroid, RxJava, RxKotlin
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation 'com.jakewharton.rxbinding3:rxbinding:3.1.0'
+    implementation 'com.uniquext.android:rxlifecycle:2.0.0'
 
 
 }
