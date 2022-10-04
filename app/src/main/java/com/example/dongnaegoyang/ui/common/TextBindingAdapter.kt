@@ -1,5 +1,6 @@
 package com.example.dongnaegoyang.ui.common
 
+import android.view.View
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.example.dongnaegoyang.R
@@ -19,4 +20,10 @@ fun applyTNR(view: TextView, index: Int) {
 fun applyFeed(view: TextView, index: Int) {
     val arrFeed = view.context.resources.getStringArray(R.array.cat_add3_food_array)
     view.text = arrFeed[index].toString()
+}
+
+// 주소 검색: address2, 3 존재 여부에 따른 > visibility 변경
+@BindingAdapter("isExistAddress")
+fun isExistAddress(view: TextView, text: String?) {
+    view.visibility = if (!text.isNullOrEmpty()) View.VISIBLE else View.INVISIBLE
 }
