@@ -27,7 +27,6 @@ class SearchAddressViewModel @Inject constructor(
             repository.getAddressList(query, page, size, apikey)
         }.onSuccess {
             _addressResponse.value = it
-            Log.d("mmm", it.toString())
         }.onFailure {
             Log.d("mmm", "get address add api fail ${it.message}")
         }
