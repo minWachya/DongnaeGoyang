@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="address"
+            type="com.example.dongnaegoyang.data.local.Address" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv_location"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="22dp"
+            android:src="@drawable/ic_location_pin"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_address1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{address.addressInfo.address1}"
+            android:textColor="@color/black_473A22"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_location"
+            app:layout_constraintStart_toEndOf="@id/iv_location"
+            app:layout_constraintTop_toTopOf="@+id/iv_location"
+            tools:text="경기도" />
+
+        <TextView
+            android:id="@+id/tv_arrow1"
+            isExistAddress="@{address.addressInfo.address2}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="&gt;"
+            android:textColor="@color/gray_BBB5A4"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_address1"
+            app:layout_constraintStart_toEndOf="@+id/tv_address1"
+            app:layout_constraintTop_toTopOf="@+id/tv_address1" />
+
+        <TextView
+            android:id="@+id/tv_address2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{address.addressInfo.address2}"
+            android:textColor="@color/black_473A22"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_arrow1"
+            app:layout_constraintStart_toEndOf="@id/tv_arrow1"
+            app:layout_constraintTop_toTopOf="@+id/tv_arrow1"
+            tools:text="경기도" />
+
+        <TextView
+            android:id="@+id/tv_arrow2"
+            isExistAddress="@{address.addressInfo.address3}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="&gt;"
+            android:textColor="@color/gray_BBB5A4"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@id/tv_address2"
+            app:layout_constraintStart_toEndOf="@+id/tv_address2"
+            app:layout_constraintTop_toTopOf="@+id/tv_address2" />
+
+        <TextView
+            android:id="@+id/tv_address3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="@{address.addressInfo.address3}"
+            android:textColor="@color/black_473A22"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_arrow2"
+            app:layout_constraintStart_toEndOf="@id/tv_arrow2"
+            app:layout_constraintTop_toTopOf="@+id/tv_arrow2"
+            tools:text="경기도" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:background="@color/gray_F6F3E9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

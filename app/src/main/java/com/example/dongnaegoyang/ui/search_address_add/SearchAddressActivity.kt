@@ -1,33 +1,19 @@
 package com.example.dongnaegoyang.ui.search_address_add
 
-import com.example.dongnaegoyang.address_search.AddressAdapter
-import com.example.dongnaegoyang.address_search.AddressList
-import com.example.dongnaegoyang.address_search.KakaoAPI
-import com.example.dongnaegoyang.address_search.ResultSearchKeyword
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.databinding.ActivitySearchAddressBinding
+import com.example.dongnaegoyang.databinding.ActivitySearchAddressAddBinding
 import com.example.dongnaegoyang.ui.base.BaseActivity
-import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import dagger.hilt.android.AndroidEntryPoint
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
 
-private const val TAG = "mmmAddressSearchActivity"
+private const val TAG = "mmmAddressSearchActivityAdd"
 
 @AndroidEntryPoint
-class SearchAddressActivity : BaseActivity<ActivitySearchAddressBinding>(R.layout.activity_search_address) {
+class SearchAddressActivity : BaseActivity<ActivitySearchAddressAddBinding>(R.layout.activity_search_address_add) {
     private val viewModel: SearchAddressViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +26,10 @@ class SearchAddressActivity : BaseActivity<ActivitySearchAddressBinding>(R.layou
 
     private fun setObserveAddress() {
         viewModel.addressResponse.observe(this) { response ->
+            binding.rvAddress.adapter =
+                AddressAdapter().apply {
+                    submitList(response.documents)
+                }
             Log.d("mmm", response.toString())
         }
 
