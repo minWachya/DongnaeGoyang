@@ -1,31 +1,40 @@
 package com.example.dongnaegoyang.ui.cat_add
 
 import android.app.Activity
-import android.content.Intent
+import android.database.Cursor
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.example.dongnaegoyang.ui.base.BaseFragment
+import com.example.dongnaegoyang.ui.common.MultiUploaderS3Client
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
 import com.sangcomz.fishbun.MimeType
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
+import dagger.hilt.android.AndroidEntryPoint
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
+import java.io.File
+
 
 private const val TAG = "mmmCatAddFragment3"
 
 // 고양이 추가: 3단계 프레그먼드
+@AndroidEntryPoint
 class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_cat_add3) {
+    private val viewModel: CatAddViewModel by viewModels()
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
     private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
@@ -39,22 +48,26 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        // 툴바 달기
         setToolbar()
-
         // TNR 선택 스피너 설정
         setTNRSpinnerListener()
         // 선호 사료 선택 스피너 설정
         setFoodSpinnerListener()
-
         // 사진 어댑터 설정
         setPhotoAdapter()
-
         // 이전 입력 정보 보여주기
         setPrevInfo(arguments)
-
         // 버튼 클릭 리스너
         setBtnClickListeners()
+        // 2. s3 업로드 후 고양이 정보 저장하기
+        setObserverS3Url()
+    }
+
+    // 2. s3 업로드 후 고양이 정보 저장하기
+    private fun setObserverS3Url() {
+        viewModel.arrS3Url.observe(viewLifecycleOwner) {
+            Log.d("mmm", "dd")
+        }
     }
 
     // 툴바 달기
@@ -160,13 +173,20 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         // <이전> 버튼 클릭: 2단계로 이동
         binding.btnBack.setOnClickListener { setFrag(CatAddFragment2(), arguments) }
 
-        // <등록> 버튼 클릭: 고양이 정보 저장
+        // <등록> 버튼 클릭: 1. 고양이 사진 저장 2. 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            // OK 버튼 클릭 시 해당 고양이 상세 페이지로 이동
+            // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
             val okListener: View.OnClickListener = View.OnClickListener {
-                val intent = Intent(context, CatDetailActivity::class.java)
-                startActivity(intent)
-                activity?.finish()
+                val multiUploadHashMap = linkedMapOf<String,File>()
+                for(i in 0 until photoAdapter.imgUris.size) {
+                    Log.d("mmm", photoAdapter.imgUris.toString())
+                    val path = getRealPathFromURI(photoAdapter.imgUris[i]).toString()
+                    Log.d("mmm url", path)
+                    val file = File(path)
+                    multiUploadHashMap[file.name] = file
+                    Log.d("mmm1", file.toString())
+                }
+                uploadImageToS3(multiUploadHashMap)
             }
             // dialog 보이기
             CustomDialog("등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?",
@@ -174,6 +194,30 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                 .show(parentFragmentManager, "CustomDialog")
         }
     }
+
+
+    private fun getRealPathFromURI(contentUri: Uri): String? {
+        val cursor = requireContext().contentResolver.query(contentUri, null, null, null, null)
+        cursor?.moveToNext()
+        val path = cursor?.getString(cursor.getColumnIndex("_data"))
+        cursor?.close()
+        return path
+    }
+
+
+    private fun uploadImageToS3(map: LinkedHashMap<String, File>) {
+        RxJavaPlugins.setErrorHandler { Log.w("APP#", it) }
+
+        MultiUploaderS3Client(
+            "cat-img/add",
+            requireContext(),
+            viewModel
+        ).uploadMultiple(map)
+            ?.subscribeOn(Schedulers.io())
+            ?.observeOn(Schedulers.io())
+            ?.subscribe()
+    }
+
 
     // 프레그먼트 이동
     private fun setFrag(catAddFragment: Fragment, bundle: Bundle?) {
