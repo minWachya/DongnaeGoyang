@@ -1,23 +1,28 @@
 package com.example.dongnaegoyang.ui.cat_add
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 import com.example.dongnaegoyang.ui.base.BaseFragment
+import com.example.dongnaegoyang.ui.search_address_add.SearchAddressActivity
+import com.example.dongnaegoyang.ui.search_address_add.SelectAddressInterface
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "mmmCatAddFragment2"
 
 // 고양이 추가: 2단계 프레그먼드
+@AndroidEntryPoint
 class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_cat_add2) {
     // 동네, 이름, 주 출몰지, 특이사항 입력 여부
     private var checkTown = false
@@ -32,14 +37,21 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
     private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
+    // 주소 검색 Activity 이동 후 결과
+    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val intent = result.data
+            val address1 = intent?.getStringExtra("address1").toString()
+            val address2 = intent?.getStringExtra("address2").toString()
+            binding.tvTown.text = "$address1 $address2"
+            checkTown = true
+            btnEnableCheck()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
-
-        if(requireActivity().intent.hasExtra("dong")){
-            val text = requireActivity().intent.getStringExtra("dong").toString()
-            Log.d(TAG, text)
-        }
 
         // 툴바 달기
         setToolbar()
@@ -47,17 +59,15 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         setTownListener()
         // 입력 확인
         checkAllInputText()
-
         // 성별 선택 스피너 설정
         setGenderSpinnerListener()
         // 추정 나이 선택 스피너 설정
         setAgeSpinnerListener()
-
         // 이전 선택 정보 보여주기
         setPrevInfo(arguments)
-
         // 버튼 클릭 리스너
         setBtnClickListeners()
+
     }
 
     // 툴바 달기
@@ -68,11 +78,9 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
 
     // 동네 설정 리스너
     private fun setTownListener() {
-//        binding.tvTown.setOnClickListener {
-//            val addressIntent = Intent(requireActivity(), SearchAddressActivity::class.java)
-//            addressIntent.putExtra("from", "add")
-//            startActivity(addressIntent)
-//        }
+        binding.tvTown.setOnClickListener {
+            startForResult.launch(Intent(requireActivity(), SearchAddressActivity::class.java))
+        }
     }
 
     // 모든 정보 입력했는지 확인
@@ -95,7 +103,7 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
     }
     // 모두 입력 시 버튼 활성화
     private fun btnEnableCheck() {
-        binding.btnOK2.isEnabled = checkName && checkPlace && checkNote
+        binding.btnOK2.isEnabled = checkTown && checkName && checkPlace && checkNote
                 && binding.genderSpinner.textView.text.isNotEmpty() && binding.ageSpinner.textView.text.isNotEmpty()
     }
 
