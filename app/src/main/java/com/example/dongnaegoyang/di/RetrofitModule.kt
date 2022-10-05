@@ -16,8 +16,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
-    private const val BASE_URL = "https://dapi.kakao.com/"
-    private const val API_KEY = "KakaoAK f6eaecbdb5d9cf01733801873c619e45"  // REST API 키
+    private const val ADDRESS_URL = "https://dapi.kakao.com/"
+    private const val BASE_URL = "http://3.36.144.189/"
 
     @Singleton
     @Provides
@@ -29,6 +29,17 @@ object RetrofitModule {
             .build()
 
     @Provides
+    @Named("Address")
+    @Singleton
+    fun providesAddressRetrofit(okHttpClient: OkHttpClient): Retrofit =
+        Retrofit.Builder()
+            .baseUrl(ADDRESS_URL)
+            .client(okHttpClient)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+    @Provides
+    @Named("Base")
     @Singleton
     fun providesRetrofit(okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()

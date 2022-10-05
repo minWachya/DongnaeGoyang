@@ -1,11 +1,13 @@
 package com.example.dongnaegoyang.di
 
 import com.example.dongnaegoyang.data.remote.service.AddressService
+import com.example.dongnaegoyang.data.remote.service.CatService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
+import javax.inject.Named
 import javax.inject.Singleton
 
 @Module
@@ -13,6 +15,11 @@ import javax.inject.Singleton
 object RetrofitServiceModule {
     @Provides
     @Singleton
-    fun provideAddressService(retrofit: Retrofit): AddressService =
+    fun provideAddressService(@Named("Address") retrofit: Retrofit): AddressService =
         retrofit.create(AddressService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideCatService(@Named("Base") retrofit: Retrofit): CatService =
+        retrofit.create(CatService::class.java)
 }

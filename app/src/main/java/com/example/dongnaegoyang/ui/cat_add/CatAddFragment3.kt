@@ -9,12 +9,14 @@ import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
+import com.example.dongnaegoyang.data.remote.model.request.CatAddRequest
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.example.dongnaegoyang.ui.base.BaseFragment
 import com.example.dongnaegoyang.ui.common.MultiUploaderS3Client
@@ -35,8 +37,10 @@ private const val TAG = "mmmCatAddFragment3"
 @AndroidEntryPoint
 class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_cat_add3) {
     private val viewModel: CatAddViewModel by viewModels()
+
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
-    private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
+    private val arrTextViewId =
+        listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     // TNR, 선호 사료 배열
     private lateinit var tnrArray: Array<String>
@@ -61,13 +65,8 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         setBtnClickListeners()
         // 2. s3 업로드 후 고양이 정보 저장하기
         setObserverS3Url()
-    }
-
-    // 2. s3 업로드 후 고양이 정보 저장하기
-    private fun setObserverS3Url() {
-        viewModel.arrS3Url.observe(viewLifecycleOwner) {
-            Log.d("mmm", "dd")
-        }
+        // 고양이 추가 옵저버
+        setObserverCatAddResponse()
     }
 
     // 툴바 달기
@@ -92,7 +91,12 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         val foodBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         foodArray = resources.getStringArray(R.array.cat_add3_food_array)
         foodBottomSheetDialog.setContentView(foodBottomSheetView)
-        setBottomSheetView(foodBottomSheetView, foodArray, foodBottomSheetDialog, binding.foodSpinner)
+        setBottomSheetView(
+            foodBottomSheetView,
+            foodArray,
+            foodBottomSheetDialog,
+            binding.foodSpinner
+        )
         binding.foodSpinner.textView.setOnClickListener { foodBottomSheetDialog.show() }
     }
 
@@ -106,21 +110,22 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     // 사진 선택 설정
     private fun setSelectPhoto() {
         // 사진 설정 부분
-        val photoResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
-                val data = result.data
-                if (data != null) {
-                    // 이전 데이터 삭제
-                    photoAdapter.imgUris.clear()
-                    // 새 데이터 저장
-                    val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
-                    for (uri in photoUriArr) photoAdapter.imgUris.add(uri)
-                    photoAdapter.notifyDataSetChanged()
+        val photoResultLauncher =
+            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                if (result.resultCode == Activity.RESULT_OK) {
+                    val data = result.data
+                    if (data != null) {
+                        // 이전 데이터 삭제
+                        photoAdapter.imgUris.clear()
+                        // 새 데이터 저장
+                        val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+                        for (uri in photoUriArr) photoAdapter.imgUris.add(uri)
+                        photoAdapter.notifyDataSetChanged()
+                    }
+                    // 사진 갯수
+                    binding.tvSelectCount.text = photoAdapter.itemCount.toString()
                 }
-                // 사진 갯수
-                binding.tvSelectCount.text = photoAdapter.itemCount.toString()
             }
-        }
         binding.layoutSelectPhoto.setOnClickListener {
             FishBun.with(this@CatAddFragment3)
                 .setImageAdapter(GlideAdapter())
@@ -135,7 +140,12 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     }
 
     // 스피너 선택 설정
-    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: CustomSpinnerTextView) {
+    private fun setBottomSheetView(
+        bottomSheetView: View,
+        arr: Array<String>,
+        dialog: BottomSheetDialog,
+        spinner: CustomSpinnerTextView
+    ) {
         for (i in arr.indices) {
             val textView = bottomSheetView.findViewById<TextView>(arrTextViewId[i])
             textView.text = arr[i]
@@ -157,10 +167,11 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         if (bundle?.getInt("tnr") != null) {
             val tnr = bundle.getInt("tnr", -1)    // TNR
             val food = bundle.getInt("food", -1)  // 선호 사료
-            if(tnr != -1) binding.tnrSpinner.textView.text = tnrArray[tnr]
-            if(food != -1) binding.foodSpinner.textView.text = foodArray[food]
+            if (tnr != -1) binding.tnrSpinner.textView.text = tnrArray[tnr]
+            if (food != -1) binding.foodSpinner.textView.text = foodArray[food]
             // 사진
-            val photoUriArr = bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+            val photoUriArr =
+                bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
             if (photoUriArr != null) {
                 for (uri in photoUriArr) photoAdapter.imgUris.add(uri as Uri)
                 photoAdapter.notifyDataSetChanged()
@@ -177,20 +188,19 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         binding.btnOK3.setOnClickListener {
             // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
             val okListener: View.OnClickListener = View.OnClickListener {
-                val multiUploadHashMap = linkedMapOf<String,File>()
-                for(i in 0 until photoAdapter.imgUris.size) {
-                    Log.d("mmm", photoAdapter.imgUris.toString())
+                val multiUploadHashMap = linkedMapOf<String, File>()
+                for (i in 0 until photoAdapter.imgUris.size) {
                     val path = getRealPathFromURI(photoAdapter.imgUris[i]).toString()
-                    Log.d("mmm url", path)
                     val file = File(path)
                     multiUploadHashMap[file.name] = file
-                    Log.d("mmm1", file.toString())
                 }
                 uploadImageToS3(multiUploadHashMap)
             }
             // dialog 보이기
-            CustomDialog("등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?",
-                null, okListener)
+            CustomDialog(
+                "등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?",
+                null, okListener
+            )
                 .show(parentFragmentManager, "CustomDialog")
         }
     }
@@ -216,6 +226,41 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             ?.subscribeOn(Schedulers.io())
             ?.observeOn(Schedulers.io())
             ?.subscribe()
+    }
+
+    // 2. s3 업로드 후 고양이 정보 저장하기
+    private fun setObserverS3Url() {
+        viewModel.arrS3Url.observe(viewLifecycleOwner) {
+            postCatAdd(arguments!!)
+        }
+    }
+
+    private fun postCatAdd(bundle: Bundle) {
+        val token = "qlGtLSLg_y1x0uNn02Lv_xtRTCVHIhcJzBxA_bxaCilvuAAAAYOl1R3x"
+        val body = CatAddRequest(
+            name = bundle.getString("name", "null"),
+            color = bundle.getInt("fur"),
+            size = bundle.getInt("size"),
+            ear = bundle.getInt("age"),
+            tail = bundle.getInt("tail"),
+            whisker = bundle.getInt("whiskers"),
+            oftenSeen = bundle.getString("name", "null"),
+            sex = bundle.getString("name", "null"),
+            age = bundle.getString("name", "null"),
+            note = bundle.getString("name", "null"),
+            sido = bundle.getString("name", "null"),
+            gugun = bundle.getString("name", "null"),
+            tnr = bundle.getString("name"),
+            food = bundle.getString("name"),
+            photoList = viewModel.arrS3Url.value ?: arrayOf()
+        )
+        viewModel.postCatAdd(token, body)
+    }
+
+    private fun setObserverCatAddResponse() {
+        viewModel.response.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "고양이를 성공적으로 추가하였습니다.", Toast.LENGTH_SHORT).show()
+        }
     }
 
 

@@ -2,7 +2,6 @@ package com.example.dongnaegoyang
 
 import android.app.Application
 import android.content.Context
-import com.example.dongnaegoyang.login.kakaoLogin.InitApplication
 import com.kakao.sdk.common.KakaoSdk
 import dagger.hilt.android.HiltAndroidApp
 
