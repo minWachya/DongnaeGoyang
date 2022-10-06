@@ -1,49 +1,42 @@
 package com.example.dongnaegoyang.ui.cat_detail_info
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.dongnaegoyang.R
-import com.example.dongnaegoyang.common.CustomCat
-import com.example.dongnaegoyang.common.CustomCatArr
+import com.example.dongnaegoyang.data.remote.model.response.CustomCat
+import com.example.dongnaegoyang.databinding.ItemAnotherCatBinding
 
 // 고양이 상세: 정보 탭 - 나도 관심 좀... 어댑터
-class CatDetailInfoAnotherCatAdapter  : RecyclerView.Adapter<CatDetailInfoAnotherCatAdapter.ViewHolder>() {
-    var cats = ArrayList<CustomCat>()  // 고양이 배열
+class CatDetailInfoAnotherCatAdapter  :
+    ListAdapter<CustomCat, CatDetailInfoAnotherCatAdapter.CatDetailInfoViewHolder>(
+        CustomCatDiffCallback()
+    ) {
+    private lateinit var binding: ItemAnotherCatBinding
 
-    // 고양이 생김새 배열: 몸집, 코숏, 귀, 꼬리, 수염
-    val arrImgSize = CustomCatArr.arrImgSize
-    val arrImgFur = CustomCatArr.arrImgFur
-    val arrImgEar = CustomCatArr.arrImgEar
-    val arrImgTail = CustomCatArr.arrImgTail
-    val arrImgWhisker = CustomCatArr.arrImgWhisker
-
-    // 뷰홀더 생성
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_cat_detail_info_another_cat, parent, false)
-        return ViewHolder(itemView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatDetailInfoViewHolder {
+        binding = ItemAnotherCatBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CatDetailInfoViewHolder(binding)
     }
 
-    // position 번째 아이템 설정하기
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val cat = cats[position]
-        holder.setItem(cat)
+    override fun onBindViewHolder(holder: CatDetailInfoViewHolder, position: Int) {
+        holder.bind(getItem(position))
     }
 
-    // 아이템 갯수 리턴
-    override fun getItemCount() = cats.size
-
-    // 고양이 생김새 로드하기
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setItem(cat: CustomCat) {
-            // 코숏, 몸집, 귀, 꼬리, 수염
-            itemView.findViewById<ImageView>(R.id.item_imgCatFur).setImageResource(arrImgFur[cat.size][cat.fur])
-            itemView.findViewById<ImageView>(R.id.item_imgCatSize).setImageResource(arrImgSize[cat.ear][cat.size])
-            itemView.findViewById<ImageView>(R.id.item_imgCatEar).setImageResource(arrImgEar[cat.fur][cat.ear])
-            itemView.findViewById<ImageView>(R.id.item_imgCatTail).setImageResource(arrImgTail[cat.fur][cat.tail])
-            itemView.findViewById<ImageView>(R.id.item_imgCatWhisker).setImageResource(arrImgWhisker[cat.fur][cat.tail])
+    inner class CatDetailInfoViewHolder(private val binding: ItemAnotherCatBinding): RecyclerView.ViewHolder(binding.root)  {
+        fun bind(cat: CustomCat) {
+            binding.cat = cat
         }
     }
+
+    class CustomCatDiffCallback: DiffUtil.ItemCallback<CustomCat>() {
+        override fun areItemsTheSame(oldItem: CustomCat, newItem: CustomCat): Boolean {
+            return oldItem.catIdx == newItem.catIdx
+        }
+        override fun areContentsTheSame(oldItem: CustomCat, newItem: CustomCat): Boolean {
+            return oldItem == newItem
+        }
+    }
+
 }

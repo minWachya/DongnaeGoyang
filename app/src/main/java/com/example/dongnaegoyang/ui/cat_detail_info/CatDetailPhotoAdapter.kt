@@ -1,45 +1,44 @@
 package com.example.dongnaegoyang.ui.cat_detail_info
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
-import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.data.remote.model.response.PhotoList
+import com.example.dongnaegoyang.databinding.ItemCatDetailPhotoBinding
 
 // 고양이 상세 페에지: '정보' 탭 사진 어댑터
-class CatDetailPhotoAdapter : RecyclerView.Adapter<CatDetailPhotoAdapter.ViewHolder>() {
-    var urls = ArrayList<String>()  // Url 배열
+class CatDetailPhotoAdapter :
+    ListAdapter<PhotoList, CatDetailPhotoAdapter.CatDetailPhotoViewHolder>(
+        PhotoListDiffCallback()
+    ) {
+    private lateinit var binding: ItemCatDetailPhotoBinding
 
-    // 뷰홀더 생성
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.list_item_cat_detail_photo, parent, false)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatDetailPhotoViewHolder {
+        binding = ItemCatDetailPhotoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CatDetailPhotoViewHolder(binding)
+    }
 
-        return ViewHolder(itemView).apply {
-            itemView.setOnClickListener {
+    override fun onBindViewHolder(holder: CatDetailPhotoViewHolder, position: Int) {
+        holder.bind(getItem(position))
+    }
 
-            }
+    // 사진 로드하기
+    inner class CatDetailPhotoViewHolder(private val binding: ItemCatDetailPhotoBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(photo: PhotoList) {
+            binding.photo = photo
         }
     }
 
-    // position 번째 아이템 설정하기
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val url = urls[position]
-        holder.setItem(url)
-    }
+    class PhotoListDiffCallback : DiffUtil.ItemCallback<PhotoList>() {
+        override fun areItemsTheSame(oldItem: PhotoList, newItem: PhotoList): Boolean {
+            return oldItem.imageIdx == newItem.imageIdx
+        }
 
-    // 아이템 갯수 리턴
-    override fun getItemCount() = urls.size
-
-    // 사진 로드하기
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setItem(url: String) {
-            Glide.with(itemView)
-                .load(url)
-                .error(R.drawable.ic_launcher_background)                  // 오류 시 이미지
-                .apply(RequestOptions().centerCrop())
-                .into(itemView.findViewById(R.id.imgCatDetailPhoto))
+        override fun areContentsTheSame(oldItem: PhotoList, newItem: PhotoList): Boolean {
+            return oldItem == newItem
         }
     }
 }

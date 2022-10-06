@@ -2,9 +2,20 @@ package com.example.dongnaegoyang.ui.common
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
 import com.example.dongnaegoyang.common.CustomCatArr
 
 // 커스텀 속성 적용
+
+// url 이미지
+@BindingAdapter("loadImage")
+fun loadImage(view: ImageView, imageUrl: String?) {
+    if (!imageUrl.isNullOrEmpty()) {
+        Glide.with(view)
+            .load(imageUrl)
+            .into(view)
+    }
+}
 
 // 코숏: arrImgFur[size][fur]
 @BindingAdapter("CustomCatSize", "CustomCatFur")
