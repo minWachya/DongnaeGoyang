@@ -6,8 +6,8 @@
     <data>
 
         <variable
-            name="catDetailInfo"
-            type="com.example.dongnaegoyang.model.CatDetailInfo" />
+            name="catDetail"
+            type="com.example.dongnaegoyang.data.remote.model.response.CatDetailInfoResponse" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -39,7 +39,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="20dp"
-                android:text="@{Integer.toString(catDetailInfo.photoCount)}"
+                android:text="@{Integer.toString(catDetail.photoList.size)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvPhoto"
                 app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +56,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvPhoto"
-                tools:listitem="@layout/list_item_cat_detail_photo" />
+                tools:listitem="@layout/item_cat_detail_photo" />
 
             <!--건강 정보-->
             <TextView
@@ -78,7 +78,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="20dp"
-                android:text="@{Integer.toString(catDetailInfo.healthCount)}"
+                android:text="@{Integer.toString(0)}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvHealth"
                 app:layout_constraintTop_toBottomOf="@+id/rcPhoto"
@@ -114,10 +114,10 @@
                 <TextView
                     android:id="@+id/tvHealthTNR"
                     style="@style/TextSubTitle2.14"
-                    applyTNR="@{catDetailInfo.healthData.tnr}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:text="@{catDetail.tnr}"
                     tools:text="접종 완료" />
             </LinearLayout>
 
@@ -151,10 +151,10 @@
                 <TextView
                     android:id="@+id/tbHealthFood"
                     style="@style/TextSubTitle2.14"
-                    applyFeed="@{catDetailInfo.healthData.feed}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:text="@{catDetail.feed}"
                     tools:text="없음" />
             </LinearLayout>
 
@@ -188,7 +188,7 @@
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginEnd="20dp"
-                android:text="@{catDetailInfo.update}"
+                android:text="@{catDetail.modifiedTime}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvUpdateDateText"
                 app:layout_constraintTop_toBottomOf="@+id/view1"
@@ -215,7 +215,7 @@
                 android:layout_marginTop="11dp"
                 android:layout_marginEnd="20dp"
                 android:maxLines="1"
-                android:text="@{catDetailInfo.nickname}"
+                android:text="@{catDetail.user.nickname}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tvRegistrationUserText"
                 app:layout_constraintTop_toBottomOf="@+id/tvUpdateDate"
@@ -265,7 +265,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAnotherCatText"
-                tools:listitem="@layout/list_item_cat_detail_info_another_cat" />
+                tools:listitem="@layout/item_another_cat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

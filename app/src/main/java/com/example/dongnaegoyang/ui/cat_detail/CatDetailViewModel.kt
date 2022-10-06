@@ -1,25 +1,31 @@
 package com.example.dongnaegoyang.ui.cat_detail
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.dongnaegoyang.model.CatDetail
-import com.example.dongnaegoyang.repository.cat_detail.CatDetailRepository
+import androidx.lifecycle.viewModelScope
+import com.example.dongnaegoyang.data.remote.model.BaseResponse
+import com.example.dongnaegoyang.data.remote.model.response.CatDetailResponse
+import com.example.dongnaegoyang.data.remote.repository.CatRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class CatDetailViewModel(private val catDetailRepository: CatDetailRepository): ViewModel() {
-    // 외부 접근 불가 변수: _로 시작
-    private val _catDetail = MutableLiveData<CatDetail>()
-    val catDetail: LiveData<CatDetail> = _catDetail
+@HiltViewModel
+class CatDetailViewModel @Inject constructor(
+    private val repository: CatRepository
+): ViewModel() {
+    private val _catDetailResponse = MutableLiveData<BaseResponse<CatDetailResponse>>()
+    val catDetailResponse: LiveData<BaseResponse<CatDetailResponse>> = _catDetailResponse
 
-    init {
-        getCatDetail()
-    }
-
-    // 데이터 요청
-    private fun getCatDetail() {
-        val catDetailData = catDetailRepository.getCatDetail()
-        catDetailData?.let { catDetail ->
-            _catDetail.value = catDetail
+    fun getCatDetail(catIdx: Long)  = viewModelScope.launch {
+        kotlin.runCatching {
+            repository.getCatDetail(catIdx)
+        }.onSuccess {
+            _catDetailResponse.value = it
+        }.onFailure {
+            Log.d("mmm", " get cat detail fail: ${it.message}")
         }
     }
 }
