@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.MutableLiveData
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.address_search.SearchAddressActivity
-import com.example.dongnaegoyang.api.ApiClient
 import com.example.dongnaegoyang.api.AuthClient
 import com.example.dongnaegoyang.databinding.ActivityLoginBinding
 import com.example.dongnaegoyang.databinding.CustomDialogBinding
@@ -28,7 +27,7 @@ class LoginActivity : AppCompatActivity() {
     private var userId = -1L
     private var userNickname = "No Value"
 //    private var address = arrayListOf<String>("No Value", "No Value", "No Value")
-    private var address = HashMap<String, String>()
+    private var signUpData = HashMap<String, String>()
     private lateinit var notMemberDialog: android.app.AlertDialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,9 +35,12 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
-        address["si"] = "No Value"
-        address["gu"] = "No Value"
-        address["dong"] = "No Value"
+        signUpData["sido"] = ""
+        signUpData["gugun"] = ""
+        signUpData["loginType"] = "kakao"
+//        address["si"] = "No Value"
+//        address["gu"] = "No Value"
+//        address["dong"] = "No Value"
 
 
         binding.btnLoginFinish.setOnClickListener {
@@ -90,10 +92,15 @@ class LoginActivity : AppCompatActivity() {
             ActivityResultContracts.StartActivityForResult()) { result ->
 //            Log.d("login address", "launcher 실행")
             if (result.resultCode == Activity.RESULT_OK) {
-                address["si"] = result.data?.getStringExtra("si") ?: "Get No Value"
-                address["gu"] = result.data?.getStringExtra("gu") ?: "Get No Value"
-                address["dong"] = result.data?.getStringExtra("dong") ?: "Get No Value"
-                Log.d("jh login address", "주소 : ${address["si"]}, ${address["gu"]}, ${address["dong"]}")
+                signUpData["sido"] = result.data?.getStringExtra("si") ?: ""
+                val gu = result.data?.getStringExtra("gu") ?: ""
+                val dong = result.data?.getStringExtra("dong") ?: ""
+                signUpData["gugun"] = gu + dong
+//                address["si"] = result.data?.getStringExtra("si") ?: "Get No Value"
+//                address["gu"] = result.data?.getStringExtra("gu") ?: "Get No Value"
+//                address["dong"] = result.data?.getStringExtra("dong") ?: "Get No Value"
+//                Log.d("jh login address", "주소 : ${address["si"]}, ${address["gu"]}, ${address["dong"]}")
+                Log.d("jh login address", "주소 : ${signUpData["sido"]}, ${signUpData["gugun"]}")
                 doKakaoLogin("signUp")
 //                Toast.makeText(applicationContext, "회원가입 요청 중입니다.", Toast.LENGTH_SHORT).show()
 
@@ -133,7 +140,7 @@ class LoginActivity : AppCompatActivity() {
                         callPostLogin(token.accessToken)
                     }
                     else if(type == "signUp"){
-                        callPostSignUp(token.accessToken, address)
+                        callPostSignUp(token.accessToken, signUpData)
                     }
                 }
             }
