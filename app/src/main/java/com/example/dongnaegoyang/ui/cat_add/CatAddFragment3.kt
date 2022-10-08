@@ -1,7 +1,6 @@
 package com.example.dongnaegoyang.ui.cat_add
 
 import android.app.Activity
-import android.database.Cursor
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -18,6 +17,7 @@ import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.data.remote.model.request.CatAddRequest
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
+import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
 import com.example.dongnaegoyang.ui.base.BaseFragment
 import com.example.dongnaegoyang.ui.common.MultiUploaderS3Client
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -29,7 +29,6 @@ import dagger.hilt.android.AndroidEntryPoint
 import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import java.io.File
-
 
 private const val TAG = "mmmCatAddFragment3"
 
@@ -164,11 +163,11 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
     // 이전 정보 보여주기
     private fun setPrevInfo(bundle: Bundle?) {
-        if (bundle?.getInt("tnr") != null) {
-            val tnr = bundle.getInt("tnr", -1)    // TNR
-            val food = bundle.getInt("food", -1)  // 선호 사료
-            if (tnr != -1) binding.tnrSpinner.textView.text = tnrArray[tnr]
-            if (food != -1) binding.foodSpinner.textView.text = foodArray[food]
+        if (bundle?.getString("tnr") != null) {
+            val tnr = bundle.getString("tnr")    // TNR
+            val food = bundle.getString("food")  // 선호 사료
+            binding.tnrSpinner.textView.text = tnr
+            binding.foodSpinner.textView.text = food
             // 사진
             val photoUriArr =
                 bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
@@ -197,8 +196,10 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                 uploadImageToS3(multiUploadHashMap)
             }
             // dialog 보이기
+            val gugun = arguments?.getString("sido", "null")
+            val dong = arguments?.getString("sido", "null")
             CustomDialog(
-                "등록 확인", "00구 00동에 새로운 고영희를 등록하시겠습니까?",
+                "등록 확인", "$gugun $dong 에 새로운 고영희를 등록하시겠습니까?",
                 null, okListener
             )
                 .show(parentFragmentManager, "CustomDialog")
@@ -236,23 +237,25 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     }
 
     private fun postCatAdd(bundle: Bundle) {
-        val token = "qlGtLSLg_y1x0uNn02Lv_xtRTCVHIhcJzBxA_bxaCilvuAAAAYOl1R3x"
+        val token = SharedPreferenceController.getToken(requireContext())
+        Log.d("mmm", token)
+        val array: Array<String> = viewModel.arrS3Url.value!!
         val body = CatAddRequest(
             name = bundle.getString("name", "null"),
             color = bundle.getInt("fur"),
             size = bundle.getInt("size"),
-            ear = bundle.getInt("age"),
+            ear = bundle.getInt("ear"),
             tail = bundle.getInt("tail"),
             whisker = bundle.getInt("whiskers"),
-            oftenSeen = bundle.getString("name", "null"),
-            sex = bundle.getString("name", "null"),
-            age = bundle.getString("name", "null"),
-            note = bundle.getString("name", "null"),
-            sido = bundle.getString("name", "null"),
-            gugun = bundle.getString("name", "null"),
-            tnr = bundle.getString("name"),
-            food = bundle.getString("name"),
-            photoList = viewModel.arrS3Url.value ?: arrayOf()
+            oftenSeen = bundle.getString("place", "null"),
+            sex = bundle.getString("gender", "null"),
+            age = bundle.getString("age", "null"),
+            note = bundle.getString("note", "null"),
+            sido = bundle.getString("sido", "null"),
+            gugun = bundle.getString("gugun", "null"),
+            tnr = binding.tnrSpinner.textView.text.toString(),
+            feed = binding.foodSpinner.textView.text.toString(),
+            photoList = listOf(*array)
         )
         viewModel.postCatAdd(token, body)
     }
@@ -260,6 +263,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     private fun setObserverCatAddResponse() {
         viewModel.response.observe(viewLifecycleOwner) {
             Toast.makeText(context, "고양이를 성공적으로 추가하였습니다.", Toast.LENGTH_SHORT).show()
+            requireActivity().finish()
         }
     }
 
@@ -268,10 +272,10 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     private fun setFrag(catAddFragment: Fragment, bundle: Bundle?) {
         // 3단계 정보 함께 보내기
         if (bundle != null) {
-            val tnr = tnrArray.indexOf(binding.tnrSpinner.textView.text)     // TNR
-            val food = foodArray.indexOf(binding.foodSpinner.textView.text)  // 선호 사료
-            bundle.putInt("tnr", tnr)
-            bundle.putInt("food", food)
+            val tnr = binding.tnrSpinner.textView.text.toString()     // TNR
+            val food = binding.foodSpinner.textView.text.toString() // 선호 사료
+            bundle.putString("tnr", tnr)
+            bundle.putString("food", food)
             bundle.putParcelableArrayList("uriArr", photoAdapter.imgUris)
             catAddFragment.arguments = bundle
         }

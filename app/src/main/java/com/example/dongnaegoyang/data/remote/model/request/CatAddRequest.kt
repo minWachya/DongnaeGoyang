@@ -14,6 +14,6 @@ data class CatAddRequest(
     val sido: String,
     val gugun: String,
     val tnr: String?,
-    val food: String?,
-    val photoList: Array<String>
+    val feed: String?,
+    val photoList: List<String>
 )
