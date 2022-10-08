@@ -21,6 +21,12 @@ class CatDetailPostViewModel @Inject constructor(
     val catDetailPostResponse: LiveData<Event<BaseResponse<PostListResponse>>> = _catDetailPostResponse
     private val _createPostResponse = MutableLiveData<BaseResponse<Int>>()
     val createPostResponse: LiveData<BaseResponse<Int>> = _createPostResponse
+    private val _deletePostResponse = MutableLiveData<BaseResponse<Unit>>()
+    val deletePostResponse: LiveData<BaseResponse<Unit>> = _deletePostResponse
+
+    // 게시글 메뉴 클릭 여부
+    private val _openPostEvent = MutableLiveData<Event<Long>>()
+    val openPostEvent: LiveData<Event<Long>> = _openPostEvent
 
     fun getCatDetailPost(catIdx: Long, page: Int)  = viewModelScope.launch {
         kotlin.runCatching {
@@ -40,5 +46,19 @@ class CatDetailPostViewModel @Inject constructor(
         }.onFailure {
             Log.d("mmm", " get cat detail create post fail: ${it.message}")
         }
+    }
+
+    fun deleteCatPost(postIdx: Long, token: String)  = viewModelScope.launch {
+        kotlin.runCatching {
+            repository.deleteCatPost(postIdx, token)
+        }.onSuccess {
+            _deletePostResponse.value = it
+        }.onFailure {
+            Log.d("mmm", " get cat detail delete post fail: ${it.message}")
+        }
+    }
+
+    fun openPostMenu(postIdx: Long) {
+        _openPostEvent.value = Event(postIdx)
     }
 }

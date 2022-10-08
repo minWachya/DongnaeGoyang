@@ -14,8 +14,8 @@ class PostRepositoryImpl @Inject constructor(
         content: String
     ): BaseResponse<Int> = dataSource.postCatPost(catIdx, token, content)
 
-    override suspend fun deleteCatPost(postIdx: Long): BaseResponse<Unit> =
-        dataSource.deleteCatPost(postIdx)
+    override suspend fun deleteCatPost(postIdx: Long, token: String): BaseResponse<Unit> =
+        dataSource.deleteCatPost(postIdx, token)
 
     override suspend fun getCatPost(catIdx: Long, page: Int): BaseResponse<PostListResponse> =
         dataSource.getCatPost(catIdx, page)
