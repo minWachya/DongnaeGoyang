@@ -4,13 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.View
 import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.KEY_CAT_IDX
 import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
+import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
 import com.example.dongnaegoyang.ui.base.BaseActivity
 import com.example.dongnaegoyang.ui.cat_detail.info.CatDetailInfoFragment
 import com.example.dongnaegoyang.ui.cat_detail.post.CatDetailPostFragment
@@ -33,16 +34,12 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         setToolbar()    // 툴바 달기
         binding.tabTabLayout.bringToFront() // tabTabLayout을 앞으로 보내서 view1 뒤로 보내기
 
-        // TODO: 고양이 선택 시 catIdx 받아와야 함
-        getCatDetail(1)  // 고양이 상세 정보 가져오기
+        val catIdx = intent.getLongExtra(KEY_CAT_IDX, 0)
+        getCatDetail(catIdx)  // 고양이 상세 정보 가져오기
+        setTapLayout(catIdx)    // 탭 어댑터 생성
+
         setObserverCatDetail()
-
-        // TODO: 사용자 본인이 작성한 글에만 수정보튼 보이게, 지금은 누구나 보이게
         setEditBtnClickListener()
-
-        // 탭 어댑터 생성
-        // TODO: 고양이 선택 시 catIdx 받아와야 함
-        setTapLayout(1)
 
     }
 
@@ -53,23 +50,8 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
     }
 
     private fun getCatDetail(catIdx: Long) {
-        viewModel.getCatDetail(catIdx)
-    }
-
-    private fun setObserverCatDetail() {
-        viewModel.catDetailResponse.observe(this) {
-            binding.catDetail = it.data
-            binding.executePendingBindings()
-        }
-    }
-
-    private fun setEditBtnClickListener() {
-        if (true) binding.imgEdit.visibility = View.VISIBLE
-        binding.imgEdit.setOnClickListener {
-            // 고양이 수정하기 페이지로 이동
-            val intent = Intent(application, CatAddActivity::class.java)
-            startActivity(intent)
-        }
+        val token = SharedPreferenceController.getToken(applicationContext)
+        viewModel.getCatDetail(token, catIdx)
     }
 
     private fun setTapLayout(catIdx: Long) {
@@ -83,6 +65,21 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
             tab.text = tabElement[position]
         }.attach()
         binding.tabViewPager.isUserInputEnabled = false // auto paging off
+    }
+
+    private fun setObserverCatDetail() {
+        viewModel.catDetailResponse.observe(this) {
+            binding.catDetail = it.data
+            binding.executePendingBindings()
+        }
+    }
+
+    private fun setEditBtnClickListener() {
+        binding.imgEdit.setOnClickListener {
+            // 고양이 수정하기 페이지로 이동
+            val intent = Intent(application, CatAddActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     // 텝 어댑터

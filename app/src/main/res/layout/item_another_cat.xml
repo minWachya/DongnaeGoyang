@@ -6,6 +6,10 @@
     <data>
 
         <variable
+            name="vm"
+            type="com.example.dongnaegoyang.ui.cat_detail.info.CatDetailInfoViewModel" />
+
+        <variable
             name="cat"
             type="com.example.dongnaegoyang.data.remote.model.response.CustomCat" />
     </data>
@@ -15,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="4dp"
         android:backgroundTint="@color/gray_F6F3E9"
+        android:onClick="@{() -> vm.openCatDetail(cat.catIdx)}"
         android:outlineProvider="none"
         app:cardCornerRadius="12dp">
 

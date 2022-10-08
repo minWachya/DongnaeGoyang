@@ -19,9 +19,9 @@ class CatDetailViewModel @Inject constructor(
     private val _catDetailResponse = MutableLiveData<BaseResponse<CatDetailResponse>>()
     val catDetailResponse: LiveData<BaseResponse<CatDetailResponse>> = _catDetailResponse
 
-    fun getCatDetail(catIdx: Long)  = viewModelScope.launch {
+    fun getCatDetail(token: String, catIdx: Long)  = viewModelScope.launch {
         kotlin.runCatching {
-            repository.getCatDetail(catIdx)
+            repository.getCatDetail(token, catIdx)
         }.onSuccess {
             _catDetailResponse.value = it
         }.onFailure {

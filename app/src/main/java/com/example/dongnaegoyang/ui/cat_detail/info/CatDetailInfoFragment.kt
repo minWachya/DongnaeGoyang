@@ -1,13 +1,17 @@
 package com.example.dongnaegoyang.ui.cat_detail.info
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.KEY_CAT_IDX
 import com.example.dongnaegoyang.data.remote.model.response.CustomCat
 import com.example.dongnaegoyang.data.remote.model.response.PhotoList
 import com.example.dongnaegoyang.databinding.FragmentCatDetailInfoBinding
 import com.example.dongnaegoyang.ui.base.BaseFragment
+import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
+import com.example.dongnaegoyang.ui.common.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "mmmCatDetailInfoFragment"
@@ -23,6 +27,7 @@ class CatDetailInfoFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailIn
 
         getCatDetailInfo(catIdx)
         setObserverCatDetailInfo()
+        setObserverClickAnotherCat()
     }
 
     private fun getCatDetailInfo(catIdx: Long) {
@@ -45,10 +50,18 @@ class CatDetailInfoFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailIn
     }
 
     private fun setAnotherCatAdapter(anotherCatList: List<CustomCat>) {
-        binding.rcAnotherCat.adapter = CatDetailInfoAnotherCatAdapter().apply {
+        binding.rcAnotherCat.adapter = CatDetailInfoAnotherCatAdapter(viewModel).apply {
             submitList(anotherCatList)
             notifyDataSetChanged()
         }
     }
 
+    private fun setObserverClickAnotherCat() {
+        viewModel.openCatDetailEvent.observe(viewLifecycleOwner, EventObserver {
+            Intent(context, CatDetailActivity::class.java).apply {
+                putExtra(KEY_CAT_IDX, it)
+                startActivity(this)
+            }
+        })
+    }
 }
