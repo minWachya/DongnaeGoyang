@@ -13,7 +13,7 @@ import com.example.dongnaegoyang.ui.base.BaseFragment
 private const val TAG = "mmmCatDetailPostFragment"
 
 // 고양이 상세 페이지: '오늘 기록' 탭
-class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layout.fragment_cat_detail_post) {
+class CatDetailPostFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailPostBinding>(R.layout.fragment_cat_detail_post) {
     lateinit var postAdapter: CatDetailPostAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

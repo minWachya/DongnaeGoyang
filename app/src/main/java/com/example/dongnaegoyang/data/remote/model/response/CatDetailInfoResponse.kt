@@ -46,7 +46,7 @@ data class CatDetailInfoResponse(
     val tnr: String,
     val feed: String,
     val modifiedTime: String,
-    val user: User,
+    val writer: User,
     val otherCatList: List<CustomCat>
 )
 

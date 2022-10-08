@@ -14,13 +14,15 @@ private const val TAG = "mmmCatDetailInfoFragment"
 
 // 고양이 상세 페이지: '정보' 탭
 @AndroidEntryPoint
-class CatDetailInfoFragment : BaseFragment<FragmentCatDetailInfoBinding>(R.layout.fragment_cat_detail_info) {
+class CatDetailInfoFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailInfoBinding>(R.layout.fragment_cat_detail_info) {
     private val viewModel: CatDetailInfoViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = viewLifecycleOwner
 
+        getCatDetailInfo(catIdx)
+        setObserverCatDetailInfo()
     }
 
     private fun getCatDetailInfo(catIdx: Long) {
