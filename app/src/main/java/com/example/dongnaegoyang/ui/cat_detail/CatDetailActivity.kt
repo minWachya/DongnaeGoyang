@@ -12,7 +12,8 @@ import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
 import com.example.dongnaegoyang.ui.base.BaseActivity
-import com.example.dongnaegoyang.ui.cat_detail_info.CatDetailInfoFragment
+import com.example.dongnaegoyang.ui.cat_detail.info.CatDetailInfoFragment
+import com.example.dongnaegoyang.ui.cat_detail.post.CatDetailPostFragment
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint
 

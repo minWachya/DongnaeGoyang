@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.ui.cat_detail_info
+package com.example.dongnaegoyang.ui.cat_detail.info
 
 import android.util.Log
 import androidx.lifecycle.LiveData

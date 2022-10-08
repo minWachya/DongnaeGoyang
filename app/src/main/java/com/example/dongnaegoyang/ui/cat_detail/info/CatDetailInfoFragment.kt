@@ -1,4 +1,4 @@
-package com.example.dongnaegoyang.ui.cat_detail_info
+package com.example.dongnaegoyang.ui.cat_detail.info
 
 import android.os.Bundle
 import android.view.View
@@ -38,11 +38,9 @@ class CatDetailInfoFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailIn
         }
     }
 
-
     private fun setPhotoAdapter(photoList: List<PhotoList>) {
         binding.rcPhoto.adapter = CatDetailPhotoAdapter().apply {
             submitList(photoList)
-            notifyDataSetChanged()
         }
     }
 

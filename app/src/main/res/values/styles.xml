@@ -15,6 +15,9 @@
     <style name="TextSubTitle1.Gray">
         <item name="android:textColor">@color/gray_BBB5A4</item>
     </style>
+    <style name="TextSubTitle1.Gray.10">
+        <item name="android:textSize">10sp</item>
+    </style>
     <style name="TextSubTitle1.14">
         <item name="android:textSize">14sp</item>
     </style>

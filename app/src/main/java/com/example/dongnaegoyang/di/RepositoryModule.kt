@@ -1,9 +1,6 @@
 package com.example.dongnaegoyang.di
 
-import com.example.dongnaegoyang.data.remote.repository.AddressRepository
-import com.example.dongnaegoyang.data.remote.repository.AddressRepositoryImpl
-import com.example.dongnaegoyang.data.remote.repository.CatRepository
-import com.example.dongnaegoyang.data.remote.repository.CatRepositoryImpl
+import com.example.dongnaegoyang.data.remote.repository.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -21,4 +18,8 @@ interface RepositoryModule {
     @Binds
     @Singleton
     fun bindsCatRepository(repository: CatRepositoryImpl): CatRepository
+
+    @Binds
+    @Singleton
+    fun bindsPostRepository(repository: PostRepositoryImpl): PostRepository
 }
