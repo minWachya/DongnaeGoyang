@@ -21,9 +21,3 @@ fun applyFeed(view: TextView, index: String) {
     val arrFeed = view.context.resources.getStringArray(R.array.cat_add3_food_array)
     view.text = arrFeed[index.toInt()].toString()
 }
-
-// 주소 검색: address2, 3 존재 여부에 따른 > visibility 변경
-@BindingAdapter("isExistAddress")
-fun isExistAddress(view: TextView, text: String?) {
-    view.visibility = if (!text.isNullOrEmpty()) View.VISIBLE else View.INVISIBLE
-}

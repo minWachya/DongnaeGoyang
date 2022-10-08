@@ -56,13 +56,13 @@
 
                     <ImageButton
                         android:id="@+id/imgEdit"
+                        isVisible="@{catDetail.isWriter}"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_marginStart="7dp"
                         android:layout_marginEnd="30dp"
                         android:background="@drawable/ic_edit"
                         android:contentDescription="@string/cat_detail_edit"
-                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="@+id/tvName"
                         app:layout_constraintStart_toEndOf="@+id/tvName"
                         app:layout_constraintTop_toTopOf="@+id/tvName" />
