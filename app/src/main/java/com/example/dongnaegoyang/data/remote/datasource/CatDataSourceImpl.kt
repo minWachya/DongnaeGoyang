@@ -11,8 +11,8 @@ class CatDataSourceImpl @Inject constructor(private val catService: CatService) 
     override suspend fun postCatAdd(token: String, body: CatAddRequest): BaseResponse<Int> =
         catService.postCatAdd(token, body)
 
-    override suspend fun getCatDetail(catIdx: Long): BaseResponse<CatDetailResponse> =
-        catService.getCatDetail(catIdx)
+    override suspend fun getCatDetail(token: String, catIdx: Long): BaseResponse<CatDetailResponse> =
+        catService.getCatDetail(token, catIdx)
 
     override suspend fun getCatDetailInfo(catIdx: Long): BaseResponse<CatDetailInfoResponse> =
         catService.getCatDetailInfo(catIdx)

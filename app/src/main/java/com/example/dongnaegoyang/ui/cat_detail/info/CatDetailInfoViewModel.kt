@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.dongnaegoyang.data.remote.model.BaseResponse
 import com.example.dongnaegoyang.data.remote.model.response.CatDetailInfoResponse
 import com.example.dongnaegoyang.data.remote.repository.CatRepository
+import com.example.dongnaegoyang.ui.common.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -19,6 +20,10 @@ class CatDetailInfoViewModel @Inject constructor(
     private val _catDetailInfoResponse = MutableLiveData<BaseResponse<CatDetailInfoResponse>>()
     val catDetailInfoResponse: LiveData<BaseResponse<CatDetailInfoResponse>> = _catDetailInfoResponse
 
+    // 고양이 클릭 여부
+    private val _openCatDetailEvent = MutableLiveData<Event<Long>>()
+    val openCatDetailEvent: LiveData<Event<Long>> = _openCatDetailEvent
+
     fun getCatDetailInfo(catIdx: Long)  = viewModelScope.launch {
         kotlin.runCatching {
             repository.getCatDetailInfo(catIdx)
@@ -27,5 +32,9 @@ class CatDetailInfoViewModel @Inject constructor(
         }.onFailure {
             Log.d("mmm", " get cat detail info fail: ${it.message}")
         }
+    }
+
+    fun openCatDetail(postIdx: Long) {
+        _openCatDetailEvent.value = Event(postIdx)
     }
 }

@@ -7,6 +7,6 @@ import com.example.dongnaegoyang.data.remote.model.response.CatDetailResponse
 
 interface CatRepository {
     suspend fun postCatAdd(token: String, body: CatAddRequest): BaseResponse<Int>
-    suspend fun getCatDetail(catIdx: Long): BaseResponse<CatDetailResponse>
+    suspend fun getCatDetail(token: String, catIdx: Long): BaseResponse<CatDetailResponse>
     suspend fun getCatDetailInfo(catIdx: Long): BaseResponse<CatDetailInfoResponse>
 }

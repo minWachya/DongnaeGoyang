@@ -13,8 +13,8 @@ class CatRepositoryImpl @Inject constructor(
     override suspend fun postCatAdd(token: String, body: CatAddRequest): BaseResponse<Int> =
         dataSource.postCatAdd(token, body)
 
-    override suspend fun getCatDetail(catIdx: Long): BaseResponse<CatDetailResponse> =
-        dataSource.getCatDetail(catIdx)
+    override suspend fun getCatDetail(token: String, catIdx: Long): BaseResponse<CatDetailResponse> =
+        dataSource.getCatDetail(token, catIdx)
 
     override suspend fun getCatDetailInfo(catIdx: Long): BaseResponse<CatDetailInfoResponse> =
         dataSource.getCatDetailInfo(catIdx)

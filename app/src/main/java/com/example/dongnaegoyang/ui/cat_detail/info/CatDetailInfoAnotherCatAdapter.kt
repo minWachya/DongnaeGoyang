@@ -9,7 +9,7 @@ import com.example.dongnaegoyang.data.remote.model.response.CustomCat
 import com.example.dongnaegoyang.databinding.ItemAnotherCatBinding
 
 // 고양이 상세: 정보 탭 - 나도 관심 좀... 어댑터
-class CatDetailInfoAnotherCatAdapter  :
+class CatDetailInfoAnotherCatAdapter(val viewModel: CatDetailInfoViewModel)  :
     ListAdapter<CustomCat, CatDetailInfoAnotherCatAdapter.CatDetailInfoViewHolder>(
         CustomCatDiffCallback()
     ) {
@@ -27,6 +27,7 @@ class CatDetailInfoAnotherCatAdapter  :
     inner class CatDetailInfoViewHolder(private val binding: ItemAnotherCatBinding): RecyclerView.ViewHolder(binding.root)  {
         fun bind(cat: CustomCat) {
             binding.cat = cat
+            binding.vm = viewModel
         }
     }
 

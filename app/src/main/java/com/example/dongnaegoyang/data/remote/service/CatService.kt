@@ -15,7 +15,8 @@ interface CatService {
 
     // 고양이 상세-기본
     @GET("/v1/cats/{catIdx}/basic-info")
-    suspend fun getCatDetail(@Path("catIdx") catIdx: Long)
+    suspend fun getCatDetail(@Header("X-AUTH-TOKEN") token: String,
+                             @Path("catIdx") catIdx: Long)
             : BaseResponse<CatDetailResponse>
     // 고양이 상세-정보
     @GET("/v1/cats/{catIdx}/additional-info")
