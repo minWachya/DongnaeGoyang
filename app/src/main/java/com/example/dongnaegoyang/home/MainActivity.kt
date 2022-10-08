@@ -194,8 +194,8 @@ class MainActivity : AppCompatActivity() {
 
     fun adapterOnClick(catList: CatList) {
         val intent = Intent(this@MainActivity, CatDetailActivity::class.java).apply {
-            // TODO: 서버 연결 되면 여기 1L 부분을 지우고 고양이 catIdx를 Long 타입으로 넣어주세요!
-            putExtra(KEY_CAT_IDX, 1L)
+            // TODO: 서버 연결 되면 여기 6L 부분을 지우고 고양이 catIdx를 Long 타입으로 넣어주세요!
+            putExtra(KEY_CAT_IDX, 6L)
         }
         intent.putExtra("name", catList.catName)
         //intent.putExtra("img", catList.catPic)

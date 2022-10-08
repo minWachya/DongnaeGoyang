@@ -21,7 +21,8 @@ import java.net.URL
 class MultiUploaderS3Client(private val bucketName: String, context: Context, val vm: CatAddViewModel) {
     private var maxSize = 0
     lateinit var listImageUrl: Array<String>
-    private var count = 0
+    private var index = 0
+    private var count = 1
 
     private val ai: ApplicationInfo = context.packageManager
         .getApplicationInfo(context.packageName, PackageManager.GET_META_DATA)
@@ -48,7 +49,7 @@ class MultiUploaderS3Client(private val bucketName: String, context: Context, va
                     transferUtility,
                     it.value,
                     it.key,
-                    count++
+                    index++
                 ).toObservable()
             }.toList()
     }
@@ -66,7 +67,7 @@ class MultiUploaderS3Client(private val bucketName: String, context: Context, va
                         if (state == TransferState.COMPLETED) {
                             val s3Url: URL = s3Client.getUrl(bucketName, toRemoteKey)
                             listImageUrl[index] = s3Url.toString()
-                            if(listImageUrl.size == maxSize) {
+                            if(count++ == maxSize) {
                                 vm.setArrS3Url(listImageUrl)
                             }
                         }
@@ -82,7 +83,6 @@ class MultiUploaderS3Client(private val bucketName: String, context: Context, va
                     }
                 })
         }
-
-
     }
 }
+
