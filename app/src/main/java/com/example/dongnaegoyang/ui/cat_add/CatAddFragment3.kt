@@ -1,6 +1,7 @@
 package com.example.dongnaegoyang.ui.cat_add
 
 import android.app.Activity
+import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
@@ -13,12 +14,14 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.KEY_CAT_IDX
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.data.remote.model.request.CatAddRequest
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
 import com.example.dongnaegoyang.ui.base.BaseFragment
+import com.example.dongnaegoyang.ui.cat_detail.CatDetailActivity
 import com.example.dongnaegoyang.ui.common.MultiUploaderS3Client
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sangcomz.fishbun.FishBun
@@ -26,7 +29,6 @@ import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
 import com.sangcomz.fishbun.MimeType
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.plugins.RxJavaPlugins
 import io.reactivex.schedulers.Schedulers
 import java.io.File
 
@@ -185,8 +187,12 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
         // <등록> 버튼 클릭: 1. 고양이 사진 저장 2. 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
-            val okListener: View.OnClickListener = View.OnClickListener {
+            // dialog 보이기
+            val gugun = arguments?.getString("sido", "null")
+            val dong = arguments?.getString("dong", "null")
+            CustomDialog(
+                "등록 확인", "$gugun $dong 에 새로운 고영희를 등록하시겠습니까?", null) {
+                // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
                 val multiUploadHashMap = linkedMapOf<String, File>()
                 for (i in 0 until photoAdapter.imgUris.size) {
                     val path = getRealPathFromURI(photoAdapter.imgUris[i]).toString()
@@ -194,15 +200,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                     multiUploadHashMap[file.name] = file
                 }
                 uploadImageToS3(multiUploadHashMap)
-            }
-            // dialog 보이기
-            val gugun = arguments?.getString("sido", "null")
-            val dong = arguments?.getString("sido", "null")
-            CustomDialog(
-                "등록 확인", "$gugun $dong 에 새로운 고영희를 등록하시겠습니까?",
-                null, okListener
-            )
-                .show(parentFragmentManager, "CustomDialog")
+            }.show(parentFragmentManager, "CustomDialog")
         }
     }
 
@@ -215,10 +213,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         return path
     }
 
-
     private fun uploadImageToS3(map: LinkedHashMap<String, File>) {
-        RxJavaPlugins.setErrorHandler { Log.w("APP#", it) }
-
         MultiUploaderS3Client(
             "cat-img/add",
             requireContext(),
@@ -257,11 +252,16 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             photoList = listOf(*array)
         )
         viewModel.postCatAdd(token, body)
+        Log.d("mmm5", "고양이 저장 함수 호출")
     }
 
     private fun setObserverCatAddResponse() {
         viewModel.response.observe(viewLifecycleOwner) {
             Toast.makeText(context, "고양이를 성공적으로 추가하였습니다.", Toast.LENGTH_SHORT).show()
+            Intent(context, CatDetailActivity::class.java).apply {
+                putExtra(KEY_CAT_IDX, it.data)
+                startActivity(this)
+            }
             requireActivity().finish()
         }
     }
