@@ -11,7 +11,7 @@ class PostDataSourceImpl @Inject constructor(private val postService: PostServic
         catIdx: Long,
         token: String,
         content: String
-    ): BaseResponse<Unit> = postService.postCatPost(catIdx, token, content)
+    ): BaseResponse<Int> = postService.postCatPost(catIdx, token, content)
 
     override suspend fun deleteCatPost(postIdx: Long): BaseResponse<Unit> =
         postService.deleteCatPost(postIdx)

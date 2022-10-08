@@ -14,7 +14,7 @@ interface PostService {
         @Path("catIdx") catIdx: Long,
         @Header("X-AUTH-TOKEN") token: String,
         @Body content: String
-    ) : BaseResponse<Unit>
+    ) : BaseResponse<Int>
 
     // 게시글 삭제
     @DELETE("v1/posts/{postIdx}")

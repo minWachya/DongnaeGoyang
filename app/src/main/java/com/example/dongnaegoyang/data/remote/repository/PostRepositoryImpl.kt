@@ -12,7 +12,7 @@ class PostRepositoryImpl @Inject constructor(
         catIdx: Long,
         token: String,
         content: String
-    ): BaseResponse<Unit> = dataSource.postCatPost(catIdx, token, content)
+    ): BaseResponse<Int> = dataSource.postCatPost(catIdx, token, content)
 
     override suspend fun deleteCatPost(postIdx: Long): BaseResponse<Unit> =
         dataSource.deleteCatPost(postIdx)

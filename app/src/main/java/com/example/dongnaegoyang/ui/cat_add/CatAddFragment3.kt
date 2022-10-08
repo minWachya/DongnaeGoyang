@@ -238,7 +238,6 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
     private fun postCatAdd(bundle: Bundle) {
         val token = SharedPreferenceController.getToken(requireContext())
-        Log.d("mmm", token)
         val array: Array<String> = viewModel.arrS3Url.value!!
         val body = CatAddRequest(
             name = bundle.getString("name", "null"),

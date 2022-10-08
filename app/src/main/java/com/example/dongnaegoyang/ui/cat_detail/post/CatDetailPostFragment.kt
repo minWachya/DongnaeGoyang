@@ -3,16 +3,15 @@ package com.example.dongnaegoyang.ui.cat_detail.post
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
-import android.view.View.OnTouchListener
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.custom.CustomToast.showCustomToast
-import com.example.dongnaegoyang.data.remote.model.response.PhotoList
 import com.example.dongnaegoyang.data.remote.model.response.Post
 import com.example.dongnaegoyang.databinding.FragmentCatDetailPostBinding
+import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
 import com.example.dongnaegoyang.ui.base.BaseFragment
-import com.example.dongnaegoyang.ui.cat_detail.info.CatDetailPhotoAdapter
+import com.example.dongnaegoyang.ui.common.EventObserver
 import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "mmmCatDetailPostFragment"
@@ -31,7 +30,9 @@ class CatDetailPostFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailPo
         setEditTextScroll()
 
         getCatDetailPost(catIdx, page)
+        setPostButtonClickListener()
         setObserverCatDetailInfo()
+        setObserverCreatePost()
     }
 
     private fun getCatDetailPost(catIdx: Long, page: Int) {
@@ -39,10 +40,10 @@ class CatDetailPostFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailPo
     }
 
     private fun setObserverCatDetailInfo() {
-        viewModel.catDetailPostResponse.observe(viewLifecycleOwner) {
+        viewModel.catDetailPostResponse.observe(viewLifecycleOwner, EventObserver {
             binding.executePendingBindings()
             setPostAdapter(it.data.postList)
-        }
+        })
     }
 
     private fun setPostAdapter(postList: List<Post>) {
@@ -51,34 +52,39 @@ class CatDetailPostFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailPo
         }
     }
 
-//    private fun postPost() {
-//        binding.btnPost.setOnClickListener {
-//            // 내용 없을 시 반환
-//            if (binding.editPost.text.isEmpty()) {
-//                Toast(context).showCustomToast ("내용을 입력해주새요.", requireContext())
-//                return@setOnClickListener
-//            }
-//            // 게시글 생성
-//            createPost()
-//        }
-//    }
+    private fun setObserverCreatePost() {
+        viewModel.createPostResponse.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "게시글 등록 성공!", Toast.LENGTH_SHORT).show()
+            // 새로고침
+            page = 0
+            getCatDetailPost(catIdx, page)
+        }
+    }
 
-//    // 게시글 생성
-//    private fun createPost() {
-//        val nickname = "서버 아직 없음"
-//        val time = "nn분 전" // System.currentTimeMillis().toString()
-//        val content = binding.editPost.text.toString()
-//        val post = CatPost(nickname, time, content)
-//        // editText 내용 비우기
-//        binding.editPost.text = null
-//        // 리사이클러뷰에 저장+새로고침
-//        postAdapter.posts.add(post)
-//        postAdapter.notifyDataSetChanged()
-//    }
+    private fun setPostButtonClickListener() {
+        binding.btnPost.setOnClickListener {
+            // 내용 없을 시 반환
+            if (binding.editPost.text.isEmpty()) {
+                Toast(context).showCustomToast ("내용을 입력해주새요.", requireContext())
+                return@setOnClickListener
+            }
+            // 게시글 생성
+            createPost()
+        }
+    }
+
+    // 게시글 생성
+    private fun createPost() {
+        val token = SharedPreferenceController.getToken(requireContext())
+        val content = binding.editPost.text.toString()
+        viewModel.postCatPost(catIdx, token, content)
+        // editText 내용 비우기
+        binding.editPost.text = null
+    }
 
     // EditText Scroll 설정
     private fun setEditTextScroll() {
-        binding.editPost.setOnTouchListener(OnTouchListener { v, event ->
+        binding.editPost.setOnTouchListener { v, event ->
             if (v.id == binding.editPost.id) {
                 v.parent.requestDisallowInterceptTouchEvent(true)
                 when (event.action and MotionEvent.ACTION_MASK) {
@@ -86,6 +92,6 @@ class CatDetailPostFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailPo
                 }
             }
             false
-        })
+        }
     }
 }
