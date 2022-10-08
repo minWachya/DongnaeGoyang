@@ -33,14 +33,15 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         binding.tabTabLayout.bringToFront() // tabTabLayout을 앞으로 보내서 view1 뒤로 보내기
 
         // TODO: 고양이 선택 시 catIdx 받아와야 함
-//        getCatDetail(3)  // 고양이 상세 정보 가져오기
-//        setObserverCatDetail()
+        getCatDetail(1)  // 고양이 상세 정보 가져오기
+        setObserverCatDetail()
 
         // TODO: 사용자 본인이 작성한 글에만 수정보튼 보이게, 지금은 누구나 보이게
         setEditBtnClickListener()
 
         // 탭 어댑터 생성
-        setTapLayout()
+        // TODO: 고양이 선택 시 catIdx 받아와야 함
+        setTapLayout(1)
 
     }
 
@@ -70,11 +71,11 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         }
     }
 
-    private fun setTapLayout() {
+    private fun setTapLayout(catIdx: Long) {
         val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
         // 프레그먼트, 탭 타이틀 넣기
-        tabAdapter.addFragment(CatDetailInfoFragment())        // 정보
-        tabAdapter.addFragment(CatDetailPostFragment())        // 오늘 기록
+        tabAdapter.addFragment(CatDetailInfoFragment(catIdx))        // 정보
+        tabAdapter.addFragment(CatDetailPostFragment(catIdx))        // 오늘 기록
         binding.tabViewPager.adapter = tabAdapter
         // 탭레이아웃에 뷰 페이저 달기
         TabLayoutMediator(binding.tabTabLayout, binding.tabViewPager) { tab, position ->
