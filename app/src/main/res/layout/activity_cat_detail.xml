@@ -8,7 +8,7 @@
 
         <variable
             name="catDetail"
-            type="com.example.dongnaegoyang.model.CatDetail" />
+            type="com.example.dongnaegoyang.data.remote.model.response.CatDetailResponse" />
     </data>
 
     <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -56,13 +56,13 @@
 
                     <ImageButton
                         android:id="@+id/imgEdit"
+                        isVisible="@{catDetail.isWriter}"
                         android:layout_width="18dp"
                         android:layout_height="18dp"
                         android:layout_marginStart="7dp"
                         android:layout_marginEnd="30dp"
                         android:background="@drawable/ic_edit"
                         android:contentDescription="@string/cat_detail_edit"
-                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="@+id/tvName"
                         app:layout_constraintStart_toEndOf="@+id/tvName"
                         app:layout_constraintTop_toTopOf="@+id/tvName" />
@@ -118,7 +118,7 @@
                         style="@style/TextSubTitle1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@{catDetail.town}"
+                        android:text="@{catDetail.place}"
                         app:layout_constraintBaseline_toBaselineOf="@id/tvAge"
                         app:layout_constraintStart_toEndOf="@id/imgRect2"
                         tools:text="XX구 XX동" />
@@ -126,8 +126,8 @@
                     <!--코숏: 무늬-->
                     <ImageView
                         android:id="@+id/imgCatFur"
-                        CustomCatFur="@{catDetail.koshort}"
-                        CustomCatSize="@{catDetail.size}"
+                        CustomCatFur="@{catDetail.appearance.color}"
+                        CustomCatSize="@{catDetail.appearance.size}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="22dp"
@@ -138,8 +138,8 @@
                     <!--귀-->
                     <ImageView
                         android:id="@+id/imgCatEar"
-                        CustomCatEar="@{catDetail.ear}"
-                        CustomCatFur="@{catDetail.koshort}"
+                        CustomCatEar="@{catDetail.appearance.ear}"
+                        CustomCatFur="@{catDetail.appearance.color}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="22dp"
@@ -150,8 +150,8 @@
                     <!--꼬리-->
                     <ImageView
                         android:id="@+id/imgCatTail"
-                        CustomCatFur="@{catDetail.koshort}"
-                        CustomCatTail="@{catDetail.tail}"
+                        CustomCatFur="@{catDetail.appearance.color}"
+                        CustomCatTail="@{catDetail.appearance.tail}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="22dp"
@@ -162,8 +162,8 @@
                     <!--몸집-->
                     <ImageView
                         android:id="@+id/imgCatSize"
-                        CustomCatEar="@{catDetail.ear}"
-                        CustomCatSize="@{catDetail.size}"
+                        CustomCatEar="@{catDetail.appearance.ear}"
+                        CustomCatSize="@{catDetail.appearance.size}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="22dp"
@@ -174,8 +174,8 @@
                     <!--수염-->
                     <ImageView
                         android:id="@+id/imgCatWhisker"
-                        CustomCatFur="@{catDetail.koshort}"
-                        CustomCatWhisker="@{catDetail.whisker}"
+                        CustomCatFur="@{catDetail.appearance.color}"
+                        CustomCatWhisker="@{catDetail.appearance.whisker}"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="22dp"
@@ -194,7 +194,7 @@
                         android:background="@drawable/text_view_yellow_round"
                         android:paddingHorizontal="4dp"
                         android:paddingVertical="2dp"
-                        android:text="@{catDetail.appear}"
+                        android:text="@{catDetail.oftenSeen}"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toStartOf="parent"

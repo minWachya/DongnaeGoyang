@@ -12,15 +12,17 @@ import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
 import com.example.dongnaegoyang.ui.base.BaseActivity
-import com.example.dongnaegoyang.ui.cat_detail_info.CatDetailInfoFragment
-import com.example.dongnaegoyang.ui.common.ViewModelFactory
+import com.example.dongnaegoyang.ui.cat_detail.info.CatDetailInfoFragment
+import com.example.dongnaegoyang.ui.cat_detail.post.CatDetailPostFragment
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
 private const val TAG = "mmmCatDetailActivity"
 
 // 고양이 상세 페이지
+@AndroidEntryPoint
 class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activity_cat_detail) {
-    private val viewModel: CatDetailViewModel by viewModels { ViewModelFactory(applicationContext) }
+    private val viewModel: CatDetailViewModel by viewModels()
 
     // 정보, 오늘 기록 탭 text
     private val tabElement = arrayListOf("정보", "오늘 기록")
@@ -29,27 +31,36 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         super.onCreate(savedInstanceState)
 
         setToolbar()    // 툴바 달기
-        setCatDetail()  // 고양이 상세 정보 가져오기
-
         binding.tabTabLayout.bringToFront() // tabTabLayout을 앞으로 보내서 view1 뒤로 보내기
+
+        // TODO: 고양이 선택 시 catIdx 받아와야 함
+        getCatDetail(1)  // 고양이 상세 정보 가져오기
+        setObserverCatDetail()
 
         // TODO: 사용자 본인이 작성한 글에만 수정보튼 보이게, 지금은 누구나 보이게
         setEditBtnClickListener()
 
         // 탭 어댑터 생성
-        setTapLayout()
+        // TODO: 고양이 선택 시 catIdx 받아와야 함
+        setTapLayout(1)
 
-    }
-
-    private fun setCatDetail() {
-        binding.catDetail = viewModel.catDetail.value
-        binding.executePendingBindings()
     }
 
     private fun setToolbar() {
         setSupportActionBar(binding.toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)   // 뒤로가기
         supportActionBar?.setDisplayShowTitleEnabled(false) // 타이틀 없애기
+    }
+
+    private fun getCatDetail(catIdx: Long) {
+        viewModel.getCatDetail(catIdx)
+    }
+
+    private fun setObserverCatDetail() {
+        viewModel.catDetailResponse.observe(this) {
+            binding.catDetail = it.data
+            binding.executePendingBindings()
+        }
     }
 
     private fun setEditBtnClickListener() {
@@ -61,11 +72,11 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         }
     }
 
-    private fun setTapLayout() {
+    private fun setTapLayout(catIdx: Long) {
         val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
         // 프레그먼트, 탭 타이틀 넣기
-        tabAdapter.addFragment(CatDetailInfoFragment())        // 정보
-        tabAdapter.addFragment(CatDetailPostFragment())        // 오늘 기록
+        tabAdapter.addFragment(CatDetailInfoFragment(catIdx))        // 정보
+        tabAdapter.addFragment(CatDetailPostFragment(catIdx))        // 오늘 기록
         binding.tabViewPager.adapter = tabAdapter
         // 탭레이아웃에 뷰 페이저 달기
         TabLayoutMediator(binding.tabTabLayout, binding.tabViewPager) { tab, position ->

@@ -37,13 +37,18 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
     private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
+    private var sido = ""
+    private var gugun = ""
+    private var dong = ""
+
     // 주소 검색 Activity 이동 후 결과
     private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
         if (result.resultCode == Activity.RESULT_OK) {
             val intent = result.data
-            val address1 = intent?.getStringExtra("address1").toString()
-            val address2 = intent?.getStringExtra("address2").toString()
-            binding.tvTown.text = "$address1 $address2"
+            sido = intent?.getStringExtra("address1").toString()
+            gugun = intent?.getStringExtra("address2").toString()
+            dong = intent?.getStringExtra("address3").toString()
+            binding.tvTown.text = "$sido $gugun $dong"
             checkTown = true
             btnEnableCheck()
         }
@@ -151,14 +156,18 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         if (bundle?.getString("name") != null) {
             val name = bundle.getString("name")    // 이름
             val place = bundle.getString("place")  // 주 출몰지
-            val gender = bundle.getInt("gender", -1)   // 설별
-            val age = bundle.getInt("age", -1)         // 추정 나이
+            val gender = bundle.getString("gender")   // 설별
+            val age = bundle.getString("age")         // 추정 나이
             val note = bundle.getString("note")    // 특이사항
+            sido = bundle.getString("sido", "")
+            gugun = bundle.getString("gugun", "")
+            dong = bundle.getString("dong", "")
             binding.editName.setText(name)
             binding.editPlace.setText(place)
-            if(gender != -1) binding.genderSpinner.textView.text = genderArray[gender]
-            if(age != -1) binding.ageSpinner.textView.text = ageArray[age]
+            binding.genderSpinner.textView.text = gender
+            binding.ageSpinner.textView.text = age
             binding.editSpecialNote.setText(note)
+            binding.tvTown.text = "$sido $gugun $dong"
         }
     }
 
@@ -180,14 +189,17 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         if (bundle != null) {
             val name = binding.editName.text.toString()                 // 이름
             val place = binding.editPlace.text.toString()               // 주 출몰지
-            val gender = genderArray.indexOf(binding.genderSpinner.textView.text)// 성별
-            val age = ageArray.indexOf(binding.ageSpinner.textView.text)         // 추정 나이
+            val gender = binding.genderSpinner.textView.text.toString() // 성별
+            val age = binding.ageSpinner.textView.text.toString()         // 추정 나이
             val note = binding.editSpecialNote.text.toString()          // 특이사항
             bundle.putString("name", name)
             bundle.putString("place", place)
-            bundle.putInt("gender", gender)
-            bundle.putInt("age", age)
+            bundle.putString("gender", gender)
+            bundle.putString("age", age)
             bundle.putString("note", note)
+            bundle.putString("sido", sido)
+            bundle.putString("gugun", gugun)
+            bundle.putString("dong", dong)
             catAddFragment.arguments = bundle
         }
         // 프레그먼트에 정보 전달 + 이동
