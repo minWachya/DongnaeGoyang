@@ -2,6 +2,7 @@ package com.example.dongnaegoyang.ui.common
 
 import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 

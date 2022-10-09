@@ -6,6 +6,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.common.KEY_CAT_IDX
+import com.example.dongnaegoyang.data.local.HealthInfo
 import com.example.dongnaegoyang.data.remote.model.response.CustomCat
 import com.example.dongnaegoyang.data.remote.model.response.PhotoList
 import com.example.dongnaegoyang.databinding.FragmentCatDetailInfoBinding
@@ -40,18 +41,28 @@ class CatDetailInfoFragment : BaseFragment<FragmentCatDetailInfoBinding>(R.layou
             binding.catDetail = it.data
             binding.executePendingBindings()
             setPhotoAdapter(it.data.photoList)
+            setHealthAdapter(it.data.tnr, it.data.feed)
             setAnotherCatAdapter(it.data.otherCatList)
         }
     }
 
     private fun setPhotoAdapter(photoList: List<PhotoList>) {
-        binding.rcPhoto.adapter = CatDetailPhotoAdapter().apply {
+        binding.rvPhoto.adapter = CatDetailPhotoAdapter().apply {
             submitList(photoList)
         }
     }
 
+    private fun setHealthAdapter(tnr: String?, food: String?) {
+        binding.rvHealth.adapter = CatDetailHealthAdapter().apply {
+            val healthArr = arrayListOf<HealthInfo>()
+            if(tnr != null) healthArr.add(HealthInfo(R.drawable.ic_tnr, "TNR", tnr))
+            if(food != null) healthArr.add(HealthInfo(R.drawable.ic_ban, "비선호 사료", food))
+            submitList(healthArr)
+        }
+    }
+
     private fun setAnotherCatAdapter(anotherCatList: List<CustomCat>) {
-        binding.rcAnotherCat.adapter = CatDetailInfoAnotherCatAdapter(viewModel).apply {
+        binding.rvAnotherCat.adapter = CatDetailInfoAnotherCatAdapter(viewModel).apply {
             submitList(anotherCatList)
             notifyDataSetChanged()
         }

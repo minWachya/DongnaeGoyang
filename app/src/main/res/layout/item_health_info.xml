@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="health"
+            type="com.example.dongnaegoyang.data.local.HealthInfo" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:background="@drawable/layout_border_round"
+        android:paddingVertical="14dp">
+
+        <ImageView
+            android:id="@+id/iv_health"
+            android:layout_width="22dp"
+            android:layout_height="20dp"
+            android:layout_marginHorizontal="30dp"
+            android:contentDescription="@string/cat_detail_info_health"
+            app:imageResource="@{health.image}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/ic_ban" />
+
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/TextSubTitle1.Gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="12dp"
+            android:layout_marginTop="6dp"
+            android:text="@{health.title}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_health"
+            tools:text="@string/cat_detail_info_health_food" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            style="@style/TextSubTitle2.14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@{health.content}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            tools:text="없음" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
