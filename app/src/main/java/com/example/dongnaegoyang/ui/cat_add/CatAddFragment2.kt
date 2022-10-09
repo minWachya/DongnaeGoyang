@@ -15,7 +15,6 @@ import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.databinding.FragmentCatAdd2Binding
 import com.example.dongnaegoyang.ui.base.BaseFragment
 import com.example.dongnaegoyang.ui.search_address_add.SearchAddressActivity
-import com.example.dongnaegoyang.ui.search_address_add.SelectAddressInterface
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,7 +47,7 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
             sido = intent?.getStringExtra("address1").toString()
             gugun = intent?.getStringExtra("address2").toString()
             dong = intent?.getStringExtra("address3").toString()
-            binding.tvTown.text = "$sido $gugun $dong"
+            binding.tvTown.text = if("$sido $gugun $dong".trim() == "") null else "$sido $gugun $dong".trim()
             checkTown = true
             btnEnableCheck()
         }
@@ -84,7 +83,7 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
     // 동네 설정 리스너
     private fun setTownListener() {
         binding.tvTown.setOnClickListener {
-            startForResult.launch(Intent(requireActivity(), SearchAddressActivity::class.java))
+            startForResult.launch(Intent(requireContext(), SearchAddressActivity::class.java))
         }
     }
 

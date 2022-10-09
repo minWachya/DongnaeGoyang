@@ -1,0 +1,22 @@
+package com.example.dongnaegoyang.data.remote.model.request
+
+data class CatModifyRequest(
+    val name: String,
+    val color: Int,
+    val size: Int,
+    val ear: Int,
+    val tail: Int,
+    val whisker: Int,
+    val oftenSeen: String,
+    val sex: String,
+    val age: String,
+    val note: String,
+    val sido: String,
+    val gugun: String,
+    val tnr: String?,
+    val feed: String?,
+    val photoList: List<String>,
+    val deletePhotoList: List<Long>,
+    val createPhotoList: List<String>
+
+)

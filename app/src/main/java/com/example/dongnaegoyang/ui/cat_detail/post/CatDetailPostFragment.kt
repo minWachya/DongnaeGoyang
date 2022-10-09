@@ -10,6 +10,7 @@ import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.KEY_CAT_IDX
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomToast.showCustomToast
 import com.example.dongnaegoyang.data.remote.model.response.Post
@@ -24,11 +25,13 @@ private const val TAG = "mmmCatDetailPostFragment"
 
 // 고양이 상세 페이지: '오늘 기록' 탭
 @AndroidEntryPoint
-class CatDetailPostFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailPostBinding>(R.layout.fragment_cat_detail_post) {
+class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layout.fragment_cat_detail_post) {
     private val viewModel: CatDetailPostViewModel by viewModels()
     private var page = 0
 
     lateinit var dialog: CustomDialog
+
+    var catIdx: Long = 6L
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -37,6 +40,7 @@ class CatDetailPostFragment(val catIdx: Long) : BaseFragment<FragmentCatDetailPo
         // EditText 입력 시 스크롤 하면 EditText 내용 스크롤되게
         setEditTextScroll()
 
+        catIdx = arguments?.getLong(KEY_CAT_IDX) ?: 6L
         getCatDetailPost(catIdx, page)
         setPostButtonClickListener()
         setObserverCatDetailInfo()
