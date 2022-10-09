@@ -21,7 +21,7 @@
 
             <!--사진-->
             <TextView
-                android:id="@+id/tvPhoto"
+                android:id="@+id/tv_photo"
                 style="@style/TextSubTitle3.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -32,7 +32,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tvPhotoCount"
+                android:id="@+id/tv_photo_count"
                 style="@style/TextSubTitle3.14.Yellow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -41,12 +41,12 @@
                 android:layout_marginEnd="20dp"
                 android:text="@{Integer.toString(catDetail.photoList.size)}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvPhoto"
+                app:layout_constraintStart_toEndOf="@+id/tv_photo"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="0" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcPhoto"
+                android:id="@+id/rv_photo"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -55,12 +55,12 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvPhoto"
+                app:layout_constraintTop_toBottomOf="@+id/tv_photo"
                 tools:listitem="@layout/item_cat_detail_photo" />
 
             <!--건강 정보-->
             <TextView
-                android:id="@+id/tvHealth"
+                android:id="@+id/tv_health"
                 style="@style/TextSubTitle3.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,10 +68,10 @@
                 android:layout_marginTop="28dp"
                 android:text="@string/cat_detail_info_health"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rcPhoto" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_photo" />
 
             <TextView
-                android:id="@+id/tvHealthCount"
+                android:id="@+id/tv_health_count"
                 style="@style/TextSubTitle3.14.Yellow"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -80,83 +80,23 @@
                 android:layout_marginEnd="20dp"
                 android:text="@{Integer.toString(catDetail.healthInfoCount)}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvHealth"
-                app:layout_constraintTop_toBottomOf="@+id/rcPhoto"
+                app:layout_constraintStart_toEndOf="@+id/tv_health"
+                app:layout_constraintTop_toBottomOf="@+id/rv_photo"
                 tools:text="0" />
 
-            <LinearLayout
-                android:id="@+id/layoutTNR"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/layout_border_round"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="14dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvHealth">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="20dp"
-                    android:contentDescription="@string/cat_detail_info_health"
-                    android:src="@drawable/ic_tnr" />
-
-                <TextView
-                    style="@style/TextSubTitle1.Gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/cat_detail_info_health_tnr" />
-
-                <TextView
-                    android:id="@+id/tvHealthTNR"
-                    style="@style/TextSubTitle2.14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@{catDetail.tnr}"
-                    tools:text="접종 완료" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layoutFood"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_health"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/layout_border_round"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="14dp"
-                app:layout_constraintBottom_toBottomOf="@+id/layoutTNR"
-                app:layout_constraintStart_toEndOf="@+id/layoutTNR"
-                app:layout_constraintTop_toTopOf="@+id/layoutTNR">
-
-                <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="20dp"
-                    android:contentDescription="@string/cat_detail_info_health"
-                    android:src="@drawable/ic_ban" />
-
-                <TextView
-                    style="@style/TextSubTitle1.Gray"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
-                    android:text="@string/cat_detail_info_health_food" />
-
-                <TextView
-                    android:id="@+id/tbHealthFood"
-                    style="@style/TextSubTitle2.14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="@{catDetail.feed}"
-                    tools:text="없음" />
-            </LinearLayout>
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="40dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_health_count"
+                tools:listitem="@layout/item_health_info" />
 
             <View
                 android:id="@+id/view1"
@@ -166,11 +106,11 @@
                 android:background="@color/gray_F6F3E9"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/layoutTNR" />
+                app:layout_constraintTop_toBottomOf="@+id/rv_health" />
 
             <!--최근 업데이트일-->
             <TextView
-                android:id="@+id/tvUpdateDateText"
+                android:id="@+id/tv_update_date_text"
                 style="@style/TextSubTitle1.Gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -181,7 +121,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/view1" />
 
             <TextView
-                android:id="@+id/tvUpdateDate"
+                android:id="@+id/tv_update_date"
                 style="@style/TextSubTitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -190,13 +130,13 @@
                 android:layout_marginEnd="20dp"
                 android:text="@{catDetail.modifiedTime.substring(0, 10)}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvUpdateDateText"
+                app:layout_constraintStart_toEndOf="@+id/tv_update_date_text"
                 app:layout_constraintTop_toBottomOf="@+id/view1"
                 tools:text="2022-06-30" />
 
             <!--등록-->
             <TextView
-                android:id="@+id/tvRegistrationUserText"
+                android:id="@+id/tv_registration_user_text"
                 style="@style/TextSubTitle1.Gray"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -204,10 +144,10 @@
                 android:layout_marginTop="11dp"
                 android:text="@string/cat_detail_info_registration_user"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvUpdateDateText" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_update_date_text" />
 
             <TextView
-                android:id="@+id/tvRegistrationUser"
+                android:id="@+id/tv_registration_user"
                 style="@style/TextSubTitle2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -217,8 +157,8 @@
                 android:maxLines="1"
                 android:text="@{catDetail.writer.nickname}"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tvRegistrationUserText"
-                app:layout_constraintTop_toBottomOf="@+id/tvUpdateDate"
+                app:layout_constraintStart_toEndOf="@+id/tv_registration_user_text"
+                app:layout_constraintTop_toBottomOf="@+id/tv_update_date"
                 tools:text="간택받은집사" />
 
             <View
@@ -228,11 +168,11 @@
                 android:layout_marginTop="28dp"
                 android:background="@color/gray_F6F3E9"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvRegistrationUser" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_registration_user" />
 
             <!--나도 관심 좀-->
             <TextView
-                android:id="@+id/tvAnotherCatText"
+                android:id="@+id/tv_another_cat_text"
                 style="@style/TextSubTitle2.16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -248,12 +188,12 @@
                 android:layout_marginStart="4dp"
                 android:contentDescription="@string/description_ellipsis"
                 android:src="@drawable/ic_cat_detail_info_dots"
-                app:layout_constraintBottom_toBottomOf="@+id/tvAnotherCatText"
-                app:layout_constraintStart_toEndOf="@+id/tvAnotherCatText"
-                app:layout_constraintTop_toTopOf="@+id/tvAnotherCatText" />
+                app:layout_constraintBottom_toBottomOf="@+id/tv_another_cat_text"
+                app:layout_constraintStart_toEndOf="@+id/tv_another_cat_text"
+                app:layout_constraintTop_toTopOf="@+id/tv_another_cat_text" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcAnotherCat"
+                android:id="@+id/rv_another_cat"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -264,7 +204,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvAnotherCatText"
+                app:layout_constraintTop_toBottomOf="@+id/tv_another_cat_text"
                 tools:listitem="@layout/item_another_cat" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

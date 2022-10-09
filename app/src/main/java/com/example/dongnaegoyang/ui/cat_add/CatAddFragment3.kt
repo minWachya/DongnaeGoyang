@@ -243,6 +243,15 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     private fun postCatAdd(bundle: Bundle) {
         val token = SharedPreferenceController.getToken(requireContext())
         val array: Array<String> = viewModel.arrS3Url.value!!
+        val tnr: String? = if(binding.tnrSpinner.textView.text.toString() != "")
+            when(binding.tnrSpinner.textView.text.toString()) {
+            "O" -> "접종 완료"
+            "X" -> "접종 미완료"
+            else -> "모름"
+        }  else null
+        val food: String? = if(binding.foodSpinner.textView.text.toString() != "")
+            binding.foodSpinner.textView.text.toString()
+        else null
         val body = CatAddRequest(
             name = bundle.getString("name", "null"),
             color = bundle.getInt("fur"),
@@ -256,8 +265,8 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             note = bundle.getString("note", "null"),
             sido = bundle.getString("sido", "null"),
             gugun = bundle.getString("gugun", "null"),
-            tnr = binding.tnrSpinner.textView.text.toString(),
-            feed = binding.foodSpinner.textView.text.toString(),
+            tnr = tnr,
+            feed = food,
             photoList = listOf(*array)
         )
         viewModel.postCatAdd(token, body)
