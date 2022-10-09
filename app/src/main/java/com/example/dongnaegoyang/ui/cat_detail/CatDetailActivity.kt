@@ -3,12 +3,17 @@ package com.example.dongnaegoyang.ui.cat_detail
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.KEY_CAT_ADD_TYPE
 import com.example.dongnaegoyang.common.KEY_CAT_IDX
+import com.example.dongnaegoyang.common.VALUE_TYPE_CREATE
+import com.example.dongnaegoyang.common.VALUE_TYPE_MODIFY
 import com.example.dongnaegoyang.ui.cat_add.CatAddActivity
 import com.example.dongnaegoyang.databinding.ActivityCatDetailBinding
 import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
@@ -39,7 +44,7 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         setTapLayout(catIdx)    // 탭 어댑터 생성
 
         setObserverCatDetail()
-        setEditBtnClickListener()
+        setEditBtnClickListener(catIdx)
 
     }
 
@@ -57,8 +62,9 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
     private fun setTapLayout(catIdx: Long) {
         val tabAdapter = CatDetailTabAdapter(this@CatDetailActivity)
         // 프레그먼트, 탭 타이틀 넣기
-        tabAdapter.addFragment(CatDetailInfoFragment(catIdx))        // 정보
-        tabAdapter.addFragment(CatDetailPostFragment(catIdx))        // 오늘 기록
+        val bundle = bundleOf(KEY_CAT_IDX to catIdx)
+        tabAdapter.addFragment(CatDetailInfoFragment().apply { arguments = bundle })        // 정보
+        tabAdapter.addFragment(CatDetailPostFragment().apply { arguments = bundle })        // 오늘 기록
         binding.tabViewPager.adapter = tabAdapter
         // 탭레이아웃에 뷰 페이저 달기
         TabLayoutMediator(binding.tabTabLayout, binding.tabViewPager) { tab, position ->
@@ -74,10 +80,13 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         }
     }
 
-    private fun setEditBtnClickListener() {
+    private fun setEditBtnClickListener(catIdx: Long) {
         binding.imgEdit.setOnClickListener {
             // 고양이 수정하기 페이지로 이동
-            val intent = Intent(application, CatAddActivity::class.java)
+            val intent = Intent(application, CatAddActivity::class.java).apply {
+                putExtra(KEY_CAT_IDX, catIdx)
+                putExtra(KEY_CAT_ADD_TYPE, VALUE_TYPE_MODIFY)
+            }
             startActivity(intent)
         }
     }

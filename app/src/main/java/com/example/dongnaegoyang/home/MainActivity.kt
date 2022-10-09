@@ -17,7 +17,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.address_search.SearchAddressActivity
 import com.example.dongnaegoyang.cat_search.SearchCatActivity
+import com.example.dongnaegoyang.common.KEY_CAT_ADD_TYPE
 import com.example.dongnaegoyang.common.KEY_CAT_IDX
+import com.example.dongnaegoyang.common.VALUE_TYPE_CREATE
 import com.example.dongnaegoyang.databinding.ActivityMainBinding
 import com.example.dongnaegoyang.login.LoginActivity
 import com.example.dongnaegoyang.sidebar.NoticeActivity
@@ -196,6 +198,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this@MainActivity, CatDetailActivity::class.java).apply {
             // TODO: 서버 연결 되면 여기 6L 부분을 지우고 고양이 catIdx를 Long 타입으로 넣어주세요!
             putExtra(KEY_CAT_IDX, 6L)
+            putExtra(KEY_CAT_ADD_TYPE, VALUE_TYPE_CREATE)
         }
         intent.putExtra("name", catList.catName)
         //intent.putExtra("img", catList.catPic)

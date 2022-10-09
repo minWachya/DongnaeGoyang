@@ -14,10 +14,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.dongnaegoyang.R
+import com.example.dongnaegoyang.common.KEY_CAT_ADD_TYPE
 import com.example.dongnaegoyang.common.KEY_CAT_IDX
+import com.example.dongnaegoyang.common.VALUE_TYPE_CREATE
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.data.remote.model.request.CatAddRequest
+import com.example.dongnaegoyang.data.remote.model.response.PhotoList
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
 import com.example.dongnaegoyang.ui.base.BaseFragment
@@ -171,12 +174,18 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             binding.tnrSpinner.textView.text = tnr
             binding.foodSpinner.textView.text = food
             // 사진
-            val photoUriArr =
-                bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
-            if (photoUriArr != null) {
-                for (uri in photoUriArr) photoAdapter.imgUris.add(uri as Uri)
-                photoAdapter.notifyDataSetChanged()
-                binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
+            val type = requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
+            if(type == VALUE_TYPE_CREATE) {
+                val photoUriArr =
+                    bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+                if (photoUriArr != null) {
+                    for (uri in photoUriArr) photoAdapter.imgUris.add(uri as Uri)
+                    photoAdapter.notifyDataSetChanged()
+                    binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
+                }
+            }
+            else {
+                val photoList = bundle.get("photoList")
             }
         }
     }
@@ -252,11 +261,10 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             photoList = listOf(*array)
         )
         viewModel.postCatAdd(token, body)
-        Log.d("mmm5", "고양이 저장 함수 호출")
     }
 
     private fun setObserverCatAddResponse() {
-        viewModel.response.observe(viewLifecycleOwner) {
+        viewModel.catAddResponse.observe(viewLifecycleOwner) {
             Toast.makeText(context, "고양이를 성공적으로 추가하였습니다.", Toast.LENGTH_SHORT).show()
             Intent(context, CatDetailActivity::class.java).apply {
                 putExtra(KEY_CAT_IDX, it.data)

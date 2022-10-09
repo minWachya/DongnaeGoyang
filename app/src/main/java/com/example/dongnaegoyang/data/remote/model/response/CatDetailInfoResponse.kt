@@ -1,5 +1,7 @@
 package com.example.dongnaegoyang.data.remote.model.response
 
+import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 import java.util.*
 
 /*
@@ -51,9 +53,9 @@ data class CatDetailInfoResponse(
 )
 
 data class PhotoList(
-    val imageIdx: Int,
-    val url: String
-)
+    @SerializedName("imageIdx") val imageIdx: Int,
+    @SerializedName("url") val url: String
+): Serializable
 
 data class User(
     val kakaoId: Long,
