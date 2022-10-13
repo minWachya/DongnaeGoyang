@@ -9,11 +9,11 @@ import android.view.View
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.dongnaegoyang.R
 import com.example.dongnaegoyang.common.KEY_CAT_IDX
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomToast.showCustomToast
-import com.example.dongnaegoyang.data.remote.model.response.Post
 import com.example.dongnaegoyang.databinding.FragmentCatDetailPostBinding
 import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
 import com.example.dongnaegoyang.ui.base.BaseFragment
@@ -27,11 +27,13 @@ private const val TAG = "mmmCatDetailPostFragment"
 @AndroidEntryPoint
 class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layout.fragment_cat_detail_post) {
     private val viewModel: CatDetailPostViewModel by viewModels()
-    private var page = 0
 
     lateinit var dialog: CustomDialog
 
     var catIdx: Long = 6L
+    var isLoading = false
+
+    lateinit var adapter: PostAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -41,35 +43,32 @@ class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layou
         setEditTextScroll()
 
         catIdx = arguments?.getLong(KEY_CAT_IDX) ?: 6L
-        getCatDetailPost(catIdx, page)
+
+        initPagingPostAdapter()
+        initPagingPost(catIdx)
         setPostButtonClickListener()
-        setObserverCatDetailInfo()
         setObserverCreatePost()
         setObserverPostMenu()
         setObserverDeletePost()
     }
 
-    private fun getCatDetailPost(catIdx: Long, page: Int) {
-        viewModel.getCatDetailPost(catIdx, page)
+    private fun initPagingPostAdapter() {
+        adapter = PostAdapter(viewModel)
+        binding.rvPost.adapter = adapter
     }
 
-    private fun setObserverCatDetailInfo() {
-        viewModel.catDetailPostResponse.observe(viewLifecycleOwner, EventObserver {
-            binding.executePendingBindings()
-            setPostAdapter(it.data.postList)
-        })
-    }
-
-    private fun setPostAdapter(postList: List<Post>) {
-        binding.rcPost.adapter = CatDetailPostAdapter(viewModel).apply {
-            submitList(postList)
+    private fun initPagingPost(catIdx: Long) {
+        lifecycleScope.launchWhenStarted {
+            viewModel.getPagingPost(catIdx).collect {
+                adapter.submitData(it)
+            }
         }
     }
 
     private fun setObserverCreatePost() {
         viewModel.createPostResponse.observe(viewLifecycleOwner) {
             Toast.makeText(context, "게시글 등록 성공!", Toast.LENGTH_SHORT).show()
-            refresh()
+//            refresh()
         }
     }
 
@@ -132,14 +131,8 @@ class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layou
     private fun setObserverDeletePost() {
         viewModel.deletePostResponse.observe(viewLifecycleOwner) {
             Toast(context).showCustomToast ("기록이 삭제되었습니다.", requireContext())
-            refresh()
+//            refresh()
         }
-    }
-
-    // 새로고침
-    private fun refresh() {
-        page = 0
-        getCatDetailPost(catIdx, page)
     }
 
     // EditText Scroll 설정

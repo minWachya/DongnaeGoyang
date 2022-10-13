@@ -18,5 +18,4 @@ class PostDataSourceImpl @Inject constructor(private val postService: PostServic
 
     override suspend fun getCatPost(catIdx: Long, page: Int): BaseResponse<PostListResponse> =
         postService.getCatPost(catIdx, page)
-
 }

@@ -5,11 +5,13 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import androidx.paging.PagingData
 import com.example.dongnaegoyang.data.remote.model.BaseResponse
-import com.example.dongnaegoyang.data.remote.model.response.PostListResponse
+import com.example.dongnaegoyang.data.remote.model.response.Post
 import com.example.dongnaegoyang.data.remote.repository.PostRepository
 import com.example.dongnaegoyang.ui.common.Event
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -17,8 +19,6 @@ import javax.inject.Inject
 class CatDetailPostViewModel @Inject constructor(
     private val repository: PostRepository
 ): ViewModel() {
-    private val _catDetailPostResponse = MutableLiveData<Event<BaseResponse<PostListResponse>>>()
-    val catDetailPostResponse: LiveData<Event<BaseResponse<PostListResponse>>> = _catDetailPostResponse
     private val _createPostResponse = MutableLiveData<BaseResponse<Int>>()
     val createPostResponse: LiveData<BaseResponse<Int>> = _createPostResponse
     private val _deletePostResponse = MutableLiveData<BaseResponse<Unit>>()
@@ -28,14 +28,8 @@ class CatDetailPostViewModel @Inject constructor(
     private val _openPostEvent = MutableLiveData<Event<Long>>()
     val openPostEvent: LiveData<Event<Long>> = _openPostEvent
 
-    fun getCatDetailPost(catIdx: Long, page: Int)  = viewModelScope.launch {
-        kotlin.runCatching {
-            repository.getCatPost(catIdx, page)
-        }.onSuccess {
-            _catDetailPostResponse.value = Event(it)
-        }.onFailure {
-            Log.d("mmm", " get cat detail post fail: ${it.message}")
-        }
+    suspend fun getPagingPost(catIdx: Long): Flow<PagingData<Post>> {
+        return repository.getPagingPost(catIdx)
     }
 
     fun postCatPost(catIdx: Long, token: String, content: String)  = viewModelScope.launch {
