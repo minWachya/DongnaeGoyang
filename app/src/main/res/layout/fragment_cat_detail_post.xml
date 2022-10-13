@@ -7,91 +7,87 @@
 
     </data>
 
-    <androidx.core.widget.NestedScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.cat_detail.post.CatDetailPostFragment">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/tv_recent_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/cat_detail_recent_post"
+            android:textColor="@color/brown_473A22"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_recent_post_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/spoqa_han_sans_neo_medium"
+            android:text="@string/cat_detail_recent_post_time"
+            android:textColor="@color/yellow_F1BC35"
+            android:textSize="16sp"
+            app:layout_constraintStart_toEndOf="@+id/tv_recent_post"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/edit_post"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="4dp"
+            android:background="@drawable/edit_line_round"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:hint="@string/cat_detail_post_hint"
+            android:maxLines="3"
+            android:paddingStart="9dp"
+            android:paddingTop="9dp"
+            android:paddingEnd="8dp"
+            android:paddingBottom="7dp"
+            android:scrollbarThumbVertical="@drawable/custom_scrollbar"
+            android:scrollbars="vertical"
+            android:textCursorDrawable="@drawable/edittext_cursor_color"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_post"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_recent_post" />
+
+        <Button
+            android:id="@+id/btn_post"
+            android:layout_width="50dp"
+            android:layout_height="36dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/btn_post"
+            android:fontFamily="@font/spoqa_han_sans_neo_regular"
+            android:text="@string/cat_detail_post_btn"
+            android:textColor="@color/brown_473A22"
+            android:textSize="14sp"
+            app:backgroundTint="@null"
+            app:layout_constraintBottom_toBottomOf="@+id/edit_post"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/edit_post" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_post"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edit_post"
+            app:reverseLayout="true"
+            app:stackFromEnd="true" />
 
-            <TextView
-                android:id="@+id/tvRecentPost"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="24dp"
-                android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                android:text="@string/cat_detail_recent_post"
-                android:textColor="@color/brown_473A22"
-                android:textSize="16sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tvRecentPostTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:layout_marginStart="4dp"
-                android:fontFamily="@font/spoqa_han_sans_neo_medium"
-                android:text="@string/cat_detail_recent_post_time"
-                android:textColor="@color/yellow_F1BC35"
-                android:textSize="16sp"
-                app:layout_constraintStart_toEndOf="@+id/tvRecentPost"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <EditText
-                android:id="@+id/editPost"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="4dp"
-                android:paddingTop="9dp"
-                android:paddingEnd="8dp"
-                android:scrollbars="vertical"
-                android:scrollbarThumbVertical="@drawable/custom_scrollbar"
-                android:maxLines="3"
-                android:paddingStart="9dp"
-                android:paddingBottom="7dp"
-                android:background="@drawable/edit_line_round"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                android:hint="@string/cat_detail_post_hint"
-                android:textCursorDrawable="@drawable/edittext_cursor_color"
-                android:textSize="14sp"
-                app:layout_constraintEnd_toStartOf="@+id/btnPost"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvRecentPost" />
-
-            <Button
-                android:id="@+id/btnPost"
-                android:layout_width="50dp"
-                android:layout_height="36dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/btn_post"
-                android:fontFamily="@font/spoqa_han_sans_neo_regular"
-                android:text="@string/cat_detail_post_btn"
-                android:textColor="@color/brown_473A22"
-                android:textSize="14sp"
-                app:backgroundTint="@null"
-                app:layout_constraintBottom_toBottomOf="@+id/editPost"
-                app:layout_constraintEnd_toEndOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rcPost"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                android:orientation="vertical"
-                app:reverseLayout="true"
-                app:stackFromEnd="true"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editPost" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </androidx.core.widget.NestedScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

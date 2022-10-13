@@ -11,7 +11,7 @@ def accessKey = properties.getProperty('access.key')
 def secretAccessKey = properties.getProperty('secret.access.key')
 
 android {
-    compileSdk 32
+    compileSdk 33 // paging 때문에 바꿈, 원래는 32
 
     defaultConfig {
         applicationId "com.example.dongnaegoyang"
@@ -66,6 +66,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'       // cardview
     implementation 'io.github.sangcomz:fishbun:1.0.0-beta01'   // limit photo count
     implementation 'com.romandanylyk:pageindicatorview:1.0.3'   // pageindicatorview
+    implementation "androidx.paging:paging-runtime-ktx:3.2.0-alpha02"   // paging recycler view
 
     implementation "com.kakao.sdk:v2-user:2.11.0" // 카카오 로그인
 

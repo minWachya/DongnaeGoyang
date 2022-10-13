@@ -1,8 +1,14 @@
 package com.example.dongnaegoyang.data.remote.repository
 
+import androidx.paging.Pager
+import androidx.paging.PagingConfig
+import androidx.paging.PagingData
 import com.example.dongnaegoyang.data.remote.datasource.PostDataSource
 import com.example.dongnaegoyang.data.remote.model.BaseResponse
+import com.example.dongnaegoyang.data.remote.model.response.Post
 import com.example.dongnaegoyang.data.remote.model.response.PostListResponse
+import com.example.dongnaegoyang.ui.cat_detail.post.PostPagingSource
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 class PostRepositoryImpl @Inject constructor(
@@ -19,5 +25,12 @@ class PostRepositoryImpl @Inject constructor(
 
     override suspend fun getCatPost(catIdx: Long, page: Int): BaseResponse<PostListResponse> =
         dataSource.getCatPost(catIdx, page)
+
+    override suspend fun getPagingPost(catIdx: Long): Flow<PagingData<Post>> {
+        return Pager(
+            config = PagingConfig(pageSize = 30, enablePlaceholders = false),
+            pagingSourceFactory = { PostPagingSource(this, catIdx) }
+        ).flow
+    }
 
 }

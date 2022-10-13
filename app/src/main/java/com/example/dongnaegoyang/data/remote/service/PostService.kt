@@ -1,9 +1,6 @@
 package com.example.dongnaegoyang.data.remote.service
 
 import com.example.dongnaegoyang.data.remote.model.BaseResponse
-import com.example.dongnaegoyang.data.remote.model.request.CatAddRequest
-import com.example.dongnaegoyang.data.remote.model.response.CatDetailInfoResponse
-import com.example.dongnaegoyang.data.remote.model.response.CatDetailResponse
 import com.example.dongnaegoyang.data.remote.model.response.PostListResponse
 import retrofit2.http.*
 
