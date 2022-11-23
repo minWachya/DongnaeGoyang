@@ -74,7 +74,7 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         setPrevInfo(arguments)
         // 버튼 클릭 리스너
         setBtnClickListeners()
-
+        // 수정 시 이미 정보 적혀있을 때 버튼 enable 확인
         btnEnableCheck()
 
     }

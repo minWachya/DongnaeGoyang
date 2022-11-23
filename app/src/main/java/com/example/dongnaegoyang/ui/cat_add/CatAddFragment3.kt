@@ -20,6 +20,7 @@ import com.example.dongnaegoyang.common.VALUE_TYPE_CREATE
 import com.example.dongnaegoyang.custom.CustomDialog
 import com.example.dongnaegoyang.custom.CustomSpinnerTextView
 import com.example.dongnaegoyang.data.remote.model.request.CatAddRequest
+import com.example.dongnaegoyang.data.remote.model.request.CatModifyRequest
 import com.example.dongnaegoyang.data.remote.model.response.PhotoList
 import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 import com.example.dongnaegoyang.login.kakaoLogin.SharedPreferenceController
@@ -71,6 +72,8 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         setObserverS3Url()
         // 고양이 추가 옵저버
         setObserverCatAddResponse()
+        // 수정 후 옵저버
+        setObserverS3CatModifyResponse()
     }
 
     // 툴바 달기
@@ -123,7 +126,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                         photoAdapter.imgUris.clear()
                         // 새 데이터 저장
                         val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
-                        for (uri in photoUriArr) photoAdapter.imgUris.add(uri)
+                        for (uri in photoUriArr) photoAdapter.imgUris.add(uri.toString())
                         photoAdapter.notifyDataSetChanged()
                     }
                     // 사진 갯수
@@ -135,7 +138,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                 .setImageAdapter(GlideAdapter())
                 .setIsUseDetailView(true)                   // 상세 사진 보기 true
                 .setMaxCount(6)                             // 최대 사진 개수
-                .setSelectedImages(photoAdapter.imgUris)    // 이전에 선택했던 사진 uri 배열
+//                .setSelectedImages(photoAdapter.imgUris)    // 이전에 선택했던 사진 uri 배열
                 .exceptMimeType(listOf(MimeType.GIF))       // GIT 제외
                 .setActionBarColor(Color.parseColor("#473A22"), Color.parseColor("#5D4037"), false)
                 .setActionBarTitleColor(Color.parseColor("#ffffff"))
@@ -176,16 +179,24 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             // 사진
             val type =
                 requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
+            // 추가
             if (type == VALUE_TYPE_CREATE) {
                 val photoUriArr =
-                    bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+                    bundle.getParcelableArrayList<Uri>("photoList")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
                 if (photoUriArr != null) {
-                    for (uri in photoUriArr) photoAdapter.imgUris.add(uri as Uri)
+                    for (uri in photoUriArr) photoAdapter.imgUris.add(uri.toString())
                     photoAdapter.notifyDataSetChanged()
                     binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
                 }
-            } else {
-                val photoList = bundle.get("photoList")
+            }
+            // 수정
+            else {
+                val urlArr = bundle.getStringArrayList("urlArr") as ArrayList<String>
+                if (urlArr.isNotEmpty()) {
+                    for (url in urlArr) photoAdapter.imgUris.add(url)
+                    photoAdapter.notifyDataSetChanged()
+                    binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
+                }
             }
         }
     }
@@ -196,22 +207,31 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
         // <등록> 버튼 클릭: 1. 고양이 사진 저장 2. 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            // dialog 보이기
-            val gugun = arguments?.getString("sido", "null")
-            val dong = arguments?.getString("dong", "null")
-            CustomDialog(
-                "등록 확인", "$gugun $dong 에 새로운 고영희를 등록하시겠습니까?", null
-            ) {
-                // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
-                val multiUploadHashMap = linkedMapOf<String, File>()
-                for (i in 0 until photoAdapter.imgUris.size) {
-                    val path = getRealPathFromURI(photoAdapter.imgUris[i]).toString()
-                    val file = File(path)
-                    multiUploadHashMap[file.name] = file
-                }
-                if (multiUploadHashMap.size != 0) uploadImageToS3(multiUploadHashMap)
-                else postCatAdd(arguments!!)
-            }.show(parentFragmentManager, "CustomDialog")
+            val type = requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
+
+            // 추가
+            if(type == VALUE_TYPE_CREATE) {
+                // dialog 보이기
+                val gugun = arguments?.getString("sido", "null")
+                val dong = arguments?.getString("dong", "null")
+                CustomDialog(
+                    "등록 확인", "$gugun $dong 에 새로운 고영희를 등록하시겠습니까?", null
+                ) {
+                    // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
+                    val multiUploadHashMap = linkedMapOf<String, File>()
+                    for (i in 0 until photoAdapter.imgUris.size) {
+                        val path = getRealPathFromURI(Uri.parse(photoAdapter.imgUris[i])).toString()
+                        val file = File(path)
+                        multiUploadHashMap[file.name] = file
+                    }
+                    if (multiUploadHashMap.size != 0) uploadImageToS3(multiUploadHashMap)
+                    else postCatAdd(arguments!!)
+                }.show(parentFragmentManager, "CustomDialog")
+            }
+            // 수정
+            else {
+                fetchCatModify(arguments!!)
+            }
         }
     }
 
@@ -244,7 +264,6 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
     private fun postCatAdd(bundle: Bundle) {
         val token = SharedPreferenceController.getToken(requireContext())
-//        if (photoAdapter.imgUris.size == 0) viewModel.arrS3Url.value!!
         val tnr: String? = if (binding.tnrSpinner.textView.text.toString() != "")
             when (binding.tnrSpinner.textView.text.toString()) {
                 "O" -> "접종 완료"
@@ -274,9 +293,54 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         viewModel.postCatAdd(token, body)
     }
 
+    private fun fetchCatModify(bundle: Bundle) {
+        val token = SharedPreferenceController.getToken(requireContext())
+        val catIdx = requireActivity().intent.getLongExtra(KEY_CAT_IDX, -1L)
+        val tnr: String? = if (binding.tnrSpinner.textView.text.toString() != "")
+            when (binding.tnrSpinner.textView.text.toString()) {
+                "O" -> "접종 완료"
+                "X" -> "접종 미완료"
+                else -> "모름"
+            } else null
+        val food: String? = if (binding.foodSpinner.textView.text.toString() != "")
+            binding.foodSpinner.textView.text.toString()
+        else null
+
+        val body = CatModifyRequest(
+            name = bundle.getString("name", "null"),
+            color = bundle.getInt("fur"),
+            size = bundle.getInt("size"),
+            ear = bundle.getInt("ear"),
+            tail = bundle.getInt("tail"),
+            whisker = bundle.getInt("whiskers"),
+            oftenSeen = bundle.getString("place", "null"),
+            sex = bundle.getString("gender", "null"),
+            age = bundle.getString("age", "null"),
+            note = bundle.getString("note", "null"),
+            sido = bundle.getString("sido", "null"),
+            gugun = bundle.getString("gugun", "null"),
+            tnr = tnr,
+            feed = food,
+            deletePhotoList = null, // List<Long>(),
+            createPhotoList = null //List<String>()
+        )
+        viewModel.patchCatModify(token, catIdx, body)
+    }
+
     private fun setObserverCatAddResponse() {
         viewModel.catAddResponse.observe(viewLifecycleOwner) {
             Toast.makeText(context, "고양이를 성공적으로 추가하였습니다.", Toast.LENGTH_SHORT).show()
+            Intent(context, CatDetailActivity::class.java).apply {
+                putExtra(KEY_CAT_IDX, it.data)
+                startActivity(this)
+            }
+            requireActivity().finish()
+        }
+    }
+
+    private fun setObserverS3CatModifyResponse() {
+        viewModel.catModifyResponse.observe(viewLifecycleOwner) {
+            Toast.makeText(context, "고양이를 성공적으로 수정하였습니다.", Toast.LENGTH_SHORT).show()
             Intent(context, CatDetailActivity::class.java).apply {
                 putExtra(KEY_CAT_IDX, it.data)
                 startActivity(this)
@@ -294,7 +358,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             val food = binding.foodSpinner.textView.text.toString() // 선호 사료
             bundle.putString("tnr", tnr)
             bundle.putString("food", food)
-            bundle.putParcelableArrayList("uriArr", photoAdapter.imgUris)
+            bundle.putStringArrayList("uriArr", photoAdapter.imgUris)
             catAddFragment.arguments = bundle
         }
         // 프레그먼트에 정보 전달 + 이동

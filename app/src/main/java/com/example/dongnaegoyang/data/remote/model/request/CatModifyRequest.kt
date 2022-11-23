@@ -15,8 +15,6 @@ data class CatModifyRequest(
     val gugun: String,
     val tnr: String?,
     val feed: String?,
-    val photoList: List<String>,
-    val deletePhotoList: List<Long>,
-    val createPhotoList: List<String>
-
+    val deletePhotoList: List<Long>?,
+    val createPhotoList: List<String>?
 )
