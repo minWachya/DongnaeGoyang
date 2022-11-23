@@ -39,7 +39,7 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
         setToolbar()    // 툴바 달기
         binding.tabTabLayout.bringToFront() // tabTabLayout을 앞으로 보내서 view1 뒤로 보내기
 
-        val catIdx = intent.getLongExtra(KEY_CAT_IDX, 0)
+        val catIdx = intent.getLongExtra(KEY_CAT_IDX, 6)
         getCatDetail(catIdx)  // 고양이 상세 정보 가져오기
         setTapLayout(catIdx)    // 탭 어댑터 생성
 
@@ -76,6 +76,7 @@ class CatDetailActivity : BaseActivity<ActivityCatDetailBinding>(R.layout.activi
     private fun setObserverCatDetail() {
         viewModel.catDetailResponse.observe(this) {
             binding.catDetail = it.data
+            Log.d("mmm", it.data.toString())
             binding.executePendingBindings()
         }
     }

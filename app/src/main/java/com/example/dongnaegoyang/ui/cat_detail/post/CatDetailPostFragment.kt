@@ -31,7 +31,6 @@ class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layou
     lateinit var dialog: CustomDialog
 
     var catIdx: Long = 6L
-    var isLoading = false
 
     lateinit var adapter: PostAdapter
 
@@ -67,8 +66,8 @@ class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layou
 
     private fun setObserverCreatePost() {
         viewModel.createPostResponse.observe(viewLifecycleOwner) {
-            Toast.makeText(context, "게시글 등록 성공!", Toast.LENGTH_SHORT).show()
-//            refresh()
+            Toast(context).showCustomToast ("게시글이 등록되었습니다.", requireContext())
+            refresh()
         }
     }
 
@@ -131,8 +130,12 @@ class CatDetailPostFragment : BaseFragment<FragmentCatDetailPostBinding>(R.layou
     private fun setObserverDeletePost() {
         viewModel.deletePostResponse.observe(viewLifecycleOwner) {
             Toast(context).showCustomToast ("기록이 삭제되었습니다.", requireContext())
-//            refresh()
+            refresh()
         }
+    }
+
+    private fun refresh() {
+        adapter.refresh()
     }
 
     // EditText Scroll 설정

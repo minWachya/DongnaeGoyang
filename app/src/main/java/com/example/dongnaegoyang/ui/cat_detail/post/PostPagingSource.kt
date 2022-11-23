@@ -18,7 +18,7 @@ class PostPagingSource @Inject constructor(
 
             LoadResult.Page(
                 data = postList,
-                nextKey = if (pageIndex == 0) null else pageIndex,
+                nextKey = null, //if (pageIndex == 0) null else pageIndex,
                 prevKey = if (postList.isEmpty()) null else pageIndex + 1
             )
         } catch (e: Exception) {
@@ -27,9 +27,9 @@ class PostPagingSource @Inject constructor(
     }
 
     override fun getRefreshKey(state: PagingState<Int, Post>): Int? {
-        return state.anchorPosition?.let { anchorPosition ->
+        return 0/*state.anchorPosition?.let { anchorPosition ->
             state.closestPageToPosition(anchorPosition)?.prevKey?.plus(1)
                 ?: state.closestPageToPosition(anchorPosition)?.nextKey?.minus(1)
-        }
+        }*/
     }
 }

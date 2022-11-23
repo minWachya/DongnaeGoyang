@@ -22,6 +22,14 @@ class PostAdapter(val viewModel: CatDetailPostViewModel):
         getItem(position)?.let { holder.bind(it) }
     }
 
+    fun getFirstPostTime(): String? {
+        return try {
+            getItem(0)?.createdTime
+        } catch (e: IndexOutOfBoundsException) {
+            null
+        }
+    }
+
     inner class PostViewHolder(private val binding: ItemCatDetailPostBinding):
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: Post) {
