@@ -174,8 +174,9 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             binding.tnrSpinner.textView.text = tnr
             binding.foodSpinner.textView.text = food
             // 사진
-            val type = requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
-            if(type == VALUE_TYPE_CREATE) {
+            val type =
+                requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
+            if (type == VALUE_TYPE_CREATE) {
                 val photoUriArr =
                     bundle.getParcelableArrayList<Uri>("uriArr")//data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
                 if (photoUriArr != null) {
@@ -183,8 +184,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                     photoAdapter.notifyDataSetChanged()
                     binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
                 }
-            }
-            else {
+            } else {
                 val photoList = bundle.get("photoList")
             }
         }
@@ -200,7 +200,8 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             val gugun = arguments?.getString("sido", "null")
             val dong = arguments?.getString("dong", "null")
             CustomDialog(
-                "등록 확인", "$gugun $dong 에 새로운 고영희를 등록하시겠습니까?", null) {
+                "등록 확인", "$gugun $dong 에 새로운 고영희를 등록하시겠습니까?", null
+            ) {
                 // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
                 val multiUploadHashMap = linkedMapOf<String, File>()
                 for (i in 0 until photoAdapter.imgUris.size) {
@@ -208,7 +209,8 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                     val file = File(path)
                     multiUploadHashMap[file.name] = file
                 }
-                uploadImageToS3(multiUploadHashMap)
+                if (multiUploadHashMap.size != 0) uploadImageToS3(multiUploadHashMap)
+                else postCatAdd(arguments!!)
             }.show(parentFragmentManager, "CustomDialog")
         }
     }
@@ -242,14 +244,14 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
     private fun postCatAdd(bundle: Bundle) {
         val token = SharedPreferenceController.getToken(requireContext())
-        val array: Array<String> = viewModel.arrS3Url.value!!
-        val tnr: String? = if(binding.tnrSpinner.textView.text.toString() != "")
-            when(binding.tnrSpinner.textView.text.toString()) {
-            "O" -> "접종 완료"
-            "X" -> "접종 미완료"
-            else -> "모름"
-        }  else null
-        val food: String? = if(binding.foodSpinner.textView.text.toString() != "")
+//        if (photoAdapter.imgUris.size == 0) viewModel.arrS3Url.value!!
+        val tnr: String? = if (binding.tnrSpinner.textView.text.toString() != "")
+            when (binding.tnrSpinner.textView.text.toString()) {
+                "O" -> "접종 완료"
+                "X" -> "접종 미완료"
+                else -> "모름"
+            } else null
+        val food: String? = if (binding.foodSpinner.textView.text.toString() != "")
             binding.foodSpinner.textView.text.toString()
         else null
         val body = CatAddRequest(
@@ -267,7 +269,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             gugun = bundle.getString("gugun", "null"),
             tnr = tnr,
             feed = food,
-            photoList = listOf(*array)
+            photoList = if (photoAdapter.imgUris.size != 0) listOf(*(viewModel.arrS3Url.value!!)) else null
         )
         viewModel.postCatAdd(token, body)
     }

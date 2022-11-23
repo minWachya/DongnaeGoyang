@@ -34,24 +34,27 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
     private lateinit var ageArray: Array<String>
 
     // BottomDialog 위한 spinner_custom_layout.xml 아이디
-    private val arrTextViewId = listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
+    private val arrTextViewId =
+        listOf(R.id.title, R.id.text1, R.id.text2, R.id.text3, R.id.text4, R.id.text5, R.id.text6)
 
     private var sido = ""
     private var gugun = ""
     private var dong = ""
 
     // 주소 검색 Activity 이동 후 결과
-    private val startForResult = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == Activity.RESULT_OK) {
-            val intent = result.data
-            sido = intent?.getStringExtra("address1").toString()
-            gugun = intent?.getStringExtra("address2").toString()
-            dong = intent?.getStringExtra("address3").toString()
-            binding.tvTown.text = if("$sido $gugun $dong".trim() == "") null else "$sido $gugun $dong".trim()
-            checkTown = true
-            btnEnableCheck()
+    private val startForResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                val intent = result.data
+                sido = intent?.getStringExtra("address1").toString()
+                gugun = intent?.getStringExtra("address2").toString()
+                dong = intent?.getStringExtra("address3").toString()
+                binding.tvTown.text =
+                    if ("$sido $gugun $dong".trim() == "") null else "$sido $gugun $dong".trim()
+                checkTown = true
+                btnEnableCheck()
+            }
         }
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -71,6 +74,8 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         setPrevInfo(arguments)
         // 버튼 클릭 리스너
         setBtnClickListeners()
+
+        btnEnableCheck()
 
     }
 
@@ -105,8 +110,11 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
             btnEnableCheck()    // 이름, 주 출몰지, 특이사항 모두 입력해야 버튼 활성화
         }
     }
+
     // 모두 입력 시 버튼 활성화
     private fun btnEnableCheck() {
+        if(binding.tvTown.text.isNotEmpty()) checkTown = true
+
         binding.btnOK2.isEnabled = checkTown && checkName && checkPlace && checkNote
                 && binding.genderSpinner.textView.text.isNotEmpty() && binding.ageSpinner.textView.text.isNotEmpty()
     }
@@ -117,11 +125,20 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         val genderBottomSheetDialog = BottomSheetDialog(requireContext(), R.style.DialogCustomTheme)
         genderArray = resources.getStringArray(R.array.cat_add2_gender_array)
         genderBottomSheetDialog.setContentView(genderBottomSheetView)
-        setBottomSheetView(genderBottomSheetView, genderArray, genderBottomSheetDialog, binding.genderSpinner)
-        binding.genderSpinner.setOnCustomSTViewClickListener(object : CustomSpinnerTextView.OnCustomSTViewClickListener {
-            override fun onCustomSTViewClick(view: View?) { genderBottomSheetDialog.show() }
+        setBottomSheetView(
+            genderBottomSheetView,
+            genderArray,
+            genderBottomSheetDialog,
+            binding.genderSpinner
+        )
+        binding.genderSpinner.setOnCustomSTViewClickListener(object :
+            CustomSpinnerTextView.OnCustomSTViewClickListener {
+            override fun onCustomSTViewClick(view: View?) {
+                genderBottomSheetDialog.show()
+            }
         })
     }
+
     // 추정 나이 스피너 설정
     private fun setAgeSpinnerListener() {
         val ageBottomSheetView = layoutInflater.inflate(R.layout.spinner_custom_layout, null)
@@ -131,8 +148,14 @@ class CatAddFragment2 : BaseFragment<FragmentCatAdd2Binding>(R.layout.fragment_c
         setBottomSheetView(ageBottomSheetView, ageArray, ageBottomSheetDialog, binding.ageSpinner)
         binding.ageSpinner.textView.setOnClickListener { ageBottomSheetDialog.show() }
     }
+
     // 스피너 선택 설정
-    private fun setBottomSheetView(bottomSheetView: View, arr: Array<String>, dialog: BottomSheetDialog, spinner: CustomSpinnerTextView) {
+    private fun setBottomSheetView(
+        bottomSheetView: View,
+        arr: Array<String>,
+        dialog: BottomSheetDialog,
+        spinner: CustomSpinnerTextView
+    ) {
         for (i in arr.indices) {
             val textView = bottomSheetView.findViewById<TextView>(arrTextViewId[i])
             textView.text = arr[i]
