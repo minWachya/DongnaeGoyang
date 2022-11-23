@@ -15,5 +15,5 @@ data class CatAddRequest(
     val gugun: String,
     val tnr: String?,
     val feed: String?,
-    val photoList: List<String>
+    val photoList: List<String>?
 )

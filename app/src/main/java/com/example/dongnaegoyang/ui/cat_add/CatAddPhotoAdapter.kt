@@ -1,6 +1,5 @@
 package com.example.dongnaegoyang.ui.cat_add
 
-import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,9 @@ import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 
 // 고양이 추가 페이지-3단계: 사진 어댑터
 class CatAddPhotoAdapter(val binding: FragmentCatAdd3Binding) : RecyclerView.Adapter<CatAddPhotoAdapter.ViewHolder>() {
-    var imgUris = ArrayList<Uri>()  // Uri 배열
+    var imgUris = ArrayList<String>()
+
+    var deletePhotoUrl = ArrayList<String>()
 
     // 뷰홀더 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatAddPhotoAdapter.ViewHolder {
@@ -33,6 +34,7 @@ class CatAddPhotoAdapter(val binding: FragmentCatAdd3Binding) : RecyclerView.Ada
 
     // 아이템 삭제
     fun removeData(position: Int) {
+        deletePhotoUrl.add(imgUris[position])
         // 아이템 삭제
         imgUris.removeAt(position)
         notifyItemRemoved(position)
@@ -42,7 +44,7 @@ class CatAddPhotoAdapter(val binding: FragmentCatAdd3Binding) : RecyclerView.Ada
 
     // 사진 로드하기
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun setItem(url: Uri) {
+        fun setItem(url: String) {
             // 이미지 로드
             Glide.with(itemView)
                 .load(url)

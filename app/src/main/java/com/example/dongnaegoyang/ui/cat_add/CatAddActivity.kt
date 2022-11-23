@@ -66,7 +66,7 @@ class CatAddActivity :  BaseActivity<ActivityCatAddBinding>(R.layout.activity_ca
                 "gugun" to it.data.gugun,
                 "tnr" to it.data.tnr,
                 "food" to it.data.feed,
-                "photoList" to it.data.photoList
+                "urlArr" to it.data.photoList
             )
             // FrameLayout 설정
             val ft = supportFragmentManager.beginTransaction() // 프래그먼트 관리하는 매니저

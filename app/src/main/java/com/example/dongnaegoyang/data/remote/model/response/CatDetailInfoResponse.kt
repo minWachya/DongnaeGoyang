@@ -53,7 +53,7 @@ data class CatDetailInfoResponse(
 )
 
 data class PhotoList(
-    @SerializedName("imageIdx") val imageIdx: Int,
+    @SerializedName("imageIdx") val imageIdx: Long,
     @SerializedName("url") val url: String
 ): Serializable
 
