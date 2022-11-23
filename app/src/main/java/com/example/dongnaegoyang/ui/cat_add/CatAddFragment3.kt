@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -52,6 +51,8 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     private lateinit var foodArray: Array<String>
 
     private lateinit var photoAdapter: CatAddPhotoAdapter
+
+    var createPhotoUrl = ArrayList<String>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -161,7 +162,10 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
                         if (data != null) {
                             // 새 데이터 저장
                             val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
-                            for (uri in photoUriArr) photoAdapter.imgUris.add(uri.toString())
+                            for (uri in photoUriArr) {
+                                photoAdapter.imgUris.add(uri.toString())
+                                createPhotoUrl.add(uri.toString())
+                            }
                             photoAdapter.notifyDataSetChanged()
                         }
                         // 사진 갯수
@@ -272,7 +276,20 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             }
             // 수정
             else {
-                fetchCatModify(arguments!!)
+                // dialog 보이기
+                CustomDialog(
+                    "수정 확인", "고영희를 수정하시겠습니까?", null
+                ) {
+                    // 1. OK 버튼 클릭 시 고양이 사진 S3에 저장
+                    val multiUploadHashMap = linkedMapOf<String, File>()
+                    for (i in 0 until createPhotoUrl.size) {
+                        val path = getRealPathFromURI(Uri.parse(createPhotoUrl[i])).toString()
+                        val file = File(path)
+                        multiUploadHashMap[file.name] = file
+                    }
+                    if (multiUploadHashMap.size != 0) uploadImageToS3(multiUploadHashMap)
+                    else fetchCatModify(arguments!!)
+                }.show(parentFragmentManager, "CustomDialog")
             }
         }
     }
@@ -300,7 +317,11 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
     // 2. s3 업로드 후 고양이 정보 저장하기
     private fun setObserverS3Url() {
         viewModel.arrS3Url.observe(viewLifecycleOwner) {
-            postCatAdd(arguments!!)
+            val type =
+                requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
+            // 추가
+            if (type == VALUE_TYPE_CREATE) postCatAdd(arguments!!)
+            else fetchCatModify(arguments!!)
         }
     }
 
@@ -371,7 +392,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             tnr = tnr,
             feed = food,
             deletePhotoList = deleteArr,
-            createPhotoList = null //List<String>()
+            createPhotoList = if (createPhotoUrl.size != 0) listOf(*(viewModel.arrS3Url.value!!)) else null
         )
         viewModel.patchCatModify(token, catIdx, body)
     }
