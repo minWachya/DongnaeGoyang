@@ -116,34 +116,74 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
     // 사진 선택 설정
     private fun setSelectPhoto() {
-        // 사진 설정 부분
-        val photoResultLauncher =
-            registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-                if (result.resultCode == Activity.RESULT_OK) {
-                    val data = result.data
-                    if (data != null) {
-                        // 이전 데이터 삭제
-                        photoAdapter.imgUris.clear()
-                        // 새 데이터 저장
-                        val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
-                        for (uri in photoUriArr) photoAdapter.imgUris.add(uri.toString())
-                        photoAdapter.notifyDataSetChanged()
+        val type = requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
+        // 추가
+        if (type == VALUE_TYPE_CREATE) {
+            val photoResultLauncher =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    if (result.resultCode == Activity.RESULT_OK) {
+                        val data = result.data
+                        if (data != null) {
+                            // 이전 데이터 삭제
+                            photoAdapter.imgUris.clear()
+                            // 새 데이터 저장
+                            val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+                            for (uri in photoUriArr) photoAdapter.imgUris.add(uri.toString())
+                            photoAdapter.notifyDataSetChanged()
+                        }
+                        // 사진 갯수
+                        binding.tvSelectCount.text = photoAdapter.itemCount.toString()
                     }
-                    // 사진 갯수
-                    binding.tvSelectCount.text = photoAdapter.itemCount.toString()
                 }
+            binding.layoutSelectPhoto.setOnClickListener {
+                val arr = photoAdapter.imgUris as ArrayList<Uri>
+                FishBun.with(this@CatAddFragment3)
+                    .setImageAdapter(GlideAdapter())
+                    .setIsUseDetailView(true)                   // 상세 사진 보기 true
+                    .setMaxCount(6)                             // 최대 사진 개수
+                    .setSelectedImages(arr)    // 이전에 선택했던 사진 uri 배열
+                    .exceptMimeType(listOf(MimeType.GIF))       // GIT 제외
+                    .setActionBarColor(
+                        Color.parseColor("#473A22"),
+                        Color.parseColor("#5D4037"),
+                        false
+                    )
+                    .setActionBarTitleColor(Color.parseColor("#ffffff"))
+                    .startAlbumWithActivityResultCallback(photoResultLauncher)
             }
-        binding.layoutSelectPhoto.setOnClickListener {
-            FishBun.with(this@CatAddFragment3)
-                .setImageAdapter(GlideAdapter())
-                .setIsUseDetailView(true)                   // 상세 사진 보기 true
-                .setMaxCount(6)                             // 최대 사진 개수
-//                .setSelectedImages(photoAdapter.imgUris)    // 이전에 선택했던 사진 uri 배열
-                .exceptMimeType(listOf(MimeType.GIF))       // GIT 제외
-                .setActionBarColor(Color.parseColor("#473A22"), Color.parseColor("#5D4037"), false)
-                .setActionBarTitleColor(Color.parseColor("#ffffff"))
-                .startAlbumWithActivityResultCallback(photoResultLauncher)
         }
+        // 수정
+        else {
+            val photoResultLauncher =
+                registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+                    if (result.resultCode == Activity.RESULT_OK) {
+                        val data = result.data
+                        if (data != null) {
+                            // 새 데이터 저장
+                            val photoUriArr = data.getParcelableArrayListExtra<Uri>(INTENT_PATH)!!
+                            for (uri in photoUriArr) photoAdapter.imgUris.add(uri.toString())
+                            photoAdapter.notifyDataSetChanged()
+                        }
+                        // 사진 갯수
+                        binding.tvSelectCount.text = photoAdapter.itemCount.toString()
+                    }
+                }
+            binding.layoutSelectPhoto.setOnClickListener {
+                FishBun.with(this@CatAddFragment3)
+                    .setImageAdapter(GlideAdapter())
+                    .setIsUseDetailView(true)                   // 상세 사진 보기 true
+                    .setMaxCount(6)                             // 최대 사진 개수
+                    .exceptMimeType(listOf(MimeType.GIF))       // GIT 제외
+                    .setActionBarColor(
+                        Color.parseColor("#473A22"),
+                        Color.parseColor("#5D4037"),
+                        false
+                    )
+                    .setActionBarTitleColor(Color.parseColor("#ffffff"))
+                    .startAlbumWithActivityResultCallback(photoResultLauncher)
+            }
+        }
+
     }
 
     // 스피너 선택 설정
@@ -191,9 +231,10 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             }
             // 수정
             else {
-                val urlArr = bundle.getStringArrayList("urlArr") as ArrayList<String>
-                if (urlArr.isNotEmpty()) {
-                    for (url in urlArr) photoAdapter.imgUris.add(url)
+                val urlArr = bundle.getStringArrayList("urlArr") as ArrayList<PhotoList>
+                val arr = urlArr.map { it.url }
+                if (arr.isNotEmpty()) {
+                    for (url in arr) photoAdapter.imgUris.add(url)
                     photoAdapter.notifyDataSetChanged()
                     binding.tvSelectCount.text = photoAdapter.imgUris.size.toString()
                 }
@@ -207,10 +248,11 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
 
         // <등록> 버튼 클릭: 1. 고양이 사진 저장 2. 고양이 정보 저장
         binding.btnOK3.setOnClickListener {
-            val type = requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
+            val type =
+                requireActivity().intent.getStringExtra(KEY_CAT_ADD_TYPE) ?: VALUE_TYPE_CREATE
 
             // 추가
-            if(type == VALUE_TYPE_CREATE) {
+            if (type == VALUE_TYPE_CREATE) {
                 // dialog 보이기
                 val gugun = arguments?.getString("sido", "null")
                 val dong = arguments?.getString("dong", "null")
@@ -305,6 +347,13 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
         val food: String? = if (binding.foodSpinner.textView.text.toString() != "")
             binding.foodSpinner.textView.text.toString()
         else null
+        val deleteArr = arrayListOf<Long>()
+        val urlArr = bundle.getStringArrayList("urlArr") as ArrayList<PhotoList>
+        urlArr.forEach {
+            if(it.url in photoAdapter.deletePhotoUrl) {
+                deleteArr.add(it.imageIdx)
+            }
+        }
 
         val body = CatModifyRequest(
             name = bundle.getString("name", "null"),
@@ -321,7 +370,7 @@ class CatAddFragment3 : BaseFragment<FragmentCatAdd3Binding>(R.layout.fragment_c
             gugun = bundle.getString("gugun", "null"),
             tnr = tnr,
             feed = food,
-            deletePhotoList = null, // List<Long>(),
+            deletePhotoList = deleteArr,
             createPhotoList = null //List<String>()
         )
         viewModel.patchCatModify(token, catIdx, body)

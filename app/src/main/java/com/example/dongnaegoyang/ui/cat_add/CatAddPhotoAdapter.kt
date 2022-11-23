@@ -13,7 +13,9 @@ import com.example.dongnaegoyang.databinding.FragmentCatAdd3Binding
 
 // 고양이 추가 페이지-3단계: 사진 어댑터
 class CatAddPhotoAdapter(val binding: FragmentCatAdd3Binding) : RecyclerView.Adapter<CatAddPhotoAdapter.ViewHolder>() {
-    var imgUris = ArrayList<String>()  // Uri 배열
+    var imgUris = ArrayList<String>()
+
+    var deletePhotoUrl = ArrayList<String>()
 
     // 뷰홀더 생성
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CatAddPhotoAdapter.ViewHolder {
@@ -25,7 +27,7 @@ class CatAddPhotoAdapter(val binding: FragmentCatAdd3Binding) : RecyclerView.Ada
     // position 번째 아이템 설정하기
     override fun onBindViewHolder(holder: CatAddPhotoAdapter.ViewHolder, position: Int) {
         val uri = imgUris[position]
-        holder.setItem(uri.toString())
+        holder.setItem(uri)
     }
 
     // 아이템 갯수 리턴
@@ -33,6 +35,7 @@ class CatAddPhotoAdapter(val binding: FragmentCatAdd3Binding) : RecyclerView.Ada
 
     // 아이템 삭제
     fun removeData(position: Int) {
+        deletePhotoUrl.add(imgUris[position])
         // 아이템 삭제
         imgUris.removeAt(position)
         notifyItemRemoved(position)
