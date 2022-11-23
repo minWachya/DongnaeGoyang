@@ -27,7 +27,7 @@ class CatDetailPostViewModel @Inject constructor(
     // 게시글 메뉴 클릭 여부
     private val _openPostEvent = MutableLiveData<Event<Long>>()
     val openPostEvent: LiveData<Event<Long>> = _openPostEvent
-
+    
     suspend fun getPagingPost(catIdx: Long): Flow<PagingData<Post>> {
         return repository.getPagingPost(catIdx)
     }
